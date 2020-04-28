@@ -241,4 +241,79 @@ Unlock inputs on DS failure
 
 -------------------------------------------------------------------------------
             ^       CLIENT BUILD 1.2.1-61402      ^
-----------------------------------------------------------------
+-------------------------------------------------------------------------------
+
+Update vAletrt pub/privkeys
+
+Add cryptostream for api key encryption
+
+Add removeSpaces in bitcoinunits.cpp
+
+Coin control fixes for Qt5
+
+move setClipboard to GUIUtil
+
+Add getMappedColumn -> coincontrol.h
+
+Add parentViewItemChanged which is currently unused
+
+Add timers into coincontrol
+- also helps to let users know the wallet isnt frozen when following the debug.log
+
+Api keys for Bittrex can be saved to a file which is in an encrypted format using cryptostream
+
+2 new DisplayBalance functions to help speed up the trading dialogs
+
+on_SaveKeys_clicked() and on_LoadKeys_clicked() added to tradingdialog.cpp
+
+Added a small wait time into cross sending
+- Some users were experiencing insufficient funds when withdrawing. 
+- Caused by sell orders not going through quickly enough
+- 50ms added to every trade. On the last trade this is increased to 100ms.
+- 500 ms added before the withdraw.
+
+transactiontablemodel.updateWallet cleaned and updated
+
+getdifficulty, getsubsidy, and getinfo no longer return POW values
+
+masternodelist updated to include new commands
+
+added "masternode status" command
+
+Autostart masternode upon startup
+
+Move DS pool status out of overview page
+
+-------------------------------------------------------------------------------
+
+
+Removal of old code:
+IsProtocolV1/IsProtocolV2 hard fork switches removed
+FutureDriftV1/FutureDriftV2 reverted back to FutureDrift
+CheckStakeKernelHashV1/CheckStakeKernalHashV2 reverted back to CheckStakeKernelHash
+Remove ComputeMaxBits, ComputeMinWork, ComputeMinStake
+Remove KeePass integration
+
+
+-------------------------------------------------------------------------------
+
+
+To Do:
+Add time offset to getpeerinfo output
+https://github.com/SCDeveloper/DarkSilk-Release-Candidate/commit/9c4b2303957cd19ccdf2e47fce745240c3ea822b
+
+Made special marker non spendable
+Added nonspendable encoding for block signing key
+BIP66 compatibility
+Replaced NOP7 with CHECKLOCKTIMEVERIFY
+Enforce new script verification flags
+Demand canonical block sig from updated peers
+
+Submitblock: Add submission of stake template
+https://github.com/SCDeveloper/DarkSilk-Release-Candidate/commit/a108b8b0179f1790dd8dba824efc3a15c1ab6066
+
+check the templates in util.h/util.cpp --phark
+(int64_t)long long has limits on the size of integers
+
+Upnp updates - phark
+https://github.com/neoscoin/neos-core/commit/9fce916fa64f90f2a41b71adb18674b968b689d3
