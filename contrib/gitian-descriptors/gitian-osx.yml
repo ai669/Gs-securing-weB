@@ -1,0 +1,66 @@
+---
+name: "WayaWolfCoin"
+suites:
+- "trusty"
+architectures:
+- "amd64"
+packages:
+- "git-core"
+- "clang"
+- "llvm-dev"
+- "unzip"
+- "zip"
+- "nsis"
+- "faketime"
+- "autoconf2.13"
+- "libtool"
+- "automake"
+- "pkg-config"
+- "bsdmainutils"
+- "python"
+- "genisoimage"
+reference_datetime: "2013-06-01 00:00:00"
+remotes:
+- "url": "https://github.com/SCDeveloper/WayaWolfCoin.git"
+  "dir": "WayaWolfCoin"
+files:
+- "qt-osx-5.5.0-gitian.tar.xz"
+- "WayaWolfCoin-deps-osx-gitian.zip"
+- "osxcross.tar.xz"
+script: |
+  # Defines
+  export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1
+  export FAKETIME=$REFERENCE_DATETIME
+  export TZ=UTC
+  INDIR=$HOME/build
+  OPTFLAGS='-O2'
+  TEMPDIR="$HOME/tempdir"
+  BUILDDIR=$HOME/build
+  DEPSDIR=$HOME/deps
+  HOST=x86_64-apple-darwin13
+  DISTNAME=x86_64-darwin
+  export PATH=$DEPSDIR/host/bin:$DEPSDIR:$DEPSDIR/bin:$PATH
+  NEEDDIST=1
+  # Qt: workaround for determinism in resource ordering
+  #  Qt5's rcc uses a QHash to store the files for the resource.
+  #  A security fix in QHash makes the ordering of keys to be different on every run
+  #  (https://qt.gitorious.org/qt/qtbase/commit/c01eaa438200edc9a3bbcd8ae1e8ded058bea268).
+  #  This is good in general but qrc shouldn't be doing a traversal over a randomized container.
+  #  The thorough solution would be to use QMap instead of QHash, but this requires patching Qt.
+  #  For now luckily there is a test mode that forces a fixed seed.
+  export QT_RCC_TEST=1
+  mkdir -p $BUILDDIR $BINDIR $DEPSDIR
+  cd $DEPSDIR
+  unzip -o $BUILDDIR/WayaWolfCoin-deps-osx-gitian.zip
+  tar xf $BUILDDIR/osxcross.tar.xz
+  mkdir -p $HOME/install
+  cd $HOME/install
+  tar xf $BUILDDIR/qt-osx-5.5.0-gitian.tar.xz
+  #
+  cd $BUILDDIR/WayaWolfCoin
+  mkdir -p $OUTDIR/src
+  git archive HEAD | tar -x -C $OUTDIR/src
+  cp $OUTDIR/src/doc/README $OUTDIR/readme.txt
+  cp $OUTDIR/src/COPYING $OUTDIR/COPYING.txt
+  #
+  #
