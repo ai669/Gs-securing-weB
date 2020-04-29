@@ -228,4 +228,12 @@ script: |
   ln -sf ../lib/QtNetwork.framework/Headers/ QtNetwork
   ln -sf ../lib/QtWidgets.framework/Headers/ QtWidgets
   ln -sf ../lib/QtGui.framework/Headers/ QtGui
-  ln -sf ../lib/QtCore.framework/Headers/ Qt
+  ln -sf ../lib/QtCore.framework/Headers/ QtCore
+  ln -sf ../lib/QtTest.framework/Headers/ QtTest
+  ln -sf ../lib/QtWebKitWidgets.framework/Headers/ QtWebKitWidgets
+  cd ..
+  # as zip stores file timestamps, use faketime to intercept stat calls to set dates for all files to reference date
+  export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/faketime/libfaketime.so.1
+  export FAKETIME=$REFERENCE_DATETIME
+  find -print0 | xargs -r0 touch # fix up timestamps before packaging
+  find | sort | tar --no-recursion -cJf $OUTDIR/qt-osx-5.5.0-gitian.tar.xz -T -
