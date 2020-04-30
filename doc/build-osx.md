@@ -51,4 +51,4 @@ Run:
 Run
   ./WayaWolfCoind -daemon # to start the WayaWolfCoin daemon.
 Run
-  ./WayaWolfCoind help
+  ./WayaWolfCoind help # When the daemon is running, to get a list of RPC commands
