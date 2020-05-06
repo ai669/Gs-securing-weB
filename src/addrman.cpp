@@ -265,4 +265,263 @@ void CAddrMan::Good_(const CService &addr, int64_t nTime)
 
     // if not found, bail out
     if (!pinfo)
-        
+        return;
+
+    CAddrInfo &info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    info.nLastSuccess = nTime;
+    info.nLastTry = nTime;
+    info.nTime = nTime;
+    info.nAttempts = 0;
+
+    // if it is already in the tried set, don't do anything else
+    if (info.fInTried)
+        return;
+
+    // find a bucket it is in now
+    int nRnd = GetRandInt(vvNew.size());
+    int nUBucket = -1;
+    for (unsigned int n = 0; n < vvNew.size(); n++)
+    {
+        int nB = (n+nRnd) % vvNew.size();
+        std::set<int> &vNew = vvNew[nB];
+        if (vNew.count(nId))
+        {
+            nUBucket = nB;
+            break;
+        }
+    }
+
+    // if no bucket is found, something bad happened;
+    // TODO: maybe re-add the node, but for now, just bail out
+    if (nUBucket == -1) return;
+
+    LogPrint("addrman", "Moving %s to tried\n", addr.ToString());
+
+    // move nId to the tried tables
+    MakeTried(info, nId, nUBucket);
+}
+
+bool CAddrMan::Add_(const CAddress &addr, const CNetAddr& source, int64_t nTimePenalty)
+{
+    if (!addr.IsRoutable())
+        return false;
+
+    if (addr.GetPort() == 0)
+        return false;
+    
+    bool fNew = false;
+    int nId;
+    CAddrInfo *pinfo = Find(addr, &nId);
+
+    if (pinfo)
+    {
+        // periodically update nTime
+        bool fCurrentlyOnline = (GetAdjustedTime() - addr.nTime < 24 * 60 * 60);
+        int64_t nUpdateInterval = (fCurrentlyOnline ? 60 * 60 : 24 * 60 * 60);
+        if (addr.nTime && (!pinfo->nTime || pinfo->nTime < addr.nTime - nUpdateInterval - nTimePenalty))
+            pinfo->nTime = max((int64_t)0, addr.nTime - nTimePenalty);
+
+        // add services
+        pinfo->nServices |= addr.nServices;
+
+        // do not update if no new information is present
+        if (!addr.nTime || (pinfo->nTime && addr.nTime <= pinfo->nTime))
+            return false;
+
+        // do not update if the entry was already in the "tried" table
+        if (pinfo->fInTried)
+            return false;
+
+        // do not update if the max reference count is reached
+        if (pinfo->nRefCount == ADDRMAN_NEW_BUCKETS_PER_ADDRESS)
+            return false;
+
+        // stochastic test: previous nRefCount == N: 2^N times harder to increase it
+        int nFactor = 1;
+        for (int n=0; n<pinfo->nRefCount; n++)
+            nFactor *= 2;
+        if (nFactor > 1 && (GetRandInt(nFactor) != 0))
+            return false;
+    } else {
+        pinfo = Create(addr, source, &nId);
+        pinfo->nTime = max((int64_t)0, (int64_t)pinfo->nTime - nTimePenalty);
+        nNew++;
+        fNew = true;
+    }
+
+    int nUBucket = pinfo->GetNewBucket(nKey, source);
+    std::set<int> &vNew = vvNew[nUBucket];
+    if (!vNew.count(nId))
+    {
+        pinfo->nRefCount++;
+        if (vNew.size() == ADDRMAN_NEW_BUCKET_SIZE)
+            ShrinkNew(nUBucket);
+        vvNew[nUBucket].insert(nId);
+    }
+    return fNew;
+}
+
+void CAddrMan::Attempt_(const CService &addr, int64_t nTime)
+{
+    CAddrInfo *pinfo = Find(addr);
+
+    // if not found, bail out
+    if (!pinfo)
+        return;
+
+    CAddrInfo &info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    info.nLastTry = nTime;
+    info.nAttempts++;
+}
+
+CAddress CAddrMan::Select_(int nUnkBias)
+{
+    if (size() == 0)
+        return CAddress();
+
+    double nCorTried = sqrt(nTried) * (100.0 - nUnkBias);
+    double nCorNew = sqrt(nNew) * nUnkBias;
+    if ((nCorTried + nCorNew)*GetRandInt(1<<30)/(1<<30) < nCorTried)
+    {
+        // use a tried node
+        double fChanceFactor = 1.0;
+        while(1)
+        {
+            int nKBucket = GetRandInt(vvTried.size());
+            std::vector<int> &vTried = vvTried[nKBucket];
+            if (vTried.size() == 0) continue;
+            int nPos = GetRandInt(vTried.size());
+            assert(mapInfo.count(vTried[nPos]) == 1);
+            CAddrInfo &info = mapInfo[vTried[nPos]];
+            if (GetRandInt(1<<30) < fChanceFactor*info.GetChance()*(1<<30))
+                return info;
+            fChanceFactor *= 1.2;
+        }
+    } else {
+        // use a new node
+        double fChanceFactor = 1.0;
+        while(1)
+        {
+            int nUBucket = GetRandInt(vvNew.size());
+            std::set<int> &vNew = vvNew[nUBucket];
+            if (vNew.size() == 0) continue;
+            int nPos = GetRandInt(vNew.size());
+            std::set<int>::iterator it = vNew.begin();
+            while (nPos--)
+                it++;
+            assert(mapInfo.count(*it) == 1);
+            CAddrInfo &info = mapInfo[*it];
+            if (GetRandInt(1<<30) < fChanceFactor*info.GetChance()*(1<<30))
+                return info;
+            fChanceFactor *= 1.2;
+        }
+    }
+}
+
+#ifdef DEBUG_ADDRMAN
+int CAddrMan::Check_()
+{
+    std::set<int> setTried;
+    std::map<int, int> mapNew;
+
+    if (vRandom.size() != nTried + nNew) return -7;
+
+    for (std::map<int, CAddrInfo>::iterator it = mapInfo.begin(); it != mapInfo.end(); it++)
+    {
+        int n = (*it).first;
+        CAddrInfo &info = (*it).second;
+        if (info.fInTried)
+        {
+
+            if (!info.nLastSuccess) return -1;
+            if (info.nRefCount) return -2;
+            setTried.insert(n);
+        } else {
+            if (info.nRefCount < 0 || info.nRefCount > ADDRMAN_NEW_BUCKETS_PER_ADDRESS) return -3;
+            if (!info.nRefCount) return -4;
+            mapNew[n] = info.nRefCount;
+        }
+        if (mapAddr[info] != n) return -5;
+        if (info.nRandomPos<0 || info.nRandomPos>=vRandom.size() || vRandom[info.nRandomPos] != n) return -14;
+        if (info.nLastTry < 0) return -6;
+        if (info.nLastSuccess < 0) return -8;
+    }
+
+    if (setTried.size() != nTried) return -9;
+    if (mapNew.size() != nNew) return -10;
+
+    for (int n=0; n<vvTried.size(); n++)
+    {
+        std::vector<int> &vTried = vvTried[n];
+        for (std::vector<int>::iterator it = vTried.begin(); it != vTried.end(); it++)
+        {
+            if (!setTried.count(*it)) return -11;
+            setTried.erase(*it);
+        }
+    }
+
+    for (int n=0; n<vvNew.size(); n++)
+    {
+        std::set<int> &vNew = vvNew[n];
+        for (std::set<int>::iterator it = vNew.begin(); it != vNew.end(); it++)
+        {
+            if (!mapNew.count(*it)) return -12;
+            if (--mapNew[*it] == 0)
+                mapNew.erase(*it);
+        }
+    }
+
+    if (setTried.size()) return -13;
+    if (mapNew.size()) return -15;
+
+    return 0;
+}
+#endif
+
+void CAddrMan::GetAddr_(std::vector<CAddress> &vAddr)
+{
+    int nNodes = ADDRMAN_GETADDR_MAX_PCT*vRandom.size()/100;
+    if (nNodes > ADDRMAN_GETADDR_MAX)
+        nNodes = ADDRMAN_GETADDR_MAX;
+
+    // perform a random shuffle over the first nNodes elements of vRandom (selecting from all)
+    for (int n = 0; n<nNodes; n++)
+    {
+        int nRndPos = GetRandInt(vRandom.size() - n) + n;
+        SwapRandom(n, nRndPos);
+        assert(mapInfo.count(vRandom[n]) == 1);
+        vAddr.push_back(mapInfo[vRandom[n]]);
+    }
+}
+
+void CAddrMan::Connected_(const CService &addr, int64_t nTime)
+{
+    CAddrInfo *pinfo = Find(addr);
+
+    // if not found, bail out
+    if (!pinfo)
+        return;
+
+    CAddrInfo &info = *pinfo;
+
+    // check whether we are talking about the exact same CService (including same port)
+    if (info != addr)
+        return;
+
+    // update info
+    int64_t nUpdateInterval = 20 * 60;
+    if (nTime - info.nTime > nUpdateInterval)
+        info.nTime = nTime;
+}
