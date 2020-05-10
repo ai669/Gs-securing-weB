@@ -480,3 +480,35 @@ public:
         {
             LOCK(cs);
             Check();
+            addrRet = Select_(nUnkBias);
+            Check();
+        }
+        return addrRet;
+    }
+
+    // Return a bunch of addresses, selected at random.
+    std::vector<CAddress> GetAddr()
+    {
+        Check();
+        std::vector<CAddress> vAddr;
+        {
+            LOCK(cs);
+            GetAddr_(vAddr);
+        }
+        Check();
+        return vAddr;
+    }
+
+    // Mark an entry as currently-connected-to.
+    void Connected(const CService &addr, int64_t nTime = GetAdjustedTime())
+    {
+        {
+            LOCK(cs);
+            Check();
+            Connected_(addr, nTime);
+            Check();
+        }
+    }
+};
+
+#endif
