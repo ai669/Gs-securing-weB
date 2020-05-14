@@ -54,4 +54,91 @@ bool AppInit(int argc, char* argv[])
         if (mapArgs.count("-?") || mapArgs.count("--help"))
         {
             // First part of help message is specific to bitcoind / RPC client
-            std::string strUsage = _("WayaWolfCoin version") + " " + FormatFullVersion() + 
+            std::string strUsage = _("WayaWolfCoin version") + " " + FormatFullVersion() + "\n\n" +
+                _("Usage:") + "\n" +
+                  "  WayaWolfCoind [options]                     " + "\n" +
+                  "  WayaWolfCoind [options] <command> [params]  " + _("Send command to -server or WayaWolfCoind") + "\n" +
+                  "  WayaWolfCoind [options] help                " + _("List commands") + "\n" +
+                  "  WayaWolfCoind [options] help <command>      " + _("Get help for a command") + "\n";
+
+            strUsage += "\n" + HelpMessage();
+
+            fprintf(stdout, "%s", strUsage.c_str());
+            return false;
+        }
+
+        // Command-line RPC
+        for (int i = 1; i < argc; i++)
+            if (!IsSwitchChar(argv[i][0]) && !boost::algorithm::istarts_with(argv[i], "WayaWolfCoin:"))
+                fCommandLine = true;
+
+        if (fCommandLine)
+        {
+            if (!SelectParamsFromCommandLine()) {
+                fprintf(stderr, "Error: invalid combination of -regtest and -testnet.\n");
+                return false;
+            }
+            int ret = CommandLineRPC(argc, argv);
+            exit(ret);
+        }
+#if !WIN32
+        fDaemon = GetBoolArg("-daemon", false);
+        if (fDaemon)
+        {
+            // Daemonize
+            pid_t pid = fork();
+            if (pid < 0)
+            {
+                fprintf(stderr, "Error: fork() returned %d errno %d\n", pid, errno);
+                return false;
+            }
+            if (pid > 0) // Parent process, pid is child process id
+            {
+                CreatePidFile(GetPidFile(), pid);
+                return true;
+            }
+            // Child process falls through to rest of initialization
+
+            pid_t sid = setsid();
+            if (sid < 0)
+                fprintf(stderr, "Error: setsid() returned %d errno %d\n", sid, errno);
+        }
+#endif
+
+		fRet = AppInit2(threadGroup);
+    }
+    catch (std::exception& e) {
+        PrintException(&e, "AppInit()");
+    } catch (...) {
+        PrintException(NULL, "AppInit()");
+    }
+
+    if (!fRet)
+    {
+        threadGroup.interrupt_all();
+        // threadGroup.join_all(); was left out intentionally here, because we didn't re-test all of
+        // the startup-failure cases to make sure they don't result in a hang due to some
+        // thread-blocking-waiting-for-another-thread-during-startup case
+    } else {
+        WaitForShutdown(&threadGroup);
+    }
+    Shutdown();
+
+    return fRet;
+}
+
+extern void noui_connect();
+int main(int argc, char* argv[])
+{
+    bool fRet = false;
+
+    // Connect bitcoind signal handlers
+    noui_connect();
+
+    fRet = AppInit(argc, argv);
+
+    if (fRet && fDaemon)
+        return 0;
+
+    return (fRet ? 0 : 1);
+}
