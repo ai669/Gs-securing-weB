@@ -236,4 +236,12 @@ bool SelectParamsFromCommandLine() {
         return false;
     }
 
-  
+    if (fRegTest) {
+        SelectParams(CChainParams::REGTEST);
+    } else if (fTestNet) {
+        SelectParams(CChainParams::TESTNET);
+    } else {
+        SelectParams(CChainParams::MAIN);
+    }
+    return true;
+}
