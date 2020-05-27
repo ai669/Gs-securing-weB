@@ -408,4 +408,95 @@ unsigned int VRX_Retarget(const CBlockIndex* pindexLast, bool fProofOfStake)
     VRX_Simulate_Retarget();
 
     // Limit
-    if (bnNew > bnVelocity) { bnNew = bnVeloci
+    if (bnNew > bnVelocity) { bnNew = bnVelocity; }
+
+    // Final log
+    oldBN = bnOld.GetCompact();
+    newBN = bnNew.GetCompact();
+
+    // Debug print toggle
+    if(fDebug) VRXdebug();
+
+    // Return difficulty
+    return bnNew.GetCompact();
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Difficulty retarget (function)
+//
+
+unsigned int GetNextTargetRequired(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+    // Default with VRX
+    unsigned int retarget = DIFF_VRX;
+
+    // Check selection
+    if (retarget != DIFF_VRX)
+    {
+        // debug info for testing
+        if(fDebug) GNTdebug();
+        return VRX_Retarget(pindexLast, fProofOfStake);
+    }
+
+    // Retarget using Terminal-Velocity
+    // debug info for testing
+    if(fDebug) GNTdebug();
+    return VRX_Retarget(pindexLast, fProofOfStake);
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Coin base subsidy
+//
+
+//
+// PoW coin base reward
+//
+int64_t GetProofOfWorkReward(int nHeight, int64_t nFees)
+{
+    int64_t nSubsidy = nBlockStandardReward;
+
+    if(nHeight > nReservePhaseStart) {
+        if(pindexBest->nMoneySupply < (nBlockRewardReserve * 100)) {
+            nSubsidy = nBlockRewardReserve;
+        }
+    }
+
+    // hardCap v2.1
+    else if(pindexBest->nMoneySupply > MAX_SINGLE_TX)
+    {
+        LogPrint("MINEOUT", "GetProofOfWorkReward(): create=%s nFees=%d\n", FormatMoney(nFees), nFees);
+        return nFees;
+    }
+
+    // Halving -- ON
+    nSubsidy >>= (nHeight / 210000); // Halves every 210,000 blocks
+
+    LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+    return nSubsidy + nFees;
+}
+
+//
+// PoS coin base reward
+//
+int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, int64_t nFees)
+{
+    int64_t nSubsidy = nBlockStandardReward; // PoS Staking - pindexPrev is info from the last block, and -> means to get specific info from that block. Getblocktime is the epoch time of that block.
+
+    if(pindexPrev->nHeight+1 > nReservePhaseStart) { // If, all 100 blocks of the premine are not done, then next blocks have premine value
+        if(pindexBest->nMoneySupply < (nBlockRewardReserve * 100)) {
+            nSubsidy = nBlockRewardReserve;
+        }
+    }
+
+    // hardCap v2.1
+    else if(pindexBest->nMoneySupply > MAX_SINGLE_TX)
+    {
+        LogPrint("MINEOUT", "GetProofOfStakeReward(): create=%s nFees=%d\n", FormatMoney(nFees), nFees);
+        return nFees;
+    }
+
+    LogPrint("creation", "GetProofOfStakeReward(): create=%s nCoinAge=%d\n", FormatMoney(nSubsidy), nCoinAge);
+    return nSubsidy + nFees;
+}
