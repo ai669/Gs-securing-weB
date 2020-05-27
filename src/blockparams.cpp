@@ -157,3 +157,255 @@ void VRXdebug()
 void GNTdebug()
 {
     // Print for debugging
+    // Retarget ignoring invalid selection
+    if (retarget != DIFF_VRX)
+    {
+        // debug info for testing
+        LogPrintf("GetNextTargetRequired() : Invalid retarget selection, using default \n");
+        return;
+    }
+
+    // Retarget using Terminal-Velocity
+    // debug info for testing
+    LogPrintf("Terminal-Velocity retarget selected \n");
+    LogPrintf("Espers retargetted using: Terminal-Velocity difficulty curve \n");
+    return;
+}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Difficulty retarget (current section)
+//
+
+//
+// This is VRX (v3.6) revised implementation
+//
+// Terminal-Velocity-RateX, v10-Beta-R9, written by Jonathan Dan Zaretsky - cryptocoderz@gmail.com
+void VRX_BaseEngine(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+       // Set base values
+       VLF1 = 0;
+       VLF2 = 0;
+       VLF3 = 0;
+       VLF4 = 0;
+       VLF5 = 0;
+       VLFtmp = 0;
+       TerminalAverage = 0;
+       TerminalFactor = 10000;
+       VLrate1 = 0;
+       VLrate2 = 0;
+       VLrate3 = 0;
+       VLrate4 = 0;
+       VLrate5 = 0;
+       VLRtemp = 0;
+       difficultyfactor = 0;
+       scanblocks = 1;
+       scantime_1 = 0;
+       scantime_2 = pindexLast->GetBlockTime();
+       prevPoW = 0; // hybrid value
+       prevPoS = 0; // hybrid value
+       // Set prev blocks...
+       pindexPrev = pindexLast;
+       // ...and deduce spacing
+       while(scanblocks < scanheight)
+       {
+           scantime_1 = scantime_2;
+           pindexPrev = pindexPrev->pprev;
+           scantime_2 = pindexPrev->GetBlockTime();
+           // Set standard values
+           if(scanblocks > 0){
+               if     (scanblocks < scanheight-4){ VLrate1 = (scantime_1 - scantime_2); VLRtemp = VLrate1; }
+               else if(scanblocks < scanheight-3){ VLrate2 = (scantime_1 - scantime_2); VLRtemp = VLrate2; }
+               else if(scanblocks < scanheight-2){ VLrate3 = (scantime_1 - scantime_2); VLRtemp = VLrate3; }
+               else if(scanblocks < scanheight-1){ VLrate4 = (scantime_1 - scantime_2); VLRtemp = VLrate4; }
+               else if(scanblocks < scanheight-0){ VLrate5 = (scantime_1 - scantime_2); VLRtemp = VLrate5; }
+           }
+           // Round factoring
+           if(VLRtemp >= DSrateNRM){ VLFtmp = VRFsm1;
+               if(VLRtemp > DSrateMAX){ VLFtmp = VRFdw1;
+                   if(VLRtemp > FRrateCLNG){ VLFtmp = VRFdw2; }
+               }
+           }
+           else if(VLRtemp < DSrateNRM){ VLFtmp = VRFup1;
+               if(VLRtemp < FRrateDWN){ VLFtmp = VRFup2;
+                   if(VLRtemp < FRrateFLR){ VLFtmp = VRFup3; }
+               }
+           }
+           // Record factoring
+           if      (scanblocks < scanheight-4) VLF1 = VLFtmp;
+           else if (scanblocks < scanheight-3) VLF2 = VLFtmp;
+           else if (scanblocks < scanheight-2) VLF3 = VLFtmp;
+           else if (scanblocks < scanheight-1) VLF4 = VLFtmp;
+           else if (scanblocks < scanheight-0) VLF5 = VLFtmp;
+           // Log hybrid block type
+           //
+           // v1.0
+           if      (fProofOfStake) prevPoS ++;
+           else if(!fProofOfStake) prevPoW ++;
+           // v1.1
+           if(pindexPrev->IsProofOfStake()) { prevPoS ++; }
+           else if(pindexPrev->IsProofOfWork()) { prevPoW ++; }
+
+           // move up per scan round
+           scanblocks ++;
+       }
+       // Final mathematics
+       TerminalAverage = (VLF1 + VLF2 + VLF3 + VLF4 + VLF5) / AverageDivisor;
+       return;
+}
+
+void VRX_Simulate_Retarget()
+{
+    // Perform retarget simulation
+    TerminalFactor *= TerminalAverage;
+    difficultyfactor = TerminalFactor;
+    bnOld.SetCompact(BlockVelocityType->nBits);
+    bnNew = bnOld / difficultyfactor;
+    bnNew *= 10000;
+    // Reset TerminalFactor for actual retarget
+    TerminalFactor = 10000;
+    return;
+}
+
+double VRX_GetPrevDiff(bool fPoS)
+{
+    const CBlockIndex* blockindex;
+
+    // Floating point number that is a multiple of the minimum difficulty,
+    // minimum difficulty = 1.0.
+    if (pindexBest == NULL) {
+        return 1.0;
+    } else {
+        blockindex = GetLastBlockIndex(pindexBest, fPoS);
+    }
+
+    int nShift = (blockindex->nBits >> 24) & 0xff;
+
+    double dDiff =
+        (double)0x0000ffff / (double)(blockindex->nBits & 0x00ffffff);
+
+    while (nShift < 29)
+    {
+        dDiff *= 256.0;
+        nShift++;
+    }
+    while (nShift > 29)
+    {
+        dDiff /= 256.0;
+        nShift--;
+    }
+
+    return dDiff;
+}
+
+void VRX_ThreadCurve(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+    // Run VRX engine
+    VRX_BaseEngine(pindexLast, fProofOfStake);
+
+    //
+    // Skew for less selected block type
+    //
+
+    // Version 1.0
+    //
+    if(prevPoW < prevPoS && !fProofOfStake){if((prevPoS-prevPoW) > 3) TerminalAverage /= 3;}
+    else if(prevPoW > prevPoS && fProofOfStake){if((prevPoW-prevPoS) > 3) TerminalAverage /= 3;}
+    if(TerminalAverage < 0.5) TerminalAverage = 0.5; // limit skew to halving
+
+    // Version 1.1 curve-patch
+    //
+    if(1 == 1)
+    {
+        // Define time values
+        blkTime = pindexLast->GetBlockTime();
+        cntTime = BlockVelocityType->GetBlockTime();
+        prvTime = BlockVelocityType->pprev->GetBlockTime();
+        difTime = cntTime - prvTime;
+        minuteRounds = 45;
+        difCurve = 2;
+        fCRVreset = false;
+
+        // Debug print toggle
+        if(fProofOfStake) {
+            difType = "PoS";
+        } else {
+            difType = "PoW";
+        }
+        if(fDebug) VRXswngdebug(fProofOfStake);
+
+        // Version 1.2 Extended Curve Run Upgrade
+        if(pindexLast->nHeight > 300) {
+            // Set unbiased comparison
+            difTime = blkTime - cntTime;
+            // Run Curve
+            while(difTime > (minuteRounds * 60)) {
+                // Skip Extended Curve Run if diff is too low
+                if(VRX_GetPrevDiff(fProofOfStake) < 1) {
+                    // Skip
+                    break;
+                }
+                // Break loop after 65 minutes, otherwise time threshold will auto-break loop
+                if(minuteRounds > (5 + 60)){
+                    fCRVreset = true;
+                    break;
+                }
+                // Drop difficulty per round
+                TerminalAverage /= difCurve;
+                // Simulate retarget for sanity
+                VRX_Simulate_Retarget();
+                // Increase Curve per round
+                difCurve ++;
+                // Move up an hour per round
+                minuteRounds += 5;
+            }
+        } else {// Version 1.1 Standard Curve Run
+            if(difTime > (minuteRounds+0) * 60 * 60) { TerminalAverage /= difCurve; }
+            if(difTime > (minuteRounds+1) * 60 * 60) { TerminalAverage /= difCurve; }
+            if(difTime > (minuteRounds+2) * 60 * 60) { TerminalAverage /= difCurve; }
+            if(difTime > (minuteRounds+3) * 60 * 60) { TerminalAverage /= difCurve; }
+        }
+    }
+    return;
+}
+
+void VRX_Dry_Run(const CBlockIndex* pindexLast)
+{
+    // Check for blocks to index | Allowing for initial chain start
+    if (pindexLast->nHeight < scanheight+124) {
+        fDryRun = true;
+        return; // can't index prevblock
+    }
+
+    // Test Fork
+    if (nLiveForkToggle != 0) {
+        // Do nothing
+    }// TODO setup next testing fork
+
+    // Standard, non-Dry Run
+    fDryRun = false;
+    return;
+}
+
+unsigned int VRX_Retarget(const CBlockIndex* pindexLast, bool fProofOfStake)
+{
+    // Set base values
+    bnVelocity = fProofOfStake ? Params().ProofOfStakeLimit() : Params().ProofOfWorkLimit();
+
+    // Differentiate PoW/PoS prev block
+    BlockVelocityType = GetLastBlockIndex(pindexLast, fProofOfStake);
+
+    // Check for a dry run
+    VRX_Dry_Run(pindexLast);
+    if(fDryRun) { return bnVelocity.GetCompact(); }
+
+    // Run VRX threadcurve
+    VRX_ThreadCurve(pindexLast, fProofOfStake);
+    if (fCRVreset) { return bnVelocity.GetCompact(); }
+
+    // Retarget using simulation
+    VRX_Simulate_Retarget();
+
+    // Limit
+    if (bnNew > bnVelocity) { bnNew = bnVeloci
