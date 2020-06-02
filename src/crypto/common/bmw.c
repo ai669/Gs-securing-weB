@@ -230,4 +230,234 @@ static const sph_u64 Kb_tab[] = {
 		+ sb3(qf((i) - 14)) + sb0(qf((i) - 13)) \
 		+ sb1(qf((i) - 12)) + sb2(qf((i) - 11)) \
 		+ sb3(qf((i) - 10)) + sb0(qf((i) - 9)) \
-		+ sb1(qf((i) - 8)) + sb2(qf
+		+ sb1(qf((i) - 8)) + sb2(qf((i) - 7)) \
+		+ sb3(qf((i) - 6)) + sb0(qf((i) - 5)) \
+		+ sb1(qf((i) - 4)) + sb2(qf((i) - 3)) \
+		+ sb3(qf((i) - 2)) + sb0(qf((i) - 1)) \
+		+ add_elt_b(mf, hf, (i) - 16))
+
+#define expand2b(qf, mf, hf, i) \
+	SPH_T64(qf((i) - 16) + rb1(qf((i) - 15)) \
+		+ qf((i) - 14) + rb2(qf((i) - 13)) \
+		+ qf((i) - 12) + rb3(qf((i) - 11)) \
+		+ qf((i) - 10) + rb4(qf((i) - 9)) \
+		+ qf((i) - 8) + rb5(qf((i) - 7)) \
+		+ qf((i) - 6) + rb6(qf((i) - 5)) \
+		+ qf((i) - 4) + rb7(qf((i) - 3)) \
+		+ sb4(qf((i) - 2)) + sb5(qf((i) - 1)) \
+		+ add_elt_b(mf, hf, (i) - 16))
+
+#else
+
+#define add_elt_b(mf, hf, j0m, j1m, j3m, j4m, j7m, j10m, j11m, j16) \
+	(SPH_T64(SPH_ROTL64(mf(j0m), j1m) + SPH_ROTL64(mf(j3m), j4m) \
+		- SPH_ROTL64(mf(j10m), j11m) + Kb(j16)) ^ hf(j7m))
+
+#define expand1b_inner(qf, mf, hf, i16, \
+		i0, i1, i2, i3, i4, i5, i6, i7, i8, \
+		i9, i10, i11, i12, i13, i14, i15, \
+		i0m, i1m, i3m, i4m, i7m, i10m, i11m) \
+	SPH_T64(sb1(qf(i0)) + sb2(qf(i1)) + sb3(qf(i2)) + sb0(qf(i3)) \
+		+ sb1(qf(i4)) + sb2(qf(i5)) + sb3(qf(i6)) + sb0(qf(i7)) \
+		+ sb1(qf(i8)) + sb2(qf(i9)) + sb3(qf(i10)) + sb0(qf(i11)) \
+		+ sb1(qf(i12)) + sb2(qf(i13)) + sb3(qf(i14)) + sb0(qf(i15)) \
+		+ add_elt_b(mf, hf, i0m, i1m, i3m, i4m, i7m, i10m, i11m, i16))
+
+#define expand1b(qf, mf, hf, i16) \
+	expand1b_(qf, mf, hf, i16, I16_ ## i16, M16_ ## i16)
+#define expand1b_(qf, mf, hf, i16, ix, iy) \
+	expand1b_inner LPAR qf, mf, hf, i16, ix, iy)
+
+#define expand2b_inner(qf, mf, hf, i16, \
+		i0, i1, i2, i3, i4, i5, i6, i7, i8, \
+		i9, i10, i11, i12, i13, i14, i15, \
+		i0m, i1m, i3m, i4m, i7m, i10m, i11m) \
+	SPH_T64(qf(i0) + rb1(qf(i1)) + qf(i2) + rb2(qf(i3)) \
+		+ qf(i4) + rb3(qf(i5)) + qf(i6) + rb4(qf(i7)) \
+		+ qf(i8) + rb5(qf(i9)) + qf(i10) + rb6(qf(i11)) \
+		+ qf(i12) + rb7(qf(i13)) + sb4(qf(i14)) + sb5(qf(i15)) \
+		+ add_elt_b(mf, hf, i0m, i1m, i3m, i4m, i7m, i10m, i11m, i16))
+
+#define expand2b(qf, mf, hf, i16) \
+	expand2b_(qf, mf, hf, i16, I16_ ## i16, M16_ ## i16)
+#define expand2b_(qf, mf, hf, i16, ix, iy) \
+	expand2b_inner LPAR qf, mf, hf, i16, ix, iy)
+
+#endif
+
+#endif
+
+#define MAKE_W(tt, i0, op01, i1, op12, i2, op23, i3, op34, i4) \
+	tt((M(i0) ^ H(i0)) op01 (M(i1) ^ H(i1)) op12 (M(i2) ^ H(i2)) \
+	op23 (M(i3) ^ H(i3)) op34 (M(i4) ^ H(i4)))
+
+#define Ws0    MAKE_W(SPH_T32,  5, -,  7, +, 10, +, 13, +, 14)
+#define Ws1    MAKE_W(SPH_T32,  6, -,  8, +, 11, +, 14, -, 15)
+#define Ws2    MAKE_W(SPH_T32,  0, +,  7, +,  9, -, 12, +, 15)
+#define Ws3    MAKE_W(SPH_T32,  0, -,  1, +,  8, -, 10, +, 13)
+#define Ws4    MAKE_W(SPH_T32,  1, +,  2, +,  9, -, 11, -, 14)
+#define Ws5    MAKE_W(SPH_T32,  3, -,  2, +, 10, -, 12, +, 15)
+#define Ws6    MAKE_W(SPH_T32,  4, -,  0, -,  3, -, 11, +, 13)
+#define Ws7    MAKE_W(SPH_T32,  1, -,  4, -,  5, -, 12, -, 14)
+#define Ws8    MAKE_W(SPH_T32,  2, -,  5, -,  6, +, 13, -, 15)
+#define Ws9    MAKE_W(SPH_T32,  0, -,  3, +,  6, -,  7, +, 14)
+#define Ws10   MAKE_W(SPH_T32,  8, -,  1, -,  4, -,  7, +, 15)
+#define Ws11   MAKE_W(SPH_T32,  8, -,  0, -,  2, -,  5, +,  9)
+#define Ws12   MAKE_W(SPH_T32,  1, +,  3, -,  6, -,  9, +, 10)
+#define Ws13   MAKE_W(SPH_T32,  2, +,  4, +,  7, +, 10, +, 11)
+#define Ws14   MAKE_W(SPH_T32,  3, -,  5, +,  8, -, 11, -, 12)
+#define Ws15   MAKE_W(SPH_T32, 12, -,  4, -,  6, -,  9, +, 13)
+
+#if SPH_SMALL_FOOTPRINT_BMW
+
+#define MAKE_Qas   do { \
+		unsigned u; \
+		sph_u32 Ws[16]; \
+		Ws[ 0] = Ws0; \
+		Ws[ 1] = Ws1; \
+		Ws[ 2] = Ws2; \
+		Ws[ 3] = Ws3; \
+		Ws[ 4] = Ws4; \
+		Ws[ 5] = Ws5; \
+		Ws[ 6] = Ws6; \
+		Ws[ 7] = Ws7; \
+		Ws[ 8] = Ws8; \
+		Ws[ 9] = Ws9; \
+		Ws[10] = Ws10; \
+		Ws[11] = Ws11; \
+		Ws[12] = Ws12; \
+		Ws[13] = Ws13; \
+		Ws[14] = Ws14; \
+		Ws[15] = Ws15; \
+		for (u = 0; u < 15; u += 5) { \
+			qt[u + 0] = SPH_T32(ss0(Ws[u + 0]) + H(u + 1)); \
+			qt[u + 1] = SPH_T32(ss1(Ws[u + 1]) + H(u + 2)); \
+			qt[u + 2] = SPH_T32(ss2(Ws[u + 2]) + H(u + 3)); \
+			qt[u + 3] = SPH_T32(ss3(Ws[u + 3]) + H(u + 4)); \
+			qt[u + 4] = SPH_T32(ss4(Ws[u + 4]) + H(u + 5)); \
+		} \
+		qt[15] = SPH_T32(ss0(Ws[15]) + H(0)); \
+	} while (0)
+
+#define MAKE_Qbs   do { \
+		qt[16] = expand1s(Qs, M, H, 16); \
+		qt[17] = expand1s(Qs, M, H, 17); \
+		qt[18] = expand2s(Qs, M, H, 18); \
+		qt[19] = expand2s(Qs, M, H, 19); \
+		qt[20] = expand2s(Qs, M, H, 20); \
+		qt[21] = expand2s(Qs, M, H, 21); \
+		qt[22] = expand2s(Qs, M, H, 22); \
+		qt[23] = expand2s(Qs, M, H, 23); \
+		qt[24] = expand2s(Qs, M, H, 24); \
+		qt[25] = expand2s(Qs, M, H, 25); \
+		qt[26] = expand2s(Qs, M, H, 26); \
+		qt[27] = expand2s(Qs, M, H, 27); \
+		qt[28] = expand2s(Qs, M, H, 28); \
+		qt[29] = expand2s(Qs, M, H, 29); \
+		qt[30] = expand2s(Qs, M, H, 30); \
+		qt[31] = expand2s(Qs, M, H, 31); \
+	} while (0)
+
+#else
+
+#define MAKE_Qas   do { \
+		qt[ 0] = SPH_T32(ss0(Ws0 ) + H( 1)); \
+		qt[ 1] = SPH_T32(ss1(Ws1 ) + H( 2)); \
+		qt[ 2] = SPH_T32(ss2(Ws2 ) + H( 3)); \
+		qt[ 3] = SPH_T32(ss3(Ws3 ) + H( 4)); \
+		qt[ 4] = SPH_T32(ss4(Ws4 ) + H( 5)); \
+		qt[ 5] = SPH_T32(ss0(Ws5 ) + H( 6)); \
+		qt[ 6] = SPH_T32(ss1(Ws6 ) + H( 7)); \
+		qt[ 7] = SPH_T32(ss2(Ws7 ) + H( 8)); \
+		qt[ 8] = SPH_T32(ss3(Ws8 ) + H( 9)); \
+		qt[ 9] = SPH_T32(ss4(Ws9 ) + H(10)); \
+		qt[10] = SPH_T32(ss0(Ws10) + H(11)); \
+		qt[11] = SPH_T32(ss1(Ws11) + H(12)); \
+		qt[12] = SPH_T32(ss2(Ws12) + H(13)); \
+		qt[13] = SPH_T32(ss3(Ws13) + H(14)); \
+		qt[14] = SPH_T32(ss4(Ws14) + H(15)); \
+		qt[15] = SPH_T32(ss0(Ws15) + H( 0)); \
+	} while (0)
+
+#define MAKE_Qbs   do { \
+		qt[16] = expand1s(Qs, M, H, 16); \
+		qt[17] = expand1s(Qs, M, H, 17); \
+		qt[18] = expand2s(Qs, M, H, 18); \
+		qt[19] = expand2s(Qs, M, H, 19); \
+		qt[20] = expand2s(Qs, M, H, 20); \
+		qt[21] = expand2s(Qs, M, H, 21); \
+		qt[22] = expand2s(Qs, M, H, 22); \
+		qt[23] = expand2s(Qs, M, H, 23); \
+		qt[24] = expand2s(Qs, M, H, 24); \
+		qt[25] = expand2s(Qs, M, H, 25); \
+		qt[26] = expand2s(Qs, M, H, 26); \
+		qt[27] = expand2s(Qs, M, H, 27); \
+		qt[28] = expand2s(Qs, M, H, 28); \
+		qt[29] = expand2s(Qs, M, H, 29); \
+		qt[30] = expand2s(Qs, M, H, 30); \
+		qt[31] = expand2s(Qs, M, H, 31); \
+	} while (0)
+
+#endif
+
+#define MAKE_Qs   do { \
+		MAKE_Qas; \
+		MAKE_Qbs; \
+	} while (0)
+
+#define Qs(j)   (qt[j])
+
+#if SPH_64
+
+#define Wb0    MAKE_W(SPH_T64,  5, -,  7, +, 10, +, 13, +, 14)
+#define Wb1    MAKE_W(SPH_T64,  6, -,  8, +, 11, +, 14, -, 15)
+#define Wb2    MAKE_W(SPH_T64,  0, +,  7, +,  9, -, 12, +, 15)
+#define Wb3    MAKE_W(SPH_T64,  0, -,  1, +,  8, -, 10, +, 13)
+#define Wb4    MAKE_W(SPH_T64,  1, +,  2, +,  9, -, 11, -, 14)
+#define Wb5    MAKE_W(SPH_T64,  3, -,  2, +, 10, -, 12, +, 15)
+#define Wb6    MAKE_W(SPH_T64,  4, -,  0, -,  3, -, 11, +, 13)
+#define Wb7    MAKE_W(SPH_T64,  1, -,  4, -,  5, -, 12, -, 14)
+#define Wb8    MAKE_W(SPH_T64,  2, -,  5, -,  6, +, 13, -, 15)
+#define Wb9    MAKE_W(SPH_T64,  0, -,  3, +,  6, -,  7, +, 14)
+#define Wb10   MAKE_W(SPH_T64,  8, -,  1, -,  4, -,  7, +, 15)
+#define Wb11   MAKE_W(SPH_T64,  8, -,  0, -,  2, -,  5, +,  9)
+#define Wb12   MAKE_W(SPH_T64,  1, +,  3, -,  6, -,  9, +, 10)
+#define Wb13   MAKE_W(SPH_T64,  2, +,  4, +,  7, +, 10, +, 11)
+#define Wb14   MAKE_W(SPH_T64,  3, -,  5, +,  8, -, 11, -, 12)
+#define Wb15   MAKE_W(SPH_T64, 12, -,  4, -,  6, -,  9, +, 13)
+
+#if SPH_SMALL_FOOTPRINT_BMW
+
+#define MAKE_Qab   do { \
+		unsigned u; \
+		sph_u64 Wb[16]; \
+		Wb[ 0] = Wb0; \
+		Wb[ 1] = Wb1; \
+		Wb[ 2] = Wb2; \
+		Wb[ 3] = Wb3; \
+		Wb[ 4] = Wb4; \
+		Wb[ 5] = Wb5; \
+		Wb[ 6] = Wb6; \
+		Wb[ 7] = Wb7; \
+		Wb[ 8] = Wb8; \
+		Wb[ 9] = Wb9; \
+		Wb[10] = Wb10; \
+		Wb[11] = Wb11; \
+		Wb[12] = Wb12; \
+		Wb[13] = Wb13; \
+		Wb[14] = Wb14; \
+		Wb[15] = Wb15; \
+		for (u = 0; u < 15; u += 5) { \
+			qt[u + 0] = SPH_T64(sb0(Wb[u + 0]) + H(u + 1)); \
+			qt[u + 1] = SPH_T64(sb1(Wb[u + 1]) + H(u + 2)); \
+			qt[u + 2] = SPH_T64(sb2(Wb[u + 2]) + H(u + 3)); \
+			qt[u + 3] = SPH_T64(sb3(Wb[u + 3]) + H(u + 4)); \
+			qt[u + 4] = SPH_T64(sb4(Wb[u + 4]) + H(u + 5)); \
+		} \
+		qt[15] = SPH_T64(sb0(Wb[15]) + H(0)); \
+	} while (0)
+
+#define MAKE_Qbb   do { \
+		unsigned u; \
+		for (u = 16; u < 18; u ++) \
+			qt[u] = expand1b(Qb, M, H, u);
