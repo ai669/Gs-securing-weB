@@ -460,4 +460,298 @@ static const sph_u64 Kb_tab[] = {
 #define MAKE_Qbb   do { \
 		unsigned u; \
 		for (u = 16; u < 18; u ++) \
-			qt[u] = expand1b(Qb, M, H, u);
+			qt[u] = expand1b(Qb, M, H, u); \
+		for (u = 18; u < 32; u ++) \
+			qt[u] = expand2b(Qb, M, H, u); \
+	} while (0)
+
+#else
+
+#define MAKE_Qab   do { \
+		qt[ 0] = SPH_T64(sb0(Wb0 ) + H( 1)); \
+		qt[ 1] = SPH_T64(sb1(Wb1 ) + H( 2)); \
+		qt[ 2] = SPH_T64(sb2(Wb2 ) + H( 3)); \
+		qt[ 3] = SPH_T64(sb3(Wb3 ) + H( 4)); \
+		qt[ 4] = SPH_T64(sb4(Wb4 ) + H( 5)); \
+		qt[ 5] = SPH_T64(sb0(Wb5 ) + H( 6)); \
+		qt[ 6] = SPH_T64(sb1(Wb6 ) + H( 7)); \
+		qt[ 7] = SPH_T64(sb2(Wb7 ) + H( 8)); \
+		qt[ 8] = SPH_T64(sb3(Wb8 ) + H( 9)); \
+		qt[ 9] = SPH_T64(sb4(Wb9 ) + H(10)); \
+		qt[10] = SPH_T64(sb0(Wb10) + H(11)); \
+		qt[11] = SPH_T64(sb1(Wb11) + H(12)); \
+		qt[12] = SPH_T64(sb2(Wb12) + H(13)); \
+		qt[13] = SPH_T64(sb3(Wb13) + H(14)); \
+		qt[14] = SPH_T64(sb4(Wb14) + H(15)); \
+		qt[15] = SPH_T64(sb0(Wb15) + H( 0)); \
+	} while (0)
+
+#define MAKE_Qbb   do { \
+		qt[16] = expand1b(Qb, M, H, 16); \
+		qt[17] = expand1b(Qb, M, H, 17); \
+		qt[18] = expand2b(Qb, M, H, 18); \
+		qt[19] = expand2b(Qb, M, H, 19); \
+		qt[20] = expand2b(Qb, M, H, 20); \
+		qt[21] = expand2b(Qb, M, H, 21); \
+		qt[22] = expand2b(Qb, M, H, 22); \
+		qt[23] = expand2b(Qb, M, H, 23); \
+		qt[24] = expand2b(Qb, M, H, 24); \
+		qt[25] = expand2b(Qb, M, H, 25); \
+		qt[26] = expand2b(Qb, M, H, 26); \
+		qt[27] = expand2b(Qb, M, H, 27); \
+		qt[28] = expand2b(Qb, M, H, 28); \
+		qt[29] = expand2b(Qb, M, H, 29); \
+		qt[30] = expand2b(Qb, M, H, 30); \
+		qt[31] = expand2b(Qb, M, H, 31); \
+	} while (0)
+
+#endif
+
+#define MAKE_Qb   do { \
+		MAKE_Qab; \
+		MAKE_Qbb; \
+	} while (0)
+
+#define Qb(j)   (qt[j])
+
+#endif
+
+#define FOLD(type, mkQ, tt, rol, mf, qf, dhf)   do { \
+		type qt[32], xl, xh; \
+		mkQ; \
+		xl = qf(16) ^ qf(17) ^ qf(18) ^ qf(19) \
+			^ qf(20) ^ qf(21) ^ qf(22) ^ qf(23); \
+		xh = xl ^ qf(24) ^ qf(25) ^ qf(26) ^ qf(27) \
+			^ qf(28) ^ qf(29) ^ qf(30) ^ qf(31); \
+		dhf( 0) = tt(((xh <<  5) ^ (qf(16) >>  5) ^ mf( 0)) \
+			+ (xl ^ qf(24) ^ qf( 0))); \
+		dhf( 1) = tt(((xh >>  7) ^ (qf(17) <<  8) ^ mf( 1)) \
+			+ (xl ^ qf(25) ^ qf( 1))); \
+		dhf( 2) = tt(((xh >>  5) ^ (qf(18) <<  5) ^ mf( 2)) \
+			+ (xl ^ qf(26) ^ qf( 2))); \
+		dhf( 3) = tt(((xh >>  1) ^ (qf(19) <<  5) ^ mf( 3)) \
+			+ (xl ^ qf(27) ^ qf( 3))); \
+		dhf( 4) = tt(((xh >>  3) ^ (qf(20) <<  0) ^ mf( 4)) \
+			+ (xl ^ qf(28) ^ qf( 4))); \
+		dhf( 5) = tt(((xh <<  6) ^ (qf(21) >>  6) ^ mf( 5)) \
+			+ (xl ^ qf(29) ^ qf( 5))); \
+		dhf( 6) = tt(((xh >>  4) ^ (qf(22) <<  6) ^ mf( 6)) \
+			+ (xl ^ qf(30) ^ qf( 6))); \
+		dhf( 7) = tt(((xh >> 11) ^ (qf(23) <<  2) ^ mf( 7)) \
+			+ (xl ^ qf(31) ^ qf( 7))); \
+		dhf( 8) = tt(rol(dhf(4),  9) + (xh ^ qf(24) ^ mf( 8)) \
+			+ ((xl << 8) ^ qf(23) ^ qf( 8))); \
+		dhf( 9) = tt(rol(dhf(5), 10) + (xh ^ qf(25) ^ mf( 9)) \
+			+ ((xl >> 6) ^ qf(16) ^ qf( 9))); \
+		dhf(10) = tt(rol(dhf(6), 11) + (xh ^ qf(26) ^ mf(10)) \
+			+ ((xl << 6) ^ qf(17) ^ qf(10))); \
+		dhf(11) = tt(rol(dhf(7), 12) + (xh ^ qf(27) ^ mf(11)) \
+			+ ((xl << 4) ^ qf(18) ^ qf(11))); \
+		dhf(12) = tt(rol(dhf(0), 13) + (xh ^ qf(28) ^ mf(12)) \
+			+ ((xl >> 3) ^ qf(19) ^ qf(12))); \
+		dhf(13) = tt(rol(dhf(1), 14) + (xh ^ qf(29) ^ mf(13)) \
+			+ ((xl >> 4) ^ qf(20) ^ qf(13))); \
+		dhf(14) = tt(rol(dhf(2), 15) + (xh ^ qf(30) ^ mf(14)) \
+			+ ((xl >> 7) ^ qf(21) ^ qf(14))); \
+		dhf(15) = tt(rol(dhf(3), 16) + (xh ^ qf(31) ^ mf(15)) \
+			+ ((xl >> 2) ^ qf(22) ^ qf(15))); \
+	} while (0)
+
+#define FOLDs   FOLD(sph_u32, MAKE_Qs, SPH_T32, SPH_ROTL32, M, Qs, dH)
+
+#if SPH_64
+
+#define FOLDb   FOLD(sph_u64, MAKE_Qb, SPH_T64, SPH_ROTL64, M, Qb, dH)
+
+#endif
+
+static void
+compress_small(const unsigned char *data, const sph_u32 h[16], sph_u32 dh[16])
+{
+#if SPH_LITTLE_FAST
+#define M(x)    sph_dec32le_aligned(data + 4 * (x))
+#else
+	sph_u32 mv[16];
+
+	mv[ 0] = sph_dec32le_aligned(data +  0);
+	mv[ 1] = sph_dec32le_aligned(data +  4);
+	mv[ 2] = sph_dec32le_aligned(data +  8);
+	mv[ 3] = sph_dec32le_aligned(data + 12);
+	mv[ 4] = sph_dec32le_aligned(data + 16);
+	mv[ 5] = sph_dec32le_aligned(data + 20);
+	mv[ 6] = sph_dec32le_aligned(data + 24);
+	mv[ 7] = sph_dec32le_aligned(data + 28);
+	mv[ 8] = sph_dec32le_aligned(data + 32);
+	mv[ 9] = sph_dec32le_aligned(data + 36);
+	mv[10] = sph_dec32le_aligned(data + 40);
+	mv[11] = sph_dec32le_aligned(data + 44);
+	mv[12] = sph_dec32le_aligned(data + 48);
+	mv[13] = sph_dec32le_aligned(data + 52);
+	mv[14] = sph_dec32le_aligned(data + 56);
+	mv[15] = sph_dec32le_aligned(data + 60);
+#define M(x)    (mv[x])
+#endif
+#define H(x)    (h[x])
+#define dH(x)   (dh[x])
+
+	FOLDs;
+
+#undef M
+#undef H
+#undef dH
+}
+
+static const sph_u32 final_s[16] = {
+	SPH_C32(0xaaaaaaa0), SPH_C32(0xaaaaaaa1), SPH_C32(0xaaaaaaa2),
+	SPH_C32(0xaaaaaaa3), SPH_C32(0xaaaaaaa4), SPH_C32(0xaaaaaaa5),
+	SPH_C32(0xaaaaaaa6), SPH_C32(0xaaaaaaa7), SPH_C32(0xaaaaaaa8),
+	SPH_C32(0xaaaaaaa9), SPH_C32(0xaaaaaaaa), SPH_C32(0xaaaaaaab),
+	SPH_C32(0xaaaaaaac), SPH_C32(0xaaaaaaad), SPH_C32(0xaaaaaaae),
+	SPH_C32(0xaaaaaaaf)
+};
+
+static void
+bmw32_init(sph_bmw_small_context *sc, const sph_u32 *iv)
+{
+	memcpy(sc->H, iv, sizeof sc->H);
+	sc->ptr = 0;
+#if SPH_64
+	sc->bit_count = 0;
+#else
+	sc->bit_count_high = 0;
+	sc->bit_count_low = 0;
+#endif
+}
+
+static void
+bmw32(sph_bmw_small_context *sc, const void *data, size_t len)
+{
+	unsigned char *buf;
+	size_t ptr;
+	sph_u32 htmp[16];
+	sph_u32 *h1, *h2;
+#if !SPH_64
+	sph_u32 tmp;
+#endif
+
+#if SPH_64
+	sc->bit_count += (sph_u64)len << 3;
+#else
+	tmp = sc->bit_count_low;
+	sc->bit_count_low = SPH_T32(tmp + ((sph_u32)len << 3));
+	if (sc->bit_count_low < tmp)
+		sc->bit_count_high ++;
+	sc->bit_count_high += len >> 29;
+#endif
+	buf = sc->buf;
+	ptr = sc->ptr;
+	h1 = sc->H;
+	h2 = htmp;
+	while (len > 0) {
+		size_t clen;
+
+		clen = (sizeof sc->buf) - ptr;
+		if (clen > len)
+			clen = len;
+		memcpy(buf + ptr, data, clen);
+		data = (const unsigned char *)data + clen;
+		len -= clen;
+		ptr += clen;
+		if (ptr == sizeof sc->buf) {
+			sph_u32 *ht;
+
+			compress_small(buf, h1, h2);
+			ht = h1;
+			h1 = h2;
+			h2 = ht;
+			ptr = 0;
+		}
+	}
+	sc->ptr = ptr;
+	if (h1 != sc->H)
+		memcpy(sc->H, h1, sizeof sc->H);
+}
+
+static void
+bmw32_close(sph_bmw_small_context *sc, unsigned ub, unsigned n,
+	void *dst, size_t out_size_w32)
+{
+	unsigned char *buf, *out;
+	size_t ptr, u, v;
+	unsigned z;
+	sph_u32 h1[16], h2[16], *h;
+
+	buf = sc->buf;
+	ptr = sc->ptr;
+	z = 0x80 >> n;
+	buf[ptr ++] = ((ub & -z) | z) & 0xFF;
+	h = sc->H;
+	if (ptr > (sizeof sc->buf) - 8) {
+		memset(buf + ptr, 0, (sizeof sc->buf) - ptr);
+		compress_small(buf, h, h1);
+		ptr = 0;
+		h = h1;
+	}
+	memset(buf + ptr, 0, (sizeof sc->buf) - 8 - ptr);
+#if SPH_64
+	sph_enc64le_aligned(buf + (sizeof sc->buf) - 8,
+		SPH_T64(sc->bit_count + n));
+#else
+	sph_enc32le_aligned(buf + (sizeof sc->buf) - 8,
+		sc->bit_count_low + n);
+	sph_enc32le_aligned(buf + (sizeof sc->buf) - 4,
+		SPH_T32(sc->bit_count_high));
+#endif
+	compress_small(buf, h, h2);
+	for (u = 0; u < 16; u ++)
+		sph_enc32le_aligned(buf + 4 * u, h2[u]);
+	compress_small(buf, final_s, h1);
+	out = dst;
+	for (u = 0, v = 16 - out_size_w32; u < out_size_w32; u ++, v ++)
+		sph_enc32le(out + 4 * u, h1[v]);
+}
+
+#if SPH_64
+
+static void
+compress_big(const unsigned char *data, const sph_u64 h[16], sph_u64 dh[16])
+{
+#if SPH_LITTLE_FAST
+#define M(x)    sph_dec64le_aligned(data + 8 * (x))
+#else
+	sph_u64 mv[16];
+
+	mv[ 0] = sph_dec64le_aligned(data +   0);
+	mv[ 1] = sph_dec64le_aligned(data +   8);
+	mv[ 2] = sph_dec64le_aligned(data +  16);
+	mv[ 3] = sph_dec64le_aligned(data +  24);
+	mv[ 4] = sph_dec64le_aligned(data +  32);
+	mv[ 5] = sph_dec64le_aligned(data +  40);
+	mv[ 6] = sph_dec64le_aligned(data +  48);
+	mv[ 7] = sph_dec64le_aligned(data +  56);
+	mv[ 8] = sph_dec64le_aligned(data +  64);
+	mv[ 9] = sph_dec64le_aligned(data +  72);
+	mv[10] = sph_dec64le_aligned(data +  80);
+	mv[11] = sph_dec64le_aligned(data +  88);
+	mv[12] = sph_dec64le_aligned(data +  96);
+	mv[13] = sph_dec64le_aligned(data + 104);
+	mv[14] = sph_dec64le_aligned(data + 112);
+	mv[15] = sph_dec64le_aligned(data + 120);
+#define M(x)    (mv[x])
+#endif
+#define H(x)    (h[x])
+#define dH(x)   (dh[x])
+
+	FOLDb;
+
+#undef M
+#undef H
+#undef dH
+}
+
+static const sph_u64 final_b[16] = {
+	SPH_C64(0xaaaaaaaaaaaaaaa0), SPH_C64(0xaaaaaaaaaaaaaaa1),
+	SPH_C64(0xaaaaaaaaaaaaaaa2), SPH_C64(0xaaaaaaaaaaaaaaa3),
+	SPH_C64(0xaaaaaaaaaaaaaaa4), SPH_C64(0xaaaaaaaaaaaaaaa5),
+	SPH_C64(0xaaaaaaaaaaaaaaa6), SPH_C64(0xaaaaaaaaaaaaaaa7),
+	S
