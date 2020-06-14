@@ -48,4 +48,9 @@ void BIP32Hash(const unsigned char chainCode[32], unsigned int nChild, unsigned 
     num[2] = (nChild >>  8) & 0xFF;
     num[3] = (nChild >>  0) & 0xFF;
     HMAC_SHA512_CTX ctx;
-   
+    HMAC_SHA512_Init(&ctx, chainCode, 32);
+    HMAC_SHA512_Update(&ctx, &header, 1);
+    HMAC_SHA512_Update(&ctx, data, 32);
+    HMAC_SHA512_Update(&ctx, num, 4);
+    HMAC_SHA512_Final(output, &ctx);
+}
