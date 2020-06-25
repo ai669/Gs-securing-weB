@@ -512,4 +512,180 @@ bool AppInit2(boost::thread_group& threadGroup)
     LogPrintf("Using OpenSSL version %s\n", SSLeay_version(SSLEAY_VERSION));
     if (!fLogTimestamps)
         LogPrintf("Startup time: %s\n", DateTimeStrFormat("%x %H:%M:%S", GetTime()));
-    LogPrintf("Default data directory %s\n", GetDefault
+    LogPrintf("Default data directory %s\n", GetDefaultDataDir().string());
+    LogPrintf("Used data directory %s\n", strDataDir);
+    std::ostringstream strErrors;
+
+    if (fDaemon)
+        fprintf(stdout, "WayaWolfCoin server starting\n"); 
+
+    int64_t nStart;
+
+    // ********************************************************* Step 5: Backup wallet and verify wallet database integrity
+#ifdef ENABLE_WALLET
+    if (!fDisableWallet) {
+
+        boost::filesystem::path backupDir = GetDataDir() / "backups";
+        if (!boost::filesystem::exists(backupDir))
+        {
+            // Always create backup folder to not confuse the operating system's file browser
+            boost::filesystem::create_directories(backupDir);
+        }
+        nWalletBackups = GetArg("-createwalletbackups", 10);
+        nWalletBackups = std::max(0, std::min(10, nWalletBackups));
+        if(nWalletBackups > 0)
+        {
+            if (boost::filesystem::exists(backupDir))
+            {
+                // Create backup of the wallet
+                std::string dateTimeStr = DateTimeStrFormat(".%Y-%m-%d-%H.%M", GetTime());
+                std::string backupPathStr = backupDir.string();
+                backupPathStr += "/" + strWalletFileName;
+                std::string sourcePathStr = GetDataDir().string();
+                sourcePathStr += "/" + strWalletFileName;
+                boost::filesystem::path sourceFile = sourcePathStr;
+                boost::filesystem::path backupFile = backupPathStr + dateTimeStr;
+                sourceFile.make_preferred();
+                backupFile.make_preferred();
+                try {
+                    boost::filesystem::copy_file(sourceFile, backupFile);
+                    LogPrintf("Creating backup of %s -> %s\n", sourceFile, backupFile);
+                } catch(boost::filesystem::filesystem_error &error) {
+                    LogPrintf("Failed to create backup %s\n", error.what());
+                }
+                // Keep only the last 10 backups, including the new one of course
+                typedef std::multimap<std::time_t, boost::filesystem::path> folder_set_t;
+                folder_set_t folder_set;
+                boost::filesystem::directory_iterator end_iter;
+                boost::filesystem::path backupFolder = backupDir.string();
+                backupFolder.make_preferred();
+                // Build map of backup files for current(!) wallet sorted by last write time
+                boost::filesystem::path currentFile;
+                for (boost::filesystem::directory_iterator dir_iter(backupFolder); dir_iter != end_iter; ++dir_iter)
+                {
+                    // Only check regular files
+                    if ( boost::filesystem::is_regular_file(dir_iter->status()))
+                    {
+                        currentFile = dir_iter->path().filename();
+                        // Only add the backups for the current wallet, e.g. wallet.dat.*
+                        if(currentFile.string().find(strWalletFileName) != string::npos)
+                        {
+                            folder_set.insert(folder_set_t::value_type(boost::filesystem::last_write_time(dir_iter->path()), *dir_iter));
+                        }
+                    }
+                }
+                // Loop backward through backup files and keep the N newest ones (1 <= N <= 10)
+                int counter = 0;
+                BOOST_REVERSE_FOREACH(PAIRTYPE(const std::time_t, boost::filesystem::path) file, folder_set)
+                {
+                    counter++;
+                    if (counter > nWalletBackups)
+                    {
+                        // More than nWalletBackups backups: delete oldest one(s)
+                        try {
+                            boost::filesystem::remove(file.second);
+                            LogPrintf("Old backup deleted: %s\n", file.second);
+                        } catch(boost::filesystem::filesystem_error &error) {
+                            LogPrintf("Failed to delete backup %s\n", error.what());
+                        }
+                    }
+                }
+            }
+        }
+
+
+        uiInterface.InitMessage(_("Verifying database integrity..."));
+
+        if (!bitdb.Open(GetDataDir()))
+        {
+            // try moving the database env out of the way
+            boost::filesystem::path pathDatabase = GetDataDir() / "database";
+            boost::filesystem::path pathDatabaseBak = GetDataDir() / strprintf("database.%d.bak", GetTime());
+            try {
+                boost::filesystem::rename(pathDatabase, pathDatabaseBak);
+                LogPrintf("Moved old %s to %s. Retrying.\n", pathDatabase.string(), pathDatabaseBak.string());
+            } catch(boost::filesystem::filesystem_error &error) {
+                 // failure is ok (well, not really, but it's not worse than what we started with)
+            }
+
+            // try again
+            if (!bitdb.Open(GetDataDir())) {
+                // if it still fails, it probably means we can't even create the database env
+                string msg = strprintf(_("Error initializing wallet database environment %s!"), strDataDir);
+                return InitError(msg);
+            }
+        }
+
+        if (GetBoolArg("-salvagewallet", false))
+        {
+            // Recover readable keypairs:
+            if (!CWalletDB::Recover(bitdb, strWalletFileName, true))
+                return false;
+        }
+
+        if (boost::filesystem::exists(GetDataDir() / strWalletFileName))
+        {
+            CDBEnv::VerifyResult r = bitdb.Verify(strWalletFileName, CWalletDB::Recover);
+            if (r == CDBEnv::RECOVER_OK)
+            {
+                string msg = strprintf(_("Warning: wallet.dat corrupt, data salvaged!"
+                                         " Original wallet.dat saved as wallet.{timestamp}.bak in %s; if"
+                                         " your balance or transactions are incorrect you should"
+                                         " restore from a backup."), strDataDir);
+                InitWarning(msg);
+            }
+            if (r == CDBEnv::RECOVER_FAIL)
+                return InitError(_("wallet.dat corrupt, salvage failed"));
+        }
+
+    } // (!fDisableWallet)
+#endif // ENABLE_WALLET
+    // ********************************************************* Step 6: network initialization
+
+    RegisterNodeSignals(GetNodeSignals());
+
+    // format user agent, check total size
+    strSubVersion = FormatSubVersion(CLIENT_NAME, CLIENT_VERSION, mapMultiArgs.count("-uacomment") ? mapMultiArgs["-uacomment"] : std::vector<string>());
+    if (strSubVersion.size() > MAX_SUBVERSION_LENGTH) {
+        return InitError(strprintf("Total length of network version string %i exceeds maximum of %i characters. Reduce the number and/or size of uacomments.",
+            strSubVersion.size(), MAX_SUBVERSION_LENGTH));
+    }
+    
+    if (mapArgs.count("-onlynet")) {
+        std::set<enum Network> nets;
+        BOOST_FOREACH(std::string snet, mapMultiArgs["-onlynet"]) {
+            enum Network net = ParseNetwork(snet);
+	    if(net == NET_TOR)
+		fOnlyTor = true;
+
+            if (net == NET_UNROUTABLE)
+                return InitError(strprintf(_("Unknown network specified in -onlynet: '%s'"), snet));
+            nets.insert(net);
+        }
+        for (int n = 0; n < NET_MAX; n++) {
+            enum Network net = (enum Network)n;
+            if (!nets.count(net))
+                SetLimited(net);
+        }
+    } else {
+        SetReachable(NET_IPV4);
+        SetReachable(NET_IPV6);
+    }
+
+    CService addrProxy;
+    bool fProxy = false;
+    if (mapArgs.count("-proxy")) {
+        addrProxy = CService(mapArgs["-proxy"], 9050);
+        if (!addrProxy.IsValid())
+            return InitError(strprintf(_("Invalid -proxy address: '%s'"), mapArgs["-proxy"]));
+
+        if (!IsLimited(NET_IPV4))
+            SetProxy(NET_IPV4, addrProxy);
+        if (!IsLimited(NET_IPV6))
+            SetProxy(NET_IPV6, addrProxy);
+        SetNameProxy(addrProxy);
+        fProxy = true;
+    }
+
+    // -tor can override normal proxy, -notor disables tor entirely
+    if (!(mapArgs.count("-tor") && mapAr
