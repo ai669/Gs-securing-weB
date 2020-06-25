@@ -688,4 +688,217 @@ bool AppInit2(boost::thread_group& threadGroup)
     }
 
     // -tor can override normal proxy, -notor disables tor entirely
-    if (!(mapArgs.count("-tor") && mapAr
+    if (!(mapArgs.count("-tor") && mapArgs["-tor"] == "0") && (fProxy || mapArgs.count("-tor"))) {
+        CService addrOnion;
+        if (!mapArgs.count("-tor"))
+            addrOnion = addrProxy;
+        else
+            addrOnion = CService(mapArgs["-tor"], 9050);
+        if (!addrOnion.IsValid())
+            return InitError(strprintf(_("Invalid -tor address: '%s'"), mapArgs["-tor"]));
+        SetProxy(NET_TOR, addrOnion);
+        SetReachable(NET_TOR);
+    }
+
+    // see Step 2: parameter interactions for more information about these
+    fNoListen = !GetBoolArg("-listen", true);
+    fDiscover = GetBoolArg("-discover", true);
+    fNameLookup = GetBoolArg("-dns", true);
+
+    bool fBound = false;
+    if (!fNoListen)
+    {
+        std::string strError;
+        if (mapArgs.count("-bind")) {
+            BOOST_FOREACH(std::string strBind, mapMultiArgs["-bind"]) {
+                CService addrBind;
+                if (!Lookup(strBind.c_str(), addrBind, GetListenPort(), false))
+                    return InitError(strprintf(_("Cannot resolve -bind address: '%s'"), strBind));
+                fBound |= Bind(addrBind);
+            }
+        } else {
+            struct in_addr inaddr_any;
+            inaddr_any.s_addr = INADDR_ANY;
+            if (!IsLimited(NET_IPV6))
+                fBound |= Bind(CService(in6addr_any, GetListenPort()), false);
+            if (!IsLimited(NET_IPV4))
+                fBound |= Bind(CService(inaddr_any, GetListenPort()), !fBound);
+        }
+        if (!fBound)
+            return InitError(_("Failed to listen on any port. Use -listen=0 if you want this."));
+    }
+
+    if (mapArgs.count("-externalip"))
+    {
+        BOOST_FOREACH(string strAddr, mapMultiArgs["-externalip"]) {
+            CService addrLocal(strAddr, GetListenPort(), fNameLookup);
+            if (!addrLocal.IsValid())
+                return InitError(strprintf(_("Cannot resolve -externalip address: '%s'"), strAddr));
+            AddLocal(CService(strAddr, GetListenPort(), fNameLookup), LOCAL_MANUAL);
+        }
+    }
+
+#ifdef ENABLE_WALLET
+    if (mapArgs.count("-reservebalance")) // ppcoin: reserve balance amount
+    {
+        if (!ParseMoney(mapArgs["-reservebalance"], nReserveBalance))
+        {
+            InitError(_("Invalid amount for -reservebalance=<amount>"));
+            return false;
+        }
+    }
+#endif
+
+    BOOST_FOREACH(string strDest, mapMultiArgs["-seednode"])
+        AddOneShot(strDest);
+
+    // ********************************************************* Step 7: load blockchain
+
+    if (GetBoolArg("-loadblockindextest", false))
+    {
+        CTxDB txdb("r");
+        txdb.LoadBlockIndex();
+        PrintBlockTree();
+        return false;
+    }
+
+    uiInterface.InitMessage(_("Loading block index..."));
+
+    nStart = GetTimeMillis();
+    if (!LoadBlockIndex())
+        return InitError(_("Error loading block database"));
+
+    // as LoadBlockIndex can take several minutes, it's possible the user
+    // requested to kill bitcoin-qt during the last operation. If so, exit.
+    // As the program has not fully started yet, Shutdown() is possibly overkill.
+    if (fRequestShutdown)
+    {
+        LogPrintf("Shutdown requested. Exiting.\n");
+        return false;
+    }
+    LogPrintf(" block index %15dms\n", GetTimeMillis() - nStart);
+
+    if (GetBoolArg("-printblockindex", false) || GetBoolArg("-printblocktree", false))
+    {
+        PrintBlockTree();
+        return false;
+    }
+
+    if (mapArgs.count("-printblock"))
+    {
+        string strMatch = mapArgs["-printblock"];
+        int nFound = 0;
+        for (map<uint256, CBlockIndex*>::iterator mi = mapBlockIndex.begin(); mi != mapBlockIndex.end(); ++mi)
+        {
+            uint256 hash = (*mi).first;
+            if (strncmp(hash.ToString().c_str(), strMatch.c_str(), strMatch.size()) == 0)
+            {
+                CBlockIndex* pindex = (*mi).second;
+                CBlock block;
+                block.ReadFromDisk(pindex);
+                block.BuildMerkleTree();
+                LogPrintf("%s\n", block.ToString());
+                nFound++;
+            }
+        }
+        if (nFound == 0)
+            LogPrintf("No blocks matching %s were found\n", strMatch);
+        return false;
+    }
+
+    if (mapArgs.count("-backtoblock"))
+    {
+        strRollbackToBlock = GetArg("-backtoblock", "");
+        LogPrintf("Rolling blocks back...\n");
+        if(!strRollbackToBlock.empty()){
+            nNewHeight = GetArg("-backtoblock", (int)"");
+
+            CBlockIndex* pindex = pindexBest;
+            while (pindex != NULL && pindex->nHeight > nNewHeight)
+            {
+                ostringstream osHeight;
+                osHeight << pindex->nHeight;
+                string strHeight = osHeight.str();
+                uiInterface.InitMessage(strprintf("Rolling blocks back... %s to %i \n", strHeight, nNewHeight));
+                pindex = pindex->pprev;
+            }
+
+            if (pindex != NULL)
+            {
+                LogPrintf("Back to block index %d\n", nNewHeight);
+                CTxDB txdbAddr("rw");
+                CBlock block;
+                block.ReadFromDisk(pindex);
+                block.SetBestChain(txdbAddr, pindex);
+            }
+        }
+        else
+            LogPrintf("Block %d not found\n", nNewHeight);
+    }
+
+    // ********************************************************* Step 8: load wallet
+#ifdef ENABLE_WALLET
+    if (fDisableWallet) {
+        pwalletMain = NULL;
+        LogPrintf("Wallet disabled!\n");
+    } else {
+        uiInterface.InitMessage(_("Loading wallet..."));
+
+        nStart = GetTimeMillis();
+        bool fFirstRun = true;
+        pwalletMain = new CWallet(strWalletFileName);
+        DBErrors nLoadWalletRet = pwalletMain->LoadWallet(fFirstRun);
+        if (nLoadWalletRet != DB_LOAD_OK)
+        {
+            if (nLoadWalletRet == DB_CORRUPT)
+                strErrors << _("Error loading wallet.dat: Wallet corrupted") << "\n";
+            else if (nLoadWalletRet == DB_NONCRITICAL_ERROR)
+            {
+                string msg(_("Warning: error reading wallet.dat! All keys read correctly, but transaction data"
+                             " or address book entries might be missing or incorrect."));
+                InitWarning(msg);
+            }
+            else if (nLoadWalletRet == DB_TOO_NEW)
+                strErrors << _("Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin") << "\n";
+            else if (nLoadWalletRet == DB_NEED_REWRITE)
+            {
+                strErrors << _("Wallet needed to be rewritten: restart WayaWolfCoin to complete") << "\n";
+                LogPrintf("%s", strErrors.str());
+                return InitError(strErrors.str());
+            }
+            else
+                strErrors << _("Error loading wallet.dat") << "\n";
+        }
+
+        if (GetBoolArg("-upgradewallet", fFirstRun))
+        {
+            int nMaxVersion = GetArg("-upgradewallet", 0);
+            if (nMaxVersion == 0) // the -upgradewallet without argument case
+            {
+                LogPrintf("Performing wallet upgrade to %i\n", FEATURE_LATEST);
+                nMaxVersion = CLIENT_VERSION;
+                pwalletMain->SetMinVersion(FEATURE_LATEST); // permanently upgrade the wallet immediately
+            }
+            else
+                LogPrintf("Allowing wallet upgrade up to %i\n", nMaxVersion);
+            if (nMaxVersion < pwalletMain->GetVersion())
+                strErrors << _("Cannot downgrade wallet") << "\n";
+            pwalletMain->SetMaxVersion(nMaxVersion);
+        }
+
+        if (fFirstRun)
+        {
+            // Create new keyUser and set as default key
+            RandAddSeedPerfmon();
+
+            CPubKey newDefaultKey;
+            if (pwalletMain->GetKeyFromPool(newDefaultKey)) {
+                pwalletMain->SetDefaultKey(newDefaultKey);
+                if (!pwalletMain->SetAddressBookName(pwalletMain->vchDefaultKey.GetID(), ""))
+                    strErrors << _("Cannot write default address") << "\n";
+            }
+
+            pwalletMain->SetBestChain(CBlockLocator(pindexBest));
+        }
+
+    
