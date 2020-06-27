@@ -901,4 +901,195 @@ bool AppInit2(boost::thread_group& threadGroup)
             pwalletMain->SetBestChain(CBlockLocator(pindexBest));
         }
 
-    
+        LogPrintf("%s", strErrors.str());
+        LogPrintf(" wallet      %15dms\n", GetTimeMillis() - nStart);
+
+        RegisterWallet(pwalletMain);
+
+        CBlockIndex *pindexRescan = pindexBest;
+        if (GetBoolArg("-rescan", false))
+            pindexRescan = pindexGenesisBlock;
+        else
+        {
+            CWalletDB walletdb(strWalletFileName);
+            CBlockLocator locator;
+            if (walletdb.ReadBestBlock(locator))
+                pindexRescan = locator.GetBlockIndex();
+            else
+                pindexRescan = pindexGenesisBlock;
+        }
+        if (pindexBest != pindexRescan && pindexBest && pindexRescan && pindexBest->nHeight > pindexRescan->nHeight)
+        {
+            uiInterface.InitMessage(_("Rescanning..."));
+            LogPrintf("Rescanning last %i blocks (from block %i)...\n", pindexBest->nHeight - pindexRescan->nHeight, pindexRescan->nHeight);
+            nStart = GetTimeMillis();
+            pwalletMain->ScanForWalletTransactions(pindexRescan, true);
+            LogPrintf(" rescan      %15dms\n", GetTimeMillis() - nStart);
+            pwalletMain->SetBestChain(CBlockLocator(pindexBest));
+            nWalletDBUpdated++;
+        }
+    } // (!fDisableWallet)
+#else // ENABLE_WALLET
+    LogPrintf("No wallet compiled in!\n");
+#endif // !ENABLE_WALLET
+    // ********************************************************* Step 9: import blocks
+
+    std::vector<boost::filesystem::path> vImportFiles;
+    if (mapArgs.count("-loadblock"))
+    {
+        BOOST_FOREACH(string strFile, mapMultiArgs["-loadblock"])
+            vImportFiles.push_back(strFile);
+    }
+    threadGroup.create_thread(boost::bind(&ThreadImport, vImportFiles));
+
+    // ********************************************************* Step 10: load peers
+
+    uiInterface.InitMessage(_("Loading addresses..."));
+
+    nStart = GetTimeMillis();
+
+    {
+        CAddrDB adb;
+        if (!adb.Read(addrman))
+            LogPrintf("Invalid or missing peers.dat; recreating\n");
+    }
+
+    LogPrintf("Loaded %i addresses from peers.dat  %dms\n",
+           addrman.size(), GetTimeMillis() - nStart);
+
+    // ********************************************************* Step 10.5: startup secure messaging
+
+    SecureMsgStart(fNoSmsg, GetBoolArg("-smsgscanchain", false));
+
+    // ********************************************************* Step 11: start node
+
+    if (!CheckDiskSpace())
+        return false;
+
+    if (!strErrors.str().empty())
+        return InitError(strErrors.str());
+
+    // Check toggle switch for experimental feature testing fork
+    uiInterface.InitMessage(_("Checking experimental feature toggle..."));
+    strLiveForkToggle = GetArg("-liveforktoggle", "");
+    LogPrintf("Checking for experimental testing feature fork toggle...\n");
+    if(!strLiveForkToggle.empty()){
+        LogPrintf("Verifying height selection for experimental testing feature fork toggle...\n");
+        std::istringstream(strLiveForkToggle) >> nLiveForkToggle;
+        if(nLiveForkToggle == 0) {
+            LogPrintf("Continuing with fork toggle manually disabled by user...\n");
+        } else if(nLiveForkToggle < nBestHeight) {
+            return InitError(_("Invalid experimental testing feature fork toggle, please select a higher block than currently sync'd height\n"));
+        } else {
+            LogPrintf("Continuing with fork toggle set for block: %s | Happy testing!\n", strLiveForkToggle.c_str());
+        }
+    } else {
+        nLiveForkToggle = 0;
+        LogPrintf("No experimental testing feature fork toggle detected... skipping...\n");
+    }
+
+    // Check for Demi-node toggle
+    uiInterface.InitMessage(_("Checking Demi-node feature toggle..."));
+    fDemiNodes = GetBoolArg("-deminodes", false);
+    LogPrintf("Checking for Demi-nodes feature toggle...\n");// BLOCK_REORG_OVERRIDE_DEPTH
+    if(fDemiNodes) {
+        // Set Demi-node values
+        uiInterface.InitMessage(_("Configuring Demi-node systems..."));
+        std::string strOverrideDepth = GetArg("-demimaxdepth", "");
+        if(!strOverrideDepth.empty()) {
+            std::istringstream(strOverrideDepth) >> BLOCK_REORG_OVERRIDE_DEPTH;
+            if(BLOCK_REORG_OVERRIDE_DEPTH == 0) {
+                LogPrintf("Continuing with Demi-node depth override manually disabled by user...\n");
+            } else if(BLOCK_REORG_OVERRIDE_DEPTH < 0) {
+                return InitError(_("Invalid Demi-node depth override, selected value must be higher than Zero!\n"));
+            } else {
+                BLOCK_REORG_THRESHOLD = (BLOCK_REORG_MAX_DEPTH + BLOCK_REORG_OVERRIDE_DEPTH);
+                LogPrintf("Continuing with Demi-node depth override height of: %s\n", strOverrideDepth.c_str());
+            }
+        }
+    } else {
+        // Demi-nodes disabled
+        LogPrintf("No Demi-node features selected... skipping...\n");
+    }
+
+    // Check or Create 4k support config file for Qt
+    if(fHaveGUI) {
+        ReadDPIConfigFile();
+    }
+
+
+    RandAddSeedPerfmon();
+
+    // reindex addresses found in blockchain
+    if(GetBoolArg("-reindexaddr", false))
+    {
+        uiInterface.InitMessage(_("Rebuilding address index..."));
+        CBlockIndex *pblockAddrIndex = pindexBest;
+	CTxDB txdbAddr("rw");
+	while(pblockAddrIndex)
+	{
+	    uiInterface.InitMessage(strprintf("Rebuilding address index, block %i", pblockAddrIndex->nHeight));
+	    bool ReadFromDisk(const CBlockIndex* pindex, bool fReadTransactions=true);
+	    CBlock pblockAddr;
+	    if(pblockAddr.ReadFromDisk(pblockAddrIndex, true))
+	        pblockAddr.RebuildAddressIndex(txdbAddr);
+	    pblockAddrIndex = pblockAddrIndex->pprev;
+	}
+    }
+
+    //// debug print
+    LogPrintf("mapBlockIndex.size() = %u\n",   mapBlockIndex.size());
+    LogPrintf("nBestHeight = %d\n",                   nBestHeight);
+#ifdef ENABLE_WALLET
+    LogPrintf("setKeyPool.size() = %u\n",      pwalletMain ? pwalletMain->setKeyPool.size() : 0);
+    LogPrintf("mapWallet.size() = %u\n",       pwalletMain ? pwalletMain->mapWallet.size() : 0);
+    LogPrintf("mapAddressBook.size() = %u\n",  pwalletMain ? pwalletMain->mapAddressBook.size() : 0);
+#endif
+
+    StartNode(threadGroup);
+#ifdef ENABLE_WALLET
+    // InitRPCMining is needed here so getwork/getblocktemplate in the GUI debug console works properly.
+    InitRPCMining();
+#endif
+    if (fServer)
+        StartRPCThreads();
+
+#ifdef ENABLE_WALLET
+    // Mine proof-of-stake blocks in the background
+    if (!GetBoolArg("-staking", true))
+    {
+        LogPrintf("Staking disabled\n");
+    }
+    else if (pwalletMain)
+    {
+        threadGroup.create_thread(boost::bind(&ThreadStakeMiner, pwalletMain));
+    }
+
+    if(pwalletMain->IsLocked())
+    {
+        // Toggle wallet lock status
+        settingsStatus = true;
+    }
+    else
+    {
+        // Toggle wallet lock status
+        settingsStatus = false;
+    }
+#endif
+
+    // ********************************************************* Step 12: finished
+
+    uiInterface.InitMessage(_("Done loading"));
+
+#ifdef ENABLE_WALLET
+    if (pwalletMain) {
+        // Add wallet transactions that aren't already in a block to mapTransactions
+        pwalletMain->ReacceptWalletTransactions();
+
+        // Run a thread to flush wallet periodically
+        threadGroup.create_thread(boost::bind(&ThreadFlushWalletDB, boost::ref(pwalletMain->strWalletFile)));
+    }
+#endif
+
+    return !fRequestShutdown;
+}
