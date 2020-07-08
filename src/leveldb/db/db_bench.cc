@@ -499,4 +499,294 @@ class Benchmark {
         method = &Benchmark::SnappyUncompress;
       } else if (name == Slice("heapprofile")) {
         HeapProfile();
+      } else if (name == Slice("stats")) {
+        PrintStats("leveldb.stats");
+      } else if (name == Slice("sstables")) {
+        PrintStats("leveldb.sstables");
+      } else {
+        if (name != Slice()) {  // No error message for empty name
+          fprintf(stderr, "unknown benchmark '%s'\n", name.ToString().c_str());
+        }
       }
+
+      if (fresh_db) {
+        if (FLAGS_use_existing_db) {
+          fprintf(stdout, "%-12s : skipped (--use_existing_db is true)\n",
+                  name.ToString().c_str());
+          method = NULL;
+        } else {
+          delete db_;
+          db_ = NULL;
+          DestroyDB(FLAGS_db, Options());
+          Open();
+        }
+      }
+
+      if (method != NULL) {
+        RunBenchmark(num_threads, name, method);
+      }
+    }
+  }
+
+ private:
+  struct ThreadArg {
+    Benchmark* bm;
+    SharedState* shared;
+    ThreadState* thread;
+    void (Benchmark::*method)(ThreadState*);
+  };
+
+  static void ThreadBody(void* v) {
+    ThreadArg* arg = reinterpret_cast<ThreadArg*>(v);
+    SharedState* shared = arg->shared;
+    ThreadState* thread = arg->thread;
+    {
+      MutexLock l(&shared->mu);
+      shared->num_initialized++;
+      if (shared->num_initialized >= shared->total) {
+        shared->cv.SignalAll();
+      }
+      while (!shared->start) {
+        shared->cv.Wait();
+      }
+    }
+
+    thread->stats.Start();
+    (arg->bm->*(arg->method))(thread);
+    thread->stats.Stop();
+
+    {
+      MutexLock l(&shared->mu);
+      shared->num_done++;
+      if (shared->num_done >= shared->total) {
+        shared->cv.SignalAll();
+      }
+    }
+  }
+
+  void RunBenchmark(int n, Slice name,
+                    void (Benchmark::*method)(ThreadState*)) {
+    SharedState shared;
+    shared.total = n;
+    shared.num_initialized = 0;
+    shared.num_done = 0;
+    shared.start = false;
+
+    ThreadArg* arg = new ThreadArg[n];
+    for (int i = 0; i < n; i++) {
+      arg[i].bm = this;
+      arg[i].method = method;
+      arg[i].shared = &shared;
+      arg[i].thread = new ThreadState(i);
+      arg[i].thread->shared = &shared;
+      Env::Default()->StartThread(ThreadBody, &arg[i]);
+    }
+
+    shared.mu.Lock();
+    while (shared.num_initialized < n) {
+      shared.cv.Wait();
+    }
+
+    shared.start = true;
+    shared.cv.SignalAll();
+    while (shared.num_done < n) {
+      shared.cv.Wait();
+    }
+    shared.mu.Unlock();
+
+    for (int i = 1; i < n; i++) {
+      arg[0].thread->stats.Merge(arg[i].thread->stats);
+    }
+    arg[0].thread->stats.Report(name);
+
+    for (int i = 0; i < n; i++) {
+      delete arg[i].thread;
+    }
+    delete[] arg;
+  }
+
+  void Crc32c(ThreadState* thread) {
+    // Checksum about 500MB of data total
+    const int size = 4096;
+    const char* label = "(4K per op)";
+    std::string data(size, 'x');
+    int64_t bytes = 0;
+    uint32_t crc = 0;
+    while (bytes < 500 * 1048576) {
+      crc = crc32c::Value(data.data(), size);
+      thread->stats.FinishedSingleOp();
+      bytes += size;
+    }
+    // Print so result is not dead
+    fprintf(stderr, "... crc=0x%x\r", static_cast<unsigned int>(crc));
+
+    thread->stats.AddBytes(bytes);
+    thread->stats.AddMessage(label);
+  }
+
+  void AcquireLoad(ThreadState* thread) {
+    int dummy;
+    port::AtomicPointer ap(&dummy);
+    int count = 0;
+    void *ptr = NULL;
+    thread->stats.AddMessage("(each op is 1000 loads)");
+    while (count < 100000) {
+      for (int i = 0; i < 1000; i++) {
+        ptr = ap.Acquire_Load();
+      }
+      count++;
+      thread->stats.FinishedSingleOp();
+    }
+    if (ptr == NULL) exit(1); // Disable unused variable warning.
+  }
+
+  void SnappyCompress(ThreadState* thread) {
+    RandomGenerator gen;
+    Slice input = gen.Generate(Options().block_size);
+    int64_t bytes = 0;
+    int64_t produced = 0;
+    bool ok = true;
+    std::string compressed;
+    while (ok && bytes < 1024 * 1048576) {  // Compress 1G
+      ok = port::Snappy_Compress(input.data(), input.size(), &compressed);
+      produced += compressed.size();
+      bytes += input.size();
+      thread->stats.FinishedSingleOp();
+    }
+
+    if (!ok) {
+      thread->stats.AddMessage("(snappy failure)");
+    } else {
+      char buf[100];
+      snprintf(buf, sizeof(buf), "(output: %.1f%%)",
+               (produced * 100.0) / bytes);
+      thread->stats.AddMessage(buf);
+      thread->stats.AddBytes(bytes);
+    }
+  }
+
+  void SnappyUncompress(ThreadState* thread) {
+    RandomGenerator gen;
+    Slice input = gen.Generate(Options().block_size);
+    std::string compressed;
+    bool ok = port::Snappy_Compress(input.data(), input.size(), &compressed);
+    int64_t bytes = 0;
+    char* uncompressed = new char[input.size()];
+    while (ok && bytes < 1024 * 1048576) {  // Compress 1G
+      ok =  port::Snappy_Uncompress(compressed.data(), compressed.size(),
+                                    uncompressed);
+      bytes += input.size();
+      thread->stats.FinishedSingleOp();
+    }
+    delete[] uncompressed;
+
+    if (!ok) {
+      thread->stats.AddMessage("(snappy failure)");
+    } else {
+      thread->stats.AddBytes(bytes);
+    }
+  }
+
+  void Open() {
+    assert(db_ == NULL);
+    Options options;
+    options.create_if_missing = !FLAGS_use_existing_db;
+    options.block_cache = cache_;
+    options.write_buffer_size = FLAGS_write_buffer_size;
+    options.max_open_files = FLAGS_open_files;
+    options.filter_policy = filter_policy_;
+    Status s = DB::Open(options, FLAGS_db, &db_);
+    if (!s.ok()) {
+      fprintf(stderr, "open error: %s\n", s.ToString().c_str());
+      exit(1);
+    }
+  }
+
+  void WriteSeq(ThreadState* thread) {
+    DoWrite(thread, true);
+  }
+
+  void WriteRandom(ThreadState* thread) {
+    DoWrite(thread, false);
+  }
+
+  void DoWrite(ThreadState* thread, bool seq) {
+    if (num_ != FLAGS_num) {
+      char msg[100];
+      snprintf(msg, sizeof(msg), "(%d ops)", num_);
+      thread->stats.AddMessage(msg);
+    }
+
+    RandomGenerator gen;
+    WriteBatch batch;
+    Status s;
+    int64_t bytes = 0;
+    for (int i = 0; i < num_; i += entries_per_batch_) {
+      batch.Clear();
+      for (int j = 0; j < entries_per_batch_; j++) {
+        const int k = seq ? i+j : (thread->rand.Next() % FLAGS_num);
+        char key[100];
+        snprintf(key, sizeof(key), "%016d", k);
+        batch.Put(key, gen.Generate(value_size_));
+        bytes += value_size_ + strlen(key);
+        thread->stats.FinishedSingleOp();
+      }
+      s = db_->Write(write_options_, &batch);
+      if (!s.ok()) {
+        fprintf(stderr, "put error: %s\n", s.ToString().c_str());
+        exit(1);
+      }
+    }
+    thread->stats.AddBytes(bytes);
+  }
+
+  void ReadSequential(ThreadState* thread) {
+    Iterator* iter = db_->NewIterator(ReadOptions());
+    int i = 0;
+    int64_t bytes = 0;
+    for (iter->SeekToFirst(); i < reads_ && iter->Valid(); iter->Next()) {
+      bytes += iter->key().size() + iter->value().size();
+      thread->stats.FinishedSingleOp();
+      ++i;
+    }
+    delete iter;
+    thread->stats.AddBytes(bytes);
+  }
+
+  void ReadWayaWolfCoinerse(ThreadState* thread) {
+    Iterator* iter = db_->NewIterator(ReadOptions());
+    int i = 0;
+    int64_t bytes = 0;
+    for (iter->SeekToLast(); i < reads_ && iter->Valid(); iter->Prev()) {
+      bytes += iter->key().size() + iter->value().size();
+      thread->stats.FinishedSingleOp();
+      ++i;
+    }
+    delete iter;
+    thread->stats.AddBytes(bytes);
+  }
+
+  void ReadRandom(ThreadState* thread) {
+    ReadOptions options;
+    std::string value;
+    int found = 0;
+    for (int i = 0; i < reads_; i++) {
+      char key[100];
+      const int k = thread->rand.Next() % FLAGS_num;
+      snprintf(key, sizeof(key), "%016d", k);
+      if (db_->Get(options, key, &value).ok()) {
+        found++;
+      }
+      thread->stats.FinishedSingleOp();
+    }
+    char msg[100];
+    snprintf(msg, sizeof(msg), "(%d of %d found)", found, num_);
+    thread->stats.AddMessage(msg);
+  }
+
+  void ReadMissing(ThreadState* thread) {
+    ReadOptions options;
+    std::string value;
+    for (int i = 0; i < reads_; i++) {
+      char key[100];
+      const int k = thread->rand
