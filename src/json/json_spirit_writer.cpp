@@ -77,4 +77,19 @@ void json_spirit::write( const wmValue& value, std::wostream& os )
     write_stream( value, os, false );
 }
 
-void json_spirit::
+void json_spirit::write_formatted( const wmValue& value, std::wostream& os )
+{
+    write_stream( value, os, true );
+}
+
+std::wstring json_spirit::write( const wmValue&  value )
+{
+    return write_string( value, false );
+}
+
+std::wstring json_spirit::write_formatted( const wmValue&  value )
+{
+    return write_string( value, true );
+}
+
+#endif
