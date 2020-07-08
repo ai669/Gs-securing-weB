@@ -251,4 +251,252 @@ class Stats {
                (bytes_ / 1048576.0) / elapsed);
       extra = rate;
     }
-    AppendWithSpace(&extra, me
+    AppendWithSpace(&extra, message_);
+
+    fprintf(stdout, "%-12s : %11.3f micros/op;%s%s\n",
+            name.ToString().c_str(),
+            seconds_ * 1e6 / done_,
+            (extra.empty() ? "" : " "),
+            extra.c_str());
+    if (FLAGS_histogram) {
+      fprintf(stdout, "Microseconds per op:\n%s\n", hist_.ToString().c_str());
+    }
+    fflush(stdout);
+  }
+};
+
+// State shared by all concurrent executions of the same benchmark.
+struct SharedState {
+  port::Mutex mu;
+  port::CondVar cv;
+  int total;
+
+  // Each thread goes through the following states:
+  //    (1) initializing
+  //    (2) waiting for others to be initialized
+  //    (3) running
+  //    (4) done
+
+  int num_initialized;
+  int num_done;
+  bool start;
+
+  SharedState() : cv(&mu) { }
+};
+
+// Per-thread state for concurrent executions of the same benchmark.
+struct ThreadState {
+  int tid;             // 0..n-1 when running in n threads
+  Random rand;         // Has different seeds for different threads
+  Stats stats;
+  SharedState* shared;
+
+  ThreadState(int index)
+      : tid(index),
+        rand(1000 + index) {
+  }
+};
+
+}  // namespace
+
+class Benchmark {
+ private:
+  Cache* cache_;
+  const FilterPolicy* filter_policy_;
+  DB* db_;
+  int num_;
+  int value_size_;
+  int entries_per_batch_;
+  WriteOptions write_options_;
+  int reads_;
+  int heap_counter_;
+
+  void PrintHeader() {
+    const int kKeySize = 16;
+    PrintEnvironment();
+    fprintf(stdout, "Keys:       %d bytes each\n", kKeySize);
+    fprintf(stdout, "Values:     %d bytes each (%d bytes after compression)\n",
+            FLAGS_value_size,
+            static_cast<int>(FLAGS_value_size * FLAGS_compression_ratio + 0.5));
+    fprintf(stdout, "Entries:    %d\n", num_);
+    fprintf(stdout, "RawSize:    %.1f MB (estimated)\n",
+            ((static_cast<int64_t>(kKeySize + FLAGS_value_size) * num_)
+             / 1048576.0));
+    fprintf(stdout, "FileSize:   %.1f MB (estimated)\n",
+            (((kKeySize + FLAGS_value_size * FLAGS_compression_ratio) * num_)
+             / 1048576.0));
+    PrintWarnings();
+    fprintf(stdout, "------------------------------------------------\n");
+  }
+
+  void PrintWarnings() {
+#if defined(__GNUC__) && !defined(__OPTIMIZE__)
+    fprintf(stdout,
+            "WARNING: Optimization is disabled: benchmarks unnecessarily slow\n"
+            );
+#endif
+#ifndef NDEBUG
+    fprintf(stdout,
+            "WARNING: Assertions are enabled; benchmarks unnecessarily slow\n");
+#endif
+
+    // See if snappy is working by attempting to compress a compressible string
+    const char text[] = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy";
+    std::string compressed;
+    if (!port::Snappy_Compress(text, sizeof(text), &compressed)) {
+      fprintf(stdout, "WARNING: Snappy compression is not enabled\n");
+    } else if (compressed.size() >= sizeof(text)) {
+      fprintf(stdout, "WARNING: Snappy compression is not effective\n");
+    }
+  }
+
+  void PrintEnvironment() {
+    fprintf(stderr, "LevelDB:    version %d.%d\n",
+            kMajorVersion, kMinorVersion);
+
+#if defined(__linux)
+    time_t now = time(NULL);
+    fprintf(stderr, "Date:       %s", ctime(&now));  // ctime() adds newline
+
+    FILE* cpuinfo = fopen("/proc/cpuinfo", "r");
+    if (cpuinfo != NULL) {
+      char line[1000];
+      int num_cpus = 0;
+      std::string cpu_type;
+      std::string cache_size;
+      while (fgets(line, sizeof(line), cpuinfo) != NULL) {
+        const char* sep = strchr(line, ':');
+        if (sep == NULL) {
+          continue;
+        }
+        Slice key = TrimSpace(Slice(line, sep - 1 - line));
+        Slice val = TrimSpace(Slice(sep + 1));
+        if (key == "model name") {
+          ++num_cpus;
+          cpu_type = val.ToString();
+        } else if (key == "cache size") {
+          cache_size = val.ToString();
+        }
+      }
+      fclose(cpuinfo);
+      fprintf(stderr, "CPU:        %d * %s\n", num_cpus, cpu_type.c_str());
+      fprintf(stderr, "CPUCache:   %s\n", cache_size.c_str());
+    }
+#endif
+  }
+
+ public:
+  Benchmark()
+  : cache_(FLAGS_cache_size >= 0 ? NewLRUCache(FLAGS_cache_size) : NULL),
+    filter_policy_(FLAGS_bloom_bits >= 0
+                   ? NewBloomFilterPolicy(FLAGS_bloom_bits)
+                   : NULL),
+    db_(NULL),
+    num_(FLAGS_num),
+    value_size_(FLAGS_value_size),
+    entries_per_batch_(1),
+    reads_(FLAGS_reads < 0 ? FLAGS_num : FLAGS_reads),
+    heap_counter_(0) {
+    std::vector<std::string> files;
+    Env::Default()->GetChildren(FLAGS_db, &files);
+    for (size_t i = 0; i < files.size(); i++) {
+      if (Slice(files[i]).starts_with("heap-")) {
+        Env::Default()->DeleteFile(std::string(FLAGS_db) + "/" + files[i]);
+      }
+    }
+    if (!FLAGS_use_existing_db) {
+      DestroyDB(FLAGS_db, Options());
+    }
+  }
+
+  ~Benchmark() {
+    delete db_;
+    delete cache_;
+    delete filter_policy_;
+  }
+
+  void Run() {
+    PrintHeader();
+    Open();
+
+    const char* benchmarks = FLAGS_benchmarks;
+    while (benchmarks != NULL) {
+      const char* sep = strchr(benchmarks, ',');
+      Slice name;
+      if (sep == NULL) {
+        name = benchmarks;
+        benchmarks = NULL;
+      } else {
+        name = Slice(benchmarks, sep - benchmarks);
+        benchmarks = sep + 1;
+      }
+
+      // Reset parameters that may be overridden below
+      num_ = FLAGS_num;
+      reads_ = (FLAGS_reads < 0 ? FLAGS_num : FLAGS_reads);
+      value_size_ = FLAGS_value_size;
+      entries_per_batch_ = 1;
+      write_options_ = WriteOptions();
+
+      void (Benchmark::*method)(ThreadState*) = NULL;
+      bool fresh_db = false;
+      int num_threads = FLAGS_threads;
+
+      if (name == Slice("fillseq")) {
+        fresh_db = true;
+        method = &Benchmark::WriteSeq;
+      } else if (name == Slice("fillbatch")) {
+        fresh_db = true;
+        entries_per_batch_ = 1000;
+        method = &Benchmark::WriteSeq;
+      } else if (name == Slice("fillrandom")) {
+        fresh_db = true;
+        method = &Benchmark::WriteRandom;
+      } else if (name == Slice("overwrite")) {
+        fresh_db = false;
+        method = &Benchmark::WriteRandom;
+      } else if (name == Slice("fillsync")) {
+        fresh_db = true;
+        num_ /= 1000;
+        write_options_.sync = true;
+        method = &Benchmark::WriteRandom;
+      } else if (name == Slice("fill100K")) {
+        fresh_db = true;
+        num_ /= 1000;
+        value_size_ = 100 * 1000;
+        method = &Benchmark::WriteRandom;
+      } else if (name == Slice("readseq")) {
+        method = &Benchmark::ReadSequential;
+      } else if (name == Slice("readreverse")) {
+        method = &Benchmark::ReadWayaWolfCoinerse;
+      } else if (name == Slice("readrandom")) {
+        method = &Benchmark::ReadRandom;
+      } else if (name == Slice("readmissing")) {
+        method = &Benchmark::ReadMissing;
+      } else if (name == Slice("seekrandom")) {
+        method = &Benchmark::SeekRandom;
+      } else if (name == Slice("readhot")) {
+        method = &Benchmark::ReadHot;
+      } else if (name == Slice("readrandomsmall")) {
+        reads_ /= 1000;
+        method = &Benchmark::ReadRandom;
+      } else if (name == Slice("deleteseq")) {
+        method = &Benchmark::DeleteSeq;
+      } else if (name == Slice("deleterandom")) {
+        method = &Benchmark::DeleteRandom;
+      } else if (name == Slice("readwhilewriting")) {
+        num_threads++;  // Add extra thread for writing
+        method = &Benchmark::ReadWhileWriting;
+      } else if (name == Slice("compact")) {
+        method = &Benchmark::Compact;
+      } else if (name == Slice("crc32c")) {
+        method = &Benchmark::Crc32c;
+      } else if (name == Slice("acquireload")) {
+        method = &Benchmark::AcquireLoad;
+      } else if (name == Slice("snappycomp")) {
+        method = &Benchmark::SnappyCompress;
+      } else if (name == Slice("snappyuncomp")) {
+        method = &Benchmark::SnappyUncompress;
+      } else if (name == Slice("heapprofile")) {
+        HeapProfile();
+      }
