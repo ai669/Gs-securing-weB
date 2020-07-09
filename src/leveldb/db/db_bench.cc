@@ -789,4 +789,190 @@ class Benchmark {
     std::string value;
     for (int i = 0; i < reads_; i++) {
       char key[100];
-      const int k = thread->rand
+      const int k = thread->rand.Next() % FLAGS_num;
+      snprintf(key, sizeof(key), "%016d.", k);
+      db_->Get(options, key, &value);
+      thread->stats.FinishedSingleOp();
+    }
+  }
+
+  void ReadHot(ThreadState* thread) {
+    ReadOptions options;
+    std::string value;
+    const int range = (FLAGS_num + 99) / 100;
+    for (int i = 0; i < reads_; i++) {
+      char key[100];
+      const int k = thread->rand.Next() % range;
+      snprintf(key, sizeof(key), "%016d", k);
+      db_->Get(options, key, &value);
+      thread->stats.FinishedSingleOp();
+    }
+  }
+
+  void SeekRandom(ThreadState* thread) {
+    ReadOptions options;
+    int found = 0;
+    for (int i = 0; i < reads_; i++) {
+      Iterator* iter = db_->NewIterator(options);
+      char key[100];
+      const int k = thread->rand.Next() % FLAGS_num;
+      snprintf(key, sizeof(key), "%016d", k);
+      iter->Seek(key);
+      if (iter->Valid() && iter->key() == key) found++;
+      delete iter;
+      thread->stats.FinishedSingleOp();
+    }
+    char msg[100];
+    snprintf(msg, sizeof(msg), "(%d of %d found)", found, num_);
+    thread->stats.AddMessage(msg);
+  }
+
+  void DoDelete(ThreadState* thread, bool seq) {
+    RandomGenerator gen;
+    WriteBatch batch;
+    Status s;
+    for (int i = 0; i < num_; i += entries_per_batch_) {
+      batch.Clear();
+      for (int j = 0; j < entries_per_batch_; j++) {
+        const int k = seq ? i+j : (thread->rand.Next() % FLAGS_num);
+        char key[100];
+        snprintf(key, sizeof(key), "%016d", k);
+        batch.Delete(key);
+        thread->stats.FinishedSingleOp();
+      }
+      s = db_->Write(write_options_, &batch);
+      if (!s.ok()) {
+        fprintf(stderr, "del error: %s\n", s.ToString().c_str());
+        exit(1);
+      }
+    }
+  }
+
+  void DeleteSeq(ThreadState* thread) {
+    DoDelete(thread, true);
+  }
+
+  void DeleteRandom(ThreadState* thread) {
+    DoDelete(thread, false);
+  }
+
+  void ReadWhileWriting(ThreadState* thread) {
+    if (thread->tid > 0) {
+      ReadRandom(thread);
+    } else {
+      // Special thread that keeps writing until other threads are done.
+      RandomGenerator gen;
+      while (true) {
+        {
+          MutexLock l(&thread->shared->mu);
+          if (thread->shared->num_done + 1 >= thread->shared->num_initialized) {
+            // Other threads have finished
+            break;
+          }
+        }
+
+        const int k = thread->rand.Next() % FLAGS_num;
+        char key[100];
+        snprintf(key, sizeof(key), "%016d", k);
+        Status s = db_->Put(write_options_, key, gen.Generate(value_size_));
+        if (!s.ok()) {
+          fprintf(stderr, "put error: %s\n", s.ToString().c_str());
+          exit(1);
+        }
+      }
+
+      // Do not count any of the preceding work/delay in stats.
+      thread->stats.Start();
+    }
+  }
+
+  void Compact(ThreadState* thread) {
+    db_->CompactRange(NULL, NULL);
+  }
+
+  void PrintStats(const char* key) {
+    std::string stats;
+    if (!db_->GetProperty(key, &stats)) {
+      stats = "(failed)";
+    }
+    fprintf(stdout, "\n%s\n", stats.c_str());
+  }
+
+  static void WriteToFile(void* arg, const char* buf, int n) {
+    reinterpret_cast<WritableFile*>(arg)->Append(Slice(buf, n));
+  }
+
+  void HeapProfile() {
+    char fname[100];
+    snprintf(fname, sizeof(fname), "%s/heap-%04d", FLAGS_db, ++heap_counter_);
+    WritableFile* file;
+    Status s = Env::Default()->NewWritableFile(fname, &file);
+    if (!s.ok()) {
+      fprintf(stderr, "%s\n", s.ToString().c_str());
+      return;
+    }
+    bool ok = port::GetHeapProfile(WriteToFile, file);
+    delete file;
+    if (!ok) {
+      fprintf(stderr, "heap profiling not supported\n");
+      Env::Default()->DeleteFile(fname);
+    }
+  }
+};
+
+}  // namespace leveldb
+
+int main(int argc, char** argv) {
+  FLAGS_write_buffer_size = leveldb::Options().write_buffer_size;
+  FLAGS_open_files = leveldb::Options().max_open_files;
+  std::string default_db_path;
+
+  for (int i = 1; i < argc; i++) {
+    double d;
+    int n;
+    char junk;
+    if (leveldb::Slice(argv[i]).starts_with("--benchmarks=")) {
+      FLAGS_benchmarks = argv[i] + strlen("--benchmarks=");
+    } else if (sscanf(argv[i], "--compression_ratio=%lf%c", &d, &junk) == 1) {
+      FLAGS_compression_ratio = d;
+    } else if (sscanf(argv[i], "--histogram=%d%c", &n, &junk) == 1 &&
+               (n == 0 || n == 1)) {
+      FLAGS_histogram = n;
+    } else if (sscanf(argv[i], "--use_existing_db=%d%c", &n, &junk) == 1 &&
+               (n == 0 || n == 1)) {
+      FLAGS_use_existing_db = n;
+    } else if (sscanf(argv[i], "--num=%d%c", &n, &junk) == 1) {
+      FLAGS_num = n;
+    } else if (sscanf(argv[i], "--reads=%d%c", &n, &junk) == 1) {
+      FLAGS_reads = n;
+    } else if (sscanf(argv[i], "--threads=%d%c", &n, &junk) == 1) {
+      FLAGS_threads = n;
+    } else if (sscanf(argv[i], "--value_size=%d%c", &n, &junk) == 1) {
+      FLAGS_value_size = n;
+    } else if (sscanf(argv[i], "--write_buffer_size=%d%c", &n, &junk) == 1) {
+      FLAGS_write_buffer_size = n;
+    } else if (sscanf(argv[i], "--cache_size=%d%c", &n, &junk) == 1) {
+      FLAGS_cache_size = n;
+    } else if (sscanf(argv[i], "--bloom_bits=%d%c", &n, &junk) == 1) {
+      FLAGS_bloom_bits = n;
+    } else if (sscanf(argv[i], "--open_files=%d%c", &n, &junk) == 1) {
+      FLAGS_open_files = n;
+    } else if (strncmp(argv[i], "--db=", 5) == 0) {
+      FLAGS_db = argv[i] + 5;
+    } else {
+      fprintf(stderr, "Invalid flag '%s'\n", argv[i]);
+      exit(1);
+    }
+  }
+
+  // Choose a location for the test database if none given with --db=<path>
+  if (FLAGS_db == NULL) {
+      leveldb::Env::Default()->GetTestDirectory(&default_db_path);
+      default_db_path += "/dbbench";
+      FLAGS_db = default_db_path.c_str();
+  }
+
+  leveldb::Benchmark benchmark;
+  benchmark.Run();
+  return 0;
+}
