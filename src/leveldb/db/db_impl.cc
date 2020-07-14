@@ -874,4 +874,270 @@ Status DBImpl::DoCompactionWork(CompactionState* compact) {
   // Release mutex while we're actually doing the compaction work
   mutex_.Unlock();
 
-  Iterator* input = versions_->MakeInputIterator(com
+  Iterator* input = versions_->MakeInputIterator(compact->compaction);
+  input->SeekToFirst();
+  Status status;
+  ParsedInternalKey ikey;
+  std::string current_user_key;
+  bool has_current_user_key = false;
+  SequenceNumber last_sequence_for_key = kMaxSequenceNumber;
+  for (; input->Valid() && !shutting_down_.Acquire_Load(); ) {
+    // Prioritize immutable compaction work
+    if (has_imm_.NoBarrier_Load() != NULL) {
+      const uint64_t imm_start = env_->NowMicros();
+      mutex_.Lock();
+      if (imm_ != NULL) {
+        CompactMemTable();
+        bg_cv_.SignalAll();  // Wakeup MakeRoomForWrite() if necessary
+      }
+      mutex_.Unlock();
+      imm_micros += (env_->NowMicros() - imm_start);
+    }
+
+    Slice key = input->key();
+    if (compact->compaction->ShouldStopBefore(key) &&
+        compact->builder != NULL) {
+      status = FinishCompactionOutputFile(compact, input);
+      if (!status.ok()) {
+        break;
+      }
+    }
+
+    // Handle key/value, add to state, etc.
+    bool drop = false;
+    if (!ParseInternalKey(key, &ikey)) {
+      // Do not hide error keys
+      current_user_key.clear();
+      has_current_user_key = false;
+      last_sequence_for_key = kMaxSequenceNumber;
+    } else {
+      if (!has_current_user_key ||
+          user_comparator()->Compare(ikey.user_key,
+                                     Slice(current_user_key)) != 0) {
+        // First occurrence of this user key
+        current_user_key.assign(ikey.user_key.data(), ikey.user_key.size());
+        has_current_user_key = true;
+        last_sequence_for_key = kMaxSequenceNumber;
+      }
+
+      if (last_sequence_for_key <= compact->smallest_snapshot) {
+        // Hidden by an newer entry for same user key
+        drop = true;    // (A)
+      } else if (ikey.type == kTypeDeletion &&
+                 ikey.sequence <= compact->smallest_snapshot &&
+                 compact->compaction->IsBaseLevelForKey(ikey.user_key)) {
+        // For this user key:
+        // (1) there is no data in higher levels
+        // (2) data in lower levels will have larger sequence numbers
+        // (3) data in layers that are being compacted here and have
+        //     smaller sequence numbers will be dropped in the next
+        //     few iterations of this loop (by rule (A) above).
+        // Therefore this deletion marker is obsolete and can be dropped.
+        drop = true;
+      }
+
+      last_sequence_for_key = ikey.sequence;
+    }
+#if 0
+    Log(options_.info_log,
+        "  Compact: %s, seq %d, type: %d %d, drop: %d, is_base: %d, "
+        "%d smallest_snapshot: %d",
+        ikey.user_key.ToString().c_str(),
+        (int)ikey.sequence, ikey.type, kTypeValue, drop,
+        compact->compaction->IsBaseLevelForKey(ikey.user_key),
+        (int)last_sequence_for_key, (int)compact->smallest_snapshot);
+#endif
+
+    if (!drop) {
+      // Open output file if necessary
+      if (compact->builder == NULL) {
+        status = OpenCompactionOutputFile(compact);
+        if (!status.ok()) {
+          break;
+        }
+      }
+      if (compact->builder->NumEntries() == 0) {
+        compact->current_output()->smallest.DecodeFrom(key);
+      }
+      compact->current_output()->largest.DecodeFrom(key);
+      compact->builder->Add(key, input->value());
+
+      // Close output file if it is big enough
+      if (compact->builder->FileSize() >=
+          compact->compaction->MaxOutputFileSize()) {
+        status = FinishCompactionOutputFile(compact, input);
+        if (!status.ok()) {
+          break;
+        }
+      }
+    }
+
+    input->Next();
+  }
+
+  if (status.ok() && shutting_down_.Acquire_Load()) {
+    status = Status::IOError("Deleting DB during compaction");
+  }
+  if (status.ok() && compact->builder != NULL) {
+    status = FinishCompactionOutputFile(compact, input);
+  }
+  if (status.ok()) {
+    status = input->status();
+  }
+  delete input;
+  input = NULL;
+
+  CompactionStats stats;
+  stats.micros = env_->NowMicros() - start_micros - imm_micros;
+  for (int which = 0; which < 2; which++) {
+    for (int i = 0; i < compact->compaction->num_input_files(which); i++) {
+      stats.bytes_read += compact->compaction->input(which, i)->file_size;
+    }
+  }
+  for (size_t i = 0; i < compact->outputs.size(); i++) {
+    stats.bytes_written += compact->outputs[i].file_size;
+  }
+
+  mutex_.Lock();
+  stats_[compact->compaction->level() + 1].Add(stats);
+
+  if (status.ok()) {
+    status = InstallCompactionResults(compact);
+  }
+  if (!status.ok()) {
+    RecordBackgroundError(status);
+  }
+  VersionSet::LevelSummaryStorage tmp;
+  Log(options_.info_log,
+      "compacted to: %s", versions_->LevelSummary(&tmp));
+  return status;
+}
+
+namespace {
+struct IterState {
+  port::Mutex* mu;
+  Version* version;
+  MemTable* mem;
+  MemTable* imm;
+};
+
+static void CleanupIteratorState(void* arg1, void* arg2) {
+  IterState* state = reinterpret_cast<IterState*>(arg1);
+  state->mu->Lock();
+  state->mem->Unref();
+  if (state->imm != NULL) state->imm->Unref();
+  state->version->Unref();
+  state->mu->Unlock();
+  delete state;
+}
+}  // namespace
+
+Iterator* DBImpl::NewInternalIterator(const ReadOptions& options,
+                                      SequenceNumber* latest_snapshot,
+                                      uint32_t* seed) {
+  IterState* cleanup = new IterState;
+  mutex_.Lock();
+  *latest_snapshot = versions_->LastSequence();
+
+  // Collect together all needed child iterators
+  std::vector<Iterator*> list;
+  list.push_back(mem_->NewIterator());
+  mem_->Ref();
+  if (imm_ != NULL) {
+    list.push_back(imm_->NewIterator());
+    imm_->Ref();
+  }
+  versions_->current()->AddIterators(options, &list);
+  Iterator* internal_iter =
+      NewMergingIterator(&internal_comparator_, &list[0], list.size());
+  versions_->current()->Ref();
+
+  cleanup->mu = &mutex_;
+  cleanup->mem = mem_;
+  cleanup->imm = imm_;
+  cleanup->version = versions_->current();
+  internal_iter->RegisterCleanup(CleanupIteratorState, cleanup, NULL);
+
+  *seed = ++seed_;
+  mutex_.Unlock();
+  return internal_iter;
+}
+
+Iterator* DBImpl::TEST_NewInternalIterator() {
+  SequenceNumber ignored;
+  uint32_t ignored_seed;
+  return NewInternalIterator(ReadOptions(), &ignored, &ignored_seed);
+}
+
+int64_t DBImpl::TEST_MaxNextLevelOverlappingBytes() {
+  MutexLock l(&mutex_);
+  return versions_->MaxNextLevelOverlappingBytes();
+}
+
+Status DBImpl::Get(const ReadOptions& options,
+                   const Slice& key,
+                   std::string* value) {
+  Status s;
+  MutexLock l(&mutex_);
+  SequenceNumber snapshot;
+  if (options.snapshot != NULL) {
+    snapshot = reinterpret_cast<const SnapshotImpl*>(options.snapshot)->number_;
+  } else {
+    snapshot = versions_->LastSequence();
+  }
+
+  MemTable* mem = mem_;
+  MemTable* imm = imm_;
+  Version* current = versions_->current();
+  mem->Ref();
+  if (imm != NULL) imm->Ref();
+  current->Ref();
+
+  bool have_stat_update = false;
+  Version::GetStats stats;
+
+  // Unlock while reading from files and memtables
+  {
+    mutex_.Unlock();
+    // First look in the memtable, then in the immutable memtable (if any).
+    LookupKey lkey(key, snapshot);
+    if (mem->Get(lkey, value, &s)) {
+      // Done
+    } else if (imm != NULL && imm->Get(lkey, value, &s)) {
+      // Done
+    } else {
+      s = current->Get(options, lkey, value, &stats);
+      have_stat_update = true;
+    }
+    mutex_.Lock();
+  }
+
+  if (have_stat_update && current->UpdateStats(stats)) {
+    MaybeScheduleCompaction();
+  }
+  mem->Unref();
+  if (imm != NULL) imm->Unref();
+  current->Unref();
+  return s;
+}
+
+Iterator* DBImpl::NewIterator(const ReadOptions& options) {
+  SequenceNumber latest_snapshot;
+  uint32_t seed;
+  Iterator* iter = NewInternalIterator(options, &latest_snapshot, &seed);
+  return NewDBIterator(
+      this, user_comparator(), iter,
+      (options.snapshot != NULL
+       ? reinterpret_cast<const SnapshotImpl*>(options.snapshot)->number_
+       : latest_snapshot),
+      seed);
+}
+
+void DBImpl::RecordReadSample(Slice key) {
+  MutexLock l(&mutex_);
+  if (versions_->current()->RecordReadSample(key)) {
+    MaybeScheduleCompaction();
+  }
+}
+
+c
