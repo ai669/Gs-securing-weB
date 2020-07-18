@@ -1388,4 +1388,126 @@ bool DBImpl::GetProperty(const Slice& property, std::string* value) {
             stats_[level].micros / 1e6,
             stats_[level].bytes_read / 1048576.0,
             stats_[level].bytes_written / 1048576.0);
-        value
+        value->append(buf);
+      }
+    }
+    return true;
+  } else if (in == "sstables") {
+    *value = versions_->current()->DebugString();
+    return true;
+  }
+
+  return false;
+}
+
+void DBImpl::GetApproximateSizes(
+    const Range* range, int n,
+    uint64_t* sizes) {
+  // TODO(opt): better implementation
+  Version* v;
+  {
+    MutexLock l(&mutex_);
+    versions_->current()->Ref();
+    v = versions_->current();
+  }
+
+  for (int i = 0; i < n; i++) {
+    // Convert user_key into a corresponding internal key.
+    InternalKey k1(range[i].start, kMaxSequenceNumber, kValueTypeForSeek);
+    InternalKey k2(range[i].limit, kMaxSequenceNumber, kValueTypeForSeek);
+    uint64_t start = versions_->ApproximateOffsetOf(v, k1);
+    uint64_t limit = versions_->ApproximateOffsetOf(v, k2);
+    sizes[i] = (limit >= start ? limit - start : 0);
+  }
+
+  {
+    MutexLock l(&mutex_);
+    v->Unref();
+  }
+}
+
+// Default implementations of convenience methods that subclasses of DB
+// can call if they wish
+Status DB::Put(const WriteOptions& opt, const Slice& key, const Slice& value) {
+  WriteBatch batch;
+  batch.Put(key, value);
+  return Write(opt, &batch);
+}
+
+Status DB::Delete(const WriteOptions& opt, const Slice& key) {
+  WriteBatch batch;
+  batch.Delete(key);
+  return Write(opt, &batch);
+}
+
+DB::~DB() { }
+
+Status DB::Open(const Options& options, const std::string& dbname,
+                DB** dbptr) {
+  *dbptr = NULL;
+
+  DBImpl* impl = new DBImpl(options, dbname);
+  impl->mutex_.Lock();
+  VersionEdit edit;
+  Status s = impl->Recover(&edit); // Handles create_if_missing, error_if_exists
+  if (s.ok()) {
+    uint64_t new_log_number = impl->versions_->NewFileNumber();
+    WritableFile* lfile;
+    s = options.env->NewWritableFile(LogFileName(dbname, new_log_number),
+                                     &lfile);
+    if (s.ok()) {
+      edit.SetLogNumber(new_log_number);
+      impl->logfile_ = lfile;
+      impl->logfile_number_ = new_log_number;
+      impl->log_ = new log::Writer(lfile);
+      s = impl->versions_->LogAndApply(&edit, &impl->mutex_);
+    }
+    if (s.ok()) {
+      impl->DeleteObsoleteFiles();
+      impl->MaybeScheduleCompaction();
+    }
+  }
+  impl->mutex_.Unlock();
+  if (s.ok()) {
+    *dbptr = impl;
+  } else {
+    delete impl;
+  }
+  return s;
+}
+
+Snapshot::~Snapshot() {
+}
+
+Status DestroyDB(const std::string& dbname, const Options& options) {
+  Env* env = options.env;
+  std::vector<std::string> filenames;
+  // Ignore error in case directory does not exist
+  env->GetChildren(dbname, &filenames);
+  if (filenames.empty()) {
+    return Status::OK();
+  }
+
+  FileLock* lock;
+  const std::string lockname = LockFileName(dbname);
+  Status result = env->LockFile(lockname, &lock);
+  if (result.ok()) {
+    uint64_t number;
+    FileType type;
+    for (size_t i = 0; i < filenames.size(); i++) {
+      if (ParseFileName(filenames[i], &number, &type) &&
+          type != kDBLockFile) {  // Lock file will be deleted at end
+        Status del = env->DeleteFile(dbname + "/" + filenames[i]);
+        if (result.ok() && !del.ok()) {
+          result = del;
+        }
+      }
+    }
+    env->UnlockFile(lock);  // Ignore error since state is already gone
+    env->DeleteFile(lockname);
+    env->DeleteDir(dbname);  // Ignore error in case dir contains other files
+  }
+  return result;
+}
+
+}  // namespace leveldb
