@@ -449,4 +449,82 @@ TEST(LogTest, ErrorJoinsRecords) {
   // Consider two fragmented records:
   //    first(R1) last(R1) first(R2) last(R2)
   // where the middle two fragments disappear.  We do not want
-  // first(R1),last(R2) to get joined 
+  // first(R1),last(R2) to get joined and returned as a valid record.
+
+  // Write records that span two blocks
+  Write(BigString("foo", kBlockSize));
+  Write(BigString("bar", kBlockSize));
+  Write("correct");
+
+  // Wipe the middle block
+  for (int offset = kBlockSize; offset < 2*kBlockSize; offset++) {
+    SetByte(offset, 'x');
+  }
+
+  ASSERT_EQ("correct", Read());
+  ASSERT_EQ("EOF", Read());
+  const size_t dropped = DroppedBytes();
+  ASSERT_LE(dropped, 2*kBlockSize + 100);
+  ASSERT_GE(dropped, 2*kBlockSize);
+}
+
+TEST(LogTest, ReadStart) {
+  CheckInitialOffsetRecord(0, 0);
+}
+
+TEST(LogTest, ReadSecondOneOff) {
+  CheckInitialOffsetRecord(1, 1);
+}
+
+TEST(LogTest, ReadSecondTenThousand) {
+  CheckInitialOffsetRecord(10000, 1);
+}
+
+TEST(LogTest, ReadSecondStart) {
+  CheckInitialOffsetRecord(10007, 1);
+}
+
+TEST(LogTest, ReadThirdOneOff) {
+  CheckInitialOffsetRecord(10008, 2);
+}
+
+TEST(LogTest, ReadThirdStart) {
+  CheckInitialOffsetRecord(20014, 2);
+}
+
+TEST(LogTest, ReadFourthOneOff) {
+  CheckInitialOffsetRecord(20015, 3);
+}
+
+TEST(LogTest, ReadFourthFirstBlockTrailer) {
+  CheckInitialOffsetRecord(log::kBlockSize - 4, 3);
+}
+
+TEST(LogTest, ReadFourthMiddleBlock) {
+  CheckInitialOffsetRecord(log::kBlockSize + 1, 3);
+}
+
+TEST(LogTest, ReadFourthLastBlock) {
+  CheckInitialOffsetRecord(2 * log::kBlockSize + 1, 3);
+}
+
+TEST(LogTest, ReadFourthStart) {
+  CheckInitialOffsetRecord(
+      2 * (kHeaderSize + 1000) + (2 * log::kBlockSize - 1000) + 3 * kHeaderSize,
+      3);
+}
+
+TEST(LogTest, ReadEnd) {
+  CheckOffsetPastEndReturnsNoRecords(0);
+}
+
+TEST(LogTest, ReadPastEnd) {
+  CheckOffsetPastEndReturnsNoRecords(5);
+}
+
+}  // namespace log
+}  // namespace leveldb
+
+int main(int argc, char** argv) {
+  return leveldb::test::RunAllTests();
+}
