@@ -102,3 +102,266 @@ class Repairer {
   InternalKeyComparator const icmp_;
   InternalFilterPolicy const ipolicy_;
   Options const options_;
+  bool owns_info_log_;
+  bool owns_cache_;
+  TableCache* table_cache_;
+  VersionEdit edit_;
+
+  std::vector<std::string> manifests_;
+  std::vector<uint64_t> table_numbers_;
+  std::vector<uint64_t> logs_;
+  std::vector<TableInfo> tables_;
+  uint64_t next_file_number_;
+
+  Status FindFiles() {
+    std::vector<std::string> filenames;
+    Status status = env_->GetChildren(dbname_, &filenames);
+    if (!status.ok()) {
+      return status;
+    }
+    if (filenames.empty()) {
+      return Status::IOError(dbname_, "repair found no files");
+    }
+
+    uint64_t number;
+    FileType type;
+    for (size_t i = 0; i < filenames.size(); i++) {
+      if (ParseFileName(filenames[i], &number, &type)) {
+        if (type == kDescriptorFile) {
+          manifests_.push_back(filenames[i]);
+        } else {
+          if (number + 1 > next_file_number_) {
+            next_file_number_ = number + 1;
+          }
+          if (type == kLogFile) {
+            logs_.push_back(number);
+          } else if (type == kTableFile) {
+            table_numbers_.push_back(number);
+          } else {
+            // Ignore other files
+          }
+        }
+      }
+    }
+    return status;
+  }
+
+  void ConvertLogFilesToTables() {
+    for (size_t i = 0; i < logs_.size(); i++) {
+      std::string logname = LogFileName(dbname_, logs_[i]);
+      Status status = ConvertLogToTable(logs_[i]);
+      if (!status.ok()) {
+        Log(options_.info_log, "Log #%llu: ignoring conversion error: %s",
+            (unsigned long long) logs_[i],
+            status.ToString().c_str());
+      }
+      ArchiveFile(logname);
+    }
+  }
+
+  Status ConvertLogToTable(uint64_t log) {
+    struct LogReporter : public log::Reader::Reporter {
+      Env* env;
+      Logger* info_log;
+      uint64_t lognum;
+      virtual void Corruption(size_t bytes, const Status& s) {
+        // We print error messages for corruption, but continue repairing.
+        Log(info_log, "Log #%llu: dropping %d bytes; %s",
+            (unsigned long long) lognum,
+            static_cast<int>(bytes),
+            s.ToString().c_str());
+      }
+    };
+
+    // Open the log file
+    std::string logname = LogFileName(dbname_, log);
+    SequentialFile* lfile;
+    Status status = env_->NewSequentialFile(logname, &lfile);
+    if (!status.ok()) {
+      return status;
+    }
+
+    // Create the log reader.
+    LogReporter reporter;
+    reporter.env = env_;
+    reporter.info_log = options_.info_log;
+    reporter.lognum = log;
+    // We intentionally make log::Reader do checksumming so that
+    // corruptions cause entire commits to be skipped instead of
+    // propagating bad information (like overly large sequence
+    // numbers).
+    log::Reader reader(lfile, &reporter, false/*do not checksum*/,
+                       0/*initial_offset*/);
+
+    // Read all the records and add to a memtable
+    std::string scratch;
+    Slice record;
+    WriteBatch batch;
+    MemTable* mem = new MemTable(icmp_);
+    mem->Ref();
+    int counter = 0;
+    while (reader.ReadRecord(&record, &scratch)) {
+      if (record.size() < 12) {
+        reporter.Corruption(
+            record.size(), Status::Corruption("log record too small"));
+        continue;
+      }
+      WriteBatchInternal::SetContents(&batch, record);
+      status = WriteBatchInternal::InsertInto(&batch, mem);
+      if (status.ok()) {
+        counter += WriteBatchInternal::Count(&batch);
+      } else {
+        Log(options_.info_log, "Log #%llu: ignoring %s",
+            (unsigned long long) log,
+            status.ToString().c_str());
+        status = Status::OK();  // Keep going with rest of file
+      }
+    }
+    delete lfile;
+
+    // Do not record a version edit for this conversion to a Table
+    // since ExtractMetaData() will also generate edits.
+    FileMetaData meta;
+    meta.number = next_file_number_++;
+    Iterator* iter = mem->NewIterator();
+    status = BuildTable(dbname_, env_, options_, table_cache_, iter, &meta);
+    delete iter;
+    mem->Unref();
+    mem = NULL;
+    if (status.ok()) {
+      if (meta.file_size > 0) {
+        table_numbers_.push_back(meta.number);
+      }
+    }
+    Log(options_.info_log, "Log #%llu: %d ops saved to Table #%llu %s",
+        (unsigned long long) log,
+        counter,
+        (unsigned long long) meta.number,
+        status.ToString().c_str());
+    return status;
+  }
+
+  void ExtractMetaData() {
+    for (size_t i = 0; i < table_numbers_.size(); i++) {
+      ScanTable(table_numbers_[i]);
+    }
+  }
+
+  Iterator* NewTableIterator(const FileMetaData& meta) {
+    // Same as compaction iterators: if paranoid_checks are on, turn
+    // on checksum verification.
+    ReadOptions r;
+    r.verify_checksums = options_.paranoid_checks;
+    return table_cache_->NewIterator(r, meta.number, meta.file_size);
+  }
+
+  void ScanTable(uint64_t number) {
+    TableInfo t;
+    t.meta.number = number;
+    std::string fname = TableFileName(dbname_, number);
+    Status status = env_->GetFileSize(fname, &t.meta.file_size);
+    if (!status.ok()) {
+      // Try alternate file name.
+      fname = SSTTableFileName(dbname_, number);
+      Status s2 = env_->GetFileSize(fname, &t.meta.file_size);
+      if (s2.ok()) {
+        status = Status::OK();
+      }
+    }
+    if (!status.ok()) {
+      ArchiveFile(TableFileName(dbname_, number));
+      ArchiveFile(SSTTableFileName(dbname_, number));
+      Log(options_.info_log, "Table #%llu: dropped: %s",
+          (unsigned long long) t.meta.number,
+          status.ToString().c_str());
+      return;
+    }
+
+    // Extract metadata by scanning through table.
+    int counter = 0;
+    Iterator* iter = NewTableIterator(t.meta);
+    bool empty = true;
+    ParsedInternalKey parsed;
+    t.max_sequence = 0;
+    for (iter->SeekToFirst(); iter->Valid(); iter->Next()) {
+      Slice key = iter->key();
+      if (!ParseInternalKey(key, &parsed)) {
+        Log(options_.info_log, "Table #%llu: unparsable key %s",
+            (unsigned long long) t.meta.number,
+            EscapeString(key).c_str());
+        continue;
+      }
+
+      counter++;
+      if (empty) {
+        empty = false;
+        t.meta.smallest.DecodeFrom(key);
+      }
+      t.meta.largest.DecodeFrom(key);
+      if (parsed.sequence > t.max_sequence) {
+        t.max_sequence = parsed.sequence;
+      }
+    }
+    if (!iter->status().ok()) {
+      status = iter->status();
+    }
+    delete iter;
+    Log(options_.info_log, "Table #%llu: %d entries %s",
+        (unsigned long long) t.meta.number,
+        counter,
+        status.ToString().c_str());
+
+    if (status.ok()) {
+      tables_.push_back(t);
+    } else {
+      RepairTable(fname, t);  // RepairTable archives input file.
+    }
+  }
+
+  void RepairTable(const std::string& src, TableInfo t) {
+    // We will copy src contents to a new table and then rename the
+    // new table over the source.
+
+    // Create builder.
+    std::string copy = TableFileName(dbname_, next_file_number_++);
+    WritableFile* file;
+    Status s = env_->NewWritableFile(copy, &file);
+    if (!s.ok()) {
+      return;
+    }
+    TableBuilder* builder = new TableBuilder(options_, file);
+
+    // Copy data.
+    Iterator* iter = NewTableIterator(t.meta);
+    int counter = 0;
+    for (iter->SeekToFirst(); iter->Valid(); iter->Next()) {
+      builder->Add(iter->key(), iter->value());
+      counter++;
+    }
+    delete iter;
+
+    ArchiveFile(src);
+    if (counter == 0) {
+      builder->Abandon();  // Nothing to save
+    } else {
+      s = builder->Finish();
+      if (s.ok()) {
+        t.meta.file_size = builder->FileSize();
+      }
+    }
+    delete builder;
+    builder = NULL;
+
+    if (s.ok()) {
+      s = file->Close();
+    }
+    delete file;
+    file = NULL;
+
+    if (counter > 0 && s.ok()) {
+      std::string orig = TableFileName(dbname_, t.meta.number);
+      s = env_->RenameFile(copy, orig);
+      if (s.ok()) {
+        Log(options_.info_log, "Table #%llu: %d entries repaired",
+            (unsigned long long) t.meta.number, counter);
+        
