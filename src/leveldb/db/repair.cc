@@ -364,4 +364,98 @@ class Repairer {
       if (s.ok()) {
         Log(options_.info_log, "Table #%llu: %d entries repaired",
             (unsigned long long) t.meta.number, counter);
-        
+        tables_.push_back(t);
+      }
+    }
+    if (!s.ok()) {
+      env_->DeleteFile(copy);
+    }
+  }
+
+  Status WriteDescriptor() {
+    std::string tmp = TempFileName(dbname_, 1);
+    WritableFile* file;
+    Status status = env_->NewWritableFile(tmp, &file);
+    if (!status.ok()) {
+      return status;
+    }
+
+    SequenceNumber max_sequence = 0;
+    for (size_t i = 0; i < tables_.size(); i++) {
+      if (max_sequence < tables_[i].max_sequence) {
+        max_sequence = tables_[i].max_sequence;
+      }
+    }
+
+    edit_.SetComparatorName(icmp_.user_comparator()->Name());
+    edit_.SetLogNumber(0);
+    edit_.SetNextFile(next_file_number_);
+    edit_.SetLastSequence(max_sequence);
+
+    for (size_t i = 0; i < tables_.size(); i++) {
+      // TODO(opt): separate out into multiple levels
+      const TableInfo& t = tables_[i];
+      edit_.AddFile(0, t.meta.number, t.meta.file_size,
+                    t.meta.smallest, t.meta.largest);
+    }
+
+    //fprintf(stderr, "NewDescriptor:\n%s\n", edit_.DebugString().c_str());
+    {
+      log::Writer log(file);
+      std::string record;
+      edit_.EncodeTo(&record);
+      status = log.AddRecord(record);
+    }
+    if (status.ok()) {
+      status = file->Close();
+    }
+    delete file;
+    file = NULL;
+
+    if (!status.ok()) {
+      env_->DeleteFile(tmp);
+    } else {
+      // Discard older manifests
+      for (size_t i = 0; i < manifests_.size(); i++) {
+        ArchiveFile(dbname_ + "/" + manifests_[i]);
+      }
+
+      // Install new manifest
+      status = env_->RenameFile(tmp, DescriptorFileName(dbname_, 1));
+      if (status.ok()) {
+        status = SetCurrentFile(env_, dbname_, 1);
+      } else {
+        env_->DeleteFile(tmp);
+      }
+    }
+    return status;
+  }
+
+  void ArchiveFile(const std::string& fname) {
+    // Move into another directory.  E.g., for
+    //    dir/foo
+    // rename to
+    //    dir/lost/foo
+    const char* slash = strrchr(fname.c_str(), '/');
+    std::string new_dir;
+    if (slash != NULL) {
+      new_dir.assign(fname.data(), slash - fname.data());
+    }
+    new_dir.append("/lost");
+    env_->CreateDir(new_dir);  // Ignore error
+    std::string new_file = new_dir;
+    new_file.append("/");
+    new_file.append((slash == NULL) ? fname.c_str() : slash + 1);
+    Status s = env_->RenameFile(fname, new_file);
+    Log(options_.info_log, "Archiving %s: %s\n",
+        fname.c_str(), s.ToString().c_str());
+  }
+};
+}  // namespace
+
+Status RepairDB(const std::string& dbname, const Options& options) {
+  Repairer repairer(dbname, options);
+  return repairer.Run();
+}
+
+}  // namespace leveldb
