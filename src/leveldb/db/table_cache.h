@@ -40,4 +40,22 @@ class TableCache {
   Status Get(const ReadOptions& options,
              uint64_t file_number,
              uint64_t file_size,
-             const 
+             const Slice& k,
+             void* arg,
+             void (*handle_result)(void*, const Slice&, const Slice&));
+
+  // Evict any entry for the specified file number
+  void Evict(uint64_t file_number);
+
+ private:
+  Env* const env_;
+  const std::string dbname_;
+  const Options* options_;
+  Cache* cache_;
+
+  Status FindTable(uint64_t file_number, uint64_t file_size, Cache::Handle**);
+};
+
+}  // namespace leveldb
+
+#endif  // STORAGE_LEVELDB_DB_TABLE_CACHE_H_
