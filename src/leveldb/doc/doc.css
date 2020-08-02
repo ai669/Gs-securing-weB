@@ -56,4 +56,34 @@ ol {
   margin-bottom: -0em;
 }
 
-UL.n
+UL.nobullets {
+  list-style-type: none;
+  list-style-image: none;
+  margin-left: -1em;
+}
+
+p {
+  margin: 1em 0 1em 0;
+  padding: 0 0 0 0;
+}
+
+pre {
+  line-height: 1.3em;
+  padding: 0.4em 0 0.8em 0;
+  margin:  0 0 0 0;
+  border:  0 0 0 0;
+  color: blue;
+}
+
+.datatable {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  border: 1px solid;
+}
+
+.datatable td,th {
+  padding: 0 0.5em 0 0.5em;
+  text-align: right;
+}
