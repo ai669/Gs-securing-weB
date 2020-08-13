@@ -228,4 +228,58 @@ Status Table::InternalGet(const ReadOptions& options, const Slice& k,
                           void (*saver)(void*, const Slice&, const Slice&)) {
   Status s;
   Iterator* iiter = rep_->index_block->NewIterator(rep_->options.comparator);
-  i
+  iiter->Seek(k);
+  if (iiter->Valid()) {
+    Slice handle_value = iiter->value();
+    FilterBlockReader* filter = rep_->filter;
+    BlockHandle handle;
+    if (filter != NULL &&
+        handle.DecodeFrom(&handle_value).ok() &&
+        !filter->KeyMayMatch(handle.offset(), k)) {
+      // Not found
+    } else {
+      Iterator* block_iter = BlockReader(this, options, iiter->value());
+      block_iter->Seek(k);
+      if (block_iter->Valid()) {
+        (*saver)(arg, block_iter->key(), block_iter->value());
+      }
+      s = block_iter->status();
+      delete block_iter;
+    }
+  }
+  if (s.ok()) {
+    s = iiter->status();
+  }
+  delete iiter;
+  return s;
+}
+
+
+uint64_t Table::ApproximateOffsetOf(const Slice& key) const {
+  Iterator* index_iter =
+      rep_->index_block->NewIterator(rep_->options.comparator);
+  index_iter->Seek(key);
+  uint64_t result;
+  if (index_iter->Valid()) {
+    BlockHandle handle;
+    Slice input = index_iter->value();
+    Status s = handle.DecodeFrom(&input);
+    if (s.ok()) {
+      result = handle.offset();
+    } else {
+      // Strange: we can't decode the block handle in the index block.
+      // We'll just return the offset of the metaindex block, which is
+      // close to the whole file size for this case.
+      result = rep_->metaindex_handle.offset();
+    }
+  } else {
+    // key is past the last key in the file.  Approximate the offset
+    // by returning the offset of the metaindex block (which is
+    // right near the end of the file).
+    result = rep_->metaindex_handle.offset();
+  }
+  delete index_iter;
+  return result;
+}
+
+}  // namespace leveldb
