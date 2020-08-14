@@ -364,4 +364,321 @@ BOOL Win32SequentialFile::_Init()
 void Win32SequentialFile::_CleanUp()
 {
     if(_hFile){
-        CloseHandle(_hF
+        CloseHandle(_hFile);
+        _hFile = NULL;
+    }
+}
+
+Win32RandomAccessFile::Win32RandomAccessFile( const std::string& fname ) :
+    _filename(fname),_hFile(NULL)
+{
+	std::wstring path;
+	ToWidePath(fname, path);
+    _Init( path.c_str() );
+}
+
+Win32RandomAccessFile::~Win32RandomAccessFile()
+{
+    _CleanUp();
+}
+
+Status Win32RandomAccessFile::Read(uint64_t offset,size_t n,Slice* result,char* scratch) const
+{
+    Status sRet;
+    OVERLAPPED ol = {0};
+    ZeroMemory(&ol,sizeof(ol));
+    ol.Offset = (DWORD)offset;
+    ol.OffsetHigh = (DWORD)(offset >> 32);
+    DWORD hasRead = 0;
+    if(!ReadFile(_hFile,scratch,n,&hasRead,&ol))
+        sRet = Status::IOError(_filename,Win32::GetLastErrSz());
+    else
+        *result = Slice(scratch,hasRead);
+    return sRet;
+}
+
+BOOL Win32RandomAccessFile::_Init( LPCWSTR path )
+{
+    BOOL bRet = FALSE;
+    if(!_hFile)
+        _hFile = ::CreateFileW(path,GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,
+        FILE_ATTRIBUTE_NORMAL | FILE_FLAG_RANDOM_ACCESS,NULL);
+    if(!_hFile || _hFile == INVALID_HANDLE_VALUE )
+        _hFile = NULL;
+    else
+        bRet = TRUE;
+    return bRet;
+}
+
+BOOL Win32RandomAccessFile::isEnable()
+{
+    return _hFile ? TRUE : FALSE;
+}
+
+void Win32RandomAccessFile::_CleanUp()
+{
+    if(_hFile){
+        ::CloseHandle(_hFile);
+        _hFile = NULL;
+    }
+}
+
+Win32WritableFile::Win32WritableFile(const std::string& fname)
+    : filename_(fname)
+{
+    std::wstring path;
+    ToWidePath(fname, path);
+    DWORD Flag = PathFileExistsW(path.c_str()) ? OPEN_EXISTING : CREATE_ALWAYS;
+    _hFile = CreateFileW(path.c_str(),
+                         GENERIC_READ | GENERIC_WRITE,
+                         FILE_SHARE_READ|FILE_SHARE_DELETE|FILE_SHARE_WRITE,
+                         NULL,
+                         Flag,
+                         FILE_ATTRIBUTE_NORMAL,
+                         NULL);
+    // CreateFileW returns INVALID_HANDLE_VALUE in case of error, always check isEnable() before use
+}
+
+Win32WritableFile::~Win32WritableFile()
+{
+    if (_hFile != INVALID_HANDLE_VALUE)
+        Close();
+}
+
+Status Win32WritableFile::Append(const Slice& data)
+{
+    DWORD r = 0;
+    if (!WriteFile(_hFile, data.data(), data.size(), &r, NULL) || r != data.size()) {
+        return Status::IOError("Win32WritableFile.Append::WriteFile: "+filename_, Win32::GetLastErrSz());
+    }
+    return Status::OK();
+}
+
+Status Win32WritableFile::Close()
+{
+    if (!CloseHandle(_hFile)) {
+        return Status::IOError("Win32WritableFile.Close::CloseHandle: "+filename_, Win32::GetLastErrSz());
+    }
+    _hFile = INVALID_HANDLE_VALUE;
+    return Status::OK();
+}
+
+Status Win32WritableFile::Flush()
+{
+    // Nothing to do here, there are no application-side buffers
+    return Status::OK();
+}
+
+Status Win32WritableFile::Sync()
+{
+    if (!FlushFileBuffers(_hFile)) {
+        return Status::IOError("Win32WritableFile.Sync::FlushFileBuffers "+filename_, Win32::GetLastErrSz());
+    }
+    return Status::OK();
+}
+
+BOOL Win32WritableFile::isEnable()
+{
+    return _hFile != INVALID_HANDLE_VALUE;
+}
+
+Win32FileLock::Win32FileLock( const std::string& fname ) :
+    _hFile(NULL),_filename(fname)
+{
+	std::wstring path;
+	ToWidePath(fname, path);
+	_Init(path.c_str());
+}
+
+Win32FileLock::~Win32FileLock()
+{
+    _CleanUp();
+}
+
+BOOL Win32FileLock::_Init( LPCWSTR path )
+{
+    BOOL bRet = FALSE;
+    if(!_hFile)
+        _hFile = ::CreateFileW(path,0,0,NULL,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,NULL);
+    if(!_hFile || _hFile == INVALID_HANDLE_VALUE ){
+        _hFile = NULL;
+    }
+    else
+        bRet = TRUE;
+    return bRet;
+}
+
+void Win32FileLock::_CleanUp()
+{
+    ::CloseHandle(_hFile);
+    _hFile = NULL;
+}
+
+BOOL Win32FileLock::isEnable()
+{
+    return _hFile ? TRUE : FALSE;
+}
+
+Win32Logger::Win32Logger(WritableFile* pFile) : _pFileProxy(pFile)
+{
+    assert(_pFileProxy);
+}
+
+Win32Logger::~Win32Logger()
+{
+    if(_pFileProxy)
+        delete _pFileProxy;
+}
+
+void Win32Logger::Logv( const char* format, va_list ap )
+{
+    uint64_t thread_id = ::GetCurrentThreadId();
+
+    // We try twice: the first time with a fixed-size stack allocated buffer,
+    // and the second time with a much larger dynamically allocated buffer.
+    char buffer[500];
+    for (int iter = 0; iter < 2; iter++) {
+        char* base;
+        int bufsize;
+        if (iter == 0) {
+            bufsize = sizeof(buffer);
+            base = buffer;
+        } else {
+            bufsize = 30000;
+            base = new char[bufsize];
+        }
+        char* p = base;
+        char* limit = base + bufsize;
+
+        SYSTEMTIME st;
+        GetLocalTime(&st);
+        p += snprintf(p, limit - p,
+            "%04d/%02d/%02d-%02d:%02d:%02d.%06d %llx ",
+            int(st.wYear),
+            int(st.wMonth),
+            int(st.wDay),
+            int(st.wHour),
+            int(st.wMinute),
+            int(st.wMinute),
+            int(st.wMilliseconds),
+            static_cast<long long unsigned int>(thread_id));
+
+        // Print the message
+        if (p < limit) {
+            va_list backup_ap;
+            va_copy(backup_ap, ap);
+            p += vsnprintf(p, limit - p, format, backup_ap);
+            va_end(backup_ap);
+        }
+
+        // Truncate to available space if necessary
+        if (p >= limit) {
+            if (iter == 0) {
+                continue;       // Try again with larger buffer
+            } else {
+                p = limit - 1;
+            }
+        }
+
+        // Add newline if necessary
+        if (p == base || p[-1] != '\n') {
+            *p++ = '\n';
+        }
+
+        assert(p <= limit);
+        DWORD hasWritten = 0;
+        if(_pFileProxy){
+            _pFileProxy->Append(Slice(base, p - base));
+            _pFileProxy->Flush();
+        }
+        if (base != buffer) {
+            delete[] base;
+        }
+        break;
+    }
+}
+
+bool Win32Env::FileExists(const std::string& fname)
+{
+	std::string path = fname;
+    std::wstring wpath;
+	ToWidePath(ModifyPath(path), wpath);
+    return ::PathFileExistsW(wpath.c_str()) ? true : false;
+}
+
+Status Win32Env::GetChildren(const std::string& dir, std::vector<std::string>* result)
+{
+    Status sRet;
+    ::WIN32_FIND_DATAW wfd;
+    std::string path = dir;
+    ModifyPath(path);
+    path += "\\*.*";
+	std::wstring wpath;
+	ToWidePath(path, wpath);
+
+	::HANDLE hFind = ::FindFirstFileW(wpath.c_str() ,&wfd);
+    if(hFind && hFind != INVALID_HANDLE_VALUE){
+        BOOL hasNext = TRUE;
+        std::string child;
+        while(hasNext){
+            ToNarrowPath(wfd.cFileName, child); 
+            if(child != ".." && child != ".")  {
+                result->push_back(child);
+            }
+            hasNext = ::FindNextFileW(hFind,&wfd);
+        }
+        ::FindClose(hFind);
+    }
+    else
+        sRet = Status::IOError(dir,"Could not get children.");
+    return sRet;
+}
+
+void Win32Env::SleepForMicroseconds( int micros )
+{
+    ::Sleep((micros + 999) /1000);
+}
+
+
+Status Win32Env::DeleteFile( const std::string& fname )
+{
+    Status sRet;
+    std::string path = fname;
+    std::wstring wpath;
+	ToWidePath(ModifyPath(path), wpath);
+
+    if(!::DeleteFileW(wpath.c_str())) {
+        sRet = Status::IOError(path, "Could not delete file.");
+    }
+    return sRet;
+}
+
+Status Win32Env::GetFileSize( const std::string& fname, uint64_t* file_size )
+{
+    Status sRet;
+    std::string path = fname;
+    std::wstring wpath;
+	ToWidePath(ModifyPath(path), wpath);
+
+    HANDLE file = ::CreateFileW(wpath.c_str(),
+        GENERIC_READ,FILE_SHARE_READ,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+    LARGE_INTEGER li;
+    if(::GetFileSizeEx(file,&li)){
+        *file_size = (uint64_t)li.QuadPart;
+    }else
+        sRet = Status::IOError(path,"Could not get the file size.");
+    CloseHandle(file);
+    return sRet;
+}
+
+Status Win32Env::RenameFile( const std::string& src, const std::string& target )
+{
+    Status sRet;
+    std::string src_path = src;
+    std::wstring wsrc_path;
+	ToWidePath(ModifyPath(src_path), wsrc_path);
+	std::string target_path = target;
+    std::wstring wtarget_path;
+	ToWidePath(ModifyPath(target_path), wtarget_path);
+
+    if(!MoveF
