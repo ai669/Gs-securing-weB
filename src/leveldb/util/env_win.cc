@@ -681,4 +681,193 @@ Status Win32Env::RenameFile( const std::string& src, const std::string& target )
     std::wstring wtarget_path;
 	ToWidePath(ModifyPath(target_path), wtarget_path);
 
-    if(!MoveF
+    if(!MoveFileW(wsrc_path.c_str(), wtarget_path.c_str() ) ){
+        DWORD err = GetLastError();
+        if(err == 0x000000b7){
+            if(!::DeleteFileW(wtarget_path.c_str() ) )
+                sRet = Status::IOError(src, "Could not rename file.");
+			else if(!::MoveFileW(wsrc_path.c_str(),
+                                 wtarget_path.c_str() ) )
+                sRet = Status::IOError(src, "Could not rename file.");    
+        }
+    }
+    return sRet;
+}
+
+Status Win32Env::LockFile( const std::string& fname, FileLock** lock )
+{
+    Status sRet;
+    std::string path = fname;
+    ModifyPath(path);
+    Win32FileLock* _lock = new Win32FileLock(path);
+    if(!_lock->isEnable()){
+        delete _lock;
+        *lock = NULL;
+        sRet = Status::IOError(path, "Could not lock file.");
+    }
+    else
+        *lock = _lock;
+    return sRet;
+}
+
+Status Win32Env::UnlockFile( FileLock* lock )
+{
+    Status sRet;
+    delete lock;
+    return sRet;
+}
+
+void Win32Env::Schedule( void (*function)(void* arg), void* arg )
+{
+    QueueUserWorkItem(Win32::WorkItemWrapperProc,
+                      new Win32::WorkItemWrapper(function,arg),
+                      WT_EXECUTEDEFAULT);
+}
+
+void Win32Env::StartThread( void (*function)(void* arg), void* arg )
+{
+    ::_beginthread(function,0,arg);
+}
+
+Status Win32Env::GetTestDirectory( std::string* path )
+{
+    Status sRet;
+    WCHAR TempPath[MAX_PATH];
+    ::GetTempPathW(MAX_PATH,TempPath);
+	ToNarrowPath(TempPath, *path);
+    path->append("leveldb\\test\\");
+    ModifyPath(*path);
+    return sRet;
+}
+
+uint64_t Win32Env::NowMicros()
+{
+#ifndef USE_VISTA_API
+#define GetTickCount64 GetTickCount
+#endif
+    return (uint64_t)(GetTickCount64()*1000);
+}
+
+static Status CreateDirInner( const std::string& dirname )
+{
+    Status sRet;
+    DWORD attr = ::GetFileAttributes(dirname.c_str());
+    if (attr == INVALID_FILE_ATTRIBUTES) { // doesn't exist:
+      std::size_t slash = dirname.find_last_of("\\");
+      if (slash != std::string::npos){
+	sRet = CreateDirInner(dirname.substr(0, slash));
+	if (!sRet.ok()) return sRet;
+      }
+      BOOL result = ::CreateDirectory(dirname.c_str(), NULL);
+      if (result == FALSE) {
+	sRet = Status::IOError(dirname, "Could not create directory.");
+	return sRet;
+      }
+    }
+    return sRet;
+}
+
+Status Win32Env::CreateDir( const std::string& dirname )
+{
+    std::string path = dirname;
+    if(path[path.length() - 1] != '\\'){
+        path += '\\';
+    }
+    ModifyPath(path);
+
+    return CreateDirInner(path);
+}
+
+Status Win32Env::DeleteDir( const std::string& dirname )
+{
+    Status sRet;
+    std::wstring path;
+	ToWidePath(dirname, path);
+    ModifyPath(path);
+    if(!::RemoveDirectoryW( path.c_str() ) ){
+        sRet = Status::IOError(dirname, "Could not delete directory.");
+    }
+    return sRet;
+}
+
+Status Win32Env::NewSequentialFile( const std::string& fname, SequentialFile** result )
+{
+    Status sRet;
+    std::string path = fname;
+    ModifyPath(path);
+    Win32SequentialFile* pFile = new Win32SequentialFile(path);
+    if(pFile->isEnable()){
+        *result = pFile;
+    }else {
+        delete pFile;
+        sRet = Status::IOError(path, Win32::GetLastErrSz());
+    }
+    return sRet;
+}
+
+Status Win32Env::NewRandomAccessFile( const std::string& fname, RandomAccessFile** result )
+{
+    Status sRet;
+    std::string path = fname;
+    Win32RandomAccessFile* pFile = new Win32RandomAccessFile(ModifyPath(path));
+    if(!pFile->isEnable()){
+        delete pFile;
+        *result = NULL;
+        sRet = Status::IOError(path, Win32::GetLastErrSz());
+    }else
+        *result = pFile;
+    return sRet;
+}
+
+Status Win32Env::NewLogger( const std::string& fname, Logger** result )
+{
+    Status sRet;
+    std::string path = fname;
+    Win32WritableFile* pMapFile = new Win32WritableFile(ModifyPath(path));
+    if(!pMapFile->isEnable()){
+        delete pMapFile;
+        *result = NULL;
+        sRet = Status::IOError(path,"could not create a logger.");
+    }else
+        *result = new Win32Logger(pMapFile);
+    return sRet;
+}
+
+Status Win32Env::NewWritableFile( const std::string& fname, WritableFile** result )
+{
+    Status sRet;
+    std::string path = fname;
+    Win32WritableFile* pFile = new Win32WritableFile(ModifyPath(path));
+    if(!pFile->isEnable()){
+        *result = NULL;
+        sRet = Status::IOError(fname,Win32::GetLastErrSz());
+    }else
+        *result = pFile;
+    return sRet;
+}
+
+Win32Env::Win32Env()
+{
+
+}
+
+Win32Env::~Win32Env()
+{
+
+}
+
+
+}  // Win32 namespace
+
+static port::OnceType once = LEVELDB_ONCE_INIT;
+static Env* default_env;
+static void InitDefaultEnv() { default_env = new Win32::Win32Env(); }
+
+Env* Env::Default() {
+  port::InitOnce(&once, InitDefaultEnv);
+  return default_env;
+}
+
+}  // namespace leveldb
+
+#endif // defined(LEVELDB_PLATFORM_WINDOWS)
