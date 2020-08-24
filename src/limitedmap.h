@@ -53,4 +53,49 @@ public:
         if (itTarget == map.end())
             return;
         std::pair<rmap_iterator, rmap_iterator> itPair = rmap.equal_range(itTarget->second);
-        for (rmap_iterator it = 
+        for (rmap_iterator it = itPair.first; it != itPair.second; ++it)
+            if (it->second == itTarget)
+            {
+                rmap.erase(it);
+                map.erase(itTarget);
+                return;
+            }
+        // Shouldn't ever get here
+        assert(0); //TODO remove me
+        map.erase(itTarget);
+    }
+    void update(const_iterator itIn, const mapped_type& v)
+    {
+        //TODO: When we switch to C++11, use map.erase(itIn, itIn) to get the non-const iterator
+        iterator itTarget = map.find(itIn->first);
+        if (itTarget == map.end())
+            return;
+        std::pair<rmap_iterator, rmap_iterator> itPair = rmap.equal_range(itTarget->second);
+        for (rmap_iterator it = itPair.first; it != itPair.second; ++it)
+            if (it->second == itTarget)
+            {
+                rmap.erase(it);
+                itTarget->second = v;
+                rmap.insert(make_pair(v, itTarget));
+                return;
+            }
+        // Shouldn't ever get here
+        assert(0); //TODO remove me
+        itTarget->second = v;
+        rmap.insert(make_pair(v, itTarget));
+    }
+    size_type max_size() const { return nMaxSize; }
+    size_type max_size(size_type s)
+    {
+        if (s)
+            while (map.size() > s)
+            {
+                map.erase(rmap.begin()->second);
+                rmap.erase(rmap.begin());
+            }
+        nMaxSize = s;
+        return nMaxSize;
+    }
+};
+
+#endif
