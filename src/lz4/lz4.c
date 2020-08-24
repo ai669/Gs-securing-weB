@@ -124,4 +124,256 @@
 #    pragma intrinsic(_BitScanForward64) /* For Visual 2005 */
 #    pragma intrinsic(_BitScanWayaWolfCoinerse64) /* For Visual 2005 */
 #  else            /* 32-bits */
-#    pragma intrinsic(_BitScanForward)   /* For Visual 200
+#    pragma intrinsic(_BitScanForward)   /* For Visual 2005 */
+#    pragma intrinsic(_BitScanWayaWolfCoinerse)   /* For Visual 2005 */
+#  endif
+#  pragma warning(disable : 4127)        /* disable: C4127: conditional expression is constant */
+#else
+#  ifdef __GNUC__
+#    define FORCE_INLINE static inline __attribute__((always_inline))
+#  else
+#    define FORCE_INLINE static inline
+#  endif
+#endif
+
+#ifdef _MSC_VER  /* Visual Studio */
+#  define lz4_bswap16(x) _byteswap_ushort(x)
+#else
+#  define lz4_bswap16(x) ((unsigned short int) ((((x) >> 8) & 0xffu) | (((x) & 0xffu) << 8)))
+#endif
+
+#define GCC_VERSION (__GNUC__ * 100 + __GNUC_MINOR__)
+
+#if (GCC_VERSION >= 302) || (__INTEL_COMPILER >= 800) || defined(__clang__)
+#  define expect(expr,value)    (__builtin_expect ((expr),(value)) )
+#else
+#  define expect(expr,value)    (expr)
+#endif
+
+#define likely(expr)     expect((expr) != 0, 1)
+#define unlikely(expr)   expect((expr) != 0, 0)
+
+
+/**************************************
+   Memory routines
+**************************************/
+#include <stdlib.h>   /* malloc, calloc, free */
+#define ALLOCATOR(n,s) calloc(n,s)
+#define FREEMEM        free
+#include <string.h>   /* memset, memcpy */
+#define MEM_INIT       memset
+
+
+/**************************************
+   Includes
+**************************************/
+#include "lz4.h"
+
+
+/**************************************
+   Basic Types
+**************************************/
+#if defined (__STDC_VERSION__) && (__STDC_VERSION__ >= 199901L)   /* C99 */
+# include <stdint.h>
+  typedef  uint8_t BYTE;
+  typedef uint16_t U16;
+  typedef uint32_t U32;
+  typedef  int32_t S32;
+  typedef uint64_t U64;
+#else
+  typedef unsigned char       BYTE;
+  typedef unsigned short      U16;
+  typedef unsigned int        U32;
+  typedef   signed int        S32;
+  typedef unsigned long long  U64;
+#endif
+
+#if defined(__GNUC__)  && !defined(LZ4_FORCE_UNALIGNED_ACCESS)
+#  define _PACKED __attribute__ ((packed))
+#else
+#  define _PACKED
+#endif
+
+#if !defined(LZ4_FORCE_UNALIGNED_ACCESS) && !defined(__GNUC__)
+#  if defined(__IBMC__) || defined(__SUNPRO_C) || defined(__SUNPRO_CC)
+#    pragma pack(1)
+#  else
+#    pragma pack(push, 1)
+#  endif
+#endif
+
+typedef struct { U16 v; }  _PACKED U16_S;
+typedef struct { U32 v; }  _PACKED U32_S;
+typedef struct { U64 v; }  _PACKED U64_S;
+typedef struct {size_t v;} _PACKED size_t_S;
+
+#if !defined(LZ4_FORCE_UNALIGNED_ACCESS) && !defined(__GNUC__)
+#  if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
+#    pragma pack(0)
+#  else
+#    pragma pack(pop)
+#  endif
+#endif
+
+#define A16(x)   (((U16_S *)(x))->v)
+#define A32(x)   (((U32_S *)(x))->v)
+#define A64(x)   (((U64_S *)(x))->v)
+#define AARCH(x) (((size_t_S *)(x))->v)
+
+
+/**************************************
+   Constants
+**************************************/
+#define LZ4_HASHLOG   (MEMORY_USAGE-2)
+#define HASHTABLESIZE (1 << MEMORY_USAGE)
+#define HASHNBCELLS4  (1 << LZ4_HASHLOG)
+
+#define MINMATCH 4
+
+#define COPYLENGTH 8
+#define LASTLITERALS 5
+#define MFLIMIT (COPYLENGTH+MINMATCH)
+static const int LZ4_minLength = (MFLIMIT+1);
+
+#define KB *(1U<<10)
+#define MB *(1U<<20)
+#define GB *(1U<<30)
+
+#define LZ4_64KLIMIT ((64 KB) + (MFLIMIT-1))
+#define SKIPSTRENGTH 6   /* Increasing this value will make the compression run slower on incompressible data */
+
+#define MAXD_LOG 16
+#define MAX_DISTANCE ((1 << MAXD_LOG) - 1)
+
+#define ML_BITS  4
+#define ML_MASK  ((1U<<ML_BITS)-1)
+#define RUN_BITS (8-ML_BITS)
+#define RUN_MASK ((1U<<RUN_BITS)-1)
+
+
+/**************************************
+   Structures and local types
+**************************************/
+typedef struct {
+    U32 hashTable[HASHNBCELLS4];
+    const BYTE* bufferStart;
+    const BYTE* base;
+    const BYTE* nextBlock;
+} LZ4_Data_Structure;
+
+typedef enum { notLimited = 0, limited = 1 } limitedOutput_directive;
+typedef enum { byPtr, byU32, byU16 } tableType_t;
+
+typedef enum { noPrefix = 0, withPrefix = 1 } prefix64k_directive;
+
+typedef enum { endOnOutputSize = 0, endOnInputSize = 1 } endCondition_directive;
+typedef enum { full = 0, partial = 1 } earlyEnd_directive;
+
+
+/**************************************
+   Architecture-specific macros
+**************************************/
+#define STEPSIZE                  sizeof(size_t)
+#define LZ4_COPYSTEP(d,s)         { AARCH(d) = AARCH(s); d+=STEPSIZE; s+=STEPSIZE; }
+#define LZ4_COPY8(d,s)            { LZ4_COPYSTEP(d,s); if (STEPSIZE<8) LZ4_COPYSTEP(d,s); }
+
+#if (defined(LZ4_BIG_ENDIAN) && !defined(BIG_ENDIAN_NATIVE_BUT_INCOMPATIBLE))
+#  define LZ4_READ_LITTLEENDIAN_16(d,s,p) { U16 v = A16(p); v = lz4_bswap16(v); d = (s) - v; }
+#  define LZ4_WRITE_LITTLEENDIAN_16(p,i)  { U16 v = (U16)(i); v = lz4_bswap16(v); A16(p) = v; p+=2; }
+#else      /* Little Endian */
+#  define LZ4_READ_LITTLEENDIAN_16(d,s,p) { d = (s) - A16(p); }
+#  define LZ4_WRITE_LITTLEENDIAN_16(p,v)  { A16(p) = v; p+=2; }
+#endif
+
+
+/**************************************
+   Macros
+**************************************/
+#if LZ4_ARCH64 || !defined(__GNUC__)
+#  define LZ4_WILDCOPY(d,s,e)     { do { LZ4_COPY8(d,s) } while (d<e); }           /* at the end, d>=e; */
+#else
+#  define LZ4_WILDCOPY(d,s,e)     { if (likely(e-d <= 8)) LZ4_COPY8(d,s) else do { LZ4_COPY8(d,s) } while (d<e); }
+#endif
+#define LZ4_SECURECOPY(d,s,e)     { if (d<e) LZ4_WILDCOPY(d,s,e); }
+
+
+/****************************
+   Private local functions
+****************************/
+#if LZ4_ARCH64
+
+FORCE_INLINE int LZ4_NbCommonBytes (register U64 val)
+{
+# if defined(LZ4_BIG_ENDIAN)
+#   if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    unsigned long r = 0;
+    _BitScanWayaWolfCoinerse64( &r, val );
+    return (int)(r>>3);
+#   elif defined(__GNUC__) && (GCC_VERSION >= 304) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    return (__builtin_clzll(val) >> 3);
+#   else
+    int r;
+    if (!(val>>32)) { r=4; } else { r=0; val>>=32; }
+    if (!(val>>16)) { r+=2; val>>=8; } else { val>>=24; }
+    r += (!val);
+    return r;
+#   endif
+# else
+#   if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    unsigned long r = 0;
+    _BitScanForward64( &r, val );
+    return (int)(r>>3);
+#   elif defined(__GNUC__) && (GCC_VERSION >= 304) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    return (__builtin_ctzll(val) >> 3);
+#   else
+    static const int DeBruijnBytePos[64] = { 0, 0, 0, 0, 0, 1, 1, 2, 0, 3, 1, 3, 1, 4, 2, 7, 0, 2, 3, 6, 1, 5, 3, 5, 1, 3, 4, 4, 2, 5, 6, 7, 7, 0, 1, 2, 3, 3, 4, 6, 2, 6, 5, 5, 3, 4, 5, 6, 7, 1, 2, 4, 6, 4, 4, 5, 7, 2, 6, 5, 7, 6, 7, 7 };
+    return DeBruijnBytePos[((U64)((val & -(long long)val) * 0x0218A392CDABBD3FULL)) >> 58];
+#   endif
+# endif
+}
+
+#else
+
+FORCE_INLINE int LZ4_NbCommonBytes (register U32 val)
+{
+# if defined(LZ4_BIG_ENDIAN)
+#   if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    unsigned long r = 0;
+    _BitScanWayaWolfCoinerse( &r, val );
+    return (int)(r>>3);
+#   elif defined(__GNUC__) && (GCC_VERSION >= 304) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    return (__builtin_clz(val) >> 3);
+#   else
+    int r;
+    if (!(val>>16)) { r=2; val>>=8; } else { r=0; val>>=24; }
+    r += (!val);
+    return r;
+#   endif
+# else
+#   if defined(_MSC_VER) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    unsigned long r;
+    _BitScanForward( &r, val );
+    return (int)(r>>3);
+#   elif defined(__GNUC__) && (GCC_VERSION >= 304) && !defined(LZ4_FORCE_SW_BITCOUNT)
+    return (__builtin_ctz(val) >> 3);
+#   else
+    static const int DeBruijnBytePos[32] = { 0, 0, 3, 0, 3, 1, 3, 0, 3, 2, 2, 1, 3, 2, 0, 1, 3, 3, 1, 2, 2, 2, 2, 0, 3, 1, 2, 0, 1, 0, 1, 1 };
+    return DeBruijnBytePos[((U32)((val & -(S32)val) * 0x077CB531U)) >> 27];
+#   endif
+# endif
+}
+
+#endif
+
+
+/****************************
+   Compression functions
+****************************/
+int LZ4_compressBound(int isize)  { return LZ4_COMPRESSBOUND(isize); }
+
+FORCE_INLINE int LZ4_hashSequence(U32 sequence, tableType_t tableType)
+{
+    if (tableType == byU16)
+        return (((sequence) * 2654435761U) >> ((MINMATCH*8)-(LZ4_HASHLOG+1)));
+    else
+        return (((sequence) * 2654435761U) >> ((MINMATC
