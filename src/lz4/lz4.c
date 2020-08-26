@@ -583,4 +583,227 @@ int LZ4_compress_limitedOutput(const char* source, char* dest, int inputSize, in
 #endif
     int result;
 
-    if (inputSize < 
+    if (inputSize < (int)LZ4_64KLIMIT)
+        result = LZ4_compress_generic((void*)ctx, source, dest, inputSize, maxOutputSize, limited, byU16, noPrefix);
+    else
+        result = LZ4_compress_generic((void*)ctx, source, dest, inputSize, maxOutputSize, limited, (sizeof(void*)==8) ? byU32 : byPtr, noPrefix);
+
+#if (HEAPMODE)
+    FREEMEM(ctx);
+#endif
+    return result;
+}
+
+
+/*****************************
+   Using external allocation
+*****************************/
+
+int LZ4_sizeofState() { return 1 << MEMORY_USAGE; }
+
+
+int LZ4_compress_withState (void* state, const char* source, char* dest, int inputSize)
+{
+    if (((size_t)(state)&3) != 0) return 0;   /* Error : state is not aligned on 4-bytes boundary */
+    MEM_INIT(state, 0, LZ4_sizeofState());
+
+    if (inputSize < (int)LZ4_64KLIMIT)
+        return LZ4_compress_generic(state, source, dest, inputSize, 0, notLimited, byU16, noPrefix);
+    else
+        return LZ4_compress_generic(state, source, dest, inputSize, 0, notLimited, (sizeof(void*)==8) ? byU32 : byPtr, noPrefix);
+}
+
+
+int LZ4_compress_limitedOutput_withState (void* state, const char* source, char* dest, int inputSize, int maxOutputSize)
+{
+    if (((size_t)(state)&3) != 0) return 0;   /* Error : state is not aligned on 4-bytes boundary */
+    MEM_INIT(state, 0, LZ4_sizeofState());
+
+    if (inputSize < (int)LZ4_64KLIMIT)
+        return LZ4_compress_generic(state, source, dest, inputSize, maxOutputSize, limited, byU16, noPrefix);
+    else
+        return LZ4_compress_generic(state, source, dest, inputSize, maxOutputSize, limited, (sizeof(void*)==8) ? byU32 : byPtr, noPrefix);
+}
+
+
+/****************************
+   Stream functions
+****************************/
+
+int LZ4_sizeofStreamState()
+{
+    return sizeof(LZ4_Data_Structure);
+}
+
+FORCE_INLINE void LZ4_init(LZ4_Data_Structure* lz4ds, const BYTE* base)
+{
+    MEM_INIT(lz4ds->hashTable, 0, sizeof(lz4ds->hashTable));
+    lz4ds->bufferStart = base;
+    lz4ds->base = base;
+    lz4ds->nextBlock = base;
+}
+
+int LZ4_resetStreamState(void* state, const char* inputBuffer)
+{
+    if ((((size_t)state) & 3) != 0) return 1;   /* Error : pointer is not aligned on 4-bytes boundary */
+    LZ4_init((LZ4_Data_Structure*)state, (const BYTE*)inputBuffer);
+    return 0;
+}
+
+void* LZ4_create (const char* inputBuffer)
+{
+    void* lz4ds = ALLOCATOR(1, sizeof(LZ4_Data_Structure));
+    LZ4_init ((LZ4_Data_Structure*)lz4ds, (const BYTE*)inputBuffer);
+    return lz4ds;
+}
+
+
+int LZ4_free (void* LZ4_Data)
+{
+    FREEMEM(LZ4_Data);
+    return (0);
+}
+
+
+char* LZ4_slideInputBuffer (void* LZ4_Data)
+{
+    LZ4_Data_Structure* lz4ds = (LZ4_Data_Structure*)LZ4_Data;
+    size_t delta = lz4ds->nextBlock - (lz4ds->bufferStart + 64 KB);
+
+    if ( (lz4ds->base - delta > lz4ds->base)                          /* underflow control */
+       || ((size_t)(lz4ds->nextBlock - lz4ds->base) > 0xE0000000) )   /* close to 32-bits limit */
+    {
+        size_t deltaLimit = (lz4ds->nextBlock - 64 KB) - lz4ds->base;
+        int nH;
+
+        for (nH=0; nH < HASHNBCELLS4; nH++)
+        {
+            if ((size_t)(lz4ds->hashTable[nH]) < deltaLimit) lz4ds->hashTable[nH] = 0;
+            else lz4ds->hashTable[nH] -= (U32)deltaLimit;
+        }
+        memcpy((void*)(lz4ds->bufferStart), (const void*)(lz4ds->nextBlock - 64 KB), 64 KB);
+        lz4ds->base = lz4ds->bufferStart;
+        lz4ds->nextBlock = lz4ds->base + 64 KB;
+    }
+    else
+    {
+        memcpy((void*)(lz4ds->bufferStart), (const void*)(lz4ds->nextBlock - 64 KB), 64 KB);
+        lz4ds->nextBlock -= delta;
+        lz4ds->base -= delta;
+    }
+
+    return (char*)(lz4ds->nextBlock);
+}
+
+
+int LZ4_compress_continue (void* LZ4_Data, const char* source, char* dest, int inputSize)
+{
+    return LZ4_compress_generic(LZ4_Data, source, dest, inputSize, 0, notLimited, byU32, withPrefix);
+}
+
+
+int LZ4_compress_limitedOutput_continue (void* LZ4_Data, const char* source, char* dest, int inputSize, int maxOutputSize)
+{
+    return LZ4_compress_generic(LZ4_Data, source, dest, inputSize, maxOutputSize, limited, byU32, withPrefix);
+}
+
+
+/****************************
+   Decompression functions
+****************************/
+/*
+ * This generic decompression function cover all use cases.
+ * It shall be instanciated several times, using different sets of directives
+ * Note that it is essential this generic function is really inlined,
+ * in order to remove useless branches during compilation optimisation.
+ */
+FORCE_INLINE int LZ4_decompress_generic(
+                 const char* source,
+                 char* dest,
+                 int inputSize,
+                 int outputSize,         /* If endOnInput==endOnInputSize, this value is the max size of Output Buffer. */
+
+                 int endOnInput,         /* endOnOutputSize, endOnInputSize */
+                 int prefix64k,          /* noPrefix, withPrefix */
+                 int partialDecoding,    /* full, partial */
+                 int targetOutputSize    /* only used if partialDecoding==partial */
+                 )
+{
+    /* Local Variables */
+    const BYTE* restrict ip = (const BYTE*) source;
+    const BYTE* ref;
+    const BYTE* const iend = ip + inputSize;
+
+    BYTE* op = (BYTE*) dest;
+    BYTE* const oend = op + outputSize;
+    BYTE* cpy;
+    BYTE* oexit = op + targetOutputSize;
+
+    /*const size_t dec32table[] = {0, 3, 2, 3, 0, 0, 0, 0};   / static reduces speed for LZ4_decompress_safe() on GCC64 */
+    const size_t dec32table[] = {4-0, 4-3, 4-2, 4-3, 4-0, 4-0, 4-0, 4-0};   /* static reduces speed for LZ4_decompress_safe() on GCC64 */
+    static const size_t dec64table[] = {0, 0, 0, (size_t)-1, 0, 1, 2, 3};
+
+
+    /* Special cases */
+    if ((partialDecoding) && (oexit> oend-MFLIMIT)) oexit = oend-MFLIMIT;                        /* targetOutputSize too high => decode everything */
+    if ((endOnInput) && (unlikely(outputSize==0))) return ((inputSize==1) && (*ip==0)) ? 0 : -1;   /* Empty output buffer */
+    if ((!endOnInput) && (unlikely(outputSize==0))) return (*ip==0?1:-1);
+
+
+    /* Main Loop */
+    while (1)
+    {
+        unsigned token;
+        size_t length;
+
+        /* get runlength */
+        token = *ip++;
+        if ((length=(token>>ML_BITS)) == RUN_MASK)
+        {
+            unsigned s=255;
+            while (((endOnInput)?ip<iend:1) && (s==255))
+            {
+                s = *ip++;
+                length += s;
+            }
+        }
+
+        /* copy literals */
+        cpy = op+length;
+        if (((endOnInput) && ((cpy>(partialDecoding?oexit:oend-MFLIMIT)) || (ip+length>iend-(2+1+LASTLITERALS))) )
+            || ((!endOnInput) && (cpy>oend-COPYLENGTH)))
+        {
+            if (partialDecoding)
+            {
+                if (cpy > oend) goto _output_error;                           /* Error : write attempt beyond end of output buffer */
+                if ((endOnInput) && (ip+length > iend)) goto _output_error;   /* Error : read attempt beyond end of input buffer */
+            }
+            else
+            {
+                if ((!endOnInput) && (cpy != oend)) goto _output_error;       /* Error : block decoding must stop exactly there */
+                if ((endOnInput) && ((ip+length != iend) || (cpy > oend))) goto _output_error;   /* Error : input must be consumed */
+            }
+            memcpy(op, ip, length);
+            ip += length;
+            op += length;
+            break;                                       /* Necessarily EOF, due to parsing restrictions */
+        }
+        LZ4_WILDCOPY(op, ip, cpy); ip -= (op-cpy); op = cpy;
+
+        /* get offset */
+        LZ4_READ_LITTLEENDIAN_16(ref,cpy,ip); ip+=2;
+        if ((prefix64k==noPrefix) && (unlikely(ref < (BYTE* const)dest))) goto _output_error;   /* Error : offset outside destination buffer */
+
+        /* get matchlength */
+        if ((length=(token&ML_MASK)) == ML_MASK)
+        {
+            while ((!endOnInput) || (ip<iend-(LASTLITERALS+1)))   /* Ensure enough bytes remain for LASTLITERALS + token */
+            {
+                unsigned s = *ip++;
+                length += s;
+                if (s==255) continue;
+                break;
+            }
+        }
+
+        
