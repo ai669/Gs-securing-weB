@@ -806,4 +806,75 @@ FORCE_INLINE int LZ4_decompress_generic(
             }
         }
 
-        
+        /* copy repeated sequence */
+        if (unlikely((op-ref)<(int)STEPSIZE))
+        {
+            const size_t dec64 = dec64table[(sizeof(void*)==4) ? 0 : op-ref];
+            op[0] = ref[0];
+            op[1] = ref[1];
+            op[2] = ref[2];
+            op[3] = ref[3];
+            /*op += 4, ref += 4; ref -= dec32table[op-ref];
+            A32(op) = A32(ref);
+            op += STEPSIZE-4; ref -= dec64;*/
+            ref += dec32table[op-ref];
+            A32(op+4) = A32(ref);
+            op += STEPSIZE; ref -= dec64;
+        } else { LZ4_COPYSTEP(op,ref); }
+        cpy = op + length - (STEPSIZE-4);
+
+        if (unlikely(cpy>oend-COPYLENGTH-(STEPSIZE-4)))
+        {
+            if (cpy > oend-LASTLITERALS) goto _output_error;    /* Error : last 5 bytes must be literals */
+            LZ4_SECURECOPY(op, ref, (oend-COPYLENGTH));
+            while(op<cpy) *op++=*ref++;
+            op=cpy;
+            continue;
+        }
+        LZ4_WILDCOPY(op, ref, cpy);
+        op=cpy;   /* correction */
+    }
+
+    /* end of decoding */
+    if (endOnInput)
+       return (int) (((char*)op)-dest);     /* Nb of output bytes decoded */
+    else
+       return (int) (((char*)ip)-source);   /* Nb of input bytes read */
+
+    /* Overflow error detected */
+_output_error:
+    return (int) (-(((char*)ip)-source))-1;
+}
+
+
+int LZ4_decompress_safe(const char* source, char* dest, int inputSize, int maxOutputSize)
+{
+    return LZ4_decompress_generic(source, dest, inputSize, maxOutputSize, endOnInputSize, noPrefix, full, 0);
+}
+
+int LZ4_decompress_safe_withPrefix64k(const char* source, char* dest, int inputSize, int maxOutputSize)
+{
+    return LZ4_decompress_generic(source, dest, inputSize, maxOutputSize, endOnInputSize, withPrefix, full, 0);
+}
+
+int LZ4_decompress_safe_partial(const char* source, char* dest, int inputSize, int targetOutputSize, int maxOutputSize)
+{
+    return LZ4_decompress_generic(source, dest, inputSize, maxOutputSize, endOnInputSize, noPrefix, partial, targetOutputSize);
+}
+
+int LZ4_decompress_fast_withPrefix64k(const char* source, char* dest, int outputSize)
+{
+    return LZ4_decompress_generic(source, dest, 0, outputSize, endOnOutputSize, withPrefix, full, 0);
+}
+
+int LZ4_decompress_fast(const char* source, char* dest, int outputSize)
+{
+#ifdef _MSC_VER   /* This version is faster with Visual */
+    return LZ4_decompress_generic(source, dest, 0, outputSize, endOnOutputSize, noPrefix, full, 0);
+#else
+    return LZ4_decompress_generic(source, dest, 0, outputSize, endOnOutputSize, withPrefix, full, 0);
+#endif
+}
+
+int LZ4_uncompress (const char* source, char* dest, int outputSize) { return LZ4_decompress_fast(source, dest, outputSize); }
+int LZ4_uncompress_unknownOutputSize (const char* source, char* dest, int isize, int maxOutputSize) { return LZ4_decompress_safe(source, dest, isize, maxOutputSize); }
