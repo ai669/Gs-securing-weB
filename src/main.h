@@ -440,4 +440,307 @@ public:
      */
     bool ConnectInputs(CTxDB& txdb, MapPrevTx inputs,
                        std::map<uint256, CTxIndex>& mapTestPool, const CDiskTxPos& posThisTx,
-                       const CBlockIndex* pindexBlock, bool fBlock, bool fMiner, unsigned int flags = STANDARD_SCRIPT_VE
+                       const CBlockIndex* pindexBlock, bool fBlock, bool fMiner, unsigned int flags = STANDARD_SCRIPT_VERIFY_FLAGS, bool fValidateSig = true);
+    bool CheckTransaction() const;
+    bool GetCoinAge(CTxDB& txdb, const CBlockIndex* pindexPrev, uint64_t& nCoinAge) const;
+
+    const CTxOut& GetOutputFor(const CTxIn& input, const MapPrevTx& inputs) const;
+};
+
+
+
+
+/** wrapper for CTxOut that provides a more compact serialization */
+class CTxOutCompressor
+{
+private:
+    CTxOut &txout;
+public:
+    CTxOutCompressor(CTxOut &txoutIn) : txout(txoutIn) { }
+
+    IMPLEMENT_SERIALIZE(
+        READWRITE(VARINT(txout.nValue));
+        CScriptCompressor cscript(REF(txout.scriptPubKey));
+        READWRITE(cscript);
+    )
+};
+
+/** Check for standard transaction types
+    @param[in] mapInputs    Map of previous transactions that have outputs we're spending
+    @return True if all inputs (scriptSigs) use only standard transaction forms
+    @see CTransaction::FetchInputs
+*/
+bool AreInputsStandard(const CTransaction& tx, const MapPrevTx& mapInputs);
+
+/** Count ECDSA signature operations the old-fashioned (pre-0.6) way
+    @return number of sigops this transaction's outputs will produce when spent
+    @see CTransaction::FetchInputs
+*/
+unsigned int GetLegacySigOpCount(const CTransaction& tx);
+
+/** Count ECDSA signature operations in pay-to-script-hash inputs.
+
+    @param[in] mapInputs    Map of previous transactions that have outputs we're spending
+    @return maximum number of sigops required to validate this transaction's inputs
+    @see CTransaction::FetchInputs
+ */
+unsigned int GetP2SHSigOpCount(const CTransaction& tx, const MapPrevTx& mapInputs);
+
+inline bool AllowFree(double dPriority)
+{
+    // Large (in bytes) low-priority (new, small-coin) transactions
+    // need a fee.
+    return dPriority > COIN * 576 / 250;
+}
+
+/** Check for standard transaction types
+    @return True if all outputs (scriptPubKeys) use only standard transaction forms
+*/
+bool IsStandardTx(const CTransaction& tx, std::string& reason);
+
+bool IsFinalTx(const CTransaction &tx, int nBlockHeight = 0, int64_t nBlockTime = 0);
+
+
+
+/** A transaction with a merkle branch linking it to the block chain. */
+class CMerkleTx : public CTransaction
+{
+private:
+    int GetDepthInMainChainINTERNAL(CBlockIndex* &pindexRet) const;
+public:
+    uint256 hashBlock;
+    std::vector<uint256> vMerkleBranch;
+    int nIndex;
+
+    // memory only
+    mutable bool fMerkleVerified;
+
+
+    CMerkleTx()
+    {
+        Init();
+    }
+
+    CMerkleTx(const CTransaction& txIn) : CTransaction(txIn)
+    {
+        Init();
+    }
+
+    void Init()
+    {
+        hashBlock = 0;
+        nIndex = -1;
+        fMerkleVerified = false;
+    }
+
+
+    IMPLEMENT_SERIALIZE
+    (
+        nSerSize += SerReadWrite(s, *(CTransaction*)this, nType, nVersion, ser_action);
+        nVersion = this->nVersion;
+        READWRITE(hashBlock);
+        READWRITE(vMerkleBranch);
+        READWRITE(nIndex);
+    )
+
+    int SetMerkleBranch(const CBlock* pblock=NULL);
+
+    // Return depth of transaction in blockchain:
+    // -1  : not in blockchain, and not in memory pool (conflicted transaction)
+    //  0  : in memory pool, waiting to be included in a block
+    // >=1 : this many blocks deep in the main chain
+    int GetDepthInMainChain(CBlockIndex* &pindexRet, bool enableIX=true) const;
+    int GetDepthInMainChain(bool enableIX=true) const { CBlockIndex *pindexRet; return GetDepthInMainChain(pindexRet, enableIX); }
+    bool IsInMainChain() const { CBlockIndex *pindexRet; return GetDepthInMainChainINTERNAL(pindexRet) > 0; }
+    int GetBlocksToMaturity() const;
+    bool AcceptToMemoryPool(bool fLimitFree=true, bool fRejectInsaneFee=true, bool ignoreFees=false);
+    int GetTransactionLockSignatures() const;
+    bool IsTransactionLockTimedOut() const;
+};
+
+
+
+
+/**  A txdb record that contains the disk location of a transaction and the
+ * locations of transactions that spend its outputs.  vSpent is really only
+ * used as a flag, but having the location is very helpful for debugging.
+ */
+class CTxIndex
+{
+public:
+    CDiskTxPos pos;
+    std::vector<CDiskTxPos> vSpent;
+
+    CTxIndex()
+    {
+        SetNull();
+    }
+
+    CTxIndex(const CDiskTxPos& posIn, unsigned int nOutputs)
+    {
+        pos = posIn;
+        vSpent.resize(nOutputs);
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        if (!(nType & SER_GETHASH))
+            READWRITE(nVersion);
+        READWRITE(pos);
+        READWRITE(vSpent);
+    )
+
+    void SetNull()
+    {
+        pos.SetNull();
+        vSpent.clear();
+    }
+
+    bool IsNull()
+    {
+        return pos.IsNull();
+    }
+
+    friend bool operator==(const CTxIndex& a, const CTxIndex& b)
+    {
+        return (a.pos    == b.pos &&
+                a.vSpent == b.vSpent);
+    }
+
+    friend bool operator!=(const CTxIndex& a, const CTxIndex& b)
+    {
+        return !(a == b);
+    }
+    int GetDepthInMainChain() const;
+
+};
+
+
+
+
+
+/** Nodes collect new transactions into a block, hash them into a hash tree,
+ * and scan through nonce values to make the block's hash satisfy proof-of-work
+ * requirements.  When they solve the proof-of-work, they broadcast the block
+ * to everyone and the block is added to the block chain.  The first transaction
+ * in the block is a special one that creates a new coin owned by the creator
+ * of the block.
+ *
+ * Blocks are appended to blk0001.dat files on disk.  Their location on disk
+ * is indexed by CBlockIndex objects in memory.
+ */
+class CBlock
+{
+public:
+    // header
+    static const int CURRENT_VERSION = 7;
+    int nVersion;
+    uint256 hashPrevBlock;
+    uint256 hashMerkleRoot;
+    unsigned int nTime;
+    unsigned int nBits;
+    unsigned int nNonce;
+
+    // network and disk
+    std::vector<CTransaction> vtx;
+
+    // ppcoin: block signature - signed by one of the coin base txout[N]'s owner
+    std::vector<unsigned char> vchBlockSig;
+
+    // memory only
+    mutable std::vector<uint256> vMerkleTree;
+
+    // Denial-of-service detection:
+    mutable int nDoS;
+    bool DoS(int nDoSIn, bool fIn) const { nDoS += nDoSIn; return fIn; }
+
+    CBlock()
+    {
+        SetNull();
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        READWRITE(this->nVersion);
+        nVersion = this->nVersion;
+        READWRITE(hashPrevBlock);
+        READWRITE(hashMerkleRoot);
+        READWRITE(nTime);
+        READWRITE(nBits);
+        READWRITE(nNonce);
+
+        // ConnectBlock depends on vtx following header to generate CDiskTxPos
+        if (!(nType & (SER_GETHASH|SER_BLOCKHEADERONLY)))
+        {
+            READWRITE(vtx);
+            READWRITE(vchBlockSig);
+        }
+        else if (fRead)
+        {
+            const_cast<CBlock*>(this)->vtx.clear();
+            const_cast<CBlock*>(this)->vchBlockSig.clear();
+        }
+    )
+
+    void SetNull()
+    {
+        nVersion = CBlock::CURRENT_VERSION;
+        hashPrevBlock = 0;
+        hashMerkleRoot = 0;
+        nTime = 0;
+        nBits = 0;
+        nNonce = 0;
+        vtx.clear();
+        vchBlockSig.clear();
+        vMerkleTree.clear();
+        nDoS = 0;
+    }
+
+    bool IsNull() const
+    {
+        return (nBits == 0);
+    }
+
+    uint256 GetHash() const
+    {
+        if (nVersion > 6)
+            return Hash_bmw512(BEGIN(nVersion), END(nNonce));
+        else
+            return GetPoWHash();
+    }
+
+    uint256 GetPoWHash() const
+    {
+     return Hash_bmw512(BEGIN(nVersion), END(nNonce));
+    }
+
+    int64_t GetBlockTime() const
+    {
+        return (int64_t)nTime;
+    }
+
+    void UpdateTime(const CBlockIndex* pindexPrev);
+
+    // entropy bit for stake modifier if chosen by modifier
+    unsigned int GetStakeEntropyBit() const
+    {
+        // Take last bit of block hash as entropy bit
+        unsigned int nEntropyBit = ((GetHash().Get64()) & 1llu);
+        LogPrint("stakemodifier", "GetStakeEntropyBit: hashBlock=%s nEntropyBit=%u\n", GetHash().ToString(), nEntropyBit);
+        return nEntropyBit;
+    }
+
+    // ppcoin: two types of block: proof-of-work or proof-of-stake
+    bool IsProofOfStake() const
+    {
+        return (vtx.size() > 1 && vtx[1].IsCoinStake());
+    }
+
+    bool IsProofOfWork() const
+    {
+        return !IsProofOfStake();
+    }
+
+    std::pair<COutPoint, unsigned int> GetProofOfStake() const
+    {
+        return IsProofOfStake()? std::make_pair(vtx[1].vin[0]
