@@ -413,4 +413,199 @@ void FormatHashBuffers(CBlock* pblock, char* pmidstate, char* pdata, char* phash
     //
     struct
     {
- 
+        struct unnamed2
+        {
+            int nVersion;
+            uint256 hashPrevBlock;
+            uint256 hashMerkleRoot;
+            unsigned int nTime;
+            unsigned int nBits;
+            unsigned int nNonce;
+        }
+        block;
+        unsigned char pchPadding0[64];
+        uint256 hash1;
+        unsigned char pchPadding1[64];
+    }
+    tmp;
+    memset(&tmp, 0, sizeof(tmp));
+
+    tmp.block.nVersion       = pblock->nVersion;
+    tmp.block.hashPrevBlock  = pblock->hashPrevBlock;
+    tmp.block.hashMerkleRoot = pblock->hashMerkleRoot;
+    tmp.block.nTime          = pblock->nTime;
+    tmp.block.nBits          = pblock->nBits;
+    tmp.block.nNonce         = pblock->nNonce;
+
+    FormatHashBlocks(&tmp.block, sizeof(tmp.block));
+    FormatHashBlocks(&tmp.hash1, sizeof(tmp.hash1));
+
+    // Byte swap all the input buffer
+    for (unsigned int i = 0; i < sizeof(tmp)/4; i++)
+        ((unsigned int*)&tmp)[i] = ByteWayaWolfCoinerse(((unsigned int*)&tmp)[i]);
+
+    // Precalc the first half of the first hash, which stays constant
+    SHA256Transform(pmidstate, &tmp.block, pSHA256InitState);
+
+    memcpy(pdata, &tmp.block, 128);
+    memcpy(phash1, &tmp.hash1, 64);
+}
+
+
+bool CheckWork(CBlock* pblock, CWallet& wallet, CReserveKey& reservekey)
+{
+    uint256 hashBlock = pblock->GetHash();
+    uint256 hashProof = pblock->GetPoWHash();
+    uint256 hashTarget = CBigNum().SetCompact(pblock->nBits).getuint256();
+
+    if(!pblock->IsProofOfWork())
+        return error("CheckWork() : %s is not a proof-of-work block", hashBlock.GetHex());
+
+    if (hashProof > hashTarget)
+        return error("CheckWork() : proof-of-work not meeting target");
+
+    //// debug print
+    LogPrintf("CheckWork() : new proof-of-work block found  \n  proof hash: %s  \ntarget: %s\n", hashProof.GetHex(), hashTarget.GetHex());
+    LogPrintf("%s\n", pblock->ToString());
+    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue));
+
+    // Found a solution
+    {
+        LOCK(cs_main);
+        if (pblock->hashPrevBlock != hashBestChain)
+            return error("CheckWork() : generated block is stale");
+
+        // Remove key from key pool
+        reservekey.KeepKey();
+
+        // Track how many getdata requests this block gets
+        {
+            LOCK(wallet.cs_wallet);
+            wallet.mapRequestCount[hashBlock] = 0;
+        }
+
+        // Process this block the same as if we had received it from another node
+        if (!ProcessBlock(NULL, pblock))
+            return error("CheckWork() : ProcessBlock, block not accepted");
+    }
+
+    return true;
+}
+
+bool CheckStake(CBlock* pblock, CWallet& wallet)
+{
+    uint256 proofHash = 0, hashTarget = 0;
+    uint256 hashBlock = pblock->GetHash();
+
+    if(!pblock->IsProofOfStake())
+        return error("CheckStake() : %s is not a proof-of-stake block", hashBlock.GetHex());
+
+    // verify hash target and signature of coinstake tx
+    if (!CheckProofOfStake(mapBlockIndex[pblock->hashPrevBlock], pblock->vtx[1], pblock->nBits, proofHash, hashTarget))
+        return error("CheckStake() : proof-of-stake checking failed");
+
+    //// debug print
+    LogPrint("coinstake", "CheckStake() : new proof-of-stake block found  \n  hash: %s \nproofhash: %s  \ntarget: %s\n", hashBlock.GetHex(), proofHash.GetHex(), hashTarget.GetHex());
+    LogPrint("coinstake", "%s\n", pblock->ToString());
+    LogPrint("coinstake", "out %s\n", FormatMoney(pblock->vtx[1].GetValueOut()));
+
+    // Found a solution
+    {
+        LOCK(cs_main);
+        if (pblock->hashPrevBlock != hashBestChain)
+            return error("CheckStake() : generated block is stale");
+
+        // Track how many getdata requests this block gets
+        {
+            LOCK(wallet.cs_wallet);
+            wallet.mapRequestCount[hashBlock] = 0;
+        }
+
+        // Process this block the same as if we had received it from another node
+        if (!ProcessBlock(NULL, pblock))
+            return error("CheckStake() : ProcessBlock, block not accepted");
+        else
+        {
+            //ProcessBlock successful for PoS. now FixSpentCoins.
+            int nMismatchSpent;
+            CAmount nBalanceInQuestion;
+            wallet.FixSpentCoins(nMismatchSpent, nBalanceInQuestion);
+            if (nMismatchSpent != 0)
+            {
+                LogPrintf("PoS mismatched spent coins = %d and balance affects = %d \n", nMismatchSpent, nBalanceInQuestion);
+            }
+        }
+    }
+
+    return true;
+}
+
+void ThreadStakeMiner(CWallet *pwallet)
+{
+    SetThreadPriority(THREAD_PRIORITY_LOWEST);
+
+    // Make this thread recognisable as the mining thread
+    RenameThread("WayaWolfCoin-miner");
+
+    CReserveKey reservekey(pwallet);
+
+    bool fTryToSync = true;
+
+    while (true)
+    {
+        while (pwallet->IsLocked())
+        {
+            nLastCoinStakeSearchInterval = 0;
+            MilliSleep(1000);
+        }
+
+        while (vNodes.empty() || IsInitialBlockDownload())
+        {
+            nLastCoinStakeSearchInterval = 0;
+            fTryToSync = true;
+            MilliSleep(1000);
+        }
+
+        if (fTryToSync)
+        {
+            fTryToSync = false;
+            if (vNodes.size() < 3 || pindexBest->GetBlockTime() < GetTime() - 10 * 60)
+            {
+                MilliSleep(10000);
+                continue;
+            }
+        }
+
+        //
+        // Create new block
+        //
+        int64_t nFees;
+            #ifdef __GNUC__
+        #define GCC_VERSION (__GNUC__ * 10000 \
+                            + __GNUC_MINOR__ * 100 \
+                            + __GNUC_PATCHLEVEL__)
+
+        /* Test for GCC < 6.3.0 */
+        #if GCC_VERSION > 60300
+            unique_ptr<CBlock> pblock(CreateNewBlock(reservekey, true, &nFees));
+        #else
+            auto_ptr<CBlock> pblock(CreateNewBlock(reservekey, true, &nFees));
+        #endif
+        #else
+            unique_ptr<CBlock> pblock(CreateNewBlock(reservekey, true, &nFees));
+        #endif
+        if (!pblock.get())
+            return;
+
+        // Trying to sign a block
+        if (pblock->SignBlock(*pwallet, nFees))
+        {
+            SetThreadPriority(THREAD_PRIORITY_NORMAL);
+            CheckStake(pblock.get(), *pwallet);
+            SetThreadPriority(THREAD_PRIORITY_LOWEST);
+            MilliSleep(500);
+        }
+        else
+            MilliSleep(nMinerSleep);
+    }
+}
