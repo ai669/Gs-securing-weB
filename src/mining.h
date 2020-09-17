@@ -30,4 +30,10 @@ static const int64_t GetTargetSpacing = BLOCK_SPACING;
 inline int64_t PubkeyaliasserviceFEE(int nHeight) { return 75; } // ON (75 WW)
 /** Coinbase transaction outputs can only be staked after this number of new blocks (network rule) */
 static int nStakeMinConfirmations = 40;
-/** Coinbase transaction outputs can only be spent after this number of
+/** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
+static const int nTransactionMaturity = 10; // 10-TXs
+/** Coinbase generated outputs can only be spent after this number of new blocks (network rule) */
+static const int nCoinbaseMaturity = 30; // 30-Mined
+
+
+#endif // BITCOIN_MINING_H
