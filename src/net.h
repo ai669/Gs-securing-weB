@@ -912,4 +912,46 @@ template<typename T1, typename T2, typename T3, typename T4, typename T5, typena
     static void RecordBytesSent(uint64_t bytes);
 
     static uint64_t GetTotalBytesRecv();
-    static
+    static uint64_t GetTotalBytesSent();
+};
+
+inline void RelayInventory(const CInv& inv)
+{
+    // Put on lists to offer to the other nodes
+    {
+        LOCK(cs_vNodes);
+        BOOST_FOREACH(CNode* pnode, vNodes)
+            pnode->PushInventory(inv);
+    }
+}
+
+class CTransaction;
+void RelayTransaction(const CTransaction& tx, const uint256& hash);
+void RelayTransaction(const CTransaction& tx, const uint256& hash, const CDataStream& ss);
+void RelayTransactionLockReq(const CTransaction& tx, bool relayToAll=false);
+
+/** Access to the (IP) address database (peers.dat) */
+class CAddrDB
+{
+private:
+    boost::filesystem::path pathAddr;
+public:
+    CAddrDB();
+    bool Write(const CAddrMan& addr);
+    bool Read(CAddrMan& addr);
+};
+
+/** Access to the banlist database (banlist.dat) */
+class CBanDB
+{
+private:
+    boost::filesystem::path pathBanlist;
+public:
+    CBanDB();
+    bool Write(const banmap_t& banSet);
+    bool Read(banmap_t& banSet);
+};
+
+void DumpBanlist();
+
+#endif
