@@ -140,4 +140,107 @@ QString WayaWolfCoinUnits::formatWithUnit(int unit, const CAmount& amount, bool 
     return format(unit, amount, plussign, separators) + QString(" ") + name(unit);
 }
 
-QString WayaWolfCoinUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle se
+QString WayaWolfCoinUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+{
+    QString str(formatWithUnit(unit, amount, plussign, separators));
+    str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
+    return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
+}
+
+QString WayaWolfCoinUnits::floorWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+{
+    QSettings settings;
+    int digits = settings.value("digits").toInt();
+
+    QString result = format(unit, amount, plussign, separators);
+    if(decimals(unit) > digits) result.chop(decimals(unit) - digits);
+
+    return result + QString(" ") + name(unit);
+}
+
+QString WayaWolfCoinUnits::floorHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+{
+    QString str(floorWithUnit(unit, amount, plussign, separators));
+    str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
+    return QString("<span style='white-space: nowrap;'>%1</span>").arg(str);
+}
+
+bool WayaWolfCoinUnits::parse(int unit, const QString &value, CAmount *val_out)
+{
+    if(!valid(unit) || value.isEmpty())
+        return false; // Refuse to parse invalid unit or empty string
+    int num_decimals = decimals(unit);
+
+    // Ignore spaces and thin spaces when parsing
+    QStringList parts = removeSpaces(value).split(".");
+
+    if(parts.size() > 2)
+    {
+        return false; // More than one dot
+    }
+    QString whole = parts[0];
+    QString decimals;
+
+    if(parts.size() > 1)
+    {
+        decimals = parts[1];
+    }
+    if(decimals.size() > num_decimals)
+    {
+        return false; // Exceeds max precision
+    }
+    bool ok = false;
+    QString str = whole + decimals.leftJustified(num_decimals, '0');
+
+    if(str.size() > 18)
+    {
+        return false; // Longer numbers will exceed 63 bits
+    }
+    CAmount retvalue = str.toLongLong(&ok);
+    if(val_out)
+    {
+        *val_out = retvalue;
+    }
+    return ok;
+}
+
+QString WayaWolfCoinUnits::getAmountColumnTitle(int unit)
+{
+    QString amountTitle = QObject::tr("Amount");
+    if (WayaWolfCoinUnits::valid(unit))
+    {
+        amountTitle += " ("+WayaWolfCoinUnits::name(unit) + ")";
+    }
+    return amountTitle;
+}
+
+int WayaWolfCoinUnits::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return unitlist.size();
+}
+
+QVariant WayaWolfCoinUnits::data(const QModelIndex &index, int role) const
+{
+    int row = index.row();
+    if(row >= 0 && row < unitlist.size())
+    {
+        Unit unit = unitlist.at(row);
+        switch(role)
+        {
+        case Qt::EditRole:
+        case Qt::DisplayRole:
+            return QVariant(name(unit));
+        case Qt::ToolTipRole:
+            return QVariant(description(unit));
+        case UnitRole:
+            return QVariant(static_cast<int>(unit));
+        }
+    }
+    return QVariant();
+}
+
+CAmount WayaWolfCoinUnits::maxMoney()
+{
+    return MAX_SINGLE_TX;
+}
