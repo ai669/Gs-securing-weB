@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>RPCConsolesettings</class>
@@ -7,7 +8,7 @@
     <x>0</x>
     <y>0</y>
     <width>740</width>
-    <height>464</height>
+    <height>450</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -263,6 +264,39 @@ color: rgb(255, 255, 255);</string>
         </widget>
        </item>
        <item row="8" column="0">
+        <widget class="QLabel" name="label_15">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Number of masternodes</string>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1">
+        <widget class="QLabel" name="masternodeCount">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="cursor">
+          <cursorShape>IBeamCursor</cursorShape>
+         </property>
+         <property name="text">
+          <string>N/A</string>
+         </property>
+         <property name="textFormat">
+          <enum>Qt::PlainText</enum>
+         </property>
+         <property name="textInteractionFlags">
+          <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
+         </property>
+        </widget>
+       </item>
+       <item row="9" column="0">
         <widget class="QLabel" name="label_8">
          <property name="font">
           <font>
@@ -274,7 +308,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="8" column="1">
+       <item row="9" column="1">
         <widget class="QCheckBox" name="isTestNet">
          <property name="enabled">
           <bool>false</bool>
@@ -289,7 +323,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="9" column="0">
+       <item row="10" column="0">
         <widget class="QLabel" name="label_10">
          <property name="font">
           <font>
@@ -303,7 +337,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="0">
+       <item row="11" column="0">
         <widget class="QLabel" name="label_3">
          <property name="font">
           <font>
@@ -315,7 +349,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="10" column="1">
+       <item row="11" column="1">
         <widget class="QLabel" name="numberOfBlocks">
          <property name="font">
           <font>
@@ -336,7 +370,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="0">
+       <item row="12" column="0">
         <widget class="QLabel" name="label_2">
          <property name="font">
           <font>
@@ -348,7 +382,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="11" column="1">
+       <item row="12" column="1">
         <widget class="QLabel" name="lastBlockTime">
          <property name="font">
           <font>
@@ -369,7 +403,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="12" column="0">
+       <item row="13" column="0">
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -382,7 +416,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </spacer>
        </item>
-       <item row="13" column="0">
+       <item row="14" column="0">
         <widget class="QLabel" name="labelDebugLogfile">
          <property name="font">
           <font>
@@ -396,7 +430,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="14" column="0">
+       <item row="15" column="0">
         <widget class="QPushButton" name="openDebugLogfileButton">
          <property name="font">
           <font>
@@ -414,7 +448,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="15" column="0">
+       <item row="16" column="0">
         <widget class="QLabel" name="labelCLOptions">
          <property name="font">
           <font>
@@ -428,7 +462,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="16" column="0">
+       <item row="17" column="0">
         <widget class="QPushButton" name="showCLOptionsButton">
          <property name="font">
           <font>
@@ -446,7 +480,7 @@ color: rgb(255, 255, 255);</string>
          </property>
         </widget>
        </item>
-       <item row="17" column="0">
+       <item row="18" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -754,15 +788,6 @@ color: rgb(255, 255, 255);</string>
                      </color>
                     </brush>
                    </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
                   </active>
                   <inactive>
                    <colorrole role="WindowText">
@@ -828,15 +853,6 @@ color: rgb(255, 255, 255);</string>
                      </color>
                     </brush>
                    </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
                   </inactive>
                   <disabled>
                    <colorrole role="WindowText">
@@ -899,15 +915,6 @@ color: rgb(255, 255, 255);</string>
                       <red>32</red>
                       <green>32</green>
                       <blue>32</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
@@ -1028,15 +1035,6 @@ color: rgb(255, 255, 255);</string>
                      </color>
                     </brush>
                    </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
                   </active>
                   <inactive>
                    <colorrole role="WindowText">
@@ -1102,15 +1100,6 @@ color: rgb(255, 255, 255);</string>
                      </color>
                     </brush>
                    </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
                   </inactive>
                   <disabled>
                    <colorrole role="WindowText">
@@ -1173,15 +1162,6 @@ color: rgb(255, 255, 255);</string>
                       <red>32</red>
                       <green>32</green>
                       <blue>32</blue>
-                     </color>
-                    </brush>
-                   </colorrole>
-                   <colorrole role="PlaceholderText">
-                    <brush brushstyle="NoBrush">
-                     <color alpha="128">
-                      <red>255</red>
-                      <green>255</green>
-                      <blue>255</blue>
                      </color>
                     </brush>
                    </colorrole>
