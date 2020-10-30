@@ -1,16 +1,16 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="af_ZA" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ar" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
         <source>About WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>عن البلاك كوين</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>&lt;b&gt;WayaWolfCoin&lt;/b&gt; version</source>
-        <translation type="unfinished"/>
+        <translation>جزء البلاك كوين</translation>
     </message>
     <message>
         <location line="+41"/>
@@ -35,87 +35,87 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="+14"/>
         <source>Address Book</source>
-        <translation type="unfinished"/>
+        <translation>كتاب العنوان</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>Dubbel-klik om die adres of etiket te wysig</translation>
+        <translation>أنقر على الماوس مرتين لتعديل العنوان</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>Skep &apos;n nuwe adres</translation>
+        <translation>انشأ عنوان جديد</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Maak &apos;n kopie van die huidige adres na die stelsel klipbord</translation>
+        <translation>قم بنسخ العنوان المختار لحافظة النظام</translation>
     </message>
     <message>
         <location line="-7"/>
         <source>&amp;New Address</source>
-        <translation type="unfinished"/>
+        <translation>&amp;عنوان جديد</translation>
     </message>
     <message>
         <location line="-43"/>
         <source>These are your WayaWolfCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="unfinished"/>
+        <translation>هذه هي عناوين البلاك كوين لاستقبال الدفعات. يمكن أن تعطي عنوان مختلف لكل مرسل من اجل أن تتابع من يرسل لك.</translation>
     </message>
     <message>
         <location line="+53"/>
         <source>&amp;Copy Address</source>
-        <translation type="unfinished"/>
+        <translation>انسخ العنوان</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show &amp;QR Code</source>
-        <translation type="unfinished"/>
+        <translation>اظهار &amp;رمز الاستجابة السريعة</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Sign a message to prove you own a WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>التوقيع علي رسالة لاثبات بانك تملك عنوان البلاك كوين</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sign &amp;Message</source>
-        <translation type="unfinished"/>
+        <translation>وقع &amp;الرسالة</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Delete the currently selected address from the list</source>
-        <translation type="unfinished"/>
+        <translation>خذف العنوان الحالي التي تم اختياره من القائمة</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Verify a message to ensure it was signed with a specified WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>تحقق من الرسالة لتثبت بانه تم توقيعه بعنوان بلاك كوين محدد</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Verify Message</source>
-        <translation type="unfinished"/>
+        <translation>&amp;تحقق الرسالة</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Verwyder</translation>
+        <translation>&amp;أمسح</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
         <source>Copy &amp;Label</source>
-        <translation type="unfinished"/>
+        <translation>نسخ &amp;التسمية</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>تعديل</translation>
     </message>
     <message>
         <location line="+250"/>
         <source>Export Address Book Data</source>
-        <translation type="unfinished"/>
+        <translation>تصدير بيانات كتاب العناوين</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -125,12 +125,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+13"/>
         <source>Error exporting</source>
-        <translation type="unfinished"/>
+        <translation>خطا في التصدير</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
+        <translation>لا يمكن الكتابة الي الملف %1.</translation>
     </message>
 </context>
 <context>
@@ -138,17 +138,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addresstablemodel.cpp" line="+145"/>
         <source>Label</source>
-        <translation>Etiket</translation>
+        <translation>وصف</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation>عنوان</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>(no label)</source>
-        <translation>(geen etiket)</translation>
+        <translation>(لا وصف)</translation>
     </message>
 </context>
 <context>
@@ -156,22 +156,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="+26"/>
         <source>Passphrase Dialog</source>
-        <translation type="unfinished"/>
+        <translation>حوار كلمة المرور</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>Tik Wagwoord in</translation>
+        <translation>ادخل كلمة المرور</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>New passphrase</source>
-        <translation>Nuwe wagwoord</translation>
+        <translation>عبارة مرور جديدة</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>Herhaal nuwe wagwoord</translation>
+        <translation>ادخل الجملة السرية مرة أخرى</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -186,52 +186,52 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>Enkripteer beursie</translation>
+        <translation>تشفير المحفظة</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Hierdie operasie benodig &apos;n wagwoord om die beursie oop te sluit.</translation>
+        <translation>هذه العملية تحتاج عبارة المرور محفظتك لفتحها</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>Sluit beursie oop</translation>
+        <translation>إفتح المحفظة</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Hierdie operasie benodig &apos;n wagwoord om die beursie oop te sluit.</translation>
+        <translation>هذه العملية تحتاج عبارة المرور محفظتك فك تشفيرها</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>Sluit beursie oop</translation>
+        <translation>فك تشفير المحفظة</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>Verander wagwoord</translation>
+        <translation>تغيير عبارة المرور</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Tik asseblief die ou en nuwe wagwoord vir die beursie in.</translation>
+        <translation>أدخل عبارة المرور القديمة والجديدة إلى المحفظة.</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Confirm wallet encryption</source>
-        <translation>Bevestig beursie enkripsie.</translation>
+        <translation>تأكيد التشفير المحفظة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation type="unfinished"/>
+        <translation>تخذير : اذا تم تشفير المحفظة وضيعت كلمة المرور, لن تستطيع الحصول علي البلاك كوين</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation type="unfinished"/>
+        <translation>هل انت متأكد من رغبتك في تشفير المحفظة؟</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -248,7 +248,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="-133"/>
         <location line="+60"/>
         <source>Wallet encrypted</source>
-        <translation>Die beursie is nou bewaak</translation>
+        <translation>محفظة مشفرة</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -258,7 +258,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+82"/>
         <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished"/>
+        <translation>بلاك كوين</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -266,40 +266,42 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+44"/>
         <location line="+6"/>
         <source>Wallet encryption failed</source>
-        <translation>Die beursie kon nie bewaak word nie</translation>
+        <translation>فشل تشفير المحفظة</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Beursie bewaaking het misluk as gevolg van &apos;n interne fout. Die beursie is nie bewaak nie!</translation>
+        <translation>شل تشفير المحفظة بسبب خطأ داخلي. لم يتم تشفير محفظتك.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+50"/>
         <source>The supplied passphrases do not match.</source>
-        <translation>Die wagwoord stem nie ooreen nie</translation>
+        <translation>عبارتي المرور ليستا متطابقتان
+</translation>
     </message>
     <message>
         <location line="-38"/>
         <source>Wallet unlock failed</source>
-        <translation>Beursie oopsluiting het misluk</translation>
+        <translation>فشل فتح المحفظة</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Die wagwoord wat ingetik was om die beursie oop te sluit, was verkeerd.</translation>
+        <translation>عبارة المرور التي تم إدخالها لفك شفرة المحفظة غير صحيحة.
+</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>Wallet decryption failed</source>
-        <translation>Beursie dekripsie het misluk</translation>
+        <translation>فشل   فك التشفير المحفظة</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation type="unfinished"/>
+        <translation>كلمة مرور المحفظة تم تغييره بشكل ناجح</translation>
     </message>
 </context>
 <context>
@@ -307,117 +309,117 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../bitcoingui.cpp" line="+297"/>
         <source>Sign &amp;message...</source>
-        <translation type="unfinished"/>
+        <translation>التوقيع و الرسائل</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Show general overview of wallet</source>
-        <translation>Wys algemene oorsig van die beursie</translation>
+        <translation>إظهار نظرة عامة على المحفظة</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transaksies</translation>
+        <translation>المعاملات</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Browse transaction history</source>
-        <translation>Besoek transaksie geskiedenis</translation>
+        <translation>تصفح التاريخ المعاملات</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation type="unfinished"/>
+        <translation>&amp;كتاب العنوان</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit the list of stored addresses and labels</source>
-        <translation type="unfinished"/>
+        <translation>تعديل قائمة العنوان المحفوظة</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Show the list of addresses for receiving payments</source>
-        <translation type="unfinished"/>
+        <translation>اظهار قائمة العناوين التي تستقبل التعاملات</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>E&amp;xit</source>
-        <translation>S&amp;luit af</translation>
+        <translation>خروج</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <translation>Sluit af</translation>
+        <translation>الخروج من التطبيق</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show information about WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>اظهار المعلومات عن البلاك كوين</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"/>
+        <translation>عن</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Qt</source>
-        <translation>Wys inligting oor Qt</translation>
+        <translation>اظهر المعلومات</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Opsies</translation>
+        <translation>خيارات ...</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>تشفير المحفظة</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>حفظ ودعم المحفظة</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation type="unfinished"/>
+        <translation>تغيير كلمة المرور</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Export...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;تصدير...</translation>
     </message>
     <message>
         <location line="-55"/>
         <source>Send coins to a WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>ارسال البلاك كوين الي عنوان اخر</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>Modify configuration options for WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>تعديل خيارات التكوين للبلاك كوين</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Export the data in the current tab to a file</source>
-        <translation type="unfinished"/>
+        <translation>ارسال البيانات الحالية الي ملف</translation>
     </message>
     <message>
         <location line="-13"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished"/>
+        <translation>تشفير او فك التشفير للمحفظة</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Backup wallet to another location</source>
-        <translation type="unfinished"/>
+        <translation>احفظ نسخة احتياطية للمحفظة في مكان آخر</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation type="unfinished"/>
+        <translation>تغيير عبارة المرور المستخدمة لتشفير المحفظة</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -432,80 +434,80 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد الرسالة</translation>
     </message>
     <message>
         <location line="-214"/>
         <location line="+551"/>
         <source>WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>البلاك كوين</translation>
     </message>
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation>Beursie</translation>
+        <translation>محفظة</translation>
     </message>
     <message>
         <location line="+193"/>
         <source>&amp;About WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>عن البلاك كوين</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Show / Hide</source>
-        <translation type="unfinished"/>
+        <translation>اظهار/ اخفاء</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Unlock wallet</source>
-        <translation type="unfinished"/>
+        <translation>فتح المحفظة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation type="unfinished"/>
+        <translation>قفل المحفظة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Lock wallet</source>
-        <translation type="unfinished"/>
+        <translation>قفل المحفظة</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>&amp;File</source>
-        <translation>&amp;Lêer</translation>
+        <translation>ملف</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Instellings</translation>
+        <translation>الاعدادات</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation>&amp;Hulp</translation>
+        <translation>مساعدة</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Tabs toolbar</source>
-        <translation>Blad nutsbalk</translation>
+        <translation>شريط أدوات علامات التبويب</translation>
     </message>
     <message>
         <location line="+46"/>
         <location line="+9"/>
         <source>[testnet]</source>
-        <translation type="unfinished"/>
+        <translation>[testnet]</translation>
     </message>
     <message>
         <location line="+0"/>
         <location line="+58"/>
         <source>WayaWolfCoin client</source>
-        <translation type="unfinished"/>
+        <translation>برنامج البلاك كوين</translation>
     </message>
     <message numerus="yes">
         <location line="+70"/>
         <source>%n active connection(s) to WayaWolfCoin network</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+488"/>
@@ -555,27 +557,27 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+273"/>
         <source>Up to date</source>
-        <translation type="unfinished"/>
+        <translation>محين</translation>
     </message>
     <message>
         <location line="+43"/>
         <source>Catching up...</source>
-        <translation type="unfinished"/>
+        <translation>اللحاق بالركب ...</translation>
     </message>
     <message>
         <location line="+113"/>
         <source>Confirm transaction fee</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد رسوم المعاملة</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Sent transaction</source>
-        <translation type="unfinished"/>
+        <translation>المعاملات  المرسلة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming transaction</source>
-        <translation type="unfinished"/>
+        <translation>المعاملات واردة</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -606,48 +608,48 @@ Address: %4
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>المحفظة مشفرة و مفتوحة حاليا</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation type="unfinished"/>
+        <translation>المحفظة مشفرة و مقفلة حاليا</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Backup Wallet</source>
-        <translation type="unfinished"/>
+        <translation>النسخ الاحتياطي للمحفظة</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Wallet Data (*.dat)</source>
-        <translation type="unfinished"/>
+        <translation>بيانات المحفظة (*.dat)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Backup Failed</source>
-        <translation type="unfinished"/>
+        <translation>فشل الدعم</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished"/>
+        <translation>خطا في محاولة حفظ بيانات الحفظة في مكان جديد</translation>
     </message>
     <message numerus="yes">
         <location line="+91"/>
         <source>%n second(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="+4"/>
         <source>%n minute(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
         <location line="+433"/>
         <source>%n hour(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="-456"/>
@@ -658,13 +660,13 @@ Address: %4
         <location line="+27"/>
         <location line="+433"/>
         <source>%n day(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
         <location line="+6"/>
         <source>%n week(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+0"/>
@@ -674,7 +676,7 @@ Address: %4
     <message numerus="yes">
         <location line="+0"/>
         <source>%n year(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+5"/>
@@ -719,7 +721,7 @@ Address: %4
     <message>
         <location filename="../bitcoin.cpp" line="+104"/>
         <source>A fatal error occurred. WayaWolfCoin can no longer continue safely and will quit.</source>
-        <translation type="unfinished"/>
+        <translation>خطا فادح! بلاك كوين لا يمكن أن يستمر جاري الاغلاق</translation>
     </message>
 </context>
 <context>
@@ -727,7 +729,7 @@ Address: %4
     <message>
         <location filename="../clientmodel.cpp" line="+110"/>
         <source>Network Alert</source>
-        <translation type="unfinished"/>
+        <translation>تحذير الشبكة</translation>
     </message>
 </context>
 <context>
@@ -735,12 +737,12 @@ Address: %4
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+14"/>
         <source>Coin Control</source>
-        <translation type="unfinished"/>
+        <translation>سيطرة الكوين</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Quantity:</source>
-        <translation type="unfinished"/>
+        <translation>الكمية:</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -750,17 +752,17 @@ Address: %4
     <message>
         <location line="+48"/>
         <source>Amount:</source>
-        <translation>Bedrag:</translation>
+        <translation>المبلغ:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Priority:</source>
-        <translation type="unfinished"/>
+        <translation>اهمية:</translation>
     </message>
     <message>
         <location line="+48"/>
         <source>Fee:</source>
-        <translation type="unfinished"/>
+        <translation>رسوم:</translation>
     </message>
     <message>
         <location line="+35"/>
@@ -770,17 +772,17 @@ Address: %4
     <message>
         <location filename="../coincontroldialog.cpp" line="+552"/>
         <source>no</source>
-        <translation type="unfinished"/>
+        <translation>لا</translation>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+51"/>
         <source>After Fee:</source>
-        <translation type="unfinished"/>
+        <translation>بعد الرسوم:</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Change:</source>
-        <translation type="unfinished"/>
+        <translation>تغيير:</translation>
     </message>
     <message>
         <location line="+69"/>
@@ -800,7 +802,7 @@ Address: %4
     <message>
         <location line="+45"/>
         <source>Amount</source>
-        <translation>Bedrag</translation>
+        <translation>المبلغ</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -810,12 +812,12 @@ Address: %4
     <message>
         <location line="+5"/>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation>عنوان</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Date</source>
-        <translation>Datum</translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -825,7 +827,7 @@ Address: %4
     <message>
         <location line="+3"/>
         <source>Confirmed</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -835,18 +837,18 @@ Address: %4
     <message>
         <location filename="../coincontroldialog.cpp" line="-515"/>
         <source>Copy address</source>
-        <translation>Maak kopie van adres</translation>
+        <translation>  انسخ عنوان</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation type="unfinished"/>
+        <translation> انسخ التسمية</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+26"/>
         <source>Copy amount</source>
-        <translation>Kopieer bedrag</translation>
+        <translation>نسخ الكمية</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -931,7 +933,7 @@ Address: %4
     <message>
         <location line="+0"/>
         <source>yes</source>
-        <translation type="unfinished"/>
+        <translation>نعم</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -971,7 +973,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+36"/>
         <location line="+66"/>
         <source>(no label)</source>
-        <translation>(geen etiket)</translation>
+        <translation>(لا وصف)</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -989,7 +991,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
         <source>Edit Address</source>
-        <translation type="unfinished"/>
+        <translation>عدل العنوان</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1004,7 +1006,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"/>
+        <translation>العنوان</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1014,27 +1016,28 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../editaddressdialog.cpp" line="+21"/>
         <source>New receiving address</source>
-        <translation>Nuwe ontvangende adres</translation>
+        <translation>عنوان تلقي جديد</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>New sending address</source>
-        <translation>Nuwe stuurende adres</translation>
+        <translation>عنوان إرسال جديد</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Edit receiving address</source>
-        <translation>Wysig ontvangende adres</translation>
+        <translation>تعديل عنوان التلقي
+</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>Wysig stuurende adres</translation>
+        <translation>تعديل عنوان الارسال</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation type="unfinished"/>
+        <translation>هدا العنوان &quot;%1&quot; موجود مسبقا في دفتر العناوين</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -1044,12 +1047,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+10"/>
         <source>Could not unlock wallet.</source>
-        <translation>Kon nie die beursie oopsluit nie.</translation>
+        <translation> يمكن فتح المحفظة.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>New key generation failed.</source>
-        <translation type="unfinished"/>
+        <translation>فشل توليد مفتاح جديد.</translation>
     </message>
 </context>
 <context>
@@ -1101,12 +1104,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/optionsdialog.ui" line="+14"/>
         <source>Options</source>
-        <translation>Opsies</translation>
+        <translation>خيارات ...</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>&amp;Main</source>
-        <translation type="unfinished"/>
+        <translation>الرئيسي</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1116,7 +1119,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>Pay transaction &amp;fee</source>
-        <translation type="unfinished"/>
+        <translation>ادفع &amp;رسوم المعاملة</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1126,12 +1129,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>Reserve</source>
-        <translation type="unfinished"/>
+        <translation>حجز</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Automatically start WayaWolfCoin after logging in to the system.</source>
-        <translation type="unfinished"/>
+        <translation>بد البلاك كوين تلقائي عند الدخول الي الجهاز</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1141,7 +1144,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>&amp;Network</source>
-        <translation type="unfinished"/>
+        <translation>&amp;الشبكة</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1196,7 +1199,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>نافذه</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1271,12 +1274,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+71"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>تم</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>الغاء</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1286,7 +1289,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../optionsdialog.cpp" line="+53"/>
         <source>default</source>
-        <translation type="unfinished"/>
+        <translation>الافتراضي</translation>
     </message>
     <message>
         <location line="+149"/>
@@ -1303,7 +1306,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>The supplied proxy address is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>عنوان الوكيل توفيره غير صالح.</translation>
     </message>
 </context>
 <context>
@@ -1311,7 +1314,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/overviewpage.ui" line="+14"/>
         <source>Form</source>
-        <translation>Vorm</translation>
+        <translation>نمودج</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -1332,7 +1335,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation>Beursie</translation>
+        <translation>محفظة</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -1347,7 +1350,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+80"/>
         <source>Immature:</source>
-        <translation type="unfinished"/>
+        <translation>غير ناضجة</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1357,7 +1360,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+23"/>
         <source>Total:</source>
-        <translation type="unfinished"/>
+        <translation>الكامل:</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1367,7 +1370,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+50"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Onlangse transaksies&lt;/b&gt;</translation>
+        <translation>اخر المعملات </translation>
     </message>
     <message>
         <location line="-118"/>
@@ -1383,7 +1386,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../overviewpage.cpp" line="+116"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation type="unfinished"/>
+        <translation>خارج المزامنه</translation>
     </message>
 </context>
 <context>
@@ -1457,7 +1460,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation type="unfinished"/>
+        <translation>اسم العميل</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1469,17 +1472,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+53"/>
         <location line="+23"/>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation>غير معروف</translation>
     </message>
     <message>
         <location line="-194"/>
         <source>Client version</source>
-        <translation type="unfinished"/>
+        <translation>نسخه العميل</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>&amp;Information</source>
-        <translation type="unfinished"/>
+        <translation>المعلومات</translation>
     </message>
     <message>
         <location line="+68"/>
@@ -1494,12 +1497,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>الشبكه</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Number of connections</source>
-        <translation type="unfinished"/>
+        <translation>عدد الاتصالات</translation>
     </message>
     <message>
         <location line="+23"/>
@@ -1549,7 +1552,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+52"/>
         <source>&amp;Open</source>
-        <translation type="unfinished"/>
+        <translation>الفتح</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1574,7 +1577,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-237"/>
         <source>Build date</source>
-        <translation type="unfinished"/>
+        <translation>وقت البناء</translation>
     </message>
     <message>
         <location line="-104"/>
@@ -1664,7 +1667,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Stuur Munstukke</translation>
+        <translation>إرسال Coins</translation>
     </message>
     <message>
         <location line="+76"/>
@@ -1705,7 +1708,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+51"/>
         <source>Amount:</source>
-        <translation>Bedrag:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+22"/>
@@ -1758,7 +1761,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+106"/>
         <source>Send to multiple recipients at once</source>
-        <translation>Stuur aan vele ontvangers op eens</translation>
+        <translation>إرسال إلى عدة مستلمين في وقت واحد</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1773,12 +1776,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>مسح الكل</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Balance:</source>
-        <translation>Balans:</translation>
+        <translation>الرصيد:</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1788,12 +1791,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+31"/>
         <source>Confirm the send action</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد الإرسال</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation>S&amp;tuur</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
@@ -1808,7 +1811,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Kopieer bedrag</translation>
+        <translation>نسخ الكمية</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1848,7 +1851,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد الإرسال Coins</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1868,7 +1871,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>The amount to pay must be larger than 0.</source>
-        <translation type="unfinished"/>
+        <translation>المبلغ المدفوع يجب ان يكون اكبر من 0</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1903,7 +1906,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+13"/>
         <source>(no label)</source>
-        <translation>(geen etiket)</translation>
+        <translation>(لا وصف)</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1926,7 +1929,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+13"/>
         <source>Pay &amp;To:</source>
-        <translation type="unfinished"/>
+        <translation>ادفع الى </translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1937,7 +1940,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+60"/>
         <location filename="../sendcoinsentry.cpp" line="+26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation type="unfinished"/>
+        <translation>إدخال تسمية لهذا العنوان لإضافته إلى دفتر العناوين الخاص بك</translation>
     </message>
     <message>
         <location line="-78"/>
@@ -1947,32 +1950,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+28"/>
         <source>Choose address from address book</source>
-        <translation type="unfinished"/>
+        <translation>اختيار عنوان من كتاب العناوين</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Alt+A</source>
-        <translation type="unfinished"/>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
+        <translation>انسخ العنوان من لوحة المفاتيح</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Alt+P</source>
-        <translation type="unfinished"/>
+        <translation>Alt+P</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Remove this recipient</source>
-        <translation type="unfinished"/>
+        <translation>خذف هذا المستخدم</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>ادخال عنوان البلاك كوين (مثلا ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
 </context>
 <context>
@@ -1980,13 +1983,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation type="unfinished"/>
+        <translation>التواقيع - التوقيع /تأكيد الرسالة</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Teken boodskap</translation>
+        <translation>&amp;وقع الرسالة</translation>
     </message>
     <message>
         <location line="-118"/>
@@ -2002,23 +2005,23 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+10"/>
         <location line="+203"/>
         <source>Choose an address from the address book</source>
-        <translation type="unfinished"/>
+        <translation>اختيار عنوان من كتاب العناوين</translation>
     </message>
     <message>
         <location line="-193"/>
         <location line="+203"/>
         <source>Alt+A</source>
-        <translation type="unfinished"/>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
+        <translation>انسخ العنوان من لوحة المفاتيح</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Alt+P</source>
-        <translation type="unfinished"/>
+        <translation>Alt+P</translation>
     </message>
     <message>
         <location line="+12"/>
@@ -2044,7 +2047,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>مسح الكل</translation>
     </message>
     <message>
         <location line="-87"/>
@@ -2092,7 +2095,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+82"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>العنوان المدخل غير صالح</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -2100,13 +2103,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+73"/>
         <location line="+8"/>
         <source>Please check the address and try again.</source>
-        <translation type="unfinished"/>
+        <translation>الرجاء التأكد من العنوان والمحاولة مرة اخرى</translation>
     </message>
     <message>
         <location line="-81"/>
         <location line="+81"/>
         <source>The entered address does not refer to a key.</source>
-        <translation type="unfinished"/>
+        <translation>العنوان المدخل لا يشير الى مفتاح</translation>
     </message>
     <message>
         <location line="-73"/>
@@ -2116,17 +2119,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
-        <translation type="unfinished"/>
+        <translation>المفتاح الخاص للعنوان المدخل غير موجود.</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Message signing failed.</source>
-        <translation type="unfinished"/>
+        <translation>فشل توقيع الرسالة.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message signed.</source>
-        <translation type="unfinished"/>
+        <translation>الرسالة موقعة.</translation>
     </message>
     <message>
         <location line="+59"/>
@@ -2147,12 +2150,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Message verification failed.</source>
-        <translation type="unfinished"/>
+        <translation>فشلت عملية التأكد من الرسالة.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message verified.</source>
-        <translation type="unfinished"/>
+        <translation>تم تأكيد الرسالة.</translation>
     </message>
 </context>
 <context>
@@ -2168,7 +2171,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiondesc.cpp" line="+25"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>مفتوح حتى 1٪</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2178,66 +2181,66 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation type="unfinished"/>
+        <translation>1% غير متواجد</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/unconfirmed</source>
-        <translation type="unfinished"/>
+        <translation>غير مؤكدة/1%</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 confirmations</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد %1</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>الحالة.</translation>
     </message>
     <message numerus="yes">
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Date</source>
-        <translation>Datum</translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Source</source>
-        <translation type="unfinished"/>
+        <translation>المصدر</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Generated</source>
-        <translation type="unfinished"/>
+        <translation>تم اصداره.</translation>
     </message>
     <message>
         <location line="+5"/>
         <location line="+17"/>
         <source>From</source>
-        <translation>Van</translation>
+        <translation>من</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+22"/>
         <location line="+58"/>
         <source>To</source>
-        <translation>Na</translation>
+        <translation>الى</translation>
     </message>
     <message>
         <location line="-77"/>
         <location line="+2"/>
         <source>own address</source>
-        <translation>eie adres</translation>
+        <translation>عنوانه</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>label</source>
-        <translation>etiket</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+37"/>
@@ -2246,17 +2249,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+17"/>
         <location line="+30"/>
         <source>Credit</source>
-        <translation>Krediet</translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+2"/>
         <source>not accepted</source>
-        <translation>nie aanvaar nie</translation>
+        <translation>غير مقبولة</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -2264,32 +2267,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+15"/>
         <location line="+30"/>
         <source>Debit</source>
-        <translation>Debiet</translation>
+        <translation>دين</translation>
     </message>
     <message>
         <location line="-39"/>
         <source>Transaction fee</source>
-        <translation>Transaksie fooi</translation>
+        <translation>رسوم التحويل</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation>Netto bedrag</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Message</source>
-        <translation>Boodskap</translation>
-    </message>
-    <message>
-        <location line="+2"/>
-        <source>Comment</source>
         <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
+        <source>Comment</source>
+        <translation>تعليق</translation>
+    </message>
+    <message>
+        <location line="+2"/>
         <source>Transaction ID</source>
-        <translation>Transaksie ID</translation>
+        <translation>رقم المعاملة</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2304,7 +2307,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+8"/>
         <source>Transaction</source>
-        <translation type="unfinished"/>
+        <translation>معاملة</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2314,32 +2317,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>Amount</source>
-        <translation>Bedrag</translation>
+        <translation>المبلغ</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>true</source>
-        <translation>waar</translation>
+        <translation>صحيح</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>false</source>
-        <translation>onwaar</translation>
+        <translation>خاطئ</translation>
     </message>
     <message>
         <location line="-209"/>
         <source>, has not been successfully broadcast yet</source>
-        <translation type="unfinished"/>
+        <translation>لم يتم حتى الآن البث بنجاح</translation>
     </message>
     <message numerus="yes">
         <location line="-36"/>
         <source>Open for %n more block(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+71"/>
         <source>unknown</source>
-        <translation>onbekend</translation>
+        <translation>غير معروف</translation>
     </message>
 </context>
 <context>
@@ -2347,12 +2350,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/transactiondescdialog.ui" line="+14"/>
         <source>Transaction details</source>
-        <translation type="unfinished"/>
+        <translation>تفاصيل المعاملة</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation type="unfinished"/>
+        <translation>يبين هذا الجزء وصفا مفصلا لهده المعاملة</translation>
     </message>
 </context>
 <context>
@@ -2360,42 +2363,42 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiontablemodel.cpp" line="+231"/>
         <source>Date</source>
-        <translation>Datum</translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Type</source>
-        <translation>Tipe</translation>
+        <translation>النوع</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation>عنوان</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Amount</source>
-        <translation>Bedrag</translation>
+        <translation>المبلغ</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>مفتوح حتى 1٪</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Confirmed (%1 confirmations)</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد الإرسال Coins</translation>
     </message>
     <message numerus="yes">
         <location line="-15"/>
         <source>Open for %n more block(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Offline</source>
-        <translation type="unfinished"/>
+        <translation>غير متصل</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2420,67 +2423,67 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation type="unfinished"/>
+        <translation>لم يتم تلقى هذه الكتلة (Block) من قبل أي العقد الأخرى وربما لن تكون مقبولة!</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated but not accepted</source>
-        <translation type="unfinished"/>
+        <translation>ولدت ولكن لم تقبل</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Received with</source>
-        <translation>Ontvang met</translation>
+        <translation>استقبل مع</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Received from</source>
-        <translation>Ontvang van</translation>
+        <translation>استقبل من</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sent to</source>
-        <translation>Gestuur na</translation>
+        <translation>أرسل إلى</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>Betalings Aan/na jouself</translation>
+        <translation>دفع لنفسك</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Mined</source>
-        <translation>Gemyn</translation>
+        <translation>Mined</translation>
     </message>
     <message>
         <location line="+38"/>
         <source>(n/a)</source>
-        <translation>(n.v.t)</translation>
+        <translation>غير متوفر</translation>
     </message>
     <message>
         <location line="+194"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation type="unfinished"/>
+        <translation>حالة المعاملة. تحوم حول هذا الحقل لعرض عدد  التأكيدات.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Date and time that the transaction was received.</source>
-        <translation>Datum en tyd wat die transaksie ontvang was.</translation>
+        <translation>التاريخ والوقت الذي تم فيه تلقي المعاملة.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type of transaction.</source>
-        <translation>Tipe transaksie.</translation>
+        <translation>نوع المعاملات</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Destination address of transaction.</source>
-        <translation type="unfinished"/>
+        <translation>عنوان وجهة  المعاملة</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Amount removed from or added to balance.</source>
-        <translation type="unfinished"/>
+        <translation>المبلغ الذي أزيل أو أضيف الى الرصيد</translation>
     </message>
 </context>
 <context>
@@ -2489,107 +2492,107 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../transactionview.cpp" line="+54"/>
         <location line="+17"/>
         <source>All</source>
-        <translation>Alles</translation>
+        <translation>الكل</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Today</source>
-        <translation>Vandag</translation>
+        <translation>اليوم</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This week</source>
-        <translation>Hierdie week</translation>
+        <translation>هدا الاسبوع</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This month</source>
-        <translation>Hierdie maand</translation>
+        <translation>هدا الشهر</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Last month</source>
-        <translation>Verlede maand</translation>
+        <translation>الشهر الماضي</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This year</source>
-        <translation>Hierdie jaar</translation>
+        <translation>هدا العام</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Range...</source>
-        <translation>Reeks...</translation>
+        <translation>نطاق</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Received with</source>
-        <translation>Ontvang met</translation>
+        <translation>استقبل مع</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Sent to</source>
-        <translation>Gestuur na</translation>
+        <translation>أرسل إلى</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>To yourself</source>
-        <translation>Aan/na jouself</translation>
+        <translation>إليك</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Mined</source>
-        <translation>Gemyn</translation>
+        <translation>Mined</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Other</source>
-        <translation>Ander</translation>
+        <translation>اخرى</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Enter address or label to search</source>
-        <translation type="unfinished"/>
+        <translation>ادخل عنوان أووصف للبحث</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>Min bedrag</translation>
+        <translation>الكمية الادني</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Copy address</source>
-        <translation>Maak kopie van adres</translation>
+        <translation>  انسخ عنوان</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation type="unfinished"/>
+        <translation> انسخ التسمية</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Kopieer bedrag</translation>
+        <translation>نسخ الكمية</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy transaction ID</source>
-        <translation type="unfinished"/>
+        <translation>نسخ رقم المعاملة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit label</source>
-        <translation type="unfinished"/>
+        <translation>عدل الوصف</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show transaction details</source>
-        <translation type="unfinished"/>
+        <translation>اظهار تفاصيل المعاملة</translation>
     </message>
     <message>
         <location line="+138"/>
         <source>Export Transaction Data</source>
-        <translation type="unfinished"/>
+        <translation>تصدير بيانات المعاملة</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2599,57 +2602,57 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+8"/>
         <source>Confirmed</source>
-        <translation type="unfinished"/>
+        <translation>تأكيد</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Date</source>
-        <translation>Datum</translation>
+        <translation>التاريخ</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation>Tipe</translation>
+        <translation>النوع</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Label</source>
-        <translation>Etiket</translation>
+        <translation>وصف</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Address</source>
-        <translation>Adres</translation>
+        <translation>عنوان</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Amount</source>
-        <translation>Bedrag</translation>
+        <translation>المبلغ</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation>العنوان</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Error exporting</source>
-        <translation type="unfinished"/>
+        <translation>خطا في التصدير</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
+        <translation>لا يمكن الكتابة الي الملف %1.</translation>
     </message>
     <message>
         <location line="+100"/>
         <source>Range:</source>
-        <translation>Reeks:</translation>
+        <translation>نطاق:</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>to</source>
-        <translation>aan</translation>
+        <translation>الى</translation>
     </message>
 </context>
 <context>
@@ -2657,7 +2660,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../walletmodel.cpp" line="+208"/>
         <source>Sending...</source>
-        <translation type="unfinished"/>
+        <translation>ارسال....</translation>
     </message>
 </context>
 <context>
@@ -2665,12 +2668,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../bitcoinstrings.cpp" line="+173"/>
         <source>WayaWolfCoin version</source>
-        <translation type="unfinished"/>
+        <translation>جزع البلاك كوين</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Usage:</source>
-        <translation>Gebruik:</translation>
+        <translation>المستخدم</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2680,17 +2683,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>List commands</source>
-        <translation type="unfinished"/>
+        <translation>اعرض الأوامر</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get help for a command</source>
-        <translation type="unfinished"/>
+        <translation>مساعدة في كتابة الاوامر</translation>
     </message>
     <message>
         <location line="-147"/>
         <source>Options:</source>
-        <translation>Opsies:</translation>
+        <translation>خيارات: </translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2710,7 +2713,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation type="unfinished"/>
+        <translation>حدد موقع مجلد المعلومات او data directory</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2730,7 +2733,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+27"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation type="unfinished"/>
+        <translation>ضع حجم كاش قاعدة البيانات بالميجابايت (الافتراضي: 25)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2745,7 +2748,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>Onderhou op die meeste &lt;n&gt; konneksies na eweknieë (standaard: 125)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -2755,7 +2758,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Specify your own public address</source>
-        <translation type="unfinished"/>
+        <translation>حدد عنوانك العام هنا</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2805,12 +2808,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Use the test network</source>
-        <translation>Gebruik die toets netwerk</translation>
+        <translation>استخدم التحقق من الشبكه</translation>
     </message>
     <message>
         <location line="-24"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation type="unfinished"/>
+        <translation>قبول الاتصالات من خارج</translation>
     </message>
     <message>
         <location line="-29"/>
@@ -2830,27 +2833,27 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-103"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong WayaWolfCoin will not work properly.</source>
-        <translation type="unfinished"/>
+        <translation>تحذير : تأكد من ساعة وتاريخ الكمبيوتر! اذا ساعة غير صحيحة بلاك كوين لن يعمل بشكل صحيح</translation>
     </message>
     <message>
         <location line="+132"/>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation type="unfinished"/>
+        <translation>تحذير : خطا في قراءة wallet.dat! كل المفاتيح تم قرائتة بشكل صحيح لكن بيانات الصفقة او إدخالات كتاب العنوان غير صحيحة او غير موجودة</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation type="unfinished"/>
+        <translation>تخذير :wallet.dat غير صالح تم حفظ البيانات. المحفظة الاصلية تم حفظه ك  wallet.{timestamp}.bak  %s في ; اذا حسابك او صفقاتك غير صحيح يجب عليك استعادة النسخ الاحتياطي</translation>
     </message>
     <message>
         <location line="-31"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation type="unfinished"/>
+        <translation>محاولة استرجاع المفاتيح الخاصة من wallet.dat الغير صالح</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Block creation options:</source>
-        <translation type="unfinished"/>
+        <translation>خيارات صناعة الكتل</translation>
     </message>
     <message>
         <location line="-69"/>
@@ -2865,7 +2868,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+101"/>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation type="unfinished"/>
+        <translation>فشل في الاستماع على أي منفذ. استخدام الاستماع = 0 إذا كنت تريد هذا.</translation>
     </message>
     <message>
         <location line="-91"/>
@@ -3011,12 +3014,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-1"/>
         <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation type="unfinished"/>
+        <translation>تحذير هذا الجزء قديم, التجديد مطلوب</translation>
     </message>
     <message>
         <location line="-54"/>
         <source>wallet.dat corrupt, salvage failed</source>
-        <translation type="unfinished"/>
+        <translation>wallet.dat غير صالح لا يمكن الاسترجاع</translation>
     </message>
     <message>
         <location line="-56"/>
@@ -3031,7 +3034,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+13"/>
         <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
-        <translation type="unfinished"/>
+        <translation>عند</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -3096,7 +3099,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>Upgrade wallet to latest format</source>
-        <translation type="unfinished"/>
+        <translation>ارقاء المحفظة الي اخر نسخة</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3106,17 +3109,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation type="unfinished"/>
+        <translation>اعادة بحث سلسلة الكتلة لايجاد معالمات المحفظة</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>How thorough the block verification is (0-6, default: 1)</source>
-        <translation type="unfinished"/>
+        <translation>كمية تأكيد الكتل (0-6 التلقائي 1)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Imports blocks from external blk000?.dat file</source>
-        <translation type="unfinished"/>
+        <translation>نقل كتل من ملف blk000.dat خارجي</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -3161,7 +3164,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-174"/>
         <source>This help message</source>
-        <translation>Hierdie help boodskap</translation>
+        <translation>رسالة المساعدة هذه</translation>
     </message>
     <message>
         <location line="+104"/>
@@ -3186,17 +3189,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+126"/>
         <source>Loading addresses...</source>
-        <translation>Laai adresse...</translation>
+        <translation>تحميل العنوان</translation>
     </message>
     <message>
         <location line="-12"/>
         <source>Error loading blkindex.dat</source>
-        <translation type="unfinished"/>
+        <translation>خظا في تحميل blkindex.dat</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation type="unfinished"/>
+        <translation>خطأ عند تنزيل wallet.dat: المحفظة تالفة</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -3206,12 +3209,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
-        <translation type="unfinished"/>
+        <translation>المحفظة يجب أن يعاد كتابته : أعد البلاك كوين لتكتمل</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Error loading wallet.dat</source>
-        <translation type="unfinished"/>
+        <translation>خطأ عند تنزيل wallet.dat</translation>
     </message>
     <message>
         <location line="-16"/>
@@ -3246,22 +3249,22 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+60"/>
         <source>Sending...</source>
-        <translation type="unfinished"/>
+        <translation>ارسال....</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Invalid amount</source>
-        <translation>Ongeldige bedrag</translation>
+        <translation>مبلغ خاطئ</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insufficient funds</source>
-        <translation>Onvoldoende fondse</translation>
+        <translation>حسابك لا يكفي</translation>
     </message>
     <message>
         <location line="-40"/>
         <source>Loading block index...</source>
-        <translation>Laai blok indeks...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-110"/>
@@ -3321,27 +3324,27 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+17"/>
         <source>Loading wallet...</source>
-        <translation>Laai beursie...</translation>
+        <translation>تحميل المحفظه</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Cannot downgrade wallet</source>
-        <translation type="unfinished"/>
+        <translation> لا يمكن خفض المحفظة</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Cannot write default address</source>
-        <translation type="unfinished"/>
+        <translation> لا يمكن كتابة العنوان الافتراضي</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescanning...</source>
-        <translation type="unfinished"/>
+        <translation>إعادة مسح</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Done loading</source>
-        <translation>Klaar gelaai</translation>
+        <translation>انتهاء التحميل</translation>
     </message>
     <message>
         <location line="-161"/>
@@ -3351,7 +3354,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+188"/>
         <source>Error</source>
-        <translation>Fout</translation>
+        <translation>خطأ</translation>
     </message>
     <message>
         <location line="-18"/>
