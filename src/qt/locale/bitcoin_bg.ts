@@ -1,5 +1,5 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="be_BY" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="bg" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -40,17 +40,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>Двайны клік для рэдагавання адрасу ці пазнакі</translation>
+        <translation>Двоен клик за редакция на адрес или име</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>Стварыць новы адрас</translation>
+        <translation>Създаване на нов адрес</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Капіяваць пазначаны адрас у сістэмны буфер абмену</translation>
+        <translation>Копирай избрания адрес</translation>
     </message>
     <message>
         <location line="-7"/>
@@ -65,7 +65,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+53"/>
         <source>&amp;Copy Address</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Копирай</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -85,7 +85,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+17"/>
         <source>Delete the currently selected address from the list</source>
-        <translation type="unfinished"/>
+        <translation>Изтрий избрания адрес от списъка</translation>
     </message>
     <message>
         <location line="-10"/>
@@ -100,17 +100,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>Выдаліць</translation>
+        <translation>&amp;Изтрий</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
         <source>Copy &amp;Label</source>
-        <translation type="unfinished"/>
+        <translation>Копирай &amp;име</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Редактирай</translation>
     </message>
     <message>
         <location line="+250"/>
@@ -120,7 +120,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Коскамі падзелены файл (*.csv)</translation>
+        <translation>CSV файл (*.csv)</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -138,17 +138,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addresstablemodel.cpp" line="+145"/>
         <source>Label</source>
-        <translation>Пазнака</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Адрас</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>(no label)</source>
-        <translation>непазначаны</translation>
+        <translation>(без име)</translation>
     </message>
 </context>
 <context>
@@ -161,17 +161,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>Увядзіце кодавую фразу</translation>
+        <translation>Въведи парола</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>New passphrase</source>
-        <translation>Новая кодавая фраза</translation>
+        <translation>Нова парола</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>Паўтарыце новую кодавую фразу</translation>
+        <translation>Още веднъж</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -186,42 +186,42 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>Зашыфраваць гаманец.</translation>
+        <translation>Криптиране на портфейла</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Гэтая аперацыя патрабуе кодавую фразу, каб рзблакаваць гаманец.</translation>
+        <translation>Тази операция изисква Вашата парола за отключване на портфейла.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>Разблакаваць гаманец</translation>
+        <translation>Отключване на портфейла</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Гэтая аперацыя патрабуе пароль каб расшыфраваць гаманец.</translation>
+        <translation>Тази операция изисква Вашата парола за декриптиране на портфейла.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>Рачшыфраваць гаманец</translation>
+        <translation>Декриптиране на портфейла</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>Змяніць пароль</translation>
+        <translation>Смяна на паролата</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Увядзіце стары і новы пароль да гаманца.</translation>
+        <translation>Въведете текущата и новата парола за портфейла.</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Confirm wallet encryption</source>
-        <translation>Пацвердзіце шыфраванне гаманца</translation>
+        <translation>Потвърждаване на криптирането</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -248,7 +248,7 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="-133"/>
         <location line="+60"/>
         <source>Wallet encrypted</source>
-        <translation>Гаманец зашыфраваны</translation>
+        <translation>Портфейлът е криптиран</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -266,40 +266,40 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+44"/>
         <location line="+6"/>
         <source>Wallet encryption failed</source>
-        <translation>Шыфраванне гаманца няўдалае</translation>
+        <translation>Криптирането беше неуспешно</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Шыфраванне гаманца не адбылося з-за ўнутранай памылкі. Гаманец незашыфраваны.</translation>
+        <translation>Криптирането на портфейла беше неуспешно поради неизвестен проблем. Портфейлът не е криптиран.</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+50"/>
         <source>The supplied passphrases do not match.</source>
-        <translation>Уведдзеныя паролі не супадаюць</translation>
+        <translation>Паролите не съвпадат</translation>
     </message>
     <message>
         <location line="-38"/>
         <source>Wallet unlock failed</source>
-        <translation>Разблакаванне гаманца няўдалае</translation>
+        <translation>Отключването беше неуспешно</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>Уведзена пароль  дзеля расшыфравання гаманца памылковы</translation>
+        <translation>Паролата въведена за декриптиране на портфейла е грешна.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>Wallet decryption failed</source>
-        <translation>Расшыфраванне гаманца няўдалае</translation>
+        <translation>Декриптирането беше неуспешно</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation type="unfinished"/>
+        <translation>Паролата на портфейла беше променена успешно.</translation>
     </message>
 </context>
 <context>
@@ -307,22 +307,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../bitcoingui.cpp" line="+297"/>
         <source>Sign &amp;message...</source>
-        <translation type="unfinished"/>
+        <translation>Подписване на &amp;съобщение...</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Show general overview of wallet</source>
-        <translation>Паказвае агульныя звесткі аб гаманцы</translation>
+        <translation>Обобщена информация за портфейла</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation>Транзакцыі</translation>
+        <translation>&amp;Транзакции</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Browse transaction history</source>
-        <translation>Праглядзець гісторыю транзакцый</translation>
+        <translation>История на транзакциите</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -342,12 +342,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+34"/>
         <source>E&amp;xit</source>
-        <translation>Выйсці</translation>
+        <translation>Из&amp;ход</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <translation>Выйсці з праграмы</translation>
+        <translation>Изход от приложението</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -357,32 +357,32 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+2"/>
         <source>About &amp;Qt</source>
-        <translation>Аб Qt</translation>
+        <translation>За &amp;Qt</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Qt</source>
-        <translation>Паказаць інфармацыю аб Qt</translation>
+        <translation>Покажи информация за Qt</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>Опцыі...</translation>
+        <translation>&amp;Опции...</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Криптиране на портфейла...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Запазване на портфейла...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Смяна на паролата...</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -412,12 +412,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+2"/>
         <source>Backup wallet to another location</source>
-        <translation>Зрабіце копію гаманца ў іншае месца</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Змяніць пароль шыфравання гаманца</translation>
+        <translation>Променя паролата за портфейла</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -432,7 +432,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Проверка на съобщение...</translation>
     </message>
     <message>
         <location line="-214"/>
@@ -443,7 +443,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation type="unfinished"/>
+        <translation>Портфейл</translation>
     </message>
     <message>
         <location line="+193"/>
@@ -473,22 +473,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+28"/>
         <source>&amp;File</source>
-        <translation>Ф&amp;айл</translation>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Settings</source>
-        <translation>Наладкі</translation>
+        <translation>&amp;Настройки</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation>Дапамога</translation>
+        <translation>&amp;Помощ</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Tabs toolbar</source>
-        <translation type="unfinished"/>
+        <translation>Раздели</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -555,12 +555,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+273"/>
         <source>Up to date</source>
-        <translation>Сінхранізавана</translation>
+        <translation>Синхронизиран</translation>
     </message>
     <message>
         <location line="+43"/>
         <source>Catching up...</source>
-        <translation>Наганяем...</translation>
+        <translation>Зарежда блокове...</translation>
     </message>
     <message>
         <location line="+113"/>
@@ -570,12 +570,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+27"/>
         <source>Sent transaction</source>
-        <translation>Дасланыя транзакцыі</translation>
+        <translation>Изходяща транзакция</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming transaction</source>
-        <translation>Прынятыя транзакцыі</translation>
+        <translation>Входяща транзакция</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -584,11 +584,7 @@ Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation>Дата: %1
-Колькасць: %2
-Тып: %3
-Адрас: %4
-</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+100"/>
@@ -610,12 +606,12 @@ Address: %4
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Гаманец &lt;b&gt;зашыфраваны&lt;/b&gt; і зараз &lt;b&gt;разблакаваны&lt;/b&gt;</translation>
+        <translation>Портфейлът е &lt;b&gt;криптиран&lt;/b&gt; и &lt;b&gt;отключен&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Гаманец &lt;b&gt;зашыфраваны&lt;/b&gt; і зараз &lt;b&gt;заблакаваны&lt;/b&gt;</translation>
+        <translation>Портфейлът е &lt;b&gt;криптиран&lt;/b&gt; и &lt;b&gt;заключен&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -754,7 +750,7 @@ Address: %4
     <message>
         <location line="+48"/>
         <source>Amount:</source>
-        <translation type="unfinished"/>
+        <translation>Сума:</translation>
     </message>
     <message>
         <location line="+32"/>
@@ -804,7 +800,7 @@ Address: %4
     <message>
         <location line="+45"/>
         <source>Amount</source>
-        <translation>Колькасць</translation>
+        <translation>Сума</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -814,7 +810,7 @@ Address: %4
     <message>
         <location line="+5"/>
         <source>Address</source>
-        <translation>Адрас</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -829,7 +825,7 @@ Address: %4
     <message>
         <location line="+3"/>
         <source>Confirmed</source>
-        <translation>Пацверджана</translation>
+        <translation>Потвърдени</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -839,23 +835,23 @@ Address: %4
     <message>
         <location filename="../coincontroldialog.cpp" line="-515"/>
         <source>Copy address</source>
-        <translation>Капіяваць адрас</translation>
+        <translation>Копирай адрес</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Капіяваць пазнаку</translation>
+        <translation>Копирай име</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+26"/>
         <source>Copy amount</source>
-        <translation>Капіяваць колькасць</translation>
+        <translation>Копирай сума</translation>
     </message>
     <message>
         <location line="-25"/>
         <source>Copy transaction ID</source>
-        <translation>Капіяваць ID транзакцыі</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
@@ -975,7 +971,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+36"/>
         <location line="+66"/>
         <source>(no label)</source>
-        <translation>непазначаны</translation>
+        <translation>(без име)</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -993,12 +989,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
         <source>Edit Address</source>
-        <translation>Рэдагаваць Адрас</translation>
+        <translation>Редактиране на адрес</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Label</source>
-        <translation>Пазнака</translation>
+        <translation>&amp;Име</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1008,7 +1004,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Address</source>
-        <translation>Адрас</translation>
+        <translation>&amp;Адрес</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1018,27 +1014,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../editaddressdialog.cpp" line="+21"/>
         <source>New receiving address</source>
-        <translation>Новы адрас для атрымання</translation>
+        <translation>Нов адрес за получаване</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>New sending address</source>
-        <translation>Новы адрас для дасылання</translation>
+        <translation>Нов адрес за изпращане</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Edit receiving address</source>
-        <translation>Рэдагаваць адрас прымання</translation>
+        <translation>Редактиране на входящ адрес</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>Рэдагаваць адрас дасылання</translation>
+        <translation>Редактиране на изходящ адрес</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>Уведзены адрас &quot;%1&quot; ужо ў кніге адрасоў</translation>
+        <translation>Вече има адрес &quot;%1&quot; в списъка с адреси.</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -1048,12 +1044,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+10"/>
         <source>Could not unlock wallet.</source>
-        <translation>Немагчыма разблакаваць гаманец</translation>
+        <translation>Отключването на портфейла беше неуспешно.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>New key generation failed.</source>
-        <translation>Генерацыя новага ключа няўдалая</translation>
+        <translation>Създаването на ключ беше неуспешно.</translation>
     </message>
 </context>
 <context>
@@ -1105,12 +1101,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/optionsdialog.ui" line="+14"/>
         <source>Options</source>
-        <translation>Опцыі</translation>
+        <translation>Опции</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>&amp;Main</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Основни</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1120,7 +1116,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>Pay transaction &amp;fee</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Такса за изходяща транзакция</translation>
     </message>
     <message>
         <location line="+31"/>
@@ -1145,7 +1141,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>&amp;Network</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Мрежа</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1155,7 +1151,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Map port using &amp;UPnP</source>
-        <translation type="unfinished"/>
+        <translation>Отваряне на входящия порт чрез &amp;UPnP</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1200,37 +1196,37 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Прозорец</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation type="unfinished"/>
+        <translation>След минимизиране ще е видима само иконата в системния трей.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Минимизиране в системния трей</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation type="unfinished"/>
+        <translation>При затваряне на прозореца приложението остава минимизирано. Ако изберете тази опция, приложението може да се затвори само чрез Изход в менюто.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M&amp;inimize on close</source>
-        <translation type="unfinished"/>
+        <translation>М&amp;инимизиране при затваряне</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>&amp;Display</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Интерфейс</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation type="unfinished"/>
+        <translation>Език:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1240,12 +1236,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+11"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation type="unfinished"/>
+        <translation>Мерни единици:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation type="unfinished"/>
+        <translation>Изберете единиците, показвани по подразбиране в интерфейса.</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -1307,7 +1303,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>The supplied proxy address is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Прокси адресът е невалиден.</translation>
     </message>
 </context>
 <context>
@@ -1336,7 +1332,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation type="unfinished"/>
+        <translation>Портфейл</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -1371,7 +1367,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+50"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Нядаўнія транзаццыі&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Последни транзакции&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="-118"/>
@@ -1387,7 +1383,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../overviewpage.cpp" line="+116"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation type="unfinished"/>
+        <translation>несинхронизиран</translation>
     </message>
 </context>
 <context>
@@ -1473,7 +1469,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+53"/>
         <location line="+23"/>
         <source>N/A</source>
-        <translation type="unfinished"/>
+        <translation>N/A</translation>
     </message>
     <message>
         <location line="-194"/>
@@ -1498,7 +1494,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>Network</source>
-        <translation type="unfinished"/>
+        <translation>Мрежа</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1603,7 +1599,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+102"/>
         <source>Clear console</source>
-        <translation type="unfinished"/>
+        <translation>Изчисти конзолата</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="+325"/>
@@ -1613,7 +1609,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation type="unfinished"/>
+        <translation>Използвайте стрелки надолу и нагореза разглеждане на историятаот команди и &lt;b&gt;Ctrl-L&lt;/b&gt; за изчистване на конзолата.</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1668,7 +1664,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Даслаць Манеты</translation>
+        <translation>Изпращане</translation>
     </message>
     <message>
         <location line="+76"/>
@@ -1709,7 +1705,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+51"/>
         <source>Amount:</source>
-        <translation type="unfinished"/>
+        <translation>Сума:</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1762,12 +1758,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+106"/>
         <source>Send to multiple recipients at once</source>
-        <translation>Даслаць адразу некалькім атрымальнікам</translation>
+        <translation>Изпращане към повече от един получател</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Add &amp;Recipient</source>
-        <translation type="unfinished"/>
+        <translation>Добави &amp;получател</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1777,7 +1773,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изчисти</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -1792,12 +1788,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+31"/>
         <source>Confirm the send action</source>
-        <translation>Пацвердзіць дасыланне</translation>
+        <translation>Потвърдете изпращането</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation type="unfinished"/>
+        <translation>И&amp;зпрати</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
@@ -1812,7 +1808,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Капіяваць колькасць</translation>
+        <translation>Копирай сума</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1852,7 +1848,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation>Пацвердзіць дасыланне манет</translation>
+        <translation>Потвърждаване</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1867,12 +1863,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation type="unfinished"/>
+        <translation>Невалиден адрес на получателя.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>Велічыня плацяжу мае быць больш за 0.</translation>
+        <translation>Сумата трябва да е по-голяма от 0.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1907,7 +1903,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+13"/>
         <source>(no label)</source>
-        <translation>непазначаны</translation>
+        <translation>(без име)</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1925,12 +1921,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>A&amp;mount:</source>
-        <translation>Колькасць:</translation>
+        <translation>С&amp;ума:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Pay &amp;To:</source>
-        <translation>Заплаціць да:</translation>
+        <translation>Плати &amp;На:</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1941,12 +1937,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+60"/>
         <location filename="../sendcoinsentry.cpp" line="+26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Увядзіце пазнаку гэтаму адрасу, каб дадаць яго ў адрасную кнігу</translation>
+        <translation>Въведете име за този адрес, за да го добавите в списъка с адреси</translation>
     </message>
     <message>
         <location line="-78"/>
         <source>&amp;Label:</source>
-        <translation>Пазнака:</translation>
+        <translation>&amp;Име:</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -1961,7 +1957,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation>Уставіць адрас з буферу абмена</translation>
+        <translation>Вмъкни от клипборда</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1984,18 +1980,18 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation type="unfinished"/>
+        <translation>Подпиши / Провери съобщение</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Подпиши</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation type="unfinished"/>
+        <translation>Можете да подпишете съобщение като доказателство, че притежавате определен адрес. Бъдете внимателни и не подписвайте съобщения, които биха разкрили лична информация без вашето съгласие.</translation>
     </message>
     <message>
         <location line="+18"/>
@@ -2017,7 +2013,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation>Уставіць адрас з буферу абмена</translation>
+        <translation>Вмъкни от клипборда</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2027,12 +2023,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+12"/>
         <source>Enter the message you want to sign here</source>
-        <translation type="unfinished"/>
+        <translation>Въведете съобщението тук</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy the current signature to the system clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Копиране на текущия подпис</translation>
     </message>
     <message>
         <location line="+21"/>
@@ -2048,13 +2044,13 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Изчисти</translation>
     </message>
     <message>
         <location line="-87"/>
         <location line="+70"/>
         <source>&amp;Verify Message</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Провери</translation>
     </message>
     <message>
         <location line="-64"/>
@@ -2085,7 +2081,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation type="unfinished"/>
+        <translation>Натиснете &quot;Подписване на съобщение&quot; за да създадете подпис</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2096,7 +2092,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+82"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
-        <translation type="unfinished"/>
+        <translation>Въведеният адрес е невалиден.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -2104,7 +2100,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+73"/>
         <location line="+8"/>
         <source>Please check the address and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Моля проверете адреса и опитайте отново.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -2120,43 +2116,43 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
-        <translation type="unfinished"/>
+        <translation>Не е наличен частният ключ за въведеният адрес.</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Message signing failed.</source>
-        <translation type="unfinished"/>
+        <translation>Подписването на съобщение бе неуспешно.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message signed.</source>
-        <translation type="unfinished"/>
+        <translation>Съобщението е подписано.</translation>
     </message>
     <message>
         <location line="+59"/>
         <source>The signature could not be decoded.</source>
-        <translation type="unfinished"/>
+        <translation>Подписът не може да бъде декодиран.</translation>
     </message>
     <message>
         <location line="+0"/>
         <location line="+13"/>
         <source>Please check the signature and try again.</source>
-        <translation type="unfinished"/>
+        <translation>Проверете подписа и опитайте отново.</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>The signature did not match the message digest.</source>
-        <translation type="unfinished"/>
+        <translation>Подписът не отговаря на комбинацията от съобщение и адрес.</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Message verification failed.</source>
-        <translation type="unfinished"/>
+        <translation>Проверката на съобщението беше неуспешна.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message verified.</source>
-        <translation type="unfinished"/>
+        <translation>Съобщението е потвърдено.</translation>
     </message>
 </context>
 <context>
@@ -2172,7 +2168,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiondesc.cpp" line="+25"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>Подлежи на промяна до %1</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2182,22 +2178,22 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation type="unfinished"/>
+        <translation>%1/офлайн</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/unconfirmed</source>
-        <translation>%1/непацверджана</translation>
+        <translation>%1/непотвърдени</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 confirmations</source>
-        <translation>%1 пацверджанняў</translation>
+        <translation>включена в %1 блока</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Status</source>
-        <translation type="unfinished"/>
+        <translation>Статус</translation>
     </message>
     <message numerus="yes">
         <location line="+7"/>
@@ -2212,36 +2208,36 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Source</source>
-        <translation type="unfinished"/>
+        <translation>Източник</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Generated</source>
-        <translation type="unfinished"/>
+        <translation>Издадени</translation>
     </message>
     <message>
         <location line="+5"/>
         <location line="+17"/>
         <source>From</source>
-        <translation type="unfinished"/>
+        <translation>От</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+22"/>
         <location line="+58"/>
         <source>To</source>
-        <translation type="unfinished"/>
+        <translation>За</translation>
     </message>
     <message>
         <location line="-77"/>
         <location line="+2"/>
         <source>own address</source>
-        <translation type="unfinished"/>
+        <translation>собствен адрес</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>label</source>
-        <translation type="unfinished"/>
+        <translation>име</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -2250,7 +2246,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+17"/>
         <location line="+30"/>
         <source>Credit</source>
-        <translation type="unfinished"/>
+        <translation>Кредит</translation>
     </message>
     <message numerus="yes">
         <location line="-102"/>
@@ -2268,32 +2264,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+15"/>
         <location line="+30"/>
         <source>Debit</source>
-        <translation type="unfinished"/>
+        <translation>Дебит</translation>
     </message>
     <message>
         <location line="-39"/>
         <source>Transaction fee</source>
-        <translation type="unfinished"/>
+        <translation>Такса</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation type="unfinished"/>
+        <translation>Сума нето</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Съобщение</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Comment</source>
-        <translation type="unfinished"/>
+        <translation>Коментар</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Transaction ID</source>
-        <translation type="unfinished"/>
+        <translation>ID</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2308,7 +2304,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+8"/>
         <source>Transaction</source>
-        <translation type="unfinished"/>
+        <translation>Транзакция</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2318,22 +2314,22 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>Amount</source>
-        <translation>Колькасць</translation>
+        <translation>Сума</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>true</source>
-        <translation type="unfinished"/>
+        <translation>true</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>false</source>
-        <translation type="unfinished"/>
+        <translation>false</translation>
     </message>
     <message>
         <location line="-209"/>
         <source>, has not been successfully broadcast yet</source>
-        <translation>, пакуль не было паспяхова транслявана</translation>
+        <translation>, все още не е изпратено</translation>
     </message>
     <message numerus="yes">
         <location line="-36"/>
@@ -2343,7 +2339,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+71"/>
         <source>unknown</source>
-        <translation>невядома</translation>
+        <translation>неизвестен</translation>
     </message>
 </context>
 <context>
@@ -2351,12 +2347,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/transactiondescdialog.ui" line="+14"/>
         <source>Transaction details</source>
-        <translation>Дэталі транзакцыі</translation>
+        <translation>Транзакция</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>Гэтая панэль паказвае дэтальнае апісанне транзакцыі</translation>
+        <translation>Описание на транзакцията</translation>
     </message>
 </context>
 <context>
@@ -2369,27 +2365,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+0"/>
         <source>Type</source>
-        <translation>Тып</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Адрас</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Amount</source>
-        <translation>Колькасць</translation>
+        <translation>Сума</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Open until %1</source>
-        <translation type="unfinished"/>
+        <translation>Подлежи на промяна до %1</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Confirmed (%1 confirmations)</source>
-        <translation>Пацверджана (%1 пацверджанняў)</translation>
+        <translation>Потвърдени (%1 потвърждения)</translation>
     </message>
     <message numerus="yes">
         <location line="-15"/>
@@ -2424,37 +2420,37 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Гэты блок не быў прыняты іншымі вузламі і магчыма не будзе ўхвалены!</translation>
+        <translation>Блокът не е получен от останалите участници и най-вероятно няма да бъде одобрен.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated but not accepted</source>
-        <translation>Згенеравана, але не прынята</translation>
+        <translation>Генерирана, но отхвърлена от мрежата</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Received with</source>
-        <translation>Прынята з</translation>
+        <translation>Получени с</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Received from</source>
-        <translation>Прынята ад</translation>
+        <translation>Получен от</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sent to</source>
-        <translation>Даслана да</translation>
+        <translation>Изпратени на</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>Плацёж самому сабе</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Mined</source>
-        <translation>Здабыта</translation>
+        <translation>Емитирани</translation>
     </message>
     <message>
         <location line="+38"/>
@@ -2464,27 +2460,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+194"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>Статус транзакцыі. Навядзіце курсар на гэтае поле, каб паказаць колькасць пацверджанняў.</translation>
+        <translation>Състояние на транзакцията. Задръжте върху това поле за брой потвърждения.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Date and time that the transaction was received.</source>
-        <translation>Дата і час, калі транзакцыя была прынята.</translation>
+        <translation>Дата и час на получаване.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type of transaction.</source>
-        <translation>Тып транзакцыі</translation>
+        <translation>Тип на транзакцията.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Destination address of transaction.</source>
-        <translation>Адрас прызначэння транзакцыі.</translation>
+        <translation>Получател на транзакцията.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Amount removed from or added to balance.</source>
-        <translation>Колькасць аднятая ці даданая да балансу.</translation>
+        <translation>Сума извадена или добавена към баланса.</translation>
     </message>
 </context>
 <context>
@@ -2493,97 +2489,97 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../transactionview.cpp" line="+54"/>
         <location line="+17"/>
         <source>All</source>
-        <translation>Усё</translation>
+        <translation>Всички</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Today</source>
-        <translation>Сёння</translation>
+        <translation>Днес</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This week</source>
-        <translation>Гэты тыдзень</translation>
+        <translation>Тази седмица</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This month</source>
-        <translation>Гэты месяц</translation>
+        <translation>Този месец</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Last month</source>
-        <translation>Мінулы месяц</translation>
+        <translation>Предния месец</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This year</source>
-        <translation>Гэты год</translation>
+        <translation>Тази година</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Range...</source>
-        <translation>Прамежак...</translation>
+        <translation>От - до...</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Received with</source>
-        <translation>Прынята з</translation>
+        <translation>Получени</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Sent to</source>
-        <translation>Даслана да</translation>
+        <translation>Изпратени на</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>To yourself</source>
-        <translation>Да сябе</translation>
+        <translation>Собствени</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Mined</source>
-        <translation>Здабыта</translation>
+        <translation>Емитирани</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Other</source>
-        <translation>Іншыя</translation>
+        <translation>Други</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Enter address or label to search</source>
-        <translation>Увядзіце адрас ці пазнаку для пошуку</translation>
+        <translation>Търсене по адрес или име</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>Мін. колькасць</translation>
+        <translation>Минимална сума</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Copy address</source>
-        <translation>Капіяваць адрас</translation>
+        <translation>Копирай адрес</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Капіяваць пазнаку</translation>
+        <translation>Копирай име</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Капіяваць колькасць</translation>
+        <translation>Копирай сума</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy transaction ID</source>
-        <translation>Капіяваць ID транзакцыі</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit label</source>
-        <translation>Рэдагаваць пазнаку</translation>
+        <translation>Редактирай име</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2598,12 +2594,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Коскамі падзелены файл (*.csv)</translation>
+        <translation>CSV файл (*.csv)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Confirmed</source>
-        <translation>Пацверджана</translation>
+        <translation>Потвърдени</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2613,27 +2609,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation>Тып</translation>
+        <translation>Тип</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Label</source>
-        <translation>Пазнака</translation>
+        <translation>Име</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Address</source>
-        <translation>Адрас</translation>
+        <translation>Адрес</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Amount</source>
-        <translation>Колькасць</translation>
+        <translation>Сума</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>ID</source>
-        <translation>ID</translation>
+        <translation>ИД</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2648,12 +2644,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+100"/>
         <source>Range:</source>
-        <translation>Прамежак:</translation>
+        <translation>От:</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>to</source>
-        <translation>да</translation>
+        <translation>до</translation>
     </message>
 </context>
 <context>
@@ -2674,7 +2670,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Usage:</source>
-        <translation>Ужыванне:</translation>
+        <translation>Използване:</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2684,17 +2680,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>List commands</source>
-        <translation>Спіс каманд</translation>
+        <translation>Вписване на команди</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get help for a command</source>
-        <translation>Атрымаць дапамогу для каманды</translation>
+        <translation>Получете помощ за команда</translation>
     </message>
     <message>
         <location line="-147"/>
         <source>Options:</source>
-        <translation>Опцыі:</translation>
+        <translation>Опции:</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2714,7 +2710,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation>Вызначыць каталог даных</translation>
+        <translation>Определете директория за данните</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2734,7 +2730,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+27"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation>Пазначыць памер кэшу базы звестак у мегабайтах (тыпова: 25)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -2749,7 +2745,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>Трымаць не больш за &lt;n&gt; злучэнняў на асобу (зыходна: 125)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -2779,12 +2775,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation>Парог для адлучэння злаўмысных карыстальнікаў (тыпова: 100)</translation>
+        <translation>Праг на прекъсване на връзката при непорядъчно държащи се пиъри (по подразбиране:100)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation>Колькасць секунд для ўстрымання асобаў да перадалучэння (заходна: 86400)</translation>
+        <translation>Брой секунди до възтановяване на връзката за зле държащите се пиъри (по подразбиране:86400)</translation>
     </message>
     <message>
         <location line="-37"/>
@@ -2799,17 +2795,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-17"/>
         <source>Accept command line and JSON-RPC commands</source>
-        <translation>Прымаць камандны радок і JSON-RPC каманды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Запусціць у фоне як дэман і прымаць каманды</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Use the test network</source>
-        <translation>Ужываць тэставае сеціва</translation>
+        <translation>Използвайте тестовата мрежа</translation>
     </message>
     <message>
         <location line="-24"/>
@@ -2919,7 +2915,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+42"/>
         <source>Send trace/debug info to console instead of debug.log file</source>
-        <translation>Слаць trace/debug звесткі ў кансоль замест файла debug.log</translation>
+        <translation>Изпрати локализиращата или дебъг информацията към конзолата, вместо файлът debug.log</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -2970,7 +2966,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+47"/>
         <source>Username for JSON-RPC connections</source>
-        <translation>Імя карыстальника для JSON-RPC злучэнняў</translation>
+        <translation>Потребителско име за JSON-RPC връзките</translation>
     </message>
     <message>
         <location line="+51"/>
@@ -3025,7 +3021,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-56"/>
         <source>Password for JSON-RPC connections</source>
-        <translation>Пароль для JSON-RPC злучэнняў</translation>
+        <translation>Парола за  JSON-RPC връзките</translation>
     </message>
     <message>
         <location line="-32"/>
@@ -3060,12 +3056,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation>Дазволіць  JSON-RPC злучэнні з пэўнага IP адрасу</translation>
+        <translation>Разреши  JSON-RPC връзките от отучнен IP адрес</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation>Адпраўляць каманды вузлу на &lt;ip&gt; (зыходна: 127.0.0.1)</translation>
+        <translation>Изпрати команди до възел функциониращ на &lt;ip&gt; (По подразбиране: 127.0.0.1)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3080,7 +3076,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation>Выканаць каманду калі лепшы блок зменіцца (%s замяняецца на хэш блока)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -3100,17 +3096,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>Upgrade wallet to latest format</source>
-        <translation>Абнавіць гаманец на новы фармат</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation>Устанавіць памер фонда ключоў у &lt;n&gt; (тыпова: 100)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Перасканаваць ланцуг блокаў дзеля пошуку адсутных транзакцый</translation>
+        <translation>Повторно сканиране на блок-връзка за липсващи портефейлни транзакции</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3125,17 +3121,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation>Ужываць OpenSSL (https) для JSON-RPC злучэнняў</translation>
+        <translation>Използвайте OpenSSL (https) за JSON-RPC връзките</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server certificate file (default: server.cert)</source>
-        <translation>Файл-сертыфікат сервера (зыходна: server.cert)</translation>
+        <translation>Сертификатен файл на сървъра (По подразбиране:server.cert)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server private key (default: server.pem)</source>
-        <translation>Прыватны ключ сервера (зыходна: server.pem)</translation>
+        <translation>Поверителен ключ за сървъра (default: server.pem)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -3165,7 +3161,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-174"/>
         <source>This help message</source>
-        <translation type="unfinished"/>
+        <translation>Това помощно съобщение</translation>
     </message>
     <message>
         <location line="+104"/>
@@ -3190,7 +3186,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+126"/>
         <source>Loading addresses...</source>
-        <translation>Загружаем адрасы...</translation>
+        <translation>Зареждане на адресите...</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -3200,7 +3196,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+2"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Памылка загрузкі wallet.dat: гаманец пашкоджаны</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
@@ -3215,12 +3211,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Error loading wallet.dat</source>
-        <translation>Памылка загрузкі wallet.dat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-16"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <translation>Невалиден -proxy address: &apos;%s&apos;</translation>
     </message>
     <message>
         <location line="-1"/>
@@ -3255,17 +3251,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Invalid amount</source>
-        <translation>Памылковая колькасць</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Insufficient funds</source>
-        <translation>Недастаткова сродкаў</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-40"/>
         <source>Loading block index...</source>
-        <translation>Загружаем індэкс блокаў...</translation>
+        <translation>Зареждане на блок индекса...</translation>
     </message>
     <message>
         <location line="-110"/>
@@ -3325,7 +3321,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+17"/>
         <source>Loading wallet...</source>
-        <translation>Загружаем гаманец...</translation>
+        <translation>Зареждане на портфейла...</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -3340,12 +3336,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Rescanning...</source>
-        <translation>Перасканаванне...</translation>
+        <translation>Преразглеждане на последовтелността от блокове...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Done loading</source>
-        <translation>Загрузка выканана</translation>
+        <translation>Зареждането е завършено</translation>
     </message>
     <message>
         <location line="-161"/>
@@ -3355,7 +3351,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+188"/>
         <source>Error</source>
-        <translation>Памылка</translation>
+        <translation>Грешка</translation>
     </message>
     <message>
         <location line="-18"/>
