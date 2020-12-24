@@ -259,4 +259,228 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+82"/>
         <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>WayaWolfCoin tancarà ara per acabar el procés de xifrat. Recordeu que l&apos;encriptació del seu 
+        <translation>WayaWolfCoin tancarà ara per acabar el procés de xifrat. Recordeu que l&apos;encriptació del seu moneder no pot protegir completament les seves monedes de ser robades pel malware que pugui infectar al seu equip.</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+7"/>
+        <location line="+44"/>
+        <location line="+6"/>
+        <source>Wallet encryption failed</source>
+        <translation>L&apos;encriptació del moneder ha fallat</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>L&apos;encriptació del moneder ha fallat per un error intern. El seu moneder no ha estat encriptat.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+50"/>
+        <source>The supplied passphrases do not match.</source>
+        <translation>La contrasenya introduïda no coincideix.</translation>
+    </message>
+    <message>
+        <location line="-38"/>
+        <source>Wallet unlock failed</source>
+        <translation>El desbloqueig del moneder ha fallat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+12"/>
+        <location line="+19"/>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>La contrasenya introduïda per a desencriptar el moneder és incorrecte.</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>Wallet decryption failed</source>
+        <translation>La desencriptació del moneder ha fallat</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>La contrasenya del moneder ha estat modificada correctament.</translation>
+    </message>
+</context>
+<context>
+    <name>WayaWolfCoinGUI</name>
+    <message>
+        <location filename="../bitcoingui.cpp" line="+297"/>
+        <source>Sign &amp;message...</source>
+        <translation>Signar &amp;missatge...</translation>
+    </message>
+    <message>
+        <location line="-64"/>
+        <source>Show general overview of wallet</source>
+        <translation>Mostra panorama general del moneder</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Transaccions</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Browse transaction history</source>
+        <translation>Cerca a l&apos;historial de transaccions</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Address Book</source>
+        <translation>&amp;Llibreta d&apos;adreces</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Edició de la llista d&apos;adreces i etiquetes emmagatzemades</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Mostra la llista d&apos;adreces per rebre pagaments</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>E&amp;xit</source>
+        <translation>S&amp;ortir</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Quit application</source>
+        <translation>Sortir de l&apos;aplicació</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Show information about WayaWolfCoin</source>
+        <translation>Mostra informació sobre WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>About &amp;Qt</source>
+        <translation>Sobre &amp;Qt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Qt</source>
+        <translation>Mostra informació sobre Qt</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Opcions...</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>&amp;Xifrar moneder</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation>&amp;Realitzar copia de seguretat del moneder...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation>&amp;Canviar contrasenya...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Exportar...</translation>
+    </message>
+    <message>
+        <location line="-55"/>
+        <source>Send coins to a WayaWolfCoin address</source>
+        <translation>Enviar monedes a una adreça WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Modify configuration options for WayaWolfCoin</source>
+        <translation>Modificar les opcions de configuració per a WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Exportar les dades de la pestanya actual a un arxiu</translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Xifrar o desxifrar moneder</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Backup wallet to another location</source>
+        <translation>Realitzar còpia de seguretat del moneder a un altre directori</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Canviar la constrasenya d&apos;encriptació del moneder</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Debug window</source>
+        <translation>&amp;Finestra de depuració</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Obrir la consola de diagnòstic i depuració</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Verifica el missatge..</translation>
+    </message>
+    <message>
+        <location line="-214"/>
+        <location line="+551"/>
+        <source>WayaWolfCoin</source>
+        <translation>WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="-551"/>
+        <source>Wallet</source>
+        <translation>Moneder</translation>
+    </message>
+    <message>
+        <location line="+193"/>
+        <source>&amp;About WayaWolfCoin</source>
+        <translation>&amp;Sobre WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Show / Hide</source>
+        <translation>&amp;Mostrar / Amagar</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Unlock wallet</source>
+        <translation>Desbloquejar el moneder</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Lock Wallet</source>
+        <translation>&amp;Bloquejar moneder</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation>Bloquejar moneder</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;File</source>
+        <translation>&amp;Arxiu</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Configuració</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+      
