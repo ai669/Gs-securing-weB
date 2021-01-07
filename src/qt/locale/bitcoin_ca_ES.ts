@@ -1579,4 +1579,254 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location line="+3"/>
         <source>&amp;Show</source>
-        
+        <translation>&amp;Mostra</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>&amp;Console</source>
+        <translation>&amp;Consola</translation>
+    </message>
+    <message>
+        <location line="-237"/>
+        <source>Build date</source>
+        <translation>Data de compilació</translation>
+    </message>
+    <message>
+        <location line="-104"/>
+        <source>WayaWolfCoin - Debug window</source>
+        <translation>WayaWolfCoin - Finestra Depuració</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>WayaWolfCoin Core</source>
+        <translation>Nucli WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+256"/>
+        <source>Debug log file</source>
+        <translation>Dietàri de depuració</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Open the WayaWolfCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>Obriu el fitxer de registre de depuració WayaWolfCoin des del directori de dades actual. Això pot trigar uns segons en els arxius de registre de grans dimensions.</translation>
+    </message>
+    <message>
+        <location line="+102"/>
+        <source>Clear console</source>
+        <translation>Netejar consola</translation>
+    </message>
+    <message>
+        <location filename="../rpcconsole.cpp" line="+325"/>
+        <source>Welcome to the WayaWolfCoin RPC console.</source>
+        <translation>Benvingut a la consola RPC de WayaWolfCoin.</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>Utilitza les fletxes d&apos;amunt i avall per navegar per l&apos;històric, i &lt;b&gt;Ctrl-L&lt;\b&gt; per netejar la pantalla.</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <translation>Escriu &lt;b&gt;help&lt;\b&gt; per a obtenir una llistat de les ordres disponibles.</translation>
+    </message>
+    <message>
+        <location line="+127"/>
+        <source>%1 B</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 KB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 MB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 GB</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 m</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 h</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 h %2 m</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>SendCoinsDialog</name>
+    <message>
+        <location filename="../forms/sendcoinsdialog.ui" line="+14"/>
+        <location filename="../sendcoinsdialog.cpp" line="+181"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <location line="+6"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <source>Send Coins</source>
+        <translation>Enviar monedes</translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Coin Control Features</source>
+        <translation>(Opcions del control del Coin)</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Inputs...</source>
+        <translation>Entrades</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>automatically selected</source>
+        <translation>Seleccionat automàticament</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Insufficient funds!</source>
+        <translation>Fons insuficient</translation>
+    </message>
+    <message>
+        <location line="+77"/>
+        <source>Quantity:</source>
+        <translation>Quantitat:</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+35"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <source>Bytes:</source>
+        <translation>Bytes:</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Amount:</source>
+        <translation>Quantitat:</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+86"/>
+        <location line="+86"/>
+        <location line="+32"/>
+        <source>0.00 TX</source>
+        <translation>123.456 TX {0.00 ?}</translation>
+    </message>
+    <message>
+        <location line="-191"/>
+        <source>Priority:</source>
+        <translation>Prioritat:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>medium</source>
+        <translation>mig</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Fee:</source>
+        <translation>Quota:</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Low Output:</source>
+        <translation>Sortida baixa:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>no</source>
+        <translation>no</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>After Fee:</source>
+        <translation>Quota posterior:</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Change</source>
+        <translation>Canvi</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>custom change address</source>
+        <translation>Adreça de canvi pròpia</translation>
+    </message>
+    <message>
+        <location line="+106"/>
+        <source>Send to multiple recipients at once</source>
+        <translation>Enviar a multiples destinataris al mateix temps</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add &amp;Recipient</source>
+        <translation>Afegir &amp;Destinatari</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Remove all transaction fields</source>
+        <translation>Traieu tots els camps de transacció</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Clear &amp;All</source>
+        <translation>Esborrar &amp;Tot</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Balance:</source>
+        <translation>Balanç:</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>123.456 TX</source>
+        <translation>123.456 TX</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Confirm the send action</source>
+        <translation>Confirmi l&apos;acció d&apos;enviament</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>S&amp;end</source>
+        <translation>E&amp;nviar</translation>
+    </message>
+    <message>
+        <location filename="../sendcoinsdialog.cpp" line="-173"/>
+        <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
+        <translation>Introdueix una adreça WayaWolfCoin (p.ex. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Copy quantity</source>
+        <translation>Copiar quantitat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy amount</source>
+        <translation>Copiar quantitat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy fee</source>
+        <translation>Copiar comisió</translation>
+ 
