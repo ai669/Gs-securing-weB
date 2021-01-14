@@ -2445,4 +2445,268 @@ En aquest cas es requereix una comisió d&apos;almenys 2%.</translation>
     <message>
         <location line="+42"/>
         <source>Received with</source>
-        <translation>Rebut desde</t
+        <translation>Rebut desde</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Received from</source>
+        <translation>Rebut de</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Sent to</source>
+        <translation>Enviat a</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Payment to yourself</source>
+        <translation>Pagament a un mateix</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Mined</source>
+        <translation>Minat</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>(n/a)</source>
+        <translation>(n/a)</translation>
+    </message>
+    <message>
+        <location line="+194"/>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>Estat de la transacció. Desplaça&apos;t per aquí sobre per mostrar el nombre de confirmacions.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Date and time that the transaction was received.</source>
+        <translation>Data i hora en que la transacció va ser rebuda.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Type of transaction.</source>
+        <translation>Tipus de transacció.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Destination address of transaction.</source>
+        <translation>Adreça del destinatari de la transacció.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Amount removed from or added to balance.</source>
+        <translation>Quantitat extreta o afegida del balanç.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <location filename="../transactionview.cpp" line="+54"/>
+        <location line="+17"/>
+        <source>All</source>
+        <translation>Tot</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <source>Today</source>
+        <translation>Avui</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This week</source>
+        <translation>Aquesta setmana</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This month</source>
+        <translation>Aquest mes</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Last month</source>
+        <translation>El mes passat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This year</source>
+        <translation>Enguany</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Range...</source>
+        <translation>Rang...</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Received with</source>
+        <translation>Rebut desde</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Sent to</source>
+        <translation>Enviat a</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To yourself</source>
+        <translation>A tu mateix</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Mined</source>
+        <translation>Minat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Other</source>
+        <translation>Altres</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Enter address or label to search</source>
+        <translation>Introdueix una adreça o una etiqueta per cercar</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Min amount</source>
+        <translation>Quantitat mínima</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Copy address</source>
+        <translation>Copiar adreça </translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy label</source>
+        <translation>Copiar etiqueta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy amount</source>
+        <translation>Copiar quantitat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy transaction ID</source>
+        <translation>Copiar ID de transacció</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit label</source>
+        <translation>Editar etiqueta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show transaction details</source>
+        <translation>Mostra detalls de la transacció</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>Export Transaction Data</source>
+        <translation>Exportació de dades de transaccions</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Arxiu de separació per comes (*.csv)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Confirmed</source>
+        <translation>Confirmat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Date</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type</source>
+        <translation>Tipus</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Label</source>
+        <translation>Etiqueta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Address</source>
+        <translation>Direcció</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Amount</source>
+        <translation>Quantitat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error exporting</source>
+        <translation>Error a l&apos;exportar</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Could not write to file %1.</source>
+        <translation>No s&apos;ha pogut escriure al fitxer %1.</translation>
+    </message>
+    <message>
+        <location line="+100"/>
+        <source>Range:</source>
+        <translation>Rang:</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>to</source>
+        <translation>a</translation>
+    </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <location filename="../walletmodel.cpp" line="+208"/>
+        <source>Sending...</source>
+        <translation>Enviant...</translation>
+    </message>
+</context>
+<context>
+    <name>bitcoin-core</name>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="+173"/>
+        <source>WayaWolfCoin version</source>
+        <translation>versió WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Usage:</source>
+        <translation>Ús:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send command to -server or WayaWolfCoind</source>
+        <translation>Enviar comandes a -server o WayaWolfCoind</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>List commands</source>
+        <translation>Llista d&apos;ordres</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get help for a command</source>
+        <translation>Obtenir ajuda per a un ordre.</translation>
+    </message>
+    <message>
+        <location line="-147"/>
+        <source>Options:</source>
+        <translation>Opcions:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify configuration file (default: WayaWolfCoin.conf)</so
