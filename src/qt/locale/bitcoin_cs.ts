@@ -1129,4 +1129,197 @@ To znamená, že je potřebný poplatek ve výši nejméně %2.</translation>
     </message>
     <message>
         <location line="+6"/>
-     
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation>Volitelný poplatek transakce za kB, který zajistí, že tvé transakce jsou rychle zpracovány. Většina transakcí má 1 kB. Poplatek 0.01 je doporučený.</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Platit transakční &amp;poplatek</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <translation>Rezervované množství se nepoužívá při stakingu a může tak být použito kdykoli.</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Reserve</source>
+        <translation>Rezerva</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Automatically start WayaWolfCoin after logging in to the system.</source>
+        <translation>Automaticky spustit WayaWolfCoin po přihlášení do systému.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Start WayaWolfCoin on system login</source>
+        <translation>&amp;Spustit WayaWolfCoin při přihlášení do systému</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Network</source>
+        <translation>&amp;Síť</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automaticky otevřít port WayaWolfCoin klienta na routeru. Funguje to jen tehdy, když router podporuje UPnP a je povoleno.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Namapovat port přes &amp;UPnP</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Connect to the WayaWolfCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Připoj se do sítě WayaWolfCoin přes SOCKS proxy (např. při připojení přes Tor)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Connect through SOCKS proxy:</source>
+        <translation>&amp;Připoj se přes SOCKS proxy:</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Proxy &amp;IP:</source>
+        <translation>&amp;IP adresa proxy:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
+        <translation>IP adresa proxy (např. 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Port:</source>
+        <translation>&amp;Port:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>Port proxy (např. 9050)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>SOCKS &amp;Version:</source>
+        <translation>&amp;Verze SOCKS:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>SOCKS version of the proxy (e.g. 5)</source>
+        <translation>Verze SOCKS proxy (např. 5)</translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>&amp;Window</source>
+        <translation>&amp;Okno</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Show only a tray icon after minimizing the window.</source>
+        <translation>Po minimalizaci okna zobrazí pouze ikonu v panelu.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>&amp;Minimalizovávat do ikony v panelu</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <translation>Zavřením se aplikace minimalizuje. Pokud je tato volba zaškrtnuta, tak se aplikace ukončí pouze zvolením Konec v menu.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>M&amp;inimize on close</source>
+        <translation>Za&amp;vřením minimalizovat</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Display</source>
+        <translation>Zobr&amp;azení</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>User Interface &amp;language:</source>
+        <translation>&amp;Jazyk uživatelského rozhraní:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>The user interface language can be set here. This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>Zde můžeš nastavit jazyk uživatelského rozhraní. Nastavení se projeví až po restartu WayaWolfCoinu.</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>&amp;Jednotka pro částky: </translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>Zvol výchozí podjednotku, která se bude zobrazovat v programu a při posílání mincí.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Whether to show coin control features or not.</source>
+        <translation>Zda chceš zobrazit funkci řízení mincí nebo ne.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Display coin &amp;control features (experts only!)</source>
+        <translation>Zobraz funkci &amp;řízení mincí (jen pro odborníky!)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select the coin outputs randomly or with minimal coin age.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize weight consumption (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Use Dark Visual theme (requires restart)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Zrušit</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Apply</source>
+        <translation>&amp;Použit</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="+53"/>
+        <source>default</source>
+        <translation>výchozí</translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <location line="+9"/>
+        <source>Warning</source>
+        <translation>Upozornění</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+9"/>
+        <source>This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>Nastavení se projeví až po restartu WayaWolfCoinu.</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>The supplied proxy address is invalid.</source>
+        <trans
