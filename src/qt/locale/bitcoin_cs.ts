@@ -2010,4 +2010,205 @@ To znamená, že je potřebný poplatek ve výši nejméně %2.</translation>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Podepsáním zprávy svými adresami můžeš prokázat, že je skutečně vlastníš. Buď opatrný a nepodepisuj nic vágního; například při phishingových útocích můžeš být lákán, a
+        <translation>Podepsáním zprávy svými adresami můžeš prokázat, že je skutečně vlastníš. Buď opatrný a nepodepisuj nic vágního; například při phishingových útocích můžeš být lákán, abys něco takového podepsal. Podepisuj pouze zcela úplná a detailní prohlášení, se kterými souhlasíš.</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>The address to sign the message with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
+        <translation>Adresa pro podepsání zprávy (např. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <location line="+203"/>
+        <source>Choose an address from the address book</source>
+        <translation>Vyber adresu z adresáře</translation>
+    </message>
+    <message>
+        <location line="-193"/>
+        <location line="+203"/>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <location line="-193"/>
+        <source>Paste address from clipboard</source>
+        <translation>Vlož adresu ze schránky</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Enter the message you want to sign here</source>
+        <translation>Sem vepiš zprávu, kterou chceš podepsat</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Copy the current signature to the system clipboard</source>
+        <translation>Zkopíruj aktuálně vybraný podpis do systémové schránky</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Sign the message to prove you own this WayaWolfCoin address</source>
+        <translation>Podepiš zprávu jako důkaz, že vlastníš tuto WayaWolfCoin adresu</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Reset all sign message fields</source>
+        <translation>Vymaž všechna pole formuláře pro podepsání zrávy</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <location line="+146"/>
+        <source>Clear &amp;All</source>
+        <translation>Všechno &amp;smaž</translation>
+    </message>
+    <message>
+        <location line="-87"/>
+        <location line="+70"/>
+        <source>&amp;Verify Message</source>
+        <translation>&amp;Ověř zprávu</translation>
+    </message>
+    <message>
+        <location line="-64"/>
+        <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
+        <translation>K ověření podpisu zprávy zadej podepisující adresu, zprávu (ověř si, že správně kopíruješ zalomení řádků, mezery, tabulátory apod.) a podpis. Dávej pozor na to, abys nezkopíroval do podpisu víc, než co je v samotné podepsané zprávě, abys nebyl napálen man-in-the-middle útokem.</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>The address the message was signed with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
+        <translation>Adresa kterou byla zpráva podepsána (např. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+    </message>
+    <message>
+        <location line="+40"/>
+        <source>Verify the message to ensure it was signed with the specified WayaWolfCoin address</source>
+        <translation>Ověř zprávu, aby ses ujistil, že byla podepsána danou WayaWolfCoin adresou</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Reset all verify message fields</source>
+        <translation>Vymaž všechna pole formuláře pro ověření zrávy</translation>
+    </message>
+    <message>
+        <location filename="../signverifymessagedialog.cpp" line="+27"/>
+        <location line="+3"/>
+        <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
+        <translation>Zadej WayaWolfCoin adresu (např. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>Click &quot;Sign Message&quot; to generate signature</source>
+        <translation>Kliknutím na &quot;Podepiš zprávu&quot; vygeneruješ podpis</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Enter WayaWolfCoin signature</source>
+        <translation>Zadej WayaWolfCoin podpis</translation>
+    </message>
+    <message>
+        <location line="+82"/>
+        <location line="+81"/>
+        <source>The entered address is invalid.</source>
+        <translation>Zadaná adresa je neplatná.</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <location line="+8"/>
+        <location line="+73"/>
+        <location line="+8"/>
+        <source>Please check the address and try again.</source>
+        <translation>Zkontroluj ji prosím a zkus to pak znovu.</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <location line="+81"/>
+        <source>The entered address does not refer to a key.</source>
+        <translation>Zadaná adresa nepasuje ke klíči.</translation>
+    </message>
+    <message>
+        <location line="-73"/>
+        <source>Wallet unlock was cancelled.</source>
+        <translation>Odemčení peněženky bylo zrušeno.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Private key for the entered address is not available.</source>
+        <translation>Soukromý klíč pro zadanou adresu není dostupný.</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Message signing failed.</source>
+        <translation>Podepisování zprávy selhalo.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Message signed.</source>
+        <translation>Zpráv podepsána.</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>The signature could not be decoded.</source>
+        <translation>Podpis nejde dekódovat.</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+13"/>
+        <source>Please check the signature and try again.</source>
+        <translation>Zkontroluj ho prosím a zkus to pak znovu.</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>The signature did not match the message digest.</source>
+        <translation>Podpis se neshoduje s hašem zprávy.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Message verification failed.</source>
+        <translation>Ověřování zprávy selhalo.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Message verified.</source>
+        <translation>Zpráva ověřena.</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <location filename="../trafficgraphwidget.cpp" line="+75"/>
+        <source>KB/s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TransactionDesc</name>
+    <message>
+        <location filename="../transactiondesc.cpp" line="+25"/>
+        <source>Open until %1</source>
+        <translation>Otřevřeno dokud %1</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>conflicted</source>
+        <translation>v rozporu</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/offline</source>
+        <translation>%1/offline</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/unconfirmed</source>
+        <translation>%1/nepotvrzeno</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 confirmations</source>
+        <translation>%1 potvrzení</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Status</sourc
