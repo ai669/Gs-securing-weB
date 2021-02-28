@@ -2864,4 +2864,185 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-31"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-     
+        <translation>Pokusit se zachránit soukromé klíče z poškozeného souboru wallet.dat</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Block creation options:</source>
+        <translation>Možnosti vytvoření bloku:</translation>
+    </message>
+    <message>
+        <location line="-69"/>
+        <source>Connect only to the specified node(s)</source>
+        <translation>Připojit se pouze k zadanému uzlu (příp. zadaným uzlům)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>Zjistit vlastní IP adresu (výchozí: 1, pokud naslouchá a není zadáno -externalip)</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Nepodařilo se naslouchat na žádném portu. Použij -listen=0, pokud to byl tvůj záměr.</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Sync checkpoints policy (default: strict)</source>
+        <translation>Synchronizuj politiku kontrolních bodů (výchozí: přísný)</translation>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Invalid -tor address: &apos;%s&apos;</source>
+        <translation>Neplatná -tor adresa: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
+        <translation>Neplatná částka pro -reservebalance=&lt;amount&gt;</translation>
+    </message>
+    <message>
+        <location line="-88"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
+        <translation>Maximální velikost přijímacího bufferu pro každé spojení, &lt;n&gt;*1000 bajtů (výchozí: 5000)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
+        <translation>Maximální velikost odesílacího bufferu pro každé spojení, &lt;n&gt;*1000 bajtů (výchozí: 1000)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
+        <translation>Připojit se pouze k uzlům v &lt;net&gt; síti (IPv4, IPv6 nebo Tor)</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation>Před ladící výstup přidej časové razítko</translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
+        <translation>Možnosti SSL: (viz instrukce nastavení SSL v WayaWolfCoin Wiki)</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <source>Select the version of socks proxy to use (4-5, default: 5)</source>
+        <translation>Vyber verzi SOCKS proxy, která se bude používat (4-5, výchozí: 5)</translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Posílat stopovací/ladicí informace do konzole místo do souboru debug.log</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Odešli trasovací/ladicí informace do debuggera</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Set maximum block size in bytes (default: 250000)</source>
+        <translation>Nastav maximální velikost bloku v bajtech (výchozí: 250000)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Set minimum block size in bytes (default: 0)</source>
+        <translation>Nastavit minimální velikost bloku v bajtech (výchozí: 0)</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>Při spuštění klienta zmenšit soubor debug.log (výchozí: 1, pokud není zadáno -debug)</translation>
+    </message>
+    <message>
+        <location line="-43"/>
+        <source>Specify connection timeout in milliseconds (default: 5000)</source>
+        <translation>Zadej časový limit spojení v milisekundách (výchozí: 5000)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Unable to sign checkpoint, wrong checkpointkey?
+</source>
+        <translation>Není možné podepsat kontrolní bod, špatný kontrolní bod?
+</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Use UPnP to map the listening port (default: 0)</source>
+        <translation>Použít UPnP k namapování naslouchacího portu (výchozí: 0)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>Použít UPnP k namapování naslouchacího portu (výchozí: 1, pokud naslouchá)</translation>
+    </message>
+    <message>
+        <location line="-26"/>
+        <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
+        <translation>Použij proxy k dosažení skrytých Tor služeb (výchozí: stejné jako -proxy)</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Uživatelské jméno pro JSON-RPC spojení</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Verifying database integrity...</source>
+        <translation>Ověřování integrity databáze...</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Error: Wallet locked, unable to create transaction!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Error: Transaction creation failed!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
+        <translation>UPOZORNĚNÍ: detekováno porušení synchronizovaného kontrolního bodu, ale bylo to přeskočeno!</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>Upozornění: tahle verze je zastaralá, měl bys ji aktualizovat!</translation>
+    </message>
+    <message>
+        <location line="-54"/>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>Soubor wallet.dat je poškozen, jeho záchrana se nezdařila</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Heslo pro JSON-RPC spojení</translation>
+    </message>
+    <message>
+        <location line="-32"/>
+        <source>Sync time with other nodes. Disable if time on your system is precise e.g. syn
