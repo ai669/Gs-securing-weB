@@ -1133,4 +1133,206 @@ Det betyder, at et gebyr på mindst %2 er påkrævet.</translation>
         <translation>Valgfri transaktionsgebyr pr kB, som hjælper med at sikre dine transaktioner bliver behandlet hurtigt. De fleste transaktioner er 1 kB. Gebyr 0,01 anbefales.</translation>
     </message>
     <message>
-        <
+        <location line="+15"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Betal transaktionsgebyr</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <translation>Reserveret beløb deltager ikke i forrentning og er derfor tilrådighed til enhver tid.</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Reserve</source>
+        <translation>Reserve</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Automatically start WayaWolfCoin after logging in to the system.</source>
+        <translation>Automatisk start WayaWolfCoin efter at have logget ind på systemet.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Start WayaWolfCoin on system login</source>
+        <translation>&amp;Start WayaWolfCoin ved systems login</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Network</source>
+        <translation>Netværk</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Automatisk åbne WayaWolfCoin klient-port på routeren. Dette virker kun, når din router understøtter UPnP og er det er aktiveret.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Konfigurer port vha. UPnP</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Connect to the WayaWolfCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation>Opret forbindelse til WayaWolfCoin netværk via en SOCKS proxy (fx ved tilslutning gennem Tor).</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Connect through SOCKS proxy:</source>
+        <translation>&amp;Tilslut gennem SOCKS proxy:</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Proxy &amp;IP:</source>
+        <translation>Proxy-IP:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
+        <translation>IP-adressen på proxy (f.eks 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Port:</source>
+        <translation>Port:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>Porten på proxyen (f.eks. 9050)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>SOCKS &amp;Version:</source>
+        <translation>SOCKS-version</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>SOCKS version of the proxy (e.g. 5)</source>
+        <translation>SOCKS-version af proxyen (f.eks. 5)</translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <source>&amp;Window</source>
+        <translation>Vindue</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Show only a tray icon after minimizing the window.</source>
+        <translation>Vis kun et statusikon efter minimering af vinduet.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Minimize to the tray instead of the taskbar</source>
+        <translation>Minimer til statusfeltet i stedet for proceslinjen</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
+        <translation>Minimer i stedet for at afslutte programmet, når vinduet lukkes. Når denne indstilling er valgt, vil programmet kun blive lukket, når du har valgt Afslut i menuen.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>M&amp;inimize on close</source>
+        <translation>Minimer ved lukning</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Display</source>
+        <translation>Visning</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>User Interface &amp;language:</source>
+        <translation>Brugergrænsefladesprog:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>The user interface language can be set here. This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>Sproget i brugergrænsefladen kan indstilles her. Denne indstilling vil træde i kraft efter genstart af WayaWolfCoin tegnebog.</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>Enhed at vise beløb i:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>Vælg den standard underopdelingsenhed, som skal vises i brugergrænsefladen og ved afsendelse af bitcoins.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Whether to show coin control features or not.</source>
+        <translation> Vis mønt kontrol funktioner eller ej.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Display coin &amp;control features (experts only!)</source>
+        <translation>Vis mønt &amp; kontrol funktioner (kun for eksperter!)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select the coin outputs randomly or with minimal coin age.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize weight consumption (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Use Dark Visual theme (requires restart)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>&amp;OK</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Cancel</source>
+        <translation>Annuller</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Apply</source>
+        <translation>&amp;Anvend</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="+53"/>
+        <source>default</source>
+        <translation>standard</translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <location line="+9"/>
+        <source>Warning</source>
+        <translation>Advarsel</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+9"/>
+        <source>This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>Denne indstilling vil træde i kraft efter genstart af WayaWolfCoin.</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>The supplied proxy address is invalid.</source>
+        <translation>Ugyldig proxy-adresse</translation>
+    </message>
+</context>
+<context>
+    <name>OverviewPage</name>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="+14"/>
+        <source>Form</source>
+        <translation>Formular</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <location line="+247"/>
+        <source>The displayed information may be
