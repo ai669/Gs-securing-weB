@@ -2850,4 +2850,183 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
         <translation>Versucht private Schlüssel aus einer beschädigten wallet.dat wiederherzustellen</translation>
     </message>
     <message>
-        <location lin
+        <location line="+5"/>
+        <source>Block creation options:</source>
+        <translation>Blockerzeugungsoptionen:</translation>
+    </message>
+    <message>
+        <location line="-69"/>
+        <source>Connect only to the specified node(s)</source>
+        <translation>Nur mit dem/den angegebenen Knoten verbinden</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>Eigene IP-Adresse erkennen (Standard: 1, wenn abgehört wird und nicht -externalip)</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Fehler, es konnte kein Port abgehört werden. Wenn dies so gewünscht wird -listen=0 verwenden.</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Sync checkpoints policy (default: strict)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Invalid -tor address: &apos;%s&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-88"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
+        <translation>Maximale Größe, &lt;n&gt; * 1000 Byte, des Empfangspuffers pro Verbindung (Standard: 5000)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
+        <translation>Maximale Größe, &lt;n&gt; * 1000 Byte, des Sendepuffers pro Verbindung (Standard: 1000)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
+        <translation>Verbinde nur zu Knoten des Netztyps &lt;net&gt; (IPv4, IPv6 oder Tor)</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation>Debuginformationen einen Zeitstempel voranstellen</translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
+        <translation>SSL-Optionen: (siehe WayaWolfCoin-Wiki für SSL-Installationsanweisungen)</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <source>Select the version of socks proxy to use (4-5, default: 5)</source>
+        <translation>SOCKS Proxy Version auswählen (4-5, Standart: 5)</translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Rückverfolgungs- und Debuginformationen an die Konsole senden anstatt sie in die Datei debug.log zu schreiben</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Rückverfolgungs- und Debuginformationen an den Debugger senden</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Set maximum block size in bytes (default: 250000)</source>
+        <translation>Maximale Blockgröße in Bytes festlegen (Standard: 250000)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Set minimum block size in bytes (default: 0)</source>
+        <translation>Minimale Blockgröße in Byte festlegen (Standard: 0)</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>Verkleinere Datei debug.log beim Starten des Clients (Standard: 1, wenn kein -debug)</translation>
+    </message>
+    <message>
+        <location line="-43"/>
+        <source>Specify connection timeout in milliseconds (default: 5000)</source>
+        <translation>Verbindungstimeout in Millisekunden festlegen (Standard: 5000)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Unable to sign checkpoint, wrong checkpointkey?
+</source>
+        <translation>Sicherungspunkt konnte nicht signiert werden. Ist der Schlüssel korrekt?
+</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Use UPnP to map the listening port (default: 0)</source>
+        <translation>UPnP verwenden, um die Portweiterleitung einzurichten (Standard: 0)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>UPnP verwenden, um die Portweiterleitung einzurichten (Standard: 1, wenn abgehört wird)</translation>
+    </message>
+    <message>
+        <location line="-26"/>
+        <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
+        <translation>Proxy benutzen um versteckte Services zu erreichen (Standard: selbe Einstellung wie Proxy)</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Benutzername für JSON-RPC-Verbindungen</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Verifying database integrity...</source>
+        <translation>Überprüfe Datenbank Integrität...</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Error: Wallet locked, unable to create transaction!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Error: Transaction creation failed!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Warning</source>
+        <translation>Warnung</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>Warnung: Diese Version is veraltet, Aktualisierung erforderlich!</translation>
+    </message>
+    <message>
+        <location line="-54"/>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>wallet.dat beschädigt, Rettung fehlgeschlagen</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Passwort für JSON-RPC-Verbindungen</translation>
+    </message>
+    <message>
+        <location line="-32"/>
+        <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
+    
