@@ -3029,4 +3029,178 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-32"/>
         <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
-    
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
+        <translation>Beim erstellen einer Transaktion werden eingaben kleiner als dieser Wert ignoriert (Standard 0,01)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Output debugging information (default: 0, supplying &lt;category&gt; is optional)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>If &lt;category&gt; is not supplied, output all debugging information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&lt;category&gt; can be:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Enter regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>JSON-RPC-Verbindungen von der angegebenen IP-Adresse erlauben</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>Sende Befehle an Knoten &lt;ip&gt; (Standard: 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wait for RPC server to start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set the number of threads to service RPC calls (default: 4)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Kommando ausführen wenn der beste Block wechselt (%s im Kommando wird durch den Hash des Blocks ersetzt)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
+        <translation>Kommando ausführen wenn sich eine Wallet-Transaktion verändert (%s im Kommando wird durch die TxID ersetzt)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Require a confirmations for change (default: 0)</source>
+        <translation>Benötigt eine Bestätigung zur Änderung (Standard: 0)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Execute command when a relevant alert is received (%s in cmd is replaced by message)</source>
+        <translation>Kommando ausführen wenn eine relevante Meldung eingeht (%s in cmd wird von der Meldung ausgetauscht)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Wallet auf das neueste Format aktualisieren</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Größe des Schlüsselpools festlegen auf &lt;n&gt; (Standard: 100)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>Blockkette erneut nach fehlenden Wallet-Transaktionen durchsuchen</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation>Importiere Blöcke aus externer blk000?.dat Datei.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>OpenSSL (https) für JSON-RPC-Verbindungen verwenden</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Serverzertifikat (Standard: server.cert)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Privater Serverschlüssel (Standard: server.pem)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Initialization sanity check failed. WayaWolfCoin is shutting down.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <translation>Fehler: Die Brieftasche wurde nur zur Zinserzeugung entsperrt. Transaktionen können nicht erzeugt werden.</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Error: Disk space is low!</source>
+        <translation>Warnung: Festplatte hat wenig freien Speicher</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
+        <translation>WARNUNG : Ungültiger Checkpunkt gefunden! Angezeigte Transaktionen können falsch sein! Sie müssen vielleicht updaten oder die Entwickler benachrichtigen.</translation>
+    </message>
+    <message>
+        <location line="-174"/>
+        <source>This help message</source>
+        <translation>Dieser Hilfetext</translation>
+    </message>
+    <message>
+        <location line="+104"/>
+        <source>Wallet %s resides outside data directory %s.</source>
+        <translation>Wallet %s liegt außerhalb des Daten Verzeichnisses %s.</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
+        <translation>Kann auf diesem Computer nicht an %s binden (von bind zurückgegebener Fehler %d, %s)</translation>
+    </message>
+    <message>
+        <location line="-133"/>
+        <source>Connect through socks proxy</source>
+        <translation>Verbinde über socks proxy</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
+        <translation>Erlaube DNS-Namensauflösung für -addnode, -seednode und -connect</translation>
+    </message>
+    <message>
+        <location line="+126"/>
+        <source>Loading addresses...</source>
+        <translation>Lade Adressen...</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Fehler beim laden von blkindex.dat</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Fehler beim Laden von wallet.dat: Wallet beschädigt</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error loading wallet.dat: Wallet requir
