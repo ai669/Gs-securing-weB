@@ -1,25 +1,23 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="es" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="es_CL" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
         <source>About WayaWolfCoin</source>
-        <translation>Acerca de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+39"/>
         <source>&lt;b&gt;WayaWolfCoin&lt;/b&gt; version</source>
-        <translation>&lt;b&gt;WayaWolfCoin&lt;/b&gt; versión</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
 Copyright © 2014 The WayaWolfCoin developers</source>
-        <translation>Copyright © 2009-2014 The Bitcoin developers
-Copyright © 2012-2014 The NovaCoin developers
-Copyright © 2014 The WayaWolfCoin developers</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
@@ -37,77 +35,77 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="+14"/>
         <source>Address Book</source>
-        <translation>Libreta de Direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>Haga doble clic para editar una etiqueta o dirección </translation>
+        <translation>Haz doble clic para editar una dirección o etiqueta</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>Crear una nueva dirección</translation>
+        <translation>Crea una nueva dirección</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copiar la dirección seleccionada al portapapeles del sistema</translation>
+        <translation>Copia la dirección seleccionada al portapapeles</translation>
     </message>
     <message>
         <location line="-7"/>
         <source>&amp;New Address</source>
-        <translation>&amp;Nueva Dirección</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-43"/>
         <source>These are your WayaWolfCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation>Estas son las direcciones de WayaWolfCoin para recibir pagos. Es posible que desee dar una diferente a cada remitente para que pueda realizar un seguimiento de quien te está pagando.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+53"/>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Copiar dirección</translation>
+        <translation>&amp;Copia dirección</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show &amp;QR Code</source>
-        <translation>Enseñar &amp;QR Code</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Sign a message to prove you own a WayaWolfCoin address</source>
-        <translation>Firmar un mensaje para demostrar que es dueño de su dirección de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Sign &amp;Message</source>
-        <translation>Firmar &amp;Mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+17"/>
         <source>Delete the currently selected address from the list</source>
-        <translation>Borrar de la lista la dirección seleccionada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-10"/>
         <source>Verify a message to ensure it was signed with a specified WayaWolfCoin address</source>
-        <translation>Verifique el mensaje para asegurarse que fue firmado por una dirección específica de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Verifique Mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Eliminar</translation>
+        <translation>&amp;Borrar</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
         <source>Copy &amp;Label</source>
-        <translation>Copiar &amp;etiqueta</translation>
+        <translation>Copia &amp;etiqueta</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -117,22 +115,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+250"/>
         <source>Export Address Book Data</source>
-        <translation>Exportar Data de Libro de Direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Archivos de columnas separadas por coma (*.csv)</translation>
+        <translation>Archivos separados por coma (*.csv)</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Error exporting</source>
-        <translation>Error exportando</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation>No se pudo escribir en el archivo %1</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -158,12 +156,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="+26"/>
         <source>Passphrase Dialog</source>
-        <translation>Diálogo de contraseña</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>Introducir contraseña</translation>
+        <translation>Introduce contraseña actual      </translation>
     </message>
     <message>
         <location line="+14"/>
@@ -173,84 +171,84 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>Repita la nueva contraseña</translation>
+        <translation>Repite nueva contraseña</translation>
     </message>
     <message>
         <location line="+33"/>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation>Sirve para desactivar SendMoney cuando la cuenta del Sistema Operativo está comprometida. No ofrece seguridad real.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>For staking only</source>
-        <translation>Para &quot;Staking&quot; solamente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>Cifrar el monedero</translation>
+        <translation>Codificar billetera</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Esta operación requiere su contraseña para desbloquear el monedero.</translation>
+        <translation>Esta operación necesita la contraseña para desbloquear la billetera.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>Desbloquear monedero</translation>
+        <translation>Desbloquea billetera</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Esta operación requiere su contraseña para descifrar el monedero.</translation>
+        <translation>Esta operación necesita la contraseña para decodificar la billetara.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>Descifrar el monedero</translation>
+        <translation>Decodificar cartera</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>Cambiar contraseña</translation>
+        <translation>Cambia contraseña</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Introduzca la contraseña anterior del monedero y la nueva. </translation>
+        <translation>Introduce la contraseña anterior y la nueva de cartera</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Confirm wallet encryption</source>
-        <translation>Confirmar cifrado del monedero</translation>
+        <translation>Confirma la codificación de cartera</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation>Advertencia: Si encripta su cartera y pierde su frase de contraseña, puede &lt;b&gt;PERDER TODAS SUS MONEDAS&lt;/ b&gt;!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>¿Seguro que desea cifrar su monedero?</translation>
+        <translation>¿Seguro que quieres seguir codificando la billetera?</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANTE: Cualquier copia de seguridad que haya realizado previamente de su archivo de monedero debe reemplazarse con el nuevo archivo de monedero cifrado. Por razones de seguridad, las copias de seguridad previas del archivo de monedero no cifradas serán inservibles en cuanto comience a usar el nuevo monedero cifrado.</translation>
+        <translation>IMPORTANTE: Cualquier versión anterior que hayas realizado de tu archivo de billetera será reemplazada por el nuevo archivo de billetera encriptado. Por razones de seguridad, los respaldos anteriores de los archivos de billetera se volverán inútiles en tanto comiences a usar la nueva billetera encriptada.</translation>
     </message>
     <message>
         <location line="+103"/>
         <location line="+24"/>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Aviso: ¡La tecla de bloqueo de mayúsculas está activada!</translation>
+        <translation>Precaucion: Mayúsculas Activadas</translation>
     </message>
     <message>
         <location line="-133"/>
         <location line="+60"/>
         <source>Wallet encrypted</source>
-        <translation>Monedero cifrado</translation>
+        <translation>Billetera codificada</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -260,7 +258,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+82"/>
         <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation>WayaWolfCoin cerrará para terminar el proceso de encriptación. Recuerde que la encriptación de su monedero no puede proteger completamente que sus monedas sean robadas por malware infectando su computadora.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
@@ -268,12 +266,12 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+44"/>
         <location line="+6"/>
         <source>Wallet encryption failed</source>
-        <translation>Ha fallado el cifrado del monedero</translation>
+        <translation>Falló la codificación de la billetera</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Ha fallado el cifrado del monedero debido a un error interno. El monedero no ha sido cifrado.</translation>
+        <translation>La codificación de la billetera falló debido a un error interno. Tu billetera no ha sido codificada.</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -284,24 +282,24 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-38"/>
         <source>Wallet unlock failed</source>
-        <translation>Ha fallado el desbloqueo del monedero</translation>
+        <translation>Ha fallado el desbloqueo de la billetera</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La contraseña introducida para descifrar el monedero es incorrecta.</translation>
+        <translation>La contraseña introducida para decodificar la billetera es incorrecta.</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>Wallet decryption failed</source>
-        <translation>Ha fallado el descifrado del monedero</translation>
+        <translation>Ha fallado la decodificación de la billetera</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Se ha cambiado correctamente la contraseña del monedero.</translation>
+        <translation>La contraseña de billetera ha sido cambiada con éxito.</translation>
     </message>
 </context>
 <context>
@@ -309,12 +307,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../bitcoingui.cpp" line="+297"/>
         <source>Sign &amp;message...</source>
-        <translation>Firmar &amp;mensaje...</translation>
+        <translation>Firmar &amp;Mensaje...</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Show general overview of wallet</source>
-        <translation>Mostrar vista general del monedero</translation>
+        <translation>Muestra una vista general de la billetera</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -324,22 +322,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Browse transaction history</source>
-        <translation>Examinar el historial de transacciones</translation>
+        <translation>Explora el historial de transacciónes</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation>&amp;Libreta de Direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit the list of stored addresses and labels</source>
-        <translation>Editar la lista de direcciones y etiquetas almacenadas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-18"/>
         <source>Show the list of addresses for receiving payments</source>
-        <translation>Mostrar la lista de direcciones para recibir pagos</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+34"/>
@@ -349,128 +347,128 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <translation>Salir de la aplicación</translation>
+        <translation>Salir del programa</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show information about WayaWolfCoin</source>
-        <translation>Mostrar información sobre WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>About &amp;Qt</source>
-        <translation>Acerca de &amp;Qt</translation>
+        <translation>Acerca de</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Qt</source>
-        <translation>Mostrar información acerca de Qt</translation>
+        <translation>Mostrar Información sobre QT</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Opciones...</translation>
+        <translation>&amp;Opciones</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Cifrar monedero…</translation>
+        <translation>&amp;Codificar la billetera...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Guardar copia de seguridad del monedero...</translation>
+        <translation>&amp;Respaldar billetera...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Cambiar la contraseña…</translation>
+        <translation>&amp;Cambiar la contraseña...</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Export...</source>
-        <translation>&amp;Exportar...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-55"/>
         <source>Send coins to a WayaWolfCoin address</source>
-        <translation>Enviar monedas a una dirección de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+39"/>
         <source>Modify configuration options for WayaWolfCoin</source>
-        <translation>Modificar las opciones de configuración para WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+17"/>
         <source>Export the data in the current tab to a file</source>
-        <translation>Exportar los datos en la ficha actual a un archivo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-13"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation>Cifrar o descifrar el monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Backup wallet to another location</source>
-        <translation>Copia de seguridad del monedero en otra ubicación</translation>
+        <translation>Respaldar billetera en otra ubicación</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Cambiar la contraseña utilizada para el cifrado del monedero</translation>
+        <translation>Cambiar la contraseña utilizada para la codificación de la billetera</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Debug window</source>
-        <translation>Ventana de &amp;depuración</translation>
+        <translation>Ventana &amp;Debug</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Open debugging and diagnostic console</source>
-        <translation>Abrir la consola de depuración y diagnóstico</translation>
+        <translation>Abre consola de depuración y diagnóstico</translation>
     </message>
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Verificar mensaje...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-214"/>
         <location line="+551"/>
         <source>WayaWolfCoin</source>
-        <translation>WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation>Monedero</translation>
+        <translation>Cartera</translation>
     </message>
     <message>
         <location line="+193"/>
         <source>&amp;About WayaWolfCoin</source>
-        <translation>Acerca de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Show / Hide</source>
-        <translation>&amp;Mostrar / Ocultar</translation>
+        <translation>&amp;Mostrar/Ocultar</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Unlock wallet</source>
-        <translation>Desbloquear el monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation>&amp;Bloquear monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Lock wallet</source>
-        <translation>Bloquear monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+28"/>
@@ -485,7 +483,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation>A&amp;yuda</translation>
+        <translation>&amp;Ayuda</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -496,43 +494,43 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+46"/>
         <location line="+9"/>
         <source>[testnet]</source>
-        <translation>[testnet]</translation>
+        <translation>[red-de-pruebas]</translation>
     </message>
     <message>
         <location line="+0"/>
         <location line="+58"/>
         <source>WayaWolfCoin client</source>
-        <translation>Cliente WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="+70"/>
         <source>%n active connection(s) to WayaWolfCoin network</source>
-        <translation><numerusform>%n conexión activa a la red WayaWolfCoin</numerusform><numerusform>%n conexiones activas a la red WayaWolfCoin</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+488"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation>Staking.&lt;br&gt;Su contribución es %1&lt;br&gt;Contribución de la red es %2&lt;br&gt;Tiempo esperado para ganar la recompensa es %3</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Not staking because wallet is locked</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está bloqueada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is offline</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está desconectada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is syncing</source>
-        <translation>No esta &quot;Staking&quot; porque monedera está sincronizando</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because you don&apos;t have mature coins</source>
-        <translation>No esta &quot;Staking&quot; ya que no tiene monedas maduras</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-808"/>
@@ -552,7 +550,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+49"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation>&amp;Desbloquear Monedero...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+273"/>
@@ -562,12 +560,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+43"/>
         <source>Catching up...</source>
-        <translation>Actualizando...</translation>
+        <translation>Recuperando...</translation>
     </message>
     <message>
         <location line="+113"/>
         <source>Confirm transaction fee</source>
-        <translation>Confirme tarifa de transacción</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+27"/>
@@ -589,20 +587,19 @@ Address: %4
         <translation>Fecha: %1
 Cantidad: %2
 Tipo: %3
-Dirección: %4
-</translation>
+Dirección: %4</translation>
     </message>
     <message>
         <location line="+100"/>
         <location line="+15"/>
         <source>URI handling</source>
-        <translation>Manejar URI</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-15"/>
         <location line="+15"/>
         <source>URI can not be parsed! This can be caused by an invalid WayaWolfCoin address or malformed URI parameters.</source>
-        <translation>URI no se puede analizar! Esto puede ser causado por una dirección de WayaWolfCoin no válida o parámetros de URI malformados.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
@@ -612,42 +609,42 @@ Dirección: %4
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>El monedero está &lt;b&gt;cifrado&lt;/b&gt; y actualmente &lt;b&gt;desbloqueado&lt;/b&gt;</translation>
+        <translation>La billetera esta &lt;b&gt;codificada&lt;/b&gt; y actualmente &lt;b&gt;desbloqueda&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>El monedero está &lt;b&gt;cifrado&lt;/b&gt; y actualmente &lt;b&gt;bloqueado&lt;/b&gt;</translation>
+        <translation>La billetera esta &lt;b&gt;codificada&lt;/b&gt; y actualmente &lt;b&gt;bloqueda&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Backup Wallet</source>
-        <translation>Copia de Seguridad de Monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Wallet Data (*.dat)</source>
-        <translation>Data de Monedero (*.dat)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Backup Failed</source>
-        <translation>Copia de Seguridad a fracasado</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation>Hubo un error al tratar de salvar los datos de su monedero a la nueva ubicación.</translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="+91"/>
         <source>%n second(s)</source>
-        <translation><numerusform>%n segundo</numerusform><numerusform>%n segundos</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="+4"/>
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minuto</numerusform><numerusform>%n minutos</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
@@ -720,12 +717,12 @@ Dirección: %4
     <message>
         <location line="+324"/>
         <source>Not staking</source>
-        <translation>No estás &quot;Staking&quot;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+104"/>
         <source>A fatal error occurred. WayaWolfCoin can no longer continue safely and will quit.</source>
-        <translation>Se ha producido un error fatal. WayaWolfCoin ya no puede continuar de forma segura y cerrará.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -733,7 +730,7 @@ Dirección: %4
     <message>
         <location filename="../clientmodel.cpp" line="+110"/>
         <source>Network Alert</source>
-        <translation>Alerta de red</translation>
+        <translation>Alerta de Red</translation>
     </message>
 </context>
 <context>
@@ -741,17 +738,17 @@ Dirección: %4
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+14"/>
         <source>Coin Control</source>
-        <translation>Control de Moneda</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
         <source>Quantity:</source>
-        <translation>Cantidad:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+32"/>
         <source>Bytes:</source>
-        <translation>Bytes:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+48"/>
@@ -761,57 +758,57 @@ Dirección: %4
     <message>
         <location line="+32"/>
         <source>Priority:</source>
-        <translation>Prioridad:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+48"/>
         <source>Fee:</source>
-        <translation>Tasa:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Envío pequeño:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="+552"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+51"/>
         <source>After Fee:</source>
-        <translation>Después de tasas:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
         <source>Change:</source>
-        <translation>Cambio:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+69"/>
         <source>(un)select all</source>
-        <translation>(des)marcar todos</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Modo árbol</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
         <source>List mode</source>
-        <translation>Modo lista</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+45"/>
         <source>Amount</source>
-        <translation>Cuantía</translation>
+        <translation>Cantidad</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Label</source>
-        <translation>Etiqueta</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
@@ -826,7 +823,7 @@ Dirección: %4
     <message>
         <location line="+5"/>
         <source>Confirmations</source>
-        <translation>Confirmaciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -836,108 +833,108 @@ Dirección: %4
     <message>
         <location line="+5"/>
         <source>Priority</source>
-        <translation>Prioridad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="-515"/>
         <source>Copy address</source>
-        <translation>Copiar dirección</translation>
+        <translation>Copia dirección</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Copiar etiqueta</translation>
+        <translation>Copia etiqueta</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+26"/>
         <source>Copy amount</source>
-        <translation>Copiar cuantía</translation>
+        <translation>Copiar Cantidad</translation>
     </message>
     <message>
         <location line="-25"/>
         <source>Copy transaction ID</source>
-        <translation>Copiar identificador de transacción</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy quantity</source>
-        <translation>Copiar cantidad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Copy fee</source>
-        <translation>Copiar donación</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy after fee</source>
-        <translation>Copiar después de aplicar donación</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy bytes</source>
-        <translation>Copiar bytes</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>Copiar prioridad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Copiar envío pequeño</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy change</source>
-        <translation>Copiar cambio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+317"/>
         <source>highest</source>
-        <translation>lo más alto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>high</source>
-        <translation>alto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>medium-high</source>
-        <translation>medio-alto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>medium</source>
-        <translation>medio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>low-medium</source>
-        <translation>bajo-medio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>low</source>
-        <translation>bajo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>lowest</source>
-        <translation>lo más bajo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+155"/>
         <source>DUST</source>
-        <translation>DUST</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>yes</source>
-        <translation>si</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
@@ -946,11 +943,7 @@ Dirección: %4
  This means a fee of at least %1 per kb is required.
 
  Can vary +/- 1 Byte per input.</source>
-        <translation>Esta etiqueta se convierte en rojo, si el tamaño de la transacción es mayor que 10000 bytes.
-
-Esto significa que se requiere una cuota de al menos el %1 por kb.
-
-Puede variar + / - 1 Byte por entrada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -959,11 +952,7 @@ Puede variar + / - 1 Byte por entrada.</translation>
 This label turns red, if the priority is smaller than &quot;medium&quot;.
 
  This means a fee of at least %1 per kb is required.</source>
-        <translation>Las transacciones con mayor prioridad son más probables en entrar hacia un bloque. 
-
-Esta etiqueta se convierte en rojo, si la prioridad es menor que &quot;medium&quot;.
-
-Esto significa que se requiere una cuota de al menos el %1 por kb.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -972,20 +961,14 @@ Esto significa que se requiere una cuota de al menos el %1 por kb.</translation>
  This means a fee of at least %2 is required. 
 
  Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
-        <translation>Esta etiqueta se convierte en rojo, si cualquier recipiente recibe una cantidad menor que %1.
-
-Esto significa que se requiere una cuota de al menos %2.
-
-Las cantidades inferiores a 0.546 veces la cuota mínima del relé se muestran en forma de DUST.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>This label turns red, if the change is smaller than %1.
 
  This means a fee of at least %2 is required.</source>
-        <translation>Esta etiqueta se convierte en rojo, si el cambio es menor que %1.
-
-Esto significa que se requiere una cuota de al menos %2.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+36"/>
@@ -996,12 +979,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="-9"/>
         <source>change from %1 (%2)</source>
-        <translation>Enviar desde %1 (%2)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>(change)</source>
-        <translation>(cambio)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1009,7 +992,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
         <source>Edit Address</source>
-        <translation>Editar Dirección</translation>
+        <translation>Editar dirección</translation>
     </message>
     <message>
         <location line="+11"/>
@@ -1019,7 +1002,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+10"/>
         <source>The label associated with this address book entry</source>
-        <translation>La etiqueta asociada con esta entrada de la libreta de direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
@@ -1029,17 +1012,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+10"/>
         <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
-        <translation>La dirección asociada con esta entrada de la libreta de direcciones. Esto sólo puede ser modificada para direcciones de envío.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="+21"/>
         <source>New receiving address</source>
-        <translation>Nueva dirección de recepción</translation>
+        <translation>Nueva dirección para recibir</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>New sending address</source>
-        <translation>Nueva dirección de envío</translation>
+        <translation>Nueva dirección para enviar</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -1049,27 +1032,27 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>Editar dirección de envío</translation>
+        <translation>Editar dirección de envio</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>La dirección introducida &quot;%1&quot; ya está presente en la libreta de direcciones.</translation>
+        <translation>La dirección introducida &quot;%1&quot; ya esta guardada en la libreta de direcciones.</translation>
     </message>
     <message>
         <location line="-5"/>
         <source>The entered address &quot;%1&quot; is not a valid WayaWolfCoin address.</source>
-        <translation>La dirección introducida &quot;%1&quot; no es una dirección válida de WayaWolfCoin.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
         <source>Could not unlock wallet.</source>
-        <translation>No se pudo desbloquear el monedero.</translation>
+        <translation>No se pudo desbloquear la billetera.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>New key generation failed.</source>
-        <translation>Ha fallado la generación de la nueva clave.</translation>
+        <translation>La generación de nueva clave falló.</translation>
     </message>
 </context>
 <context>
@@ -1078,42 +1061,42 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location filename="../guiutil.cpp" line="+426"/>
         <location line="+12"/>
         <source>WayaWolfCoin-Qt</source>
-        <translation>WayaWolfCoin-Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-12"/>
         <source>version</source>
-        <translation>Versión</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Usage:</source>
-        <translation>Uso:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>command-line options</source>
-        <translation>opciones de líneas de comandos</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>UI options</source>
-        <translation>opciones del interfaz de usuario</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
-        <translation>Defina el idioma, por ejemplo &quot;de_DE&quot; (predeterminado: región del sistema)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Start minimized</source>
-        <translation>Iniciar minimizado</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Show splash screen on startup (default: 1)</source>
-        <translation>Mostrar pantalla de bienvenida al iniciar (predeterminado: 1)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1131,32 +1114,32 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+6"/>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation>Tarifa de transacción opcional por kB que ayuda a asegurarse de que sus transacciones se procesan rápidamente. La mayoría de las transacciones son 1 kB. Cuota de 0.01 recomendada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Comisión de &amp;transacciones</translation>
+        <translation>Comisión de &amp;transacciónes</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation>Cantidad reservada no participa en el &quot;Staking&quot; y por lo tanto se puede gastar en cualquier momento.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
         <source>Reserve</source>
-        <translation>Reserva</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
         <source>Automatically start WayaWolfCoin after logging in to the system.</source>
-        <translation>Iniciar WayaWolfCoin automáticamente después de entrar en el sistema.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Start WayaWolfCoin on system login</source>
-        <translation>&amp;Iniciar WayaWolfCoin al inicio del sistema</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
@@ -1166,32 +1149,32 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+6"/>
         <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation>Abrir automáticamente el puerto de cliente WayaWolfCoin en el router. Esto sólo funciona cuando el router es compatible con UPnP y está habilitado.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Map port using &amp;UPnP</source>
-        <translation>Mapear el puerto usando &amp;UPnP</translation>
+        <translation>Direcciona el puerto usando &amp;UPnP</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Connect to the WayaWolfCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation>Conéctese a la red de WayaWolfCoin a través de un SOCKS proxy (e.g. cuando se conecta a través de Tor)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Connect through SOCKS proxy:</source>
-        <translation>&amp;Conéctese a través de un SOCKS proxy</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
         <source>Proxy &amp;IP:</source>
-        <translation>Dirección &amp;IP del proxy:</translation>
+        <translation>&amp;IP Proxy:</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>IP address of the proxy (e.g. 127.0.0.1)</source>
-        <translation>Dirección IP del proxy (e.g. 127.0.0.1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
@@ -1206,72 +1189,72 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+7"/>
         <source>SOCKS &amp;Version:</source>
-        <translation>&amp;Versión SOCKS:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>SOCKS version of the proxy (e.g. 5)</source>
-        <translation>Versión SOCKS del proxy (ej. 5)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation>&amp;Ventana</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>Minimizar la ventana a la bandeja de iconos del sistema.</translation>
+        <translation>Muestra solo un ícono en la bandeja después de minimizar la ventana</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Minimizar a la bandeja en vez de a la barra de tareas</translation>
+        <translation>&amp;Minimiza a la bandeja en vez de la barra de tareas</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Minimizar en lugar de salir de la aplicación al cerrar la ventana. Cuando esta opción está activa, la aplicación solo se puede cerrar seleccionando Salir desde el menú.</translation>
+        <translation>Minimiza la ventana en lugar de salir del programa cuando la ventana se cierra. Cuando esta opción esta activa el programa solo se puede cerrar seleccionando Salir desde el menu.</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M&amp;inimize on close</source>
-        <translation>M&amp;inimizar al cerrar</translation>
+        <translation>M&amp;inimiza a la bandeja al cerrar</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>&amp;Display</source>
-        <translation>&amp;Interfaz</translation>
+        <translation>&amp;Mostrado</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation>I&amp;dioma de la interfaz de usuario</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>The user interface language can be set here. This setting will take effect after restarting WayaWolfCoin.</source>
-        <translation>El idioma del interfaz de usuario se puede configurar aquí. Esta configuración se aplicará después de reiniciar WayaWolfCoin.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>Mostrar las cantidades en la &amp;unidad:</translation>
+        <translation>&amp;Unidad en la que mostrar cantitades:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Elegir la subdivisión predeterminada para mostrar cantidades en la interfaz y cuando se envían bitcoins.</translation>
+        <translation>Elige la subdivisión por defecto para mostrar cantidaded en la interfaz cuando se envien monedas</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Whether to show coin control features or not.</source>
-        <translation>Mostrar o no funcionalidad de Coin Control</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Display coin &amp;control features (experts only!)</source>
-        <translation>Mostrar moneda y Coin Control (expertos solamente!)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
@@ -1291,17 +1274,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+71"/>
         <source>&amp;OK</source>
-        <translation>&amp;Aceptar</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancelar</translation>
+        <translation>&amp;Cancela</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Apply</source>
-        <translation>&amp;Aplicar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="+53"/>
@@ -1312,18 +1295,18 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+149"/>
         <location line="+9"/>
         <source>Warning</source>
-        <translation>Advertencia</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-9"/>
         <location line="+9"/>
         <source>This setting will take effect after restarting WayaWolfCoin.</source>
-        <translation>Esta configuración se aplicará después de reiniciar WayaWolfCoin.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+29"/>
         <source>The supplied proxy address is invalid.</source>
-        <translation>La dirección proxy indicada es inválida.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1331,48 +1314,48 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../forms/overviewpage.ui" line="+14"/>
         <source>Form</source>
-        <translation>Desde</translation>
+        <translation>Formulario</translation>
     </message>
     <message>
         <location line="+46"/>
         <location line="+247"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WayaWolfCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>La información mostrada puede estar fuera de fecha. Su monedera se sincroniza automáticamente con la red WayaWolfCoin después de que se establece una conexión, pero este proceso no se ha completado todavía.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-173"/>
         <source>Stake:</source>
-        <translation>Stake:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+32"/>
         <source>Unconfirmed:</source>
-        <translation>Sin confirmar:</translation>
+        <translation>No confirmados:</translation>
     </message>
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation>Monedero</translation>
+        <translation>Cartera</translation>
     </message>
     <message>
         <location line="+49"/>
         <source>Spendable:</source>
-        <translation>Disponible:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
         <source>Your current spendable balance</source>
-        <translation>Su actual balance disponible</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+80"/>
         <source>Immature:</source>
-        <translation>No disponible:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>Mined balance that has not yet matured</source>
-        <translation>Saldo recién minado que aún no está disponible.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+23"/>
@@ -1382,22 +1365,22 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+16"/>
         <source>Your current total balance</source>
-        <translation>Su balance actual total</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+50"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Movimientos recientes&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Transacciones recientes&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
-        <translation>Total de transacciones que aún no se han confirmado, y aún no cuentan para el balance actual</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-32"/>
         <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation>Total de las monedas que fueron &quot;Staked&quot;, y aún no cuentan para el balance actual</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+116"/>
@@ -1419,57 +1402,57 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+14"/>
         <source>QR Code Dialog</source>
-        <translation>Código Diálogo QR</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+59"/>
         <source>Request Payment</source>
-        <translation>Solicitar Pago</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+56"/>
         <source>Amount:</source>
-        <translation>Cantidad:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-44"/>
         <source>Label:</source>
-        <translation>Etiqueta:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>Message:</source>
-        <translation>Mensaje:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+71"/>
         <source>&amp;Save As...</source>
-        <translation>&amp;Guardar como....</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../qrcodedialog.cpp" line="+62"/>
         <source>Error encoding URI into QR Code.</source>
-        <translation>Error codificando URI en código QR​​.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+40"/>
         <source>The entered amount is invalid, please check.</source>
-        <translation>La cantidad introducida es inválida, compruebe por favor.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+23"/>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>La URI es demasiado larga, pruebe a acortar el texto para la etiqueta / mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+25"/>
         <source>Save QR Code</source>
-        <translation>Guardar código QR</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>PNG Images (*.png)</source>
-        <translation>Imagenes PNG (*.png)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1489,12 +1472,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+53"/>
         <location line="+23"/>
         <source>N/A</source>
-        <translation>N/D</translation>
+        <translation>N/A</translation>
     </message>
     <message>
         <location line="-194"/>
         <source>Client version</source>
-        <translation>Versión del cliente</translation>
+        <translation>Versión del Cliente</translation>
     </message>
     <message>
         <location line="-45"/>
@@ -1504,12 +1487,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Utilizando la versión OpenSSL</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+49"/>
         <source>Startup time</source>
-        <translation>Hora de inicio</translation>
+        <translation>Tiempo de inicio</translation>
     </message>
     <message>
         <location line="+29"/>
@@ -1524,17 +1507,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation>En testnet</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+23"/>
         <source>Block chain</source>
-        <translation>Cadena de bloques</translation>
+        <translation>Bloquea cadena</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Número actual de bloques</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+197"/>
@@ -1564,7 +1547,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="-383"/>
         <source>Last block time</source>
-        <translation>Hora del último bloque</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+52"/>
@@ -1574,17 +1557,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+16"/>
         <source>Command-line options</source>
-        <translation>Opciones de línea de comandos</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Show the WayaWolfCoin-Qt help message to get a list with possible WayaWolfCoin command-line options.</source>
-        <translation>Mostrar el mensaje de ayuda de WayaWolfCoin-Qt para obtener una lista con las posibles opciones de línea de comandos para WayaWolfCoin.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Show</source>
-        <translation>&amp;Mostrar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
@@ -1594,47 +1577,47 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="-237"/>
         <source>Build date</source>
-        <translation>Fecha de compilación</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-104"/>
         <source>WayaWolfCoin - Debug window</source>
-        <translation>WayaWolfCoin - Ventana de depuración</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+25"/>
         <source>WayaWolfCoin Core</source>
-        <translation>Núcleo WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+256"/>
         <source>Debug log file</source>
-        <translation>Archivo de registro de depuración</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Open the WayaWolfCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Abre el archivo de registro de WayaWolfCoin del directorio de datos actual. Esto puede tardar algunos segundos para archivos grandes.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+102"/>
         <source>Clear console</source>
-        <translation>Borrar consola</translation>
+        <translation>Limpiar Consola</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="+325"/>
         <source>Welcome to the WayaWolfCoin RPC console.</source>
-        <translation>Bienvenido a la consola RPC de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Use las flechas arriba y abajo para navegar por el historial y &lt;b&gt;Control+L&lt;/b&gt; para vaciar la pantalla.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Escriba &lt;b&gt;help&lt;/b&gt; para ver un resumen de los comandos disponibles.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+127"/>
@@ -1684,48 +1667,48 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Enviar bitcoins</translation>
+        <translation>Enviar monedas</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>Coin Control Features</source>
-        <translation>Características de Coin Control</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+20"/>
         <source>Inputs...</source>
-        <translation>Entradas...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>automatically selected</source>
-        <translation>Seleccionado automáticamente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>Insufficient funds!</source>
-        <translation>Fondos insuficientes!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+77"/>
         <source>Quantity:</source>
-        <translation>Cantidad:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+22"/>
         <location line="+35"/>
         <source>0</source>
-        <translation>0</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-19"/>
         <source>Bytes:</source>
-        <translation>Bytes:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+51"/>
         <source>Amount:</source>
-        <translation>Cuantía:</translation>
+        <translation>Cantidad:</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1733,177 +1716,177 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+86"/>
         <location line="+32"/>
         <source>0.00 TX</source>
-        <translation>123.456 TX {0.00 ?}</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-191"/>
         <source>Priority:</source>
-        <translation>Prioridad:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>medium</source>
-        <translation>medio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+32"/>
         <source>Fee:</source>
-        <translation>Tasa:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Envío pequeño:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+32"/>
         <source>After Fee:</source>
-        <translation>Después de tasas:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
         <source>Change</source>
-        <translation>Cambio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+50"/>
         <source>custom change address</source>
-        <translation>dirección de cambio personalizada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+106"/>
         <source>Send to multiple recipients at once</source>
-        <translation>Enviar a múltiples destinatarios de una vez</translation>
+        <translation>Enviar a múltiples destinatarios</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Add &amp;Recipient</source>
-        <translation>Añadir &amp;destinatario</translation>
+        <translation>&amp;Agrega destinatario</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Remove all transaction fields</source>
-        <translation>Elimina todos los campos de transacciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation>Vaciar &amp;todo</translation>
+        <translation>&amp;Borra todos</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Balance:</source>
-        <translation>Saldo:</translation>
+        <translation>Balance:</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>123.456 TX</source>
-        <translation>123.456 TX</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
         <source>Confirm the send action</source>
-        <translation>Confirmar el envío</translation>
+        <translation>Confirma el envio</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation>&amp;Enviar</translation>
+        <translation>&amp;Envía</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation>Introduce una dirección WayaWolfCoin (p.ej. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
         <source>Copy quantity</source>
-        <translation>Copiar cantidad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Copiar cuantía</translation>
+        <translation>Copiar Cantidad</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy fee</source>
-        <translation>Copiar donación</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy after fee</source>
-        <translation>Copiar después de aplicar donación</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy bytes</source>
-        <translation>Copiar bytes</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>Copiar prioridad</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Copiar envío pequeño</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy change</source>
-        <translation>Copiar Cambio</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+86"/>
         <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
-        <translation>&lt;b&gt;%1&lt;/b&gt; para %2 (%3)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation>Confirmar el envío de bitcoins</translation>
+        <translation>Confirmar el envio de monedas</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Are you sure you want to send %1?</source>
-        <translation>Estás seguro que quieres enviar %1?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source> and </source>
-        <translation>y</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+29"/>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation>La dirección de recepción no es válida, compruébela de nuevo.</translation>
+        <translation>La dirección de destinatrev no es valida, comprueba otra vez.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>La cantidad por pagar tiene que ser mayor de 0.</translation>
+        <translation>La cantidad por pagar tiene que ser mayor 0.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount exceeds your balance.</source>
-        <translation>La cantidad sobrepasa su saldo.</translation>
+        <translation>La cantidad sobrepasa tu saldo.</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>El total sobrepasa su saldo cuando se incluye la tasa de envío de %1</translation>
+        <translation>El total sobrepasa tu saldo cuando se incluyen %1 como tasa de envio.</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Se ha encontrado una dirección duplicada. Solo se puede enviar a cada dirección una vez por operación de envío.</translation>
+        <translation>Tienes una dirección duplicada, solo puedes enviar a direcciónes individuales de una sola vez.</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1913,12 +1896,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+5"/>
         <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation>Error: La transacción ha sido rechazada. Esto puede ocurrir si algunas de sus monedas en el monedero ya se gastaron, por ejemplo, si se usa una copia del wallet.dat y se gastaron las monedas de la copia pero no se han marcado como gastadas aquí.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+247"/>
         <source>WARNING: Invalid WayaWolfCoin address</source>
-        <translation>ADVERTENCIA: Dirección WayaWolfCoin inválida</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
@@ -1928,7 +1911,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+4"/>
         <source>WARNING: unknown change address</source>
-        <translation>ADVERTENCIA: dirección de cambio desconocida</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1936,12 +1919,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="+14"/>
         <source>Form</source>
-        <translation>Formulario</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
         <source>A&amp;mount:</source>
-        <translation>Ca&amp;ntidad:</translation>
+        <translation>Cantidad:</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -1957,7 +1940,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+60"/>
         <location filename="../sendcoinsentry.cpp" line="+26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Etiquete esta dirección para añadirla a la libreta</translation>
+        <translation>Introduce una etiqueta a esta dirección para añadirla a tu guia</translation>
     </message>
     <message>
         <location line="-78"/>
@@ -1967,7 +1950,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+28"/>
         <source>Choose address from address book</source>
-        <translation>Elije dirección de la libreta de direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
@@ -1977,7 +1960,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation>Pegar dirección desde portapapeles</translation>
+        <translation>Pega dirección desde portapapeles</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1987,12 +1970,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+7"/>
         <source>Remove this recipient</source>
-        <translation>Elimina este beneficiario</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation>Introduce una dirección WayaWolfCoin (p.ej. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2000,29 +1983,29 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>Firmas - Firmar / verificar un mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Firmar mensaje</translation>
+        <translation>&amp;Firmar Mensaje</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Puede firmar mensajes con sus direcciones para demostrar que las posee. Tenga cuidado de no firmar cualquier cosa vaga, ya que los ataques de phishing pueden tratar de engañarle para suplantar su identidad. Firme solo declaraciones totalmente detalladas con las que usted esté de acuerdo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+18"/>
         <source>The address to sign the message with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation>La dirección a firmar con un mensaje (p.ej. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
         <location line="+203"/>
         <source>Choose an address from the address book</source>
-        <translation>Elije una dirección de la libreta de direcciones</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-193"/>
@@ -2033,7 +2016,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation>Pegar dirección desde portapapeles</translation>
+        <translation>Pega dirección desde portapapeles</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2043,76 +2026,76 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+12"/>
         <source>Enter the message you want to sign here</source>
-        <translation>Introduzca el mensaje que desea firmar aquí</translation>
+        <translation>Escriba el mensaje que desea firmar</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Copiar la firma actual al portapapeles del sistema</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>Sign the message to prove you own this WayaWolfCoin address</source>
-        <translation>Firma el mensaje para demostrar que posees esta dirección WayaWolfCoin.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+17"/>
         <source>Reset all sign message fields</source>
-        <translation>Vaciar todos los campos de la firma de mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation>Vaciar &amp;todo</translation>
+        <translation>&amp;Borra todos</translation>
     </message>
     <message>
         <location line="-87"/>
         <location line="+70"/>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Verificar mensaje</translation>
+        <translation>&amp;Firmar Mensaje</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>Introduzca la dirección para la firma, el mensaje (asegurándose de copiar tal cual los saltos de línea, espacios, tabulaciones, etc.) y la firma a continuación para verificar el mensaje. Tenga cuidado de no asumir más información de lo que dice el propio mensaje firmado para evitar fraudes basados en ataques de tipo man-in-the-middle.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>The address the message was signed with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation>La dirección firmada con un mensaje (p.ej. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+40"/>
         <source>Verify the message to ensure it was signed with the specified WayaWolfCoin address</source>
-        <translation>Verifique el mensaje para asegurarse de que se firmó con la dirección WayaWolfCoin especificada.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+17"/>
         <source>Reset all verify message fields</source>
-        <translation>Vaciar todos los campos de la verificación de mensaje</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation>Introduce una dirección WayaWolfCoin (p.ej ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation>Haga clic en &quot;Firmar mensaje&quot; para generar la firma</translation>
+        <translation>Click en &quot;Firmar Mensage&quot; para conseguir firma</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Enter WayaWolfCoin signature</source>
-        <translation>Introduce la firma WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+82"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
-        <translation>La dirección introducida es inválida.</translation>
+        <translation>La dirección introducida &quot;%1&quot; no es una dirección WayaWolfCoin valida.</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -2120,59 +2103,59 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+73"/>
         <location line="+8"/>
         <source>Please check the address and try again.</source>
-        <translation>Verifique la dirección e inténtelo de nuevo.</translation>
+        <translation>Por favor, revise la dirección WayaWolfCoin e inténtelo denuevo</translation>
     </message>
     <message>
         <location line="-81"/>
         <location line="+81"/>
         <source>The entered address does not refer to a key.</source>
-        <translation>La dirección introducida no corresponde a una clave.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-73"/>
         <source>Wallet unlock was cancelled.</source>
-        <translation>Se ha cancelado el desbloqueo del monedero. </translation>
+        <translation>Ha fallado el desbloqueo de la billetera</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
-        <translation>No se dispone de la clave privada para la dirección introducida.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+12"/>
         <source>Message signing failed.</source>
-        <translation>Ha fallado la firma del mensaje.</translation>
+        <translation>Firma fallida</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message signed.</source>
-        <translation>Mensaje firmado.</translation>
+        <translation>Mensaje firmado</translation>
     </message>
     <message>
         <location line="+59"/>
         <source>The signature could not be decoded.</source>
-        <translation>No se puede decodificar la firma.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <location line="+13"/>
         <source>Please check the signature and try again.</source>
-        <translation>Compruebe la firma e inténtelo de nuevo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>The signature did not match the message digest.</source>
-        <translation>La firma no coincide con el resumen del mensaje.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Message verification failed.</source>
-        <translation>La verificación del mensaje ha fallado.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Message verified.</source>
-        <translation>Mensaje verificado.</translation>
+        <translation>Mensaje comprobado</translation>
     </message>
 </context>
 <context>
@@ -2193,12 +2176,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+6"/>
         <source>conflicted</source>
-        <translation>en conflicto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation>%1/fuera de línea</translation>
+        <translation>%1/fuera de linea</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2208,7 +2191,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>%1 confirmations</source>
-        <translation>%1 confirmaciones</translation>
+        <translation>%1 confirmaciónes</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -2218,7 +2201,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message numerus="yes">
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, transmitir a través de %n nodo</numerusform><numerusform>, transmitir a través de %n nodos</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2228,7 +2211,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+7"/>
         <source>Source</source>
-        <translation>Fuente</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
@@ -2246,13 +2229,13 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+22"/>
         <location line="+58"/>
         <source>To</source>
-        <translation>Para</translation>
+        <translation>A</translation>
     </message>
     <message>
         <location line="-77"/>
         <location line="+2"/>
         <source>own address</source>
-        <translation>dirección propia</translation>
+        <translation>propia dirección</translation>
     </message>
     <message>
         <location line="-2"/>
@@ -2266,12 +2249,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+17"/>
         <location line="+30"/>
         <source>Credit</source>
-        <translation>Crédito</translation>
+        <translation>Credito</translation>
     </message>
     <message numerus="yes">
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>disponible en %n bloque más</numerusform><numerusform>disponible en %n bloques más</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2284,17 +2267,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
         <location line="+15"/>
         <location line="+30"/>
         <source>Debit</source>
-        <translation>Débito</translation>
+        <translation>Debito</translation>
     </message>
     <message>
         <location line="-39"/>
         <source>Transaction fee</source>
-        <translation>Comisión de transacción</translation>
+        <translation>Comisión transacción</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation>Cantidad neta</translation>
+        <translation>Cantidad total</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2309,17 +2292,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>Transaction ID</source>
-        <translation>Identificador de transacción</translation>
+        <translation>ID de Transacción</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated coins must mature 510 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation>Las monedas generadas deben madurar 510 bloques antes de que puedan gastarse. Cuando generaste este bloque, este fue transmitido a la red para ser añadido a la cadena de bloques. Si falla al introducirse en la cadena, su estado cambiará a &quot;no aceptado&quot; y no se podrá gastar. Esto ocasionalmente puede ocurrir si otro nodo genera un bloque a unos segundos que el tuyo.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Debug information</source>
-        <translation>Información de depuración</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
@@ -2329,7 +2312,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+5"/>
         <source>Inputs</source>
-        <translation>entradas</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
@@ -2339,17 +2322,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+1"/>
         <source>true</source>
-        <translation>verdadero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>false</source>
-        <translation>falso</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-209"/>
         <source>, has not been successfully broadcast yet</source>
-        <translation>, todavía no se ha sido difundido satisfactoriamente</translation>
+        <translation>, no ha sido emitido satisfactoriamente todavía</translation>
     </message>
     <message numerus="yes">
         <location line="-36"/>
@@ -2410,42 +2393,42 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message numerus="yes">
         <location line="-15"/>
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Abrir para %n bloque más</numerusform><numerusform>Abrir para %n bloques más</numerusform></translation>
+        <translation><numerusform>Abierto para &amp;n bloque más</numerusform><numerusform>Abierto para &amp;n bloques más</numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Offline</source>
-        <translation>Sin conexión</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Unconfirmed</source>
-        <translation>Sin confirmar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>Confirmando (%1 de %2 confirmaciones recomendadas)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Conflicted</source>
-        <translation>En conflicto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Immature (%1 confirmations, will be available after %2)</source>
-        <translation>No vencidos (%1 confirmaciones. Estarán disponibles al cabo de %2)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Este bloque no ha sido recibido por otros nodos y probablemente no sea aceptado!</translation>
+        <translation>Este bloque no ha sido recibido por otros nodos y probablemente no sea aceptado !</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated but not accepted</source>
-        <translation>Generado pero no aceptado</translation>
+        <translation>Generado pero no acceptado</translation>
     </message>
     <message>
         <location line="+42"/>
@@ -2455,7 +2438,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>Received from</source>
-        <translation>Recibidos de</translation>
+        <translation>Recibido de</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -2465,7 +2448,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>Pago propio</translation>
+        <translation>Pagar a usted mismo</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2475,17 +2458,17 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+38"/>
         <source>(n/a)</source>
-        <translation>(nd)</translation>
+        <translation>(n/a)</translation>
     </message>
     <message>
         <location line="+194"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>Estado de transacción. Pasa el ratón sobre este campo para ver el número de confirmaciones.</translation>
+        <translation>Estado de transacción. Pasa el raton sobre este campo para ver el numero de confirmaciónes.</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Date and time that the transaction was received.</source>
-        <translation>Fecha y hora en que se recibió la transacción.</translation>
+        <translation>Fecha y hora cuando se recibió la transaccion</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2495,12 +2478,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>Destination address of transaction.</source>
-        <translation>Dirección de destino de la transacción.</translation>
+        <translation>Dirección de destino para la transacción</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Amount removed from or added to balance.</source>
-        <translation>Cantidad retirada o añadida al saldo.</translation>
+        <translation>Cantidad restada o añadida al balance</translation>
     </message>
 </context>
 <context>
@@ -2524,7 +2507,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+1"/>
         <source>This month</source>
-        <translation>Este mes</translation>
+        <translation>Esta mes</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2554,7 +2537,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>To yourself</source>
-        <translation>A usted mismo</translation>
+        <translation>A ti mismo</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2569,37 +2552,37 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+7"/>
         <source>Enter address or label to search</source>
-        <translation>Introduzca una dirección o etiqueta que buscar</translation>
+        <translation>Introduce una dirección o etiqueta para  buscar</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>Cantidad mínima</translation>
+        <translation>Cantidad minima</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Copy address</source>
-        <translation>Copiar dirección</translation>
+        <translation>Copia dirección</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Copiar etiqueta</translation>
+        <translation>Copia etiqueta</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Copiar cuantía</translation>
+        <translation>Copiar Cantidad</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy transaction ID</source>
-        <translation>Copiar identificador de transacción</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit label</source>
-        <translation>Editar etiqueta</translation>
+        <translation>Edita etiqueta</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2609,12 +2592,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+138"/>
         <source>Export Transaction Data</source>
-        <translation>Exportar datos de transacción</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Archivos de columnas separadas por coma (*.csv)</translation>
+        <translation>Archivos separados por coma (*.csv)</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -2654,12 +2637,12 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+4"/>
         <source>Error exporting</source>
-        <translation>Error al exportar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation>No se puede escribir en el archivo %1.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+100"/>
@@ -2677,7 +2660,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../walletmodel.cpp" line="+208"/>
         <source>Sending...</source>
-        <translation>Enviando...</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2685,7 +2668,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location filename="../bitcoinstrings.cpp" line="+173"/>
         <source>WayaWolfCoin version</source>
-        <translation>versión WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -2695,7 +2678,7 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+1"/>
         <source>Send command to -server or WayaWolfCoind</source>
-        <translation>Envía un comando a -server o WayaWolfCoind</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -2718,22 +2701,23 @@ Esto significa que se requiere una cuota de al menos %2.</translation>
     <message>
         <location line="+2"/>
         <source>Specify configuration file (default: WayaWolfCoin.conf)</source>
-        <translation>Especifica un archivo de configuración (por defecto: WayaWolfCoin.conf)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Specify pid file (default: WayaWolfCoind.pid)</source>
-        <translation>Especifica un archivo pid (por defecto: WayaWolfCoind.pid)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Specify wallet file (within data directory)</source>
-        <translation>Especificar archivo de monedero (dentro del directorio de datos)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation>Especificar directorio para los datos</translation>
+        <translation>Especifica directorio para los datos
+</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2753,37 +2737,37 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+27"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation>Establecer el tamaño de caché de la base de datos en megabytes (predeterminado: 25)</translation>
+        <translation>Asigna el tamaño del caché de la base de datos en MB (25 predeterminado)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation>Ajusta el tamaño de la base de datos del registro en megabytes (por defecto: 100)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
-        <translation>Escuchando conexiones en el puerto &lt;port&gt; (por defecto: 15714 o testnet: 25714)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>Mantener como máximo &lt;n&gt; conexiones a pares (predeterminado: 125)</translation>
+        <translation>Mantener al menos &lt;n&gt; conecciones por cliente (por defecto: 125) </translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation>Conectar a un nodo para obtener direcciones de pares y desconectar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Specify your own public address</source>
-        <translation>Especifique su propia dirección pública</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
-        <translation>Enlazar a la dirección dada. Utilice la notación [host]:puerto para IPv6</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -2798,22 +2782,22 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation>Umbral para la desconexión de pares con mal comportamiento (predeterminado: 100)</translation>
+        <translation>Umbral de desconección de clientes con mal comportamiento (por defecto: 100)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation>Número de segundos en que se evita la reconexión de pares con mal comportamiento (predeterminado: 86400)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-37"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv4: %s</source>
-        <translation>Ha ocurrido un error al configurar el puerto RPC %u para escucha en IPv4: %s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+65"/>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 15715 or testnet: 25715)</source>
-        <translation>Escuchar conexiones JSON-RPC en &lt;port&gt; (predeterminado: 15715 o testnet: 25715)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-17"/>
@@ -2824,109 +2808,110 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Ejecutar en segundo plano como daemon y aceptar comandos
+        <translation>Correr como demonio y acepta comandos
 </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Use the test network</source>
-        <translation>Usar la red de pruebas
+        <translation>Usa la red de pruebas
 </translation>
     </message>
     <message>
         <location line="-24"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Aceptar conexiones desde el exterior (predeterminado: 1 si no -proxy o -connect)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-29"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv6, falling back to IPv4: %s</source>
-        <translation>Ha ocurrido un error al configurar el puerto RPC %u para escuchar mediante IPv6. Recurriendo a IPv4: %s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+96"/>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)</source>
-        <translation>Establecer el tamaño máximo de las transacciones alta-prioridad/baja-comisión en bytes (por defecto: 27000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+12"/>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Aviso: ¡-paytxfee tiene un valor muy alto! Esta es la comisión que pagará si envía una transacción.</translation>
+        <translation>Precaución: -paytxfee es muy alta. Esta es la comisión que pagarás si envias una transacción.</translation>
     </message>
     <message>
         <location line="-103"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong WayaWolfCoin will not work properly.</source>
-        <translation>Advertencia: Verifique que la fecha y hora del equipo sean correctas! Si su reloj es erróneo WayaWolfCoin no funcionará correctamente.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+132"/>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Aviso: ¡Error al leer wallet.dat! Todas las claves se han leído correctamente, pero podrían faltar o ser incorrectos los datos de transacciones o las entradas de la libreta de direcciones.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Aviso: ¡Recuperados datos de wallet.dat corrupto! El wallet.dat original se ha guardado como wallet.{timestamp}.bak en %s; si hubiera errores en su saldo o transacciones, deberá restaurar una copia de seguridad.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-31"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Intento de recuperar claves privadas de un wallet.dat corrupto</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Block creation options:</source>
-        <translation>Opciones de creación de bloques:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-69"/>
         <source>Connect only to the specified node(s)</source>
-        <translation>Conectar sólo a los nodos (o nodo) especificados</translation>
+        <translation>Conecta solo al nodo especificado
+</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>Descubrir dirección IP propia (predeterminado: 1 al escuchar sin -externalip)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+101"/>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation>Ha fallado la escucha en todos los puertos. Use -listen=0 si desea esto.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-91"/>
         <source>Sync checkpoints policy (default: strict)</source>
-        <translation>Política de puntos de control de sincronización (por defecto: estricta)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+89"/>
         <source>Invalid -tor address: &apos;%s&apos;</source>
-        <translation>Dirección -tor inválida: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
-        <translation>Cantidad no válida para -reservebalance=&lt;amount&gt;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-88"/>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
-        <translation>Búfer de recepción máximo por conexión, &lt;n&gt;*1000 bytes (predeterminado: 5000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
-        <translation>Búfer de recepción máximo por conexión, , &lt;n&gt;*1000 bytes (predeterminado: 1000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-17"/>
         <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
-        <translation>Conectarse solo a nodos de la red &lt;net&gt; (IPv4, IPv6 o Tor)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
         <source>Prepend debug output with timestamp</source>
-        <translation>Prefijar salida de depuración con marca de tiempo</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+41"/>
@@ -2936,69 +2921,69 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-81"/>
         <source>Select the version of socks proxy to use (4-5, default: 5)</source>
-        <translation>Selecciona la versión de socks proxy a usar (4-5, por defecto: 5)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+42"/>
         <source>Send trace/debug info to console instead of debug.log file</source>
-        <translation>Enviar información de trazas/depuración a la consola en lugar de al archivo debug.log</translation>
+        <translation>Enviar informacion de seguimiento a la consola en vez del archivo debug.log</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Send trace/debug info to debugger</source>
-        <translation>Enviar información de rastreo / depurado al depurador</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+30"/>
         <source>Set maximum block size in bytes (default: 250000)</source>
-        <translation>Establecer el tamaño máximo de bloque en bytes (por defecto: 250000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Set minimum block size in bytes (default: 0)</source>
-        <translation>Establecer tamaño mínimo de bloque en bytes (predeterminado: 0)</translation>
+        <translation>Establezca el tamaño mínimo del bloque en bytes (por defecto: 0)</translation>
     </message>
     <message>
         <location line="-35"/>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
-        <translation>Reducir el archivo debug.log al iniciar el cliente (predeterminado: 1 sin -debug)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-43"/>
         <source>Specify connection timeout in milliseconds (default: 5000)</source>
-        <translation>Especificar el tiempo máximo de conexión en milisegundos (predeterminado: 5000)</translation>
+        <translation>Especifica tiempo de espera para conexion en milisegundos (predeterminado: 5000)</translation>
     </message>
     <message>
         <location line="+116"/>
         <source>Unable to sign checkpoint, wrong checkpointkey?
 </source>
-        <translation>No es posible firmar el punto de control, clave de punto de control incorrecta?%s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-86"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation>Usar UPnP para asignar el puerto de escucha (predeterminado: 0)</translation>
+        <translation>Intenta usar UPnP para mapear el puerto de escucha (default: 0)</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Usar UPnP para asignar el puerto de escucha (predeterminado: 1 al escuchar)</translation>
+        <translation>Intenta usar UPnP para mapear el puerto de escucha (default: 1 when listening)</translation>
     </message>
     <message>
         <location line="-26"/>
         <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
-        <translation>Usar proxy para alcanzar a ver los servicios ocultos (por defecto: los mismos que -proxy)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+47"/>
         <source>Username for JSON-RPC connections</source>
-        <translation>Nombre de usuario para las conexiones JSON-RPC
+        <translation>Usuario para las conexiones JSON-RPC
 </translation>
     </message>
     <message>
         <location line="+51"/>
         <source>Verifying database integrity...</source>
-        <translation>Verificando la integridad de la base de datos...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+44"/>
@@ -3033,17 +3018,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+2"/>
         <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
-        <translation>ADVERTENCIA: violación de un punto de control sincronizado detectada, se saltara!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>Aviso: Esta versión es obsoleta, actualización necesaria!</translation>
+        <translation>Advertencia: Esta versión está obsoleta, se necesita actualizar!</translation>
     </message>
     <message>
         <location line="-54"/>
         <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallet.dat corrupto. Ha fallado la recuperación.</translation>
+        <translation>wallet.dat corrompió, guardado fallido</translation>
     </message>
     <message>
         <location line="-56"/>
@@ -3054,12 +3039,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-32"/>
         <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
-        <translation>Sincronizar el tiempo con otros nodos. Desactivar si el tiempo en su sistema es preciso, por ejemplo si usa sincronización con NTP (por defecto: 1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
-        <translation>Al crear transacciones, ignorar las entradas con valor inferior a esta (por defecto: 0.01)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
@@ -3084,13 +3069,13 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation>Permitir conexiones JSON-RPC desde la dirección IP especificada
+        <translation>Permite conexiones JSON-RPC desde la dirección IP especificada
 </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation>Enviar comando al nodo situado en &lt;ip&gt; (predeterminado: 127.0.0.1)
+        <translation>Envia comando al nodo situado en &lt;ip&gt; (predeterminado: 127.0.0.1)
 </translation>
     </message>
     <message>
@@ -3106,65 +3091,66 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation>Ejecutar un comando cuando cambia el mejor bloque (%s en cmd se sustituye por el hash de bloque)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
-        <translation>Ejecutar comando cuando una transacción del monedero cambia (%s en cmd se remplazará por TxID)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Require a confirmations for change (default: 0)</source>
-        <translation>Requerir confirmaciones para cambio (por defecto: 0)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Execute command when a relevant alert is received (%s in cmd is replaced by message)</source>
-        <translation>Ejecutar comando cuando una alerta relevante sea recibida (%s en la linea de comandos es reemplazado por un mensaje)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Upgrade wallet to latest format</source>
-        <translation>Actualizar el monedero al último formato</translation>
+        <translation>Actualizar billetera al formato actual</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation>Ajustar el número de claves en reserva &lt;n&gt; (predeterminado: 100)
+        <translation>Ajusta el numero de claves en reserva &lt;n&gt; (predeterminado: 100)
 </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Volver a examinar la cadena de bloques en busca de transacciones del monedero perdidas</translation>
+        <translation>Rescanea la cadena de bloques para transacciones perdidas de la cartera
+</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>How thorough the block verification is (0-6, default: 1)</source>
-        <translation>Cómo de minuciosa es la verificación del bloque (0-6, por defecto: 1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Imports blocks from external blk000?.dat file</source>
-        <translation>Importar bloques desde el archivo externo blk000?.dat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation>Usar OpenSSL (https) para las conexiones JSON-RPC
+        <translation>Usa OpenSSL (https) para las conexiones JSON-RPC
 </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server certificate file (default: server.cert)</source>
-        <translation>Certificado del servidor (predeterminado: server.cert)
+        <translation>Certificado del servidor (Predeterminado: server.cert)
 </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server private key (default: server.pem)</source>
-        <translation>Clave privada del servidor (predeterminado: server.pem)
+        <translation>Clave privada del servidor (Predeterminado: server.pem)
 </translation>
     </message>
     <message>
@@ -3175,7 +3161,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+50"/>
         <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation>Error: Monedero desbloqueado sólo para hacer &quot;stake&quot;, no es posible crear una transacción.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+17"/>
@@ -3190,7 +3176,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
-        <translation>ADVERTENCIA: Punto de control no válido encontrado! Las transacciones que se muestran pueden no ser correctas! Puede que tenga que actualizar o notificar a los desarrolladores.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-174"/>
@@ -3201,77 +3187,78 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+104"/>
         <source>Wallet %s resides outside data directory %s.</source>
-        <translation>El monedero %s reside fuera del directorio de datos %s.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+37"/>
         <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
-        <translation>No es posible conectar con %s en este sistema (bind ha dado el error %d, %s)</translation>
+        <translation>No es posible escuchar en el %s en este ordenador (bind returned error %d, %s)</translation>
     </message>
     <message>
         <location line="-133"/>
         <source>Connect through socks proxy</source>
-        <translation>Conecte a través del socks proxy</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>Permitir búsquedas DNS para -addnode, -seednode y -connect</translation>
+        <translation>Permite búsqueda DNS para addnode y connect
+</translation>
     </message>
     <message>
         <location line="+126"/>
         <source>Loading addresses...</source>
-        <translation>Cargando direcciones...</translation>
+        <translation>Cargando direcciónes...</translation>
     </message>
     <message>
         <location line="-12"/>
         <source>Error loading blkindex.dat</source>
-        <translation>Error al cargar blkindex.dat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Error al cargar wallet.dat: el monedero está dañado</translation>
+        <translation>Error cargando wallet.dat: Billetera corrupta</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin</source>
-        <translation>Error cargando wallet.dat: El monedero requiere una nueva versión de WayaWolfCoin</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
-        <translation>El monedero necesita ser reescrito: reinicie WayaWolfCoin para completar</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Error loading wallet.dat</source>
-        <translation>Error al cargar wallet.dat</translation>
+        <translation>Error cargando wallet.dat</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation>Dirección -proxy inválida: &apos;%s&apos;</translation>
+        <translation>Dirección -proxy invalida: &apos;%s&apos;</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation>La red especificada en -onlynet &apos;%s&apos; es desconocida</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown -socks proxy version requested: %i</source>
-        <translation>Solicitada versión de proxy -socks desconocida: %i</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation>No se puede resolver la dirección de -bind: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation>No se puede resolver la dirección de -externalip: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-23"/>
@@ -3281,12 +3268,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+60"/>
         <source>Sending...</source>
-        <translation>Enviando...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Invalid amount</source>
-        <translation>Cuantía no válida</translation>
+        <translation>Cantidad inválida</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3296,22 +3283,22 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-40"/>
         <source>Loading block index...</source>
-        <translation>Cargando el índice de bloques...</translation>
+        <translation>Cargando el index de bloques...</translation>
     </message>
     <message>
         <location line="-110"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>Añadir un nodo al que conectarse y tratar de mantener la conexión abierta</translation>
+        <translation>Agrega un nodo para conectarse and attempt to keep the connection open</translation>
     </message>
     <message>
         <location line="+125"/>
         <source>Unable to bind to %s on this computer. WayaWolfCoin is probably already running.</source>
-        <translation>No se puede enlazar a %s en este equipo. WayaWolfCoin probablemente ya esté en funcionamiento.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-101"/>
         <source>Fee per KB to add to transactions you send</source>
-        <translation>Comisión por KB a añadir a las transacciones que envía</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+34"/>
@@ -3341,7 +3328,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Invalid amount for -mininput=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation>Cantidad no válida para -mininput=&lt;amount&gt;: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -3356,27 +3343,27 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+17"/>
         <source>Loading wallet...</source>
-        <translation>Cargando monedero...</translation>
+        <translation>Cargando cartera...</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Cannot downgrade wallet</source>
-        <translation>No se puede rebajar el monedero</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Cannot write default address</source>
-        <translation>No se puede escribir la dirección predeterminada</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescanning...</source>
-        <translation>Reexplorando...</translation>
+        <translation>Rescaneando...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Done loading</source>
-        <translation>Generado pero no aceptado</translation>
+        <translation>Carga completa</translation>
     </message>
     <message>
         <location line="-161"/>
@@ -3393,9 +3380,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
         <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
 %s
 If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation>Tiene que establecer rpcpassword=&lt;contraseña&gt; en el fichero de configuración: ⏎
-%s ⏎
-Si el archivo no existe, créelo con permiso de lectura solamente del propietario.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
