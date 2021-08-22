@@ -348,4 +348,230 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <t
+        <translation>Quitter l’application</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Show information about WayaWolfCoin</source>
+        <translation>Afficher des informations au sujet du WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>About &amp;Qt</source>
+        <translation>À propos de &amp;Qt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Qt</source>
+        <translation>Afficher des informations sur Qt</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Options…</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>&amp;Crypter le portefeuille...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation>Sauvegarder le &amp;portefeuille...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation>&amp;Changer la phrase de passe...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Export...</translation>
+    </message>
+    <message>
+        <location line="-55"/>
+        <source>Send coins to a WayaWolfCoin address</source>
+        <translation>Envoyer des monnaies vers une adresse WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Modify configuration options for WayaWolfCoin</source>
+        <translation>Modification des options de configuration de WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Export des données de l&apos;onglet courant vers un fichier</translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Crypter ou décrypter le portefeuille</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Backup wallet to another location</source>
+        <translation>Sauvegarder le portefeuille vers un autre emplacement</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Modifier la phrase de passe utilisée pour le cryptage du portefeuille</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Debug window</source>
+        <translation>&amp;Fenêtre de débogage</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Ouvrir une console de débogage et de diagnostic</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Vérifier un message...</translation>
+    </message>
+    <message>
+        <location line="-214"/>
+        <location line="+551"/>
+        <source>WayaWolfCoin</source>
+        <translation>WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="-551"/>
+        <source>Wallet</source>
+        <translation>Portefeuille</translation>
+    </message>
+    <message>
+        <location line="+193"/>
+        <source>&amp;About WayaWolfCoin</source>
+        <translation>A propos de WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Show / Hide</source>
+        <translation>&amp;Afficher / Cacher</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Unlock wallet</source>
+        <translation>Déverrouiller le portefeuille</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Lock Wallet</source>
+        <translation>&amp;Verrouiller le portefeuille</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation>Verrouiller le portefeuille</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;File</source>
+        <translation>&amp;Fichier</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Réglages</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Aide</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Tabs toolbar</source>
+        <translation>Barre d&apos;outils des onglets</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <location line="+9"/>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+58"/>
+        <source>WayaWolfCoin client</source>
+        <translation>Client WayaWolfCoin</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+70"/>
+        <source>%n active connection(s) to WayaWolfCoin network</source>
+        <translation><numerusform>%n connexion active au réseau WayaWolfCoin</numerusform><numerusform>%n connexions actives au réseau WayaWolfCoin</numerusform></translation>
+    </message>
+    <message>
+        <location line="+488"/>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>Staking.&lt;br&gt;Votre poids est de  %1&lt;br&gt;Le poids du réseau est de %2&lt;br&gt;Temps estimé avant récompense %3</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Not staking because wallet is locked</source>
+        <translation>Ne stack pas, votre portefeuilles est verouillé</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is offline</source>
+        <translation>Ne stack pas, votre portefeuilles est hors ligne</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is syncing</source>
+        <translation>Ne stack pas, votre portefeuille est en cours de synchronisation</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because you don&apos;t have mature coins</source>
+        <translation>Ne stack pas, vos monnaies ne sont pas encore matures</translation>
+    </message>
+    <message>
+        <location line="-808"/>
+        <source>&amp;Dashboard</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>&amp;Receive</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>&amp;Send</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>&amp;Unlock Wallet...</source>
+        <translation>&amp;Déverrouiller le portefeuille</translation>
+    </message>
+    <message>
+        <location line="+273"/>
+        <source>Up to date</source>
+        <translation>À jour</translation>
+    </message>
+    <message>
+        <location line="+43"/>
+        <source>Catching up...</source>
+        <translation>Rattrapage en cours…</translation>
+    </message>
+    <message>
+        <location line="+113"/>
+        <source>Confirm transaction fee</source>
+        <translation>Confirmer le Paiement des frais de transaction</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Sent transaction</source>
+        <translation>Transaction envoyée</translation>
+    </message>
+    <message>
+        <location line="
