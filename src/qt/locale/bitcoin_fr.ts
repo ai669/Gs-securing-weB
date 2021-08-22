@@ -2706,3 +2706,682 @@ Cela implique que des frais à hauteur d&apos;au moins %2 seront nécessaires.</
         <location line="+1"/>
         <source>Get help for a command</source>
         <translation>Obtenir de l’aide pour une commande</translation>
+    </message>
+    <message>
+        <location line="-147"/>
+        <source>Options:</source>
+        <translation>Options:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify configuration file (default: WayaWolfCoin.conf)</source>
+        <translation>Spécifier le fichier de configuration (par défaut: WayaWolfCoin.conf)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specify pid file (default: WayaWolfCoind.pid)</source>
+        <translation>Spécifier le fichier pid (par défaut: WayaWolfCoind.pid)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify wallet file (within data directory)</source>
+        <translation>Spécifier le fichier de portefeuille (dans le répertoire de données)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Specify data directory</source>
+        <translation>Spécifier le répertoire de données</translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <source>%s, you must set a rpcpassword in the configuration file:
+%s
+It is recommended you use the following random password:
+rpcuser=WayaWolfCoinrpc
+rpcpassword=%s
+(you do not need to remember this password)
+The username and password MUST NOT be the same.
+If the file does not exist, create it with owner-readable-only file permissions.
+It is also recommended to set alertnotify so you are notified of problems;
+for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin@foo.com
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Set database cache size in megabytes (default: 25)</source>
+        <translation>Définir la taille du tampon de base de données en mégaoctets (par défaut : 25)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set database disk log size in megabytes (default: 100)</source>
+        <translation>Définir la taille du journal de base de données en mégaoctets (par défaut : 100)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
+        <translation>Écouter les connexions sur le &lt;port&gt; (par défault: 15714 ou testnet: 25714)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
+        <translation>Garder au plus &lt;n&gt; connexions avec les pairs (par défaut : 125)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Connect to a node to retrieve peer addresses, and disconnect</source>
+        <translation>Se connecter à un nœud pour obtenir des adresses de pairs puis se déconnecter</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specify your own public address</source>
+        <translation>Spécifier votre propre adresse publique</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Bind to given address. Use [host]:port notation for IPv6</source>
+        <translation>Connexion à l&apos;adresse fournie. Utiliser la notation [machine]:port pour les adresses IPv6</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Query for peer addresses via DNS lookup, if low on addresses (default: 1 unless -connect)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Always query for peer addresses via DNS lookup (default: 0)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
+        <translation>Seuil de déconnexion des pairs de mauvaise qualité (par défaut : 100)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
+        <translation>Délai en secondes de refus de reconnexion aux pairs de mauvaise qualité (par défaut : 86400)</translation>
+    </message>
+    <message>
+        <location line="-37"/>
+        <source>An error occurred while setting up the RPC port %u for listening on IPv4: %s</source>
+        <translation>Une erreur est survenue lors du positionnement du port RPC %u pour écouter sur une adresse IPv4 : %s</translation>
+    </message>
+    <message>
+        <location line="+65"/>
+        <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 15715 or testnet: 25715)</source>
+        <translation>Écouter les connexions JSON-RPC sur le &lt;port&gt; (default: 15715 or testnet: 25715)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Accept command line and JSON-RPC commands</source>
+        <translation>Accepter les commandes de JSON-RPC et de la ligne de commande</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Run in the background as a daemon and accept commands</source>
+        <translation>Fonctionner en arrière-plan en tant que démon et accepter les commandes</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Use the test network</source>
+        <translation>Utiliser le réseau de test</translation>
+    </message>
+    <message>
+        <location line="-24"/>
+        <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
+        <translation>Accepter les connexions entrantes (par défaut : 1 si aucun -proxy ou -connect )</translation>
+    </message>
+    <message>
+        <location line="-29"/>
+        <source>An error occurred while setting up the RPC port %u for listening on IPv6, falling back to IPv4: %s</source>
+        <translation>Une erreur est survenue lors du réglage du port RPC %u pour écouter sur IPv6, retour à IPv4 : %s</translation>
+    </message>
+    <message>
+        <location line="+96"/>
+        <source>Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)</source>
+        <translation>Fixer la taille maximale d&apos;un bloc en octets (par défault: 27000)</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
+        <translation>Attention : -paytxfee est réglée sur un montant très élevé ! Il s&apos;agit des frais de transaction que vous payerez si vous envoyez une transaction.</translation>
+    </message>
+    <message>
+        <location line="-103"/>
+        <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong WayaWolfCoin will not work properly.</source>
+        <translation>Avertissement: Veuillez vérifier la date et l&apos;heure de votre ordinateur. WayaWolfCoin ne pourra pas fonctionner correctement si l&apos;horloge est réglée de façon incorrecte</translation>
+    </message>
+    <message>
+        <location line="+132"/>
+        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>Avertissement : une erreur est survenue lors de la lecture de wallet.dat ! Toutes les clefs ont été lues correctement mais les données de transaction ou les entrées du carnet d&apos;adresses sont peut-être incorrectes ou manquantes.</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
+        <translation>Avertissement : wallet.dat corrompu, données récupérées ! Le fichier wallet.dat original a été enregistré en tant que wallet.{timestamp}.bak dans %s ; si votre solde ou transactions sont incorrects vous devriez effectuer une restauration depuis une sauvegarde.</translation>
+    </message>
+    <message>
+        <location line="-31"/>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>Tenter de récupérer les clefs privées d&apos;un wallet.dat corrompu</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Block creation options:</source>
+        <translation>Options de création de bloc:</translation>
+    </message>
+    <message>
+        <location line="-69"/>
+        <source>Connect only to the specified node(s)</source>
+        <translation>Ne se connecter qu&apos;au(x) nœud(s) spécifié(s)</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>Découvrir sa propre adresse IP (par défaut: 1 lors de l&apos;écoute et si aucun -externalip)</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Échec de l&apos;écoute sur un port quelconque. Utilisez -listen=0 si vous voulez ceci.</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Sync checkpoints policy (default: strict)</source>
+        <translation>Politique de synchronisation des checkpoints (default: strict)</translation>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Invalid -tor address: &apos;%s&apos;</source>
+        <translation>Adresse -tor invalide: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
+        <translation>Montant incorrect pour -reservebalance=&lt;montant&gt;</translation>
+    </message>
+    <message>
+        <location line="-88"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
+        <translation>Tampon maximal de réception par « -connection » &lt;n&gt;*1 000 octets (par défaut : 5 000)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
+        <translation>Tampon maximal d&apos;envoi par « -connection », &lt;n&gt;*1 000 octets (par défaut : 1 000)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
+        <translation>Se connecter uniquement aux nœuds du réseau &lt;net&gt; (IPv4, IPv6 ou Tor)</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation>Horodater les messages de debug</translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
+        <translation>Options SSL : (voir le Wiki de WayaWolfCoin pour les instructions de configuration du SSL)</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <source>Select the version of socks proxy to use (4-5, default: 5)</source>
+        <translation>Sélectionner la version du proxy socks à utiliser (4-5, par défaut: 5)</translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Envoyer les informations de débogage/trace à la console au lieu du fichier debug.log</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Envoyer les informations de débogage/trace à la console au lieu du fichier debug.log</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Set maximum block size in bytes (default: 250000)</source>
+        <translation>Fixer la taille maximale d&apos;un block en bytes (default: 250000)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Set minimum block size in bytes (default: 0)</source>
+        <translation>Définir la taille minimale de bloc en octets (par défaut : 0)</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>Réduire le fichier debug.log lors du démarrage du client (par défaut : 1 lorsque -debug n&apos;est pas présente)</translation>
+    </message>
+    <message>
+        <location line="-43"/>
+        <source>Specify connection timeout in milliseconds (default: 5000)</source>
+        <translation>Spécifier le délai d&apos;expiration de la connexion en millisecondes (par défaut: 5000)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Unable to sign checkpoint, wrong checkpointkey?
+</source>
+        <translation>Impossible de &quot;signer&quot; le checkpoint, mauvaise clef de checkpoint?
+</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Use UPnP to map the listening port (default: 0)</source>
+        <translation>Utiliser l&apos;UPnP pour rediriger le port d&apos;écoute (par défaut: 0)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>Utiliser l&apos;UPnP pour rediriger le port d&apos;écoute (par défaut: 1 lors de l&apos;écoute)</translation>
+    </message>
+    <message>
+        <location line="-26"/>
+        <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
+        <translation>Utiliser un proxy pour atteindre les services cachés (par défaut: équivalent à -proxy)</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Nom d&apos;utilisateur pour les connexions JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Verifying database integrity...</source>
+        <translation>Vérification d&apos;intégrité de la base de données...</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Error: Wallet locked, unable to create transaction!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Error: Transaction creation failed!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
+        <translation>ATTENTION : violation du checkpoint de synchronisation, mais ignorée!</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>Avertissement : cette version est obsolète, une mise à niveau est nécessaire !</translation>
+    </message>
+    <message>
+        <location line="-54"/>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>wallet.dat corrompu, la récupération a échoué</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Mot de passe pour les connexions JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="-32"/>
+        <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
+        <translation>Synchronisation de l&apos;horloge avec d&apos;autres noeuds. Désactiver si votre serveur est déjà synchronisé avec le protocole NTP (défaut: 1)</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
+        <translation>Lors de la création de transactions, ignorer les entrées dont la valeur sont inférieures (défaut: 0.01)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Output debugging information (default: 0, supplying &lt;category&gt; is optional)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>If &lt;category&gt; is not supplied, output all debugging information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&lt;category&gt; can be:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Enter regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>Autoriser les connexions JSON-RPC depuis l&apos;adresse IP spécifiée</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>Envoyer des commandes au nœud fonctionnant sur &lt;ip&gt; (par défaut : 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wait for RPC server to start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set the number of threads to service RPC calls (default: 4)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Exécuter la commande lorsque le meilleur bloc change (%s dans cmd est remplacé par le hachage du bloc)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
+        <translation>Exécuter la commande lorsqu&apos;une transaction du portefeuille change (%s dans la commande est remplacée par TxID)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Require a confirmations for change (default: 0)</source>
+        <translation>Nécessite a confirmations pour modification (par défaut: 0)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Execute command when a relevant alert is received (%s in cmd is replaced by message)</source>
+        <translation>Exécute une commande lorsqu&apos;une alerte correspondante est reçue (%s dans la commande est remplacé par message)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Mettre à niveau le portefeuille vers le format le plus récent</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Régler la taille de la réserve de clefs sur &lt;n&gt; (par défaut : 100)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>Réanalyser la chaîne de blocs pour les transactions de portefeuille manquantes</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation>Niveau d&apos;approfondissement de la vérification des blocs (0-6, default: 1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation>Importe les blocs d&apos;un fichier externe blk000?.dat</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>Utiliser OpenSSL (https) pour les connexions JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Fichier de certificat serveur (par défaut : server.cert)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Clef privée du serveur (par défaut : server.pem)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Initialization sanity check failed. WayaWolfCoin is shutting down.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <translation>Erreur: Portefeuille déverrouillé uniquement pour &quot;staking&quot; , impossible d&apos;effectuer cette transaction</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Error: Disk space is low!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
+        <translation>AVERTISSEMENT: point de contrôle invalide! Les transactions affichées peuvent être incorrectes! Il est peut-être nécessaire d&apos;effectuer une mise à jour, ou d&apos;avertir les développeurs du projet.</translation>
+    </message>
+    <message>
+        <location line="-174"/>
+        <source>This help message</source>
+        <translation>Ce message d&apos;aide</translation>
+    </message>
+    <message>
+        <location line="+104"/>
+        <source>Wallet %s resides outside data directory %s.</source>
+        <translation>Le portefeuille %s est situé en dehors du répertoire de données %s</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
+        <translation>Impossible de se lier à %s sur cet ordinateur (bind a retourné l&apos;erreur %d, %s)</translation>
+    </message>
+    <message>
+        <location line="-133"/>
+        <source>Connect through socks proxy</source>
+        <translation>Se connecter à travers un proxy socks</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
+        <translation>Autoriser les recherches DNS pour -addnode, -seednode et -connect</translation>
+    </message>
+    <message>
+        <location line="+126"/>
+        <source>Loading addresses...</source>
+        <translation>Chargement des adresses…</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Erreur de chargement du fichier blkindex.dat</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Erreur lors du chargement de wallet.dat: portefeuille corrompu</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin</source>
+        <translation>Erreur de chargement du fichier wallet.dat: le portefeuille nécessite une version plus récente de l&apos;application WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
+        <translation>Le portefeuille nécessite d&apos;être réédité : Merci de relancer l&apos;application WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error loading wallet.dat</source>
+        <translation>Erreur lors du chargement du fichier wallet.dat</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <source>Invalid -proxy address: &apos;%s&apos;</source>
+        <translation>Adresse -proxy invalide : « %s »</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Réseau inconnu spécifié sur -onlynet : « %s »</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Unknown -socks proxy version requested: %i</source>
+        <translation>Version inconnue de serveur mandataire -socks demandée : %i</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Cannot resolve -bind address: &apos;%s&apos;</source>
+        <translation>Impossible de résoudre l&apos;adresse -bind : « %s »</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
+        <translation>Impossible de résoudre l&apos;adresse -externalip : « %s »</translation>
+    </message>
+    <message>
+        <location line="-23"/>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Montant invalide pour -paytxfee=&lt;montant&gt; : « %s »</translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>Sending...</source>
+        <translation>Envoi...</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Invalid amount</source>
+        <translation>Montant invalide</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insufficient funds</source>
+        <translation>Fonds insuffisants</translation>
+    </message>
+    <message>
+        <location line="-40"/>
+        <source>Loading block index...</source>
+        <translation>Chargement de l’index des blocs…</translation>
+    </message>
+    <message>
+        <location line="-110"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Ajouter un nœud auquel se connecter et tenter de garder la connexion ouverte</translation>
+    </message>
+    <message>
+        <location line="+125"/>
+        <source>Unable to bind to %s on this computer. WayaWolfCoin is probably already running.</source>
+        <translation>Connexion au port %s impossible. L&apos;application WayaWolfCoin est probablement déjà en cours d&apos;exécution</translation>
+    </message>
+    <message>
+        <location line="-101"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>Frais par KB à ajouter à vos transactions sortantes</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Minimize weight consumption (experimental) (default: 0)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>How many blocks to check at startup (default: 500, 0 = all)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Keep at most &lt;n&gt; unconnectable blocks in memory (default: %u)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Acceptable ciphers (default: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Warning: Deprecated argument -debugnet ignored, use -debug=net</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Invalid amount for -mininput=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Montant invalide pour -mininput=&lt;amount&gt;: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Cannot obtain a lock on data directory %s. WayaWolfCoin is probably already running.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error initializing wallet database environment %s!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Loading wallet...</source>
+        <translation>Chargement du portefeuille…</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Cannot downgrade wallet</source>
+        <translation>Impossible de revenir à une version inférieure du portefeuille</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Cannot write default address</source>
+        <translation>Impossible d&apos;écrire l&apos;adresse par défaut</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Rescanning...</source>
+        <translation>Nouvelle analyse…</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Done loading</source>
+        <translation>Chargement terminé</translation>
+    </message>
+    <message>
+        <location line="-161"/>
+        <source>To use the %s option</source>
+        <translation>Pour utiliser l&apos;option %s</translation>
+    </message>
+    <message>
+        <location line="+188"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>Vous devez ajouter la ligne rpcpassword=&lt;mot-de-passe&gt; au fichier de configuration :
+%s
+Si le fichier n&apos;existe pas, créez-le avec les droits de lecture seule accordés au propriétaire.</translation>
+    </message>
+</context>
+</TS>
