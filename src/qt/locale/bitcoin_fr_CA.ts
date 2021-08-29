@@ -1233,4 +1233,214 @@ Les montants inférieurs à  0.546 fois les frais minimum de relais apparaissent
         <translation>Minimiser au lieu de quitter l&apos;application lorsque la fenêtre est fermée. Si cette option est activée, l&apos;application ne pourra être fermée qu&apos;en sélectionnant Quitter dans le menu.</translation>
     </message>
     <message>
-        <
+        <location line="+3"/>
+        <source>M&amp;inimize on close</source>
+        <translation>M&amp;inimiser lors de la fermeture</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Display</source>
+        <translation>&amp;Affichage</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>User Interface &amp;language:</source>
+        <translation>&amp;Langue de l&apos;interface utilisateur :</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>The user interface language can be set here. This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>La langue d&apos;interface de de l&apos;utilisateur peut être définie ici. Ces modification seront effectives après redémarrage de l&apos;application WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Unit to show amounts in:</source>
+        <translation>&amp;Unité d&apos;affichage des montants :</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
+        <translation>Choisissez la sous-unité par défaut pour l&apos;affichage dans l&apos;interface et lors de l&apos;envoi de pièces.</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Whether to show coin control features or not.</source>
+        <translation>Afficher ou non les fonctions de contrôle des pièces.</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Display coin &amp;control features (experts only!)</source>
+        <translation>Afficher les options de monnaie &amp; contrôle (mode expert)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Whether to select the coin outputs randomly or with minimal coin age.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Minimize weight consumption (experimental)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Use Dark Visual theme (requires restart)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Annuler</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Apply</source>
+        <translation>&amp;Exécuter</translation>
+    </message>
+    <message>
+        <location filename="../optionsdialog.cpp" line="+53"/>
+        <source>default</source>
+        <translation>par défaut</translation>
+    </message>
+    <message>
+        <location line="+149"/>
+        <location line="+9"/>
+        <source>Warning</source>
+        <translation>Avertissement</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <location line="+9"/>
+        <source>This setting will take effect after restarting WayaWolfCoin.</source>
+        <translation>Les paramètres prendront effet après redémarrage du client WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>The supplied proxy address is invalid.</source>
+        <translation>L&apos;adresse de serveur mandataire -proxy- fournie est invalide.</translation>
+    </message>
+</context>
+<context>
+    <name>OverviewPage</name>
+    <message>
+        <location filename="../forms/overviewpage.ui" line="+14"/>
+        <source>Form</source>
+        <translation>Formulaire</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <location line="+247"/>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WayaWolfCoin network after a connection is established, but this process has not completed yet.</source>
+        <translation>Les informations affichées peuvent être obsolètes. Votre portefeuille se synchronise automatiquement avec le réseau WayaWolfCoin mais ce processus n&apos;est pas encore terminé.</translation>
+    </message>
+    <message>
+        <location line="-173"/>
+        <source>Stake:</source>
+        <translation>Stake:</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Unconfirmed:</source>
+        <translation>Non confirmé:</translation>
+    </message>
+    <message>
+        <location line="-113"/>
+        <source>Wallet</source>
+        <translation>Portefeuille</translation>
+    </message>
+    <message>
+        <location line="+49"/>
+        <source>Spendable:</source>
+        <translation>Disponible pour dépense:</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Your current spendable balance</source>
+        <translation>Votre solde actuel pouvant être dépensé</translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>Immature:</source>
+        <translation>Immature :</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Mined balance that has not yet matured</source>
+        <translation>Le solde généré n&apos;est pas encore mature</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Total:</source>
+        <translation>Total :</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Your current total balance</source>
+        <translation>Votre solde total actuel</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Transactions récentes&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location line="-118"/>
+        <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
+        <translation>Montant total des transactions nécessitant confirmation, et ne figurant pas encore dans la balance actuelle</translation>
+    </message>
+    <message>
+        <location line="-32"/>
+        <source>Total of coins that was staked, and do not yet count toward the current balance</source>
+        <translation>Montant total des transactions en &quot;staking&quot; et ne figurant pas encore dans la balance actuelle</translation>
+    </message>
+    <message>
+        <location filename="../overviewpage.cpp" line="+116"/>
+        <location line="+1"/>
+        <source>out of sync</source>
+        <translation>désynchronisé</translation>
+    </message>
+</context>
+<context>
+    <name>PaymentServer</name>
+    <message>
+        <location filename="../paymentserver.cpp" line="+107"/>
+        <source>Cannot start WayaWolfCoin: click-to-pay handler</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>QRCodeDialog</name>
+    <message>
+        <location filename="../forms/qrcodedialog.ui" line="+14"/>
+        <source>QR Code Dialog</source>
+        <translation>Boîte de dialogue QR Code</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>Request Payment</source>
+        <translation>Demander un paiement</translation>
+    </message>
+    <message>
+        <location line="+56"/>
+        <source>Amount:</source>
+        <translation>Montant :</translation>
+    </message>
+    <message>
+        <location line="-44"/>
+        <source>Label:</source>
+        <translation>Intitulé:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Message:</source>
+        <translation>Message:</translation>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>&amp;Save As...</source>
+        <translation>&amp;Enregistre
