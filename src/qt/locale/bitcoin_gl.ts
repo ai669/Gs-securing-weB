@@ -961,4 +961,240 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
  This means a fee of at least %2 is required. 
 
  Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
-        <translation type="
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This label turns red, if the change is smaller than %1.
+
+ This means a fee of at least %2 is required.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+36"/>
+        <location line="+66"/>
+        <source>(no label)</source>
+        <translation>(sen etiqueta)</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source>change from %1 (%2)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>(change)</source>
+        <translation>(cambio)</translation>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="+14"/>
+        <source>Edit Address</source>
+        <translation>Modificar Dirección</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Label</source>
+        <translation>&amp;Etiqueta</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The label associated with this address book entry</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Address</source>
+        <translation>&amp;Dirección</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="+21"/>
+        <source>New receiving address</source>
+        <translation>Nova dirección para recibir</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>New sending address</source>
+        <translation>Nova dirección para enviar</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Edit receiving address</source>
+        <translation>Modificar dirección para recibir</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Edit sending address</source>
+        <translation>Modificar dirección para enviar</translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
+        <translation>A dirección introducida &quot;%1&quot; xa está no libro de direccións.</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>The entered address &quot;%1&quot; is not a valid WayaWolfCoin address.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Could not unlock wallet.</source>
+        <translation>Non se puido desbloquear o moedeiro.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>New key generation failed.</source>
+        <translation>A xeración de nova clave fallou.</translation>
+    </message>
+</context>
+<context>
+    <name>GUIUtil::HelpMessageBox</name>
+    <message>
+        <location filename="../guiutil.cpp" line="+426"/>
+        <location line="+12"/>
+        <source>WayaWolfCoin-Qt</source>
+        <translation>WayaWolfCoin-Qt</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>version</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Usage:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>command-line options</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>UI options</source>
+        <translation>Opcións UI</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Start minimized</source>
+        <translation>Comezar minimizado</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="+14"/>
+        <source>Options</source>
+        <translation>Opcións</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>&amp;Main</source>
+        <translation>&amp;Principal</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Pagar &amp;tarifa da transacción</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Reserve</source>
+        <translation>Reserva</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Automatically start WayaWolfCoin after logging in to the system.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Start WayaWolfCoin on system login</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Network</source>
+        <translation>&amp;Rede</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Map port using &amp;UPnP</source>
+        <translation>Mapear porto empregando &amp;UPnP</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Connect to the WayaWolfCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Connect through SOCKS proxy:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Proxy &amp;IP:</source>
+        <translation>&amp;IP do Proxy:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>IP address of the proxy (e.g. 127.0.0.1)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Port:</source>
+        <translation>&amp;Porto:</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Port of the proxy (e.g. 9050)</source>
+        <translation>Porto do proxy (exemplo: 9050)</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>SOCKS &amp;Version:</source>
+        <translation>&amp;Version de SOCKS:</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>SOCKS version of the proxy (e.g. 5)</source>
+        <translation>Versión SOCKS del proxy (exemplo: 5)</translation>
+    </message>
+    <message>
+        <locatio
