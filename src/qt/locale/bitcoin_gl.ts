@@ -2108,4 +2108,245 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-81"/>
         <location line="+81"/>
+        <source>The entered address does not refer to a key.</source>
+        <translation>A dirección introducida non se refire a ninguna clave.</translation>
+    </message>
+    <message>
+        <location line="-73"/>
+        <source>Wallet unlock was cancelled.</source>
+        <translation>Cancelouse o desbloqueo do moedeiro.</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Private key for the entered address is not available.</source>
+        <translation>A clave privada da dirección introducida non está dispoñible.</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Message signing failed.</source>
+        <translation>Fallou a sinatura da mensaxe.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Message signed.</source>
+        <translation>Mensaxe asinada.</translation>
+    </message>
+    <message>
+        <location line="+59"/>
+        <source>The signature could not be decoded.</source>
+        <translation>A sinatura non puido ser decodificada.</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+13"/>
+        <source>Please check the signature and try again.</source>
+        <translation>Por favor revise a sinatura e probe de novo.</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>The signature did not match the message digest.</source>
+        <translation>A sinatura non coincide co resumo da mensaxe.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Message verification failed.</source>
+        <translation>A verificación da mensaxe fallou.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Message verified.</source>
+        <translation>Mensaxe verificada.</translation>
+    </message>
+</context>
+<context>
+    <name>TrafficGraphWidget</name>
+    <message>
+        <location filename="../trafficgraphwidget.cpp" line="+75"/>
+        <source>KB/s</source>
+        <translation type="unfinished"/>
+    </message>
+</context>
+<context>
+    <name>TransactionDesc</name>
+    <message>
+        <location filename="../transactiondesc.cpp" line="+25"/>
+        <source>Open until %1</source>
+        <translation>Aberto ata %1</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>conflicted</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/offline</source>
+        <translation>%1/fóra de liña</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/unconfirmed</source>
+        <translation>%1/sen confirmar</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 confirmations</source>
+        <translation>%1 confirmacións</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Status</source>
+        <translation>Estado</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+7"/>
+        <source>, broadcast through %n node(s)</source>
+        <translation><numerusform>, propagado a % nodo</numerusform><numerusform>, propagado a % nodos</numerusform></translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Date</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Source</source>
+        <translation>Orixe</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Generated</source>
+        <translation>Xerado</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <location line="+17"/>
+        <source>From</source>
+        <translation>Dende</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+22"/>
+        <location line="+58"/>
+        <source>To</source>
+        <translation>A</translation>
+    </message>
+    <message>
+        <location line="-77"/>
+        <location line="+2"/>
+        <source>own address</source>
+        <translation>dirección propia</translation>
+    </message>
+    <message>
+        <location line="-2"/>
+        <source>label</source>
+        <translation>etiqueta</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <location line="+12"/>
+        <location line="+45"/>
+        <location line="+17"/>
+        <location line="+30"/>
+        <source>Credit</source>
+        <translation>Crédito</translation>
+    </message>
+    <message numerus="yes">
+        <location line="-102"/>
+        <source>matures in %n more block(s)</source>
+        <translation><numerusform>madura nun bloque máis</numerusform><numerusform>madura en %n bloques máis</numerusform></translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>not accepted</source>
+        <translation>non aceptado</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <location line="+8"/>
+        <location line="+15"/>
+        <location line="+30"/>
+        <source>Debit</source>
+        <translation>Débito</translation>
+    </message>
+    <message>
+        <location line="-39"/>
+        <source>Transaction fee</source>
+        <translation>Tarifa de transacción</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Net amount</source>
+        <translation>Cantidade neta</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Message</source>
+        <translation>Mensaxe</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Comment</source>
+        <translation>Comentario</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transaction ID</source>
+        <translation>ID de Transacción</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Generated coins must mature 510 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Debug information</source>
+        <translation>Información de depuración</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Transaction</source>
+        <translation>Transacción</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Inputs</source>
+        <translation>Entradas</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>Amount</source>
+        <translation>Cantidade</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>true</source>
+        <translation>verdadeiro</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>false</source>
+        <translation>falso</translation>
+    </message>
+    <message>
+        <location line="-209"/>
+        <source>, has not been successfully broadcast yet</source>
+        <translation>, non foi propagado con éxito todavía</translation>
+    </message>
+    <message numerus="yes">
+        <location line="-36"/>
+        <source>Open for %n more block(s)</source>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+    </message>
+    <message>
+        <location line="+71"/>
+        <source>unknown</source>
+        <translation>descoñecido</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionDescDialog</name>
+    <message>
+        <location filename="../forms/transactiondescdialog.ui" line="+14"/>
         <s
