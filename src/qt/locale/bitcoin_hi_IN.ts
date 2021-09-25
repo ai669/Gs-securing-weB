@@ -1,5 +1,5 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="he" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="hi_IN" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -40,17 +40,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>לחץ לחיצה כפולה לערוך כתובת או תוית</translation>
+        <translation>दो बार क्लिक करे पता या लेबल संपादन करने के लिए !</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>יצירת כתובת חדשה</translation>
+        <translation>नया पता लिखिए !</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>העתק את הכתובת המסומנת ללוח העריכה</translation>
+        <translation>चुनिन्दा पते को सिस्टम क्लिपबोर्ड पर कापी करे !</translation>
     </message>
     <message>
         <location line="-7"/>
@@ -65,7 +65,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+53"/>
         <source>&amp;Copy Address</source>
-        <translation>העתק כתובת</translation>
+        <translation>&amp;पता कॉपी करे</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -85,7 +85,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+17"/>
         <source>Delete the currently selected address from the list</source>
-        <translation>מחק את הכתובת שנבחרה מהרשימה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-10"/>
@@ -100,17 +100,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>&amp;מחק</translation>
+        <translation>&amp;मिटाए !!</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
         <source>Copy &amp;Label</source>
-        <translation>העתק תוית</translation>
+        <translation>&amp;लेबल कॉपी करे </translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Edit</source>
-        <translation>עריכה</translation>
+        <translation>&amp;एडिट</translation>
     </message>
     <message>
         <location line="+250"/>
@@ -120,7 +120,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>קובץ מופרד בפסיקים (*.csv)</translation>
+        <translation>Comma separated file (*.csv)</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -138,17 +138,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addresstablemodel.cpp" line="+145"/>
         <source>Label</source>
-        <translation>תוית</translation>
+        <translation>लेबल</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>כתובת</translation>
+        <translation>पता</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>(no label)</source>
-        <translation>(ללא תוית)</translation>
+        <translation>(कोई लेबल नही !)</translation>
     </message>
 </context>
 <context>
@@ -156,22 +156,22 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="+26"/>
         <source>Passphrase Dialog</source>
-        <translation>שיח סיסמא</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>הכנס סיסמה</translation>
+        <translation>पहचान शब्द/अक्षर डालिए !</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>New passphrase</source>
-        <translation>סיסמה חדשה</translation>
+        <translation>नया पहचान शब्द/अक्षर डालिए !</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>חזור על הסיסמה החדשה</translation>
+        <translation>दोबारा नया पहचान शब्द/अक्षर डालिए !</translation>
     </message>
     <message>
         <location line="+33"/>
@@ -186,42 +186,42 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>הצפן ארנק</translation>
+        <translation>एनक्रिप्ट वॉलेट !</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>הפעולה הזו דורשת את סיסמת הארנק שלך בשביל לפתוח את הארנק.</translation>
+        <translation>वॉलेट खोलने के आपका वॉलेट पहचान शब्द्‌/अक्षर चाईए !</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>פתיחת ארנק</translation>
+        <translation>वॉलेट खोलिए</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>הפעולה הזו דורשת את סיסמת הארנק שלך בשביל לפענח את הארנק.</translation>
+        <translation>वॉलेट डीक्रिप्ट( विकोड) करने के लिए आपका वॉलेट पहचान शब्द्‌/अक्षर चाईए !</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>פענוח ארנק</translation>
+        <translation> डीक्रिप्ट वॉलेट</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>שינוי סיסמה</translation>
+        <translation>पहचान शब्द/अक्षर बदलिये !</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>הכנס את הסיסמות הישנה והחדשה לארנק.</translation>
+        <translation>कृपा करके पुराना एवं नया पहचान शब्द/अक्षर वॉलेट में डालिए !</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Confirm wallet encryption</source>
-        <translation>אשר הצפנת ארנק</translation>
+        <translation>वॉलेट एनक्रिपशन को प्रमाणित कीजिए !</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -231,24 +231,24 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+0"/>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>האם אתה בטוח שברצונך להצפין את הארנק?</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+15"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>חשוב! כל גיבוי קודם שעשית לארנק שלך יש להחליף עם קובץ הארנק המוצפן שזה עתה נוצר. מסיבות אבטחה, גיבויים קודמים של קובץ הארנק הלא-מוצפן יהפכו לחסרי שימוש ברגע שתתחיל להשתמש בארנק החדש המוצפן.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+103"/>
         <location line="+24"/>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>זהירות: מקש Caps Lock מופעל!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-133"/>
         <location line="+60"/>
         <source>Wallet encrypted</source>
-        <translation>הארנק הוצפן</translation>
+        <translation>वॉलेट एनक्रिप्ट हो गया !</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -266,40 +266,40 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+44"/>
         <location line="+6"/>
         <source>Wallet encryption failed</source>
-        <translation>הצפנת הארנק נכשלה</translation>
+        <translation>वॉलेट एनक्रिप्ट नही हुआ!</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>הצפנת הארנק נכשלה עקב שגיאה פנימית. הארנק שלך לא הוצפן.</translation>
+        <translation>वॉलेट एनक्रिपशन नाकाम हो गया इंटर्नल एरर की वजह से! आपका वॉलेट एनक्रीपत नही हुआ है!</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+50"/>
         <source>The supplied passphrases do not match.</source>
-        <translation>הסיסמות שניתנו אינן תואמות.</translation>
+        <translation>आपके द्वारा डाले गये पहचान शब्द/अक्षर मिलते नही है !</translation>
     </message>
     <message>
         <location line="-38"/>
         <source>Wallet unlock failed</source>
-        <translation>פתיחת הארנק נכשלה</translation>
+        <translation>वॉलेट का लॉक नही खुला !</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>הסיסמה שהוכנסה לפענוח הארנק שגויה.</translation>
+        <translation>वॉलेट डीक्रिप्ट करने के लिए जो पहचान शब्द/अक्षर डाले गये है वो सही नही है!</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>Wallet decryption failed</source>
-        <translation>פענוח הארנק נכשל</translation>
+        <translation>वॉलेट का डीक्रिप्ट-ष्ण असफल !</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>סיסמת הארנק שונתה בהצלחה.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -307,22 +307,23 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../bitcoingui.cpp" line="+297"/>
         <source>Sign &amp;message...</source>
-        <translation>חתום על הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-64"/>
         <source>Show general overview of wallet</source>
-        <translation>הצג סקירה כללית של הארנק</translation>
+        <translation>वॉलेट का सामानया विवरण दिखाए !</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation>&amp;פעולות</translation>
+        <translation>&amp; लेन-देन
+</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Browse transaction history</source>
-        <translation>דפדף בהיסטוריית הפעולות</translation>
+        <translation>देखिए पुराने लेन-देन के विवरण !</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -342,12 +343,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+34"/>
         <source>E&amp;xit</source>
-        <translation>י&amp;ציאה</translation>
+        <translation>बाहर जायें</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <translation>סגור תוכנה</translation>
+        <translation>अप्लिकेशन से बाहर निकलना !</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -357,32 +358,32 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+2"/>
         <source>About &amp;Qt</source>
-        <translation>אודות Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Qt</source>
-        <translation>הצג מידע על Qt</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>&amp;אפשרויות</translation>
+        <translation>&amp;विकल्प</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>הצפן ארנק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation>גיבוי ארנק</translation>
+        <translation>&amp;बैकप वॉलेट</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation>שנה סיסמא</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
@@ -412,27 +413,27 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+2"/>
         <source>Backup wallet to another location</source>
-        <translation>גיבוי הארנק למקום אחר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>שנה את הסיסמה להצפנת הארנק</translation>
+        <translation>पहचान शब्द/अक्षर जो वॉलेट एनक्रिपशन के लिए इस्तेमाल किया है उसे बदलिए!</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Debug window</source>
-        <translation>חלון ניפוי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Open debugging and diagnostic console</source>
-        <translation>פתח את לוח הבקרה לאבחון וניפוי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation>אמת הודעה...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-214"/>
@@ -443,7 +444,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation>ארנק</translation>
+        <translation>वॉलेट</translation>
     </message>
     <message>
         <location line="+193"/>
@@ -453,7 +454,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+9"/>
         <source>&amp;Show / Hide</source>
-        <translation>הצג / הסתר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
@@ -473,28 +474,28 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+28"/>
         <source>&amp;File</source>
-        <translation>&amp;קובץ</translation>
+        <translation>&amp;फाइल</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Settings</source>
-        <translation>ה&amp;גדרות</translation>
+        <translation>&amp;सेट्टिंग्स</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation>&amp;עזרה</translation>
+        <translation>&amp;मदद</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Tabs toolbar</source>
-        <translation>סרגל כלים טאבים</translation>
+        <translation>टैबस टूलबार</translation>
     </message>
     <message>
         <location line="+46"/>
         <location line="+9"/>
         <source>[testnet]</source>
-        <translation>[רשת-בדיקה]</translation>
+        <translation>[टेस्टनेट]</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -555,12 +556,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+273"/>
         <source>Up to date</source>
-        <translation>עדכני</translation>
+        <translation>नवीनतम</translation>
     </message>
     <message>
         <location line="+43"/>
         <source>Catching up...</source>
-        <translation>מתעדכן...</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+113"/>
@@ -570,12 +571,12 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+27"/>
         <source>Sent transaction</source>
-        <translation>פעולה שנשלחה</translation>
+        <translation>भेजी ट्रांजक्शन</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming transaction</source>
-        <translation>פעולה שהתקבלה</translation>
+        <translation>प्राप्त हुई ट्रांजक्शन</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -584,10 +585,10 @@ Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation>תאריך: %1
-כמות: %2
-סוג: %3
-כתובת: %4</translation>
+        <translation>तारीख: %1\n
+राशि: %2\n
+टाइप: %3\n
+पता:%4\n</translation>
     </message>
     <message>
         <location line="+100"/>
@@ -609,12 +610,12 @@ Address: %4
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>הארנק &lt;b&gt;מוצפן&lt;/b&gt; וכרגע &lt;b&gt;פתוח&lt;/b&gt;</translation>
+        <translation>वॉलेट एन्क्रिप्टेड है तथा अभी लॉक्ड नहीं है</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>הארנק &lt;b&gt;מוצפן&lt;/b&gt; וכרגע &lt;b&gt;נעול&lt;/b&gt;</translation>
+        <translation>वॉलेट एन्क्रिप्टेड है तथा अभी लॉक्ड है</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -650,7 +651,7 @@ Address: %4
         <location line="-429"/>
         <location line="+433"/>
         <source>%n hour(s)</source>
-        <translation><numerusform>%n שעה</numerusform><numerusform>%n שעות</numerusform></translation>
+        <translation><numerusform>%n घंटा</numerusform><numerusform>%n घंटे</numerusform></translation>
     </message>
     <message>
         <location line="-456"/>
@@ -661,7 +662,7 @@ Address: %4
         <location line="+27"/>
         <location line="+433"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n יום</numerusform><numerusform>%n ימים</numerusform></translation>
+        <translation><numerusform>%n दिन</numerusform><numerusform>%n दिनो</numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
@@ -730,7 +731,7 @@ Address: %4
     <message>
         <location filename="../clientmodel.cpp" line="+110"/>
         <source>Network Alert</source>
-        <translation>אזעקת רשת</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -743,27 +744,27 @@ Address: %4
     <message>
         <location line="+31"/>
         <source>Quantity:</source>
-        <translation>כמות:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+32"/>
         <source>Bytes:</source>
-        <translation>בייטים:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+48"/>
         <source>Amount:</source>
-        <translation>כמות:</translation>
+        <translation>राशि :</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Priority:</source>
-        <translation>קדימות:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+48"/>
         <source>Fee:</source>
-        <translation>תשלום:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
@@ -773,37 +774,37 @@ Address: %4
     <message>
         <location filename="../coincontroldialog.cpp" line="+552"/>
         <source>no</source>
-        <translation>לא</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+51"/>
         <source>After Fee:</source>
-        <translation>לאחר עמלה:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
         <source>Change:</source>
-        <translation>שינוי:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+69"/>
         <source>(un)select all</source>
-        <translation>(מחק)(בחר) הכל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>Tree mode</source>
-        <translation>מצב עץ</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
         <source>List mode</source>
-        <translation>מצר רשימה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+45"/>
         <source>Amount</source>
-        <translation>כמות</translation>
+        <translation>राशि</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -813,58 +814,58 @@ Address: %4
     <message>
         <location line="+5"/>
         <source>Address</source>
-        <translation>כתובת</translation>
+        <translation>पता</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Date</source>
-        <translation>תאריך</translation>
+        <translation>taareek</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirmations</source>
-        <translation>אישורים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Confirmed</source>
-        <translation>מאושר</translation>
+        <translation>पक्का</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Priority</source>
-        <translation>קדימות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="-515"/>
         <source>Copy address</source>
-        <translation>העתק כתובת</translation>
+        <translation>पता कॉपी करे</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>העתק תוית</translation>
+        <translation>लेबल कॉपी करे </translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+26"/>
         <source>Copy amount</source>
-        <translation>העתק כמות</translation>
+        <translation>कॉपी राशि</translation>
     </message>
     <message>
         <location line="-25"/>
         <source>Copy transaction ID</source>
-        <translation>העתק מזהה פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy quantity</source>
-        <translation>העתק כמות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Copy fee</source>
-        <translation>העתק מחיר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -879,7 +880,7 @@ Address: %4
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>העתק קדימות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -894,37 +895,37 @@ Address: %4
     <message>
         <location line="+317"/>
         <source>highest</source>
-        <translation>הכי גבוה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>high</source>
-        <translation>גבוה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>medium-high</source>
-        <translation>בנוני גבוה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>medium</source>
-        <translation>בינוני</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>low-medium</source>
-        <translation>בינוני - נמוך</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>low</source>
-        <translation>נמוך</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>lowest</source>
-        <translation>הכי נמוך</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+155"/>
@@ -934,7 +935,7 @@ Address: %4
     <message>
         <location line="+0"/>
         <source>yes</source>
-        <translation>כן</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
@@ -974,17 +975,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+36"/>
         <location line="+66"/>
         <source>(no label)</source>
-        <translation>(ללא תוית)</translation>
+        <translation>(कोई लेबल नही !)</translation>
     </message>
     <message>
         <location line="-9"/>
         <source>change from %1 (%2)</source>
-        <translation>עודף מ־%1 (%2)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>(change)</source>
-        <translation>(עודף)</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -992,12 +993,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
         <source>Edit Address</source>
-        <translation>ערוך כתובת</translation>
+        <translation>पता एडिट करना</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Label</source>
-        <translation>ת&amp;וית</translation>
+        <translation>&amp;लेबल</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1007,7 +1008,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Address</source>
-        <translation>&amp;כתובת</translation>
+        <translation>&amp;पता</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1017,27 +1018,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../editaddressdialog.cpp" line="+21"/>
         <source>New receiving address</source>
-        <translation>כתובת חדשה לקבלה</translation>
+        <translation>नया स्वीकार्य पता</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>New sending address</source>
-        <translation>כתובת חדשה לשליחה</translation>
+        <translation>नया भेजने वाला पता</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Edit receiving address</source>
-        <translation>ערוך כתובת לקבלה</translation>
+        <translation>एडिट स्वीकार्य पता </translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>ערוך כתובת לשליחה</translation>
+        <translation>एडिट भेजने वाला पता</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>הכתובת שהכנסת &quot;%1&quot; כבר נמצאת בפנקס הכתובות.</translation>
+        <translation>डाला गया पता &quot;%1&quot; एड्रेस बुक में पहले से ही मोजूद है|</translation>
     </message>
     <message>
         <location line="-5"/>
@@ -1047,12 +1048,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+10"/>
         <source>Could not unlock wallet.</source>
-        <translation>פתיחת הארנק נכשלה.</translation>
+        <translation>वॉलेट को unlock नहीं किया जा सकता|</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>New key generation failed.</source>
-        <translation>יצירת מפתח חדש נכשלה.</translation>
+        <translation>नयी कुंजी का निर्माण असफल रहा|</translation>
     </message>
 </context>
 <context>
@@ -1104,12 +1105,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/optionsdialog.ui" line="+14"/>
         <source>Options</source>
-        <translation>אפשרויות</translation>
+        <translation>विकल्प</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>&amp;Main</source>
-        <translation>ראשי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
@@ -1119,7 +1120,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>שלם &amp;עמלת פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
@@ -1144,7 +1145,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>&amp;Network</source>
-        <translation>רשת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
@@ -1154,7 +1155,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Map port using &amp;UPnP</source>
-        <translation>מיפוי פורט באמצעות UPnP</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
@@ -1169,7 +1170,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+9"/>
         <source>Proxy &amp;IP:</source>
-        <translation>כתובת IP של פרוקסי:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
@@ -1179,57 +1180,57 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Port:</source>
-        <translation>פורט:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>Port of the proxy (e.g. 9050)</source>
-        <translation>הפורט של הפרוקסי (למשל 9050)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>SOCKS &amp;Version:</source>
-        <translation>גרסת SOCKS:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>SOCKS version of the proxy (e.g. 5)</source>
-        <translation>גרסת SOCKS של הפרוקסי (למשל 5)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation>חלון</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>הצג סמל מגש בלבד לאחר מזעור החלון.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>מ&amp;זער למגש במקום לשורת המשימות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>מזער את התוכנה במקום לצאת ממנה כשהחלון נסגר. כשאפשרות זו פעילה, התוכנה תיסגר רק לאחר בחירת יציאה מהתפריט.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>M&amp;inimize on close</source>
-        <translation>מזער בעת סגירה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>&amp;Display</source>
-        <translation>תצוגה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation>שפת ממשק המשתמש:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
@@ -1239,12 +1240,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+11"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>יחידת מדידה להצגת כמויות:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>בחר את ברירת המחדל ליחידת החלוקה אשר תוצג בממשק ובעת שליחת מטבעות.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+9"/>
@@ -1274,12 +1275,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+71"/>
         <source>&amp;OK</source>
-        <translation>אישור</translation>
+        <translation>&amp;ओके</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Cancel</source>
-        <translation>ביטול</translation>
+        <translation>&amp;कैन्सल</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1289,7 +1290,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../optionsdialog.cpp" line="+53"/>
         <source>default</source>
-        <translation>ברירת מחדל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+149"/>
@@ -1306,7 +1307,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>The supplied proxy address is invalid.</source>
-        <translation>כתובת הפרוקסי שסופקה אינה תקינה.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1314,7 +1315,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/overviewpage.ui" line="+14"/>
         <source>Form</source>
-        <translation>טופס</translation>
+        <translation>फार्म</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -1335,7 +1336,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation>ארנק</translation>
+        <translation>वॉलेट</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -1345,32 +1346,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+16"/>
         <source>Your current spendable balance</source>
-        <translation>היתרה הזמינה הנוכחית</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+80"/>
         <source>Immature:</source>
-        <translation>לא בשל:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <source>Mined balance that has not yet matured</source>
-        <translation>מאזן שנכרה וטרם הבשיל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+23"/>
         <source>Total:</source>
-        <translation>סך הכול:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
         <source>Your current total balance</source>
-        <translation>סך כל היתרה הנוכחית שלך</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+50"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;פעולות אחרונות&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;हाल का लेन-देन&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="-118"/>
@@ -1386,7 +1387,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../overviewpage.cpp" line="+116"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation>לא מסונכרן</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -1460,7 +1461,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>שם ממשק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
@@ -1472,37 +1473,38 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+53"/>
         <location line="+23"/>
         <source>N/A</source>
-        <translation>N/A</translation>
+        <translation>लागू नही
+</translation>
     </message>
     <message>
         <location line="-194"/>
         <source>Client version</source>
-        <translation>גרסת ממשק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-45"/>
         <source>&amp;Information</source>
-        <translation>מידע</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>משתמש ב-OpenSSL גרסה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+49"/>
         <source>Startup time</source>
-        <translation>זמן אתחול</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+29"/>
         <source>Network</source>
-        <translation>רשת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Number of connections</source>
-        <translation>מספר חיבורים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+23"/>
@@ -1512,12 +1514,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+23"/>
         <source>Block chain</source>
-        <translation>שרשרת הבלוקים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>מספר הבלוקים הנוכחי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+197"/>
@@ -1547,12 +1549,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-383"/>
         <source>Last block time</source>
-        <translation>זמן הבלוק האחרון</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+52"/>
         <source>&amp;Open</source>
-        <translation>פתח</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
@@ -1572,12 +1574,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+24"/>
         <source>&amp;Console</source>
-        <translation>לוח בקרה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-237"/>
         <source>Build date</source>
-        <translation>תאריך בניה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-104"/>
@@ -1592,7 +1594,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+256"/>
         <source>Debug log file</source>
-        <translation>קובץ יומן ניפוי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
@@ -1602,7 +1604,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+102"/>
         <source>Clear console</source>
-        <translation>נקה לוח בקרה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="+325"/>
@@ -1612,12 +1614,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>השתמש בחיצים למעלה ולמטה כדי לנווט בהיסטוריה, ו- &lt;b&gt;Ctrl-L&lt;/b&gt; כדי לנקות את המסך.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>הקלד &lt;b&gt;help&lt;/b&gt; בשביל סקירה של הפקודות הזמינות.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+127"/>
@@ -1667,12 +1669,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>שלח מטבעות</translation>
+        <translation>सिक्के भेजें|</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>Coin Control Features</source>
-        <translation>ה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+20"/>
@@ -1682,17 +1684,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>automatically selected</source>
-        <translation>נבחר אוטומאטית</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
         <source>Insufficient funds!</source>
-        <translation>אין מספיק כספים!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+77"/>
         <source>Quantity:</source>
-        <translation>כמות:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+22"/>
@@ -1703,12 +1705,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-19"/>
         <source>Bytes:</source>
-        <translation>בייטים:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+51"/>
         <source>Amount:</source>
-        <translation>כמות:</translation>
+        <translation>राशि :</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1721,7 +1723,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-191"/>
         <source>Priority:</source>
-        <translation>קדימות:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+19"/>
@@ -1731,7 +1733,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+32"/>
         <source>Fee:</source>
-        <translation>תשלום:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
@@ -1746,7 +1748,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+32"/>
         <source>After Fee:</source>
-        <translation>לאחר עמלה:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+35"/>
@@ -1761,12 +1763,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+106"/>
         <source>Send to multiple recipients at once</source>
-        <translation>שלח למספר מקבלים בו-זמנית</translation>
+        <translation>एक साथ कई प्राप्तकर्ताओं को भेजें</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Add &amp;Recipient</source>
-        <translation>הוסף מקבל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
@@ -1776,12 +1778,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation>נקה הכל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
         <source>Balance:</source>
-        <translation>יתרה:</translation>
+        <translation>बाकी रकम :</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1791,12 +1793,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+31"/>
         <source>Confirm the send action</source>
-        <translation>אשר את פעולת השליחה</translation>
+        <translation>भेजने की पुष्टि करें</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation>שלח</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
@@ -1806,17 +1808,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>Copy quantity</source>
-        <translation>העתק כמות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>העתק כמות</translation>
+        <translation>कॉपी राशि</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy fee</source>
-        <translation>העתק מחיר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -1831,7 +1833,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>העתק קדימות</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -1851,7 +1853,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation>אשר שליחת מטבעות</translation>
+        <translation>सिक्के भेजने की पुष्टि करें</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -1866,27 +1868,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+29"/>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation>כתובת המקבל אינה תקינה, אנא בדוק שנית.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>הכמות לשלם חייבת להיות גדולה מ-0.</translation>
+        <translation>भेजा गया अमाउंट शुन्य से अधिक होना चाहिए|</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount exceeds your balance.</source>
-        <translation>הכמות עולה על המאזן שלך.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>הכמות הכוללת, ובכללה עמלת פעולה בסך %1, עולה על המאזן שלך.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>כתובת כפולה נמצאה, ניתן לשלוח לכל כתובת רק פעם אחת בכל פעולת שליחה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
@@ -1906,7 +1908,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+13"/>
         <source>(no label)</source>
-        <translation>(ללא תוית)</translation>
+        <translation>(कोई लेबल नही !)</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1924,12 +1926,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+15"/>
         <source>A&amp;mount:</source>
-        <translation>כ&amp;מות:</translation>
+        <translation>अमाउंट:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Pay &amp;To:</source>
-        <translation>שלם &amp;ל:</translation>
+        <translation>प्राप्तकर्ता:</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1940,12 +1942,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+60"/>
         <location filename="../sendcoinsentry.cpp" line="+26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>הכנס תוית לכתובת הזאת כדי להכניס לפנקס הכתובות</translation>
+        <translation>आपकी एड्रेस बुक में इस एड्रेस के लिए एक लेबल लिखें</translation>
     </message>
     <message>
         <location line="-78"/>
         <source>&amp;Label:</source>
-        <translation>ת&amp;וית:</translation>
+        <translation>लेबल:</translation>
     </message>
     <message>
         <location line="+28"/>
@@ -1955,17 +1957,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+10"/>
         <source>Alt+A</source>
-        <translation>Alt+A</translation>
+        <translation>Alt-A</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation>הדבר כתובת מהלוח</translation>
+        <translation>Clipboard से एड्रेस paste करें</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Alt+P</source>
-        <translation>Alt+P</translation>
+        <translation>Alt-P</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1983,18 +1985,18 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>חתימות - חתום או אמת הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation>חתום על הו&amp;דעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>אתה יכול לחתום על הודעות עם הכתובות שלך כדי להוכיח שהן בבעלותך. היזהר לא לחתום על משהו מעורפל, שכן התקפות פישינג עשויות לגרום לך בעורמה למסור את זהותך. חתום רק על אמרות מפורטות לחלוטין שאתה מסכים עימן.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+18"/>
@@ -2011,27 +2013,27 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="-193"/>
         <location line="+203"/>
         <source>Alt+A</source>
-        <translation>Alt+A</translation>
+        <translation>Alt-A</translation>
     </message>
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation>הדבק כתובת מהלוח</translation>
+        <translation>Clipboard से एड्रेस paste करें</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Alt+P</source>
-        <translation>Alt+P</translation>
+        <translation>Alt-P</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Enter the message you want to sign here</source>
-        <translation>הכנס כאן את ההודעה שעליך ברצונך לחתום</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>העתק את החתימה הנוכחית ללוח המערכת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
@@ -2041,24 +2043,24 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+17"/>
         <source>Reset all sign message fields</source>
-        <translation>אפס את כל שדות החתימה על הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation>נקה הכל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-87"/>
         <location line="+70"/>
         <source>&amp;Verify Message</source>
-        <translation>אמת הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-64"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>הכנס למטה את הכתובת החותמת, ההודעה (ודא שאתה מעתיק מעברי שורה, רווחים, טאבים וכו&apos; באופן מדויק) והחתימה כדי לאמת את ההודעה. היזהר לא לפרש את החתימה כיותר ממה שמופיע בהודעה החתומה בעצמה, כדי להימנע מליפול קורבן למתקפת איש-באמצע.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
@@ -2073,7 +2075,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+17"/>
         <source>Reset all verify message fields</source>
-        <translation>אפס את כל שדות אימות הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
@@ -2084,7 +2086,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation>לחץ &quot;חתום על ההודעה&quot; כדי לחולל חתימה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -2095,7 +2097,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+82"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
-        <translation>הכתובת שהוכנסה אינה תקינה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-81"/>
@@ -2103,59 +2105,59 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+73"/>
         <location line="+8"/>
         <source>Please check the address and try again.</source>
-        <translation>אנא בדוק את הכתובת ונסה שנית.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-81"/>
         <location line="+81"/>
         <source>The entered address does not refer to a key.</source>
-        <translation>הכתובת שהוכנסה אינה מתייחסת למפתח.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-73"/>
         <source>Wallet unlock was cancelled.</source>
-        <translation>פתיחת הארנק בוטלה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
-        <translation>המפתח הפרטי עבור הכתובת שהוכנסה אינו זמין.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+12"/>
         <source>Message signing failed.</source>
-        <translation>החתימה על ההודעה נכשלה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Message signed.</source>
-        <translation>ההודעה נחתמה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+59"/>
         <source>The signature could not be decoded.</source>
-        <translation>לא ניתן לפענח את החתימה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <location line="+13"/>
         <source>Please check the signature and try again.</source>
-        <translation>אנא בדוק את החתימה ונסה שנית.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>The signature did not match the message digest.</source>
-        <translation>החתימה לא תואמת את תקציר ההודעה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>Message verification failed.</source>
-        <translation>אימות ההודעה נכשל.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Message verified.</source>
-        <translation>ההודעה אומתה.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 <context>
@@ -2171,7 +2173,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiondesc.cpp" line="+25"/>
         <source>Open until %1</source>
-        <translation>פתוח עד %1</translation>
+        <translation>खुला है जबतक %1</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2181,66 +2183,66 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation>%1/מנותק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/unconfirmed</source>
-        <translation>%1/ממתין לאישור</translation>
+        <translation>%1/अपुष्ट</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 confirmations</source>
-        <translation>%1 אישורים</translation>
+        <translation>%1 पुष्टियाँ</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Status</source>
-        <translation>מצב</translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, הופץ דרך צומת אחד</numerusform><numerusform>, הופץ דרך %n צמתים</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Date</source>
-        <translation>תאריך</translation>
+        <translation>taareek</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Source</source>
-        <translation>מקור</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Generated</source>
-        <translation>נוצר</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <location line="+17"/>
         <source>From</source>
-        <translation>מאת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <location line="+22"/>
         <location line="+58"/>
         <source>To</source>
-        <translation>אל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-77"/>
         <location line="+2"/>
         <source>own address</source>
-        <translation>כתובת עצמית</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-2"/>
         <source>label</source>
-        <translation>תוית</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+37"/>
@@ -2249,17 +2251,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+17"/>
         <location line="+30"/>
         <source>Credit</source>
-        <translation>זיכוי</translation>
+        <translation type="unfinished"/>
     </message>
     <message numerus="yes">
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>מבשיל בעוד בלוק אחד</numerusform><numerusform>מבשיל בעוד %n בלוקים</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+2"/>
         <source>not accepted</source>
-        <translation>לא התקבל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+44"/>
@@ -2267,32 +2269,32 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+15"/>
         <location line="+30"/>
         <source>Debit</source>
-        <translation>חיוב</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-39"/>
         <source>Transaction fee</source>
-        <translation>עמלת פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation>כמות נקיה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+6"/>
         <source>Message</source>
-        <translation>הודעה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Comment</source>
-        <translation>הערה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Transaction ID</source>
-        <translation>זיהוי פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -2302,37 +2304,37 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Debug information</source>
-        <translation>מידע ניפוי</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
         <source>Transaction</source>
-        <translation>פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Inputs</source>
-        <translation>קלטים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+21"/>
         <source>Amount</source>
-        <translation>כמות</translation>
+        <translation>राशि</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>true</source>
-        <translation>אמת</translation>
+        <translation>सही</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>false</source>
-        <translation>שקר</translation>
+        <translation>ग़लत</translation>
     </message>
     <message>
         <location line="-209"/>
         <source>, has not been successfully broadcast yet</source>
-        <translation>, טרם שודר בהצלחה</translation>
+        <translation>, अभी तक सफलतापूर्वक प्रसारित नहीं किया गया है</translation>
     </message>
     <message numerus="yes">
         <location line="-36"/>
@@ -2342,7 +2344,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+71"/>
         <source>unknown</source>
-        <translation>לא ידוע</translation>
+        <translation>अज्ञात</translation>
     </message>
 </context>
 <context>
@@ -2350,12 +2352,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/transactiondescdialog.ui" line="+14"/>
         <source>Transaction details</source>
-        <translation>פרטי הפעולה</translation>
+        <translation>लेन-देन का विवरण</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>חלונית זו מציגה תיאור מפורט של הפעולה</translation>
+        <translation> ये खिड़की आपको लेन-देन का विस्तृत विवरण देगी !</translation>
     </message>
 </context>
 <context>
@@ -2363,37 +2365,37 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiontablemodel.cpp" line="+231"/>
         <source>Date</source>
-        <translation>תאריך</translation>
+        <translation>taareek</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Type</source>
-        <translation>סוג</translation>
+        <translation>टाइप</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>כתובת</translation>
+        <translation>पता</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Amount</source>
-        <translation>כמות</translation>
+        <translation>राशि</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Open until %1</source>
-        <translation>פתוח עד %1</translation>
+        <translation>खुला है जबतक %1</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Confirmed (%1 confirmations)</source>
-        <translation>מאושר (%1 אישורים)</translation>
+        <translation>पक्के  ( %1 पक्का करना)</translation>
     </message>
     <message numerus="yes">
         <location line="-15"/>
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>פתח למשך בלוק %n יותר</numerusform><numerusform>פתח למשך %n בלוקים נוספים</numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
@@ -2423,67 +2425,67 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>הבלוק הזה לא נקלט על ידי אף צומת אחר, וכנראה לא יתקבל!</translation>
+        <translation>यह ब्लॉक किसी भी और नोड को मिला नही है ! शायद यह ब्लॉक कोई भी नोड स्वीकारे गा नही !</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated but not accepted</source>
-        <translation>נוצר אך לא התקבל</translation>
+        <translation>जेनरेट किया गया किंतु स्वीकारा नही गया !</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Received with</source>
-        <translation>התקבל עם</translation>
+        <translation>स्वीकारा गया</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Received from</source>
-        <translation>התקבל מאת</translation>
+        <translation>स्वीकार्य ओर से</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sent to</source>
-        <translation>נשלח ל</translation>
+        <translation>भेजा गया</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>תשלום לעצמך</translation>
+        <translation>भेजा खुद को भुगतान</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Mined</source>
-        <translation>נכרה</translation>
+        <translation>माइंड</translation>
     </message>
     <message>
         <location line="+38"/>
         <source>(n/a)</source>
-        <translation>(n/a)</translation>
+        <translation>(लागू नहीं)</translation>
     </message>
     <message>
         <location line="+194"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>מצב הפעולה. השהה את הסמן מעל שדה זה כדי לראות את מספר האישורים.</translation>
+        <translation>ट्रांसेक्शन स्तिथि| पुष्टियों की संख्या जानने के लिए इस जगह पर माउस लायें|</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Date and time that the transaction was received.</source>
-        <translation>התאריך והשעה בה הפעולה הזאת התקבלה.</translation>
+        <translation>तारीख तथा समय जब ये ट्रांसेक्शन प्राप्त हुई थी|</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type of transaction.</source>
-        <translation>סוג הפעולה.</translation>
+        <translation>ट्रांसेक्शन का प्रकार|</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Destination address of transaction.</source>
-        <translation>כתובת היעד של הפעולה.</translation>
+        <translation>ट्रांसेक्शन की मंजिल का पता|</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Amount removed from or added to balance.</source>
-        <translation>הכמות שהתווספה או הוסרה מהיתרה.</translation>
+        <translation>अमाउंट बैलेंस से निकला या जमा किया गया |</translation>
     </message>
 </context>
 <context>
@@ -2492,102 +2494,102 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../transactionview.cpp" line="+54"/>
         <location line="+17"/>
         <source>All</source>
-        <translation>הכל</translation>
+        <translation>सभी</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Today</source>
-        <translation>היום</translation>
+        <translation>आज</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This week</source>
-        <translation>השבוע</translation>
+        <translation>इस हफ्ते</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This month</source>
-        <translation>החודש</translation>
+        <translation>इस महीने</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Last month</source>
-        <translation>החודש שעבר</translation>
+        <translation>पिछले महीने</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This year</source>
-        <translation>השנה</translation>
+        <translation>इस साल</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Range...</source>
-        <translation>טווח...</translation>
+        <translation>विस्तार...</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Received with</source>
-        <translation>התקבל עם</translation>
+        <translation>स्वीकार करना</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Sent to</source>
-        <translation>נשלח ל</translation>
+        <translation>भेजा गया</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>To yourself</source>
-        <translation>לעצמך</translation>
+        <translation>अपनेआप को</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Mined</source>
-        <translation>נכרה</translation>
+        <translation>माइंड</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Other</source>
-        <translation>אחר</translation>
+        <translation>अन्य</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Enter address or label to search</source>
-        <translation>הכנס כתובת או תוית לחפש</translation>
+        <translation>ढूँदने के लिए कृपा करके पता या लेबल टाइप करे !</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>כמות מזערית</translation>
+        <translation>लघुत्तम राशि</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Copy address</source>
-        <translation>העתק כתובת</translation>
+        <translation>पता कॉपी करे</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>העתק תוית</translation>
+        <translation>लेबल कॉपी करे </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>העתק כמות</translation>
+        <translation>कॉपी राशि</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy transaction ID</source>
-        <translation>העתק מזהה פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit label</source>
-        <translation>ערוך תוית</translation>
+        <translation>एडिट लेबल</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show transaction details</source>
-        <translation>הצג פרטי פעולה</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+138"/>
@@ -2597,42 +2599,42 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>קובץ מופרד בפסיקים (*.csv)</translation>
+        <translation>Comma separated file (*.csv)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Confirmed</source>
-        <translation>מאושר</translation>
+        <translation>पक्का</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Date</source>
-        <translation>תאריך</translation>
+        <translation>taareek</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation>סוג</translation>
+        <translation>टाइप</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Label</source>
-        <translation>תוית</translation>
+        <translation>लेबल</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Address</source>
-        <translation>כתובת</translation>
+        <translation>पता</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Amount</source>
-        <translation>כמות</translation>
+        <translation>राशि</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>ID</source>
-        <translation>מזהה</translation>
+        <translation>ID</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -2647,12 +2649,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+100"/>
         <source>Range:</source>
-        <translation>טווח:</translation>
+        <translation>विस्तार:</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>to</source>
-        <translation>אל</translation>
+        <translation>तक</translation>
     </message>
 </context>
 <context>
@@ -2673,7 +2675,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Usage:</source>
-        <translation>שימוש:</translation>
+        <translation>खपत :</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2683,17 +2685,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>List commands</source>
-        <translation>רשימת פקודות</translation>
+        <translation>commands की लिस्ट बनाएं</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get help for a command</source>
-        <translation>קבל עזרה עבור פקודה</translation>
+        <translation>किसी command के लिए मदद लें</translation>
     </message>
     <message>
         <location line="-147"/>
         <source>Options:</source>
-        <translation>אפשרויות:</translation>
+        <translation>विकल्प:</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2713,7 +2715,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation>ציין תיקיית נתונים</translation>
+        <translation>डेटा डायरेक्टरी बताएं </translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2733,7 +2735,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+27"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation>קבע את גודל המטמון של מסד הנתונים במגהבייט (ברירת מחדל: 25)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -2748,17 +2750,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>החזק לכל היותר &lt;n&gt; חיבורים לעמיתים (ברירת מחדל: 125)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation>התחבר לצומת כדי לדלות כתובות עמיתים, ואז התנתק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Specify your own public address</source>
-        <translation>ציין את הכתובת הפומבית שלך</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
@@ -2778,17 +2780,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation>סף להתנתקות מעמיתים הנוהגים שלא כהלכה (ברירת מחדל: 100)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation>מספר שניות למנוע מעמיתים הנוהגים שלא כהלכה מלהתחבר מחדש (ברירת מחדל: 86400)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-37"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv4: %s</source>
-        <translation>אירעה שגיאה בעת הגדרת פורט RPC %u להאזנה ב-IPv4: %s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+65"/>
@@ -2798,27 +2800,27 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-17"/>
         <source>Accept command line and JSON-RPC commands</source>
-        <translation>קבל פקודות משורת הפקודה ו- JSON-RPC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>רוץ ברקע כדימון וקבל פקודות</translation>
+        <translation>बैकग्राउंड में डेमॉन बन कर रन करे तथा कमांड्स स्वीकार करें </translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Use the test network</source>
-        <translation>השתמש ברשת הבדיקה</translation>
+        <translation>टेस्ट नेटवर्क का इस्तेमाल करे </translation>
     </message>
     <message>
         <location line="-24"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>קבל חיבורים מבחוץ (ברירת מחדל: 1 ללא -proxy או -connect)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-29"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv6, falling back to IPv4: %s</source>
-        <translation>אירעה שגיאה בעת הגדרת פורט RPC %u להאזנה ב-IPv6, נסוג ל-IPv4: %s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+96"/>
@@ -2828,7 +2830,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+12"/>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>אזהרה: -paytxfee נקבע לערך מאד גבוה! זוהי עמלת הפעולה שתשלם אם אתה שולח פעולה.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-103"/>
@@ -2838,37 +2840,37 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+132"/>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>אזהרה: שגיאה בקריאת wallet.dat! כל המתפחות נקראו באופן תקין, אך נתוני הפעולות או ספר הכתובות עלולים להיות חסרים או שגויים.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>אזהרה: קובץ wallet.dat מושחת, המידע חולץ! קובץ wallet.dat המקורח נשמר כ - wallet.{timestamp}.bak ב - %s; אם המאזן או הפעולות שגויים עליך לשחזר גיבוי.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-31"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>נסה לשחזר מפתחות פרטיים מקובץ wallet.dat מושחת.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Block creation options:</source>
-        <translation>אפשרויות יצירת בלוק:</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-69"/>
         <source>Connect only to the specified node(s)</source>
-        <translation>התחבר רק לצמתים המצוינים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>גלה את כתובת ה-IP העצמית (ברירת מחדל: 1 כשמאזינים וללא -externalip)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+101"/>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation>האזנה נכשלה בכל פורט. השתמש ב- -listen=0 אם ברצונך בכך.</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-91"/>
@@ -2888,17 +2890,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-88"/>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
-        <translation>חוצץ קבלה מירבי לכל חיבור, &lt;n&gt;*1000 בתים (ברירת מחדל: 5000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
-        <translation>חוצץ שליחה מירבי לכל חיבור, &lt;n&gt;*1000 בתים (ברירת מחדל: 1000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-17"/>
         <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
-        <translation>התחבר רק לצמתים ברשת &lt;net&gt; (IPv4, IPv6 או Tor)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+31"/>
@@ -2908,7 +2910,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+41"/>
         <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
-        <translation>אפשרויות SSL: (ראה את הויקי של ביטקוין עבור הוראות הגדרת SSL)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-81"/>
@@ -2918,7 +2920,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+42"/>
         <source>Send trace/debug info to console instead of debug.log file</source>
-        <translation>שלח מידע דיבאג ועקבה לקונסולה במקום לקובץ debug.log</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
@@ -2933,17 +2935,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-1"/>
         <source>Set minimum block size in bytes (default: 0)</source>
-        <translation>קבע את גודל הבלוק המינימלי בבתים (ברירת מחדל: 0)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-35"/>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
-        <translation>כווץ את קובץ debug.log בהפעלת הקליינט (ברירת מחדל: 1 ללא -debug)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-43"/>
         <source>Specify connection timeout in milliseconds (default: 5000)</source>
-        <translation>ציין הגבלת זמן לחיבור במילישניות (ברירת מחדל: 5000)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+116"/>
@@ -2954,12 +2956,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-86"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation>השתמש ב-UPnP כדי למפות את הפורט להאזנה (ברירת מחדל: 0)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>השתמש ב-UPnP כדי למפות את הפורט להאזנה (ברירת מחדל: 1 בעת האזנה)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-26"/>
@@ -2969,7 +2971,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+47"/>
         <source>Username for JSON-RPC connections</source>
-        <translation>שם משתמש לחיבורי JSON-RPC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+51"/>
@@ -3014,17 +3016,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-1"/>
         <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>אזהרה: הגרסה הזאת מיושנת, יש צורך בשדרוג!</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-54"/>
         <source>wallet.dat corrupt, salvage failed</source>
-        <translation>קובץ wallet.dat מושחת, החילוץ נכשל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-56"/>
         <source>Password for JSON-RPC connections</source>
-        <translation>סיסמה לחיבורי JSON-RPC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-32"/>
@@ -3059,12 +3061,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation>אפשר חיבורי JSON-RPC מכתובת האינטרנט המצוינת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation>שלח פקודות לצומת ב-&lt;ip&gt; (ברירת מחדל: 127.0.0.1)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -3079,12 +3081,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation>בצע פקודה זו כשהבלוק הטוב ביותר משתנה (%s בפקודה יוחלף בגיבוב הבלוק)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
-        <translation>בצע פקודה כאשר פעולת ארנק משתנה (%s ב cmd יוחלף ב TxID)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -3099,17 +3101,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>Upgrade wallet to latest format</source>
-        <translation>שדרג את הארנק לפורמט העדכני</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation>קבע את גודל המאגר ל -&lt;n&gt; (ברירת מחדל: 100)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>סרוק מחדש את שרשרת הבלוקים למציאת פעולות חסרות בארנק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
@@ -3124,17 +3126,17 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation>השתמש ב-OpenSSL (https( עבור חיבורי JSON-RPC</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Server certificate file (default: server.cert)</source>
-        <translation>קובץ תעודת שרת (ברירת מחדל: server.cert)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Server private key (default: server.pem)</source>
-        <translation>מפתח פרטי של השרת (ברירת מחדל: server.pem)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+10"/>
@@ -3164,7 +3166,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="-174"/>
         <source>This help message</source>
-        <translation>הודעת העזרה הזו</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+104"/>
@@ -3174,7 +3176,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+37"/>
         <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
-        <translation>לא מסוגל לקשור ל-%s במחשב זה (הקשירה החזירה שגיאה %d, %s)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-133"/>
@@ -3184,12 +3186,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>אפשר בדיקת DNS עבור -addnode, -seednode ו- -connect</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+126"/>
         <source>Loading addresses...</source>
-        <translation>טוען כתובות...</translation>
+        <translation>पता पुस्तक आ रही है...</translation>
     </message>
     <message>
         <location line="-12"/>
@@ -3199,7 +3201,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+2"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>שגיאה בטעינת הקובץ wallet.dat: הארנק מושחת</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
@@ -3214,37 +3216,37 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Error loading wallet.dat</source>
-        <translation>שגיאה בטעינת הקובץ wallet.dat</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-16"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation>כתובת -proxy לא תקינה: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation>רשת לא ידועה צוינה ב- -onlynet: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown -socks proxy version requested: %i</source>
-        <translation>התבקשה גרסת פרוקסי -socks לא ידועה: %i</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+4"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation>לא מסוגל לפתור כתובת -bind: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+2"/>
         <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation>לא מסוגל לפתור כתובת -externalip: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-23"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation>כמות לא תקינה עבור -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+60"/>
@@ -3254,22 +3256,22 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Invalid amount</source>
-        <translation>כמות לא תקינה</translation>
+        <translation>राशि ग़लत है</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insufficient funds</source>
-        <translation>אין מספיק כספים</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-40"/>
         <source>Loading block index...</source>
-        <translation>טוען את אינדקס הבלוקים...</translation>
+        <translation>ब्लॉक इंडेक्स आ रहा है...</translation>
     </message>
     <message>
         <location line="-110"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>הוסף צומת להתחברות ונסה לשמור את החיבור פתוח</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+125"/>
@@ -3324,46 +3326,44 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+17"/>
         <source>Loading wallet...</source>
-        <translation>טוען ארנק...</translation>
+        <translation>वॉलेट आ रहा है...</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Cannot downgrade wallet</source>
-        <translation>לא יכול להוריד דרגת הארנק</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Cannot write default address</source>
-        <translation>לא יכול לכתוב את כתובת ברירת המחדל</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescanning...</source>
-        <translation>סורק מחדש...</translation>
+        <translation>रि-स्केनी-इंग...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Done loading</source>
-        <translation>טעינה הושלמה</translation>
+        <translation>लोड हो गया|</translation>
     </message>
     <message>
         <location line="-161"/>
         <source>To use the %s option</source>
-        <translation>להשתמש באפשרות %s</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+188"/>
         <source>Error</source>
-        <translation>שגיאה</translation>
+        <translation>भूल</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
 %s
 If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation>עליך לקבוע rpcpassword=yourpassword בקובץ ההגדרות:
-%s
-אם הקובץ אינו קיים, צור אותו עם הרשאות קריאה לבעלים בלבד.</translation>
+        <translation type="unfinished"/>
     </message>
 </context>
 </TS>
