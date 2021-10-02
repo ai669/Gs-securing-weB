@@ -1,23 +1,25 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="it" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ja" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../forms/aboutdialog.ui" line="+14"/>
         <source>About WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインについて</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>&lt;b&gt;WayaWolfCoin&lt;/b&gt; version</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;ブラックコイン&lt;/b&gt;バージョン</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>Copyright © 2009-2014 The Bitcoin developers
 Copyright © 2012-2014 The NovaCoin developers
 Copyright © 2014 The WayaWolfCoin developers</source>
-        <translation type="unfinished"/>
+        <translation>コピーライト © 2009-2014 The WayaWolfCoin developers
+コピーライト © 2012-2014 The NovaCoin developers
+コピーライト © 2014 The WayaWolfCoin developers</translation>
     </message>
     <message>
         <location line="+15"/>
@@ -35,102 +37,102 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/addressbookpage.ui" line="+14"/>
         <source>Address Book</source>
-        <translation type="unfinished"/>
+        <translation>アドレス帳</translation>
     </message>
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>Fai doppio click per modificare o cancellare l&apos;etichetta</translation>
+        <translation>アドレスまたはラベルを編集するにはダブルクリック</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>Crea un nuovo indirizzo</translation>
+        <translation>新規アドレスの作成</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copia l&apos;indirizzo attualmente selezionato nella clipboard</translation>
+        <translation>現在選択されているアドレスをシステムのクリップボードにコピーする</translation>
     </message>
     <message>
         <location line="-7"/>
         <source>&amp;New Address</source>
-        <translation type="unfinished"/>
+        <translation>新しいアドレス</translation>
     </message>
     <message>
         <location line="-43"/>
         <source>These are your WayaWolfCoin addresses for receiving payments. You may want to give a different one to each sender so you can keep track of who is paying you.</source>
-        <translation type="unfinished"/>
+        <translation>これは支払いを受けるためのブラックコインのアドレス。支払い管理をするのため、各送信者へ、それぞれのアドレスを伝えたほうがいいです。</translation>
     </message>
     <message>
         <location line="+53"/>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Copia l&apos;indirizzo</translation>
+        <translation>アドレスをコピー (&amp;C)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show &amp;QR Code</source>
-        <translation type="unfinished"/>
+        <translation>QRコードを表す</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Sign a message to prove you own a WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>所有権の証明するためのメサッジを署名する。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sign &amp;Message</source>
-        <translation type="unfinished"/>
+        <translation>メサッジを署名する。</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Delete the currently selected address from the list</source>
-        <translation>Cancella l&apos;indirizzo attualmente selezionato dalla lista</translation>
+        <translation>選択されたアドレスを一覧から削除する</translation>
     </message>
     <message>
         <location line="-10"/>
         <source>Verify a message to ensure it was signed with a specified WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>受け取ったメッセージの署名を確保のため、メッセージを確認する。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Verify Message</source>
-        <translation type="unfinished"/>
+        <translation>メッセージを確認する。</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Cancella</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
         <source>Copy &amp;Label</source>
-        <translation>Copia &amp;l&apos;etichetta</translation>
+        <translation>ラベルをコピー (&amp;L)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Modifica</translation>
+        <translation>編集 (&amp;E)</translation>
     </message>
     <message>
         <location line="+250"/>
         <source>Export Address Book Data</source>
-        <translation type="unfinished"/>
+        <translation>アドレス帳のデータを書き出す</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Testo CSV (*.csv)</translation>
+        <translation>CSVファイル (*.csv)</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Error exporting</source>
-        <translation type="unfinished"/>
+        <translation>エラーを書き出す</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
+        <translation>ファイルを書き込めなかった。%1</translation>
     </message>
 </context>
 <context>
@@ -138,17 +140,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addresstablemodel.cpp" line="+145"/>
         <source>Label</source>
-        <translation>Etichetta</translation>
+        <translation>ラベル</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Indirizzo</translation>
+        <translation>アドレス</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>(no label)</source>
-        <translation>(nessuna etichetta)</translation>
+        <translation>（ラベル無し）</translation>
     </message>
 </context>
 <context>
@@ -156,99 +158,99 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../forms/askpassphrasedialog.ui" line="+26"/>
         <source>Passphrase Dialog</source>
-        <translation>Finestra passphrase</translation>
+        <translation>パスフレーズ ダイアログ</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>Inserisci la passphrase</translation>
+        <translation>パスフレーズを入力</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>New passphrase</source>
-        <translation>Nuova passphrase</translation>
+        <translation>新しいパスフレーズ</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>Ripeti la passphrase</translation>
+        <translation>新しいパスフレーズをもう一度</translation>
     </message>
     <message>
         <location line="+33"/>
         <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザアカウントはハッキングされたばい、瑣末のsendmoney無効にする。機密保護には効果はない。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>For staking only</source>
-        <translation type="unfinished"/>
+        <translation>賭けるのみ</translation>
     </message>
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>Cifra il portamonete</translation>
+        <translation>ウォレットを暗号化する</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Quest&apos;operazione necessita della passphrase per sbloccare il portamonete.</translation>
+        <translation>この操作はウォレットをアンロックするためにパスフレーズが必要です。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>Sblocca il portamonete</translation>
+        <translation>ウォレットをアンロックする</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Quest&apos;operazione necessita della passphrase per decifrare il portamonete,</translation>
+        <translation>この操作はウォレットの暗号化解除のためにパスフレーズが必要です。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>Decifra il portamonete</translation>
+        <translation>ウォレットの暗号化を解除する</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>Cambia la passphrase</translation>
+        <translation>パスフレーズの変更</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Enter the old and new passphrase to the wallet.</source>
-        <translation>Inserisci la vecchia e la nuova passphrase per il portamonete.</translation>
+        <translation>新旧両方のパスフレーズを入力してください。</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Confirm wallet encryption</source>
-        <translation>Conferma la cifratura del portamonete</translation>
+        <translation>ウォレットの暗号化を確認する</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR COINS&lt;/b&gt;!</source>
-        <translation type="unfinished"/>
+        <translation>ご注意：暗号化したウォレットのパスワードを忘れたばい、b&gt;すべてのコインを失う&lt;/b&gt;!</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Si è sicuri di voler cifrare il portamonete?</translation>
+        <translation>ウォレットを暗号化、よろしいですか?</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANTE: qualsiasi backup del portafoglio effettuato precedentemente dovrebbe essere sostituito con il file del portafoglio criptato appena generato. Per ragioni di sicurezza, i backup precedenti del file del portafoglio non criptato diventeranno inservibili non appena si inizi ad usare il nuovo portafoglio criptato.</translation>
+        <translation>重要: 過去のウォレット ファイルのバックアップは、暗号化された新しいウォレット ファイルに取り替える必要があります。セキュリティ上の理由により、暗号化された新しいウォレットを使い始めると、暗号化されていないウォレット ファイルのバックアップはすぐに使えなくなります。</translation>
     </message>
     <message>
         <location line="+103"/>
         <location line="+24"/>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Attenzione: tasto Blocco maiuscole attivo.</translation>
+        <translation>警告: Caps Lock キーがオンになっています!</translation>
     </message>
     <message>
         <location line="-133"/>
         <location line="+60"/>
         <source>Wallet encrypted</source>
-        <translation>Portamonete cifrato</translation>
+        <translation>ウォレットは暗号化されました</translation>
     </message>
     <message>
         <location line="-140"/>
@@ -258,7 +260,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+82"/>
         <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
-        <translation type="unfinished"/>
+        <translation>ただいま、暗号化手順を完成するため、ブラックコインQTは閉じます。尚、ウォレットを暗号化をされたにしても、PCのウイルスから盗難防止の報償できないことを、ご理解をお願い足します。</translation>
     </message>
     <message>
         <location line="+13"/>
@@ -266,40 +268,40 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+44"/>
         <location line="+6"/>
         <source>Wallet encryption failed</source>
-        <translation>Cifratura del portamonete fallita</translation>
+        <translation>ウォレットの暗号化に失敗しました</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Cifratura del portamonete fallita a causa di un errore interno. Il portamonete non è stato cifrato.</translation>
+        <translation>内部エラーによりウォレットの暗号化が失敗しました。ウォレットは暗号化されませんでした。</translation>
     </message>
     <message>
         <location line="+7"/>
         <location line="+50"/>
         <source>The supplied passphrases do not match.</source>
-        <translation>Le passphrase inserite non corrispondono.</translation>
+        <translation>パスフレーズが同じではありません。</translation>
     </message>
     <message>
         <location line="-38"/>
         <source>Wallet unlock failed</source>
-        <translation>Sblocco del portamonete fallito</translation>
+        <translation>ウォレットのアンロックに失敗しました</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+12"/>
         <location line="+19"/>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>La passphrase inserita per la decifrazione del portamonete è errata.</translation>
+        <translation>ウォレットの暗号化解除のパスフレーズが正しくありません。</translation>
     </message>
     <message>
         <location line="-20"/>
         <source>Wallet decryption failed</source>
-        <translation>Decifrazione del portamonete fallita</translation>
+        <translation>ウォレットの暗号化解除に失敗しました</translation>
     </message>
     <message>
         <location line="+14"/>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Passphrase del portamonete modificata con successo.</translation>
+        <translation>ウォレットのパスフレーズの変更が成功しました。</translation>
     </message>
 </context>
 <context>
@@ -307,188 +309,188 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../bitcoingui.cpp" line="+297"/>
         <source>Sign &amp;message...</source>
-        <translation>Firma il &amp;messaggio...</translation>
+        <translation>メッセージの署名... (&amp;m)</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Show general overview of wallet</source>
-        <translation>Mostra lo stato generale del portamonete</translation>
+        <translation>ウォレットの概要を見る</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transazioni</translation>
+        <translation>処理(&amp;T)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Browse transaction history</source>
-        <translation>Cerca nelle transazioni</translation>
+        <translation>処理履歴を閲覧</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>&amp;Address Book</source>
-        <translation type="unfinished"/>
+        <translation>アドレス帳</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit the list of stored addresses and labels</source>
-        <translation type="unfinished"/>
+        <translation>保存されたアドレスとラベルの編集</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Show the list of addresses for receiving payments</source>
-        <translation type="unfinished"/>
+        <translation>支払いを受けるためのアドレスリストを表示</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>E&amp;xit</source>
-        <translation>&amp;Esci</translation>
+        <translation>終了(&amp;E)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Quit application</source>
-        <translation>Chiudi applicazione</translation>
+        <translation>アプリケーションを終了</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Show information about WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインの情報を表示</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>About &amp;Qt</source>
-        <translation>Informazioni su &amp;Qt</translation>
+        <translation>Qt について(&amp;Q)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show information about Qt</source>
-        <translation>Mostra informazioni su Qt</translation>
+        <translation>Qt の情報を表示</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Options...</source>
-        <translation>&amp;Opzioni...</translation>
+        <translation>オプション... (&amp;O)</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Cifra il portamonete...</translation>
+        <translation>ウォレットの暗号化... (&amp;E)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Backup Portamonete...</translation>
+        <translation>ウォレットのバックアップ... (&amp;B)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Cambia la passphrase...</translation>
+        <translation>パスフレーズの変更... (&amp;C)</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Export...</source>
-        <translation type="unfinished"/>
+        <translation>(&amp;E)書き出す...</translation>
     </message>
     <message>
         <location line="-55"/>
         <source>Send coins to a WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインアドレスへコインを送る</translation>
     </message>
     <message>
         <location line="+39"/>
         <source>Modify configuration options for WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインの設定を変化する</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Export the data in the current tab to a file</source>
-        <translation type="unfinished"/>
+        <translation>現在のタブのデータをファイルへ書き出す</translation>
     </message>
     <message>
         <location line="-13"/>
         <source>Encrypt or decrypt wallet</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットを暗号化か暗号化を解除する</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Backup wallet to another location</source>
-        <translation>Backup portamonete in un&apos;altra locazione</translation>
+        <translation>ウォレットを他の場所にバックアップ</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Cambia la passphrase per la cifratura del portamonete</translation>
+        <translation>ウォレット暗号化用パスフレーズの変更</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Debug window</source>
-        <translation>Finestra &amp;Debug</translation>
+        <translation>デバッグ ウインドウ (&amp;D)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Open debugging and diagnostic console</source>
-        <translation>Apri la console di degugging e diagnostica</translation>
+        <translation>デバッグと診断コンソールを開く</translation>
     </message>
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Verifica messaggio...</translation>
+        <translation>メッセージの検証... (&amp;V)</translation>
     </message>
     <message>
         <location line="-214"/>
         <location line="+551"/>
         <source>WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコイン</translation>
     </message>
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation>Portamonete</translation>
+        <translation>ウォレット</translation>
     </message>
     <message>
         <location line="+193"/>
         <source>&amp;About WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインについて</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>&amp;Show / Hide</source>
-        <translation>&amp;Mostra/Nascondi</translation>
+        <translation>見る/隠す (&amp;S)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Unlock wallet</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットをアンロックする</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>&amp;Lock Wallet</source>
-        <translation type="unfinished"/>
+        <translation>(&amp;L)ウォレットをロックする</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Lock wallet</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットをロックする</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>&amp;File</source>
-        <translation>&amp;File</translation>
+        <translation>ファイル(&amp;F)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Impostazioni</translation>
+        <translation>設定(&amp;S)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation>&amp;Aiuto</translation>
+        <translation>ヘルプ(&amp;H)</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Tabs toolbar</source>
-        <translation>Barra degli strumenti &quot;Tabs&quot;</translation>
+        <translation>タブツールバー</translation>
     </message>
     <message>
         <location line="+46"/>
@@ -500,37 +502,37 @@ This product includes software developed by the OpenSSL Project for use in the O
         <location line="+0"/>
         <location line="+58"/>
         <source>WayaWolfCoin client</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインクライアントソフトウェア</translation>
     </message>
     <message numerus="yes">
         <location line="+70"/>
         <source>%n active connection(s) to WayaWolfCoin network</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>ブラックコインネットワークへの%n アクティブな接続</numerusform></translation>
     </message>
     <message>
         <location line="+488"/>
         <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
-        <translation type="unfinished"/>
+        <translation>賭けている。&lt;br&gt;重さは%1&lt;br&gt;ネットワークの重さは%2&lt;br&gt;報酬をもらう時間の推測は%3</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Not staking because wallet is locked</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットをロックされたため、賭けていません</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is offline</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットはオフラインで、賭けていません</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because wallet is syncing</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットは同期最中ため、賭けていません。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Not staking because you don&apos;t have mature coins</source>
-        <translation type="unfinished"/>
+        <translation>コインはまだ成長できていないため、賭けていません。</translation>
     </message>
     <message>
         <location line="-808"/>
@@ -550,32 +552,32 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+49"/>
         <source>&amp;Unlock Wallet...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;ウォレットをアンロック...</translation>
     </message>
     <message>
         <location line="+273"/>
         <source>Up to date</source>
-        <translation>Aggiornato</translation>
+        <translation>バージョンは最新です</translation>
     </message>
     <message>
         <location line="+43"/>
         <source>Catching up...</source>
-        <translation>In aggiornamento...</translation>
+        <translation>追跡中...</translation>
     </message>
     <message>
         <location line="+113"/>
         <source>Confirm transaction fee</source>
-        <translation type="unfinished"/>
+        <translation>処理手数料を確認する</translation>
     </message>
     <message>
         <location line="+27"/>
         <source>Sent transaction</source>
-        <translation>Transazione inviata</translation>
+        <translation>送金処理</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Incoming transaction</source>
-        <translation>Transazione ricevuta</translation>
+        <translation>着金処理</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -584,24 +586,22 @@ Amount: %2
 Type: %3
 Address: %4
 </source>
-        <translation>Data: %1
-Quantità: %2
-Tipo: %3
-Indirizzo: %4
-
-</translation>
+        <translation>日付: %1
+総額: %2
+種類: %3
+アドレス: %4</translation>
     </message>
     <message>
         <location line="+100"/>
         <location line="+15"/>
         <source>URI handling</source>
-        <translation type="unfinished"/>
+        <translation>URIの取り扱い</translation>
     </message>
     <message>
         <location line="-15"/>
         <location line="+15"/>
         <source>URI can not be parsed! This can be caused by an invalid WayaWolfCoin address or malformed URI parameters.</source>
-        <translation type="unfinished"/>
+        <translation>URIのパーズができませんでした！。原因は無効なブラックコインアドレスか不正なURIパラメータ。</translation>
     </message>
     <message>
         <location line="+9"/>
@@ -611,48 +611,48 @@ Indirizzo: %4
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; e attualmente &lt;b&gt;sbloccato&lt;/b&gt;</translation>
+        <translation>ウォレットは&lt;b&gt;暗号化されて、アンロックされています&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Il portamonete è &lt;b&gt;cifrato&lt;/b&gt; e attualmente &lt;b&gt;bloccato&lt;/b&gt;</translation>
+        <translation>ウォレットは&lt;b&gt;暗号化されて、ロックされています&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Backup Wallet</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットのバックアップ</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Wallet Data (*.dat)</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットのデータ (*.dat)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Backup Failed</source>
-        <translation type="unfinished"/>
+        <translation>バックアップは失敗しました</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットのデータが新しい場所へ保存するにはエラーになりました。</translation>
     </message>
     <message numerus="yes">
         <location line="+91"/>
         <source>%n second(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n 秒</numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="+4"/>
         <source>%n minute(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation><numerusform>%n 分</numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
         <location line="+433"/>
         <source>%n hour(s)</source>
-        <translation><numerusform>%n ora</numerusform><numerusform>%n ore</numerusform></translation>
+        <translation><numerusform>%n 時間</numerusform></translation>
     </message>
     <message>
         <location line="-456"/>
@@ -663,13 +663,13 @@ Indirizzo: %4
         <location line="+27"/>
         <location line="+433"/>
         <source>%n day(s)</source>
-        <translation><numerusform>%n giorno</numerusform><numerusform>%n giorni</numerusform></translation>
+        <translation><numerusform>%n 日間</numerusform></translation>
     </message>
     <message numerus="yes">
         <location line="-429"/>
         <location line="+6"/>
         <source>%n week(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+0"/>
@@ -679,7 +679,7 @@ Indirizzo: %4
     <message numerus="yes">
         <location line="+0"/>
         <source>%n year(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+5"/>
@@ -719,12 +719,12 @@ Indirizzo: %4
     <message>
         <location line="+324"/>
         <source>Not staking</source>
-        <translation type="unfinished"/>
+        <translation>賭けていません</translation>
     </message>
     <message>
         <location filename="../bitcoin.cpp" line="+104"/>
         <source>A fatal error occurred. WayaWolfCoin can no longer continue safely and will quit.</source>
-        <translation type="unfinished"/>
+        <translation>致命的エラー。安全に続きができないため、バラックコインQTは閉じます。</translation>
     </message>
 </context>
 <context>
@@ -732,7 +732,7 @@ Indirizzo: %4
     <message>
         <location filename="../clientmodel.cpp" line="+110"/>
         <source>Network Alert</source>
-        <translation>Avviso di rete</translation>
+        <translation>ネットワーク警告</translation>
     </message>
 </context>
 <context>
@@ -740,203 +740,203 @@ Indirizzo: %4
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+14"/>
         <source>Coin Control</source>
-        <translation type="unfinished"/>
+        <translation>コインのコントロール</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Quantity:</source>
-        <translation>Quantità:</translation>
+        <translation>数量：</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Bytes:</source>
-        <translation>Byte:</translation>
+        <translation>バイト</translation>
     </message>
     <message>
         <location line="+48"/>
         <source>Amount:</source>
-        <translation>Importo:</translation>
+        <translation>総額:</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Priority:</source>
-        <translation>Priorità:</translation>
+        <translation>優先:</translation>
     </message>
     <message>
         <location line="+48"/>
         <source>Fee:</source>
-        <translation>Commissione:</translation>
+        <translation>料金:</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Low Output:</translation>
+        <translation>アウトプット低い:</translation>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="+552"/>
         <source>no</source>
-        <translation>no</translation>
+        <translation>いいえ</translation>
     </message>
     <message>
         <location filename="../forms/coincontroldialog.ui" line="+51"/>
         <source>After Fee:</source>
-        <translation>Dopo Commissione:</translation>
+        <translation>料金の後</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Change:</source>
-        <translation>Resto:</translation>
+        <translation>お釣り:</translation>
     </message>
     <message>
         <location line="+69"/>
         <source>(un)select all</source>
-        <translation>(de)seleziona tutto</translation>
+        <translation>すべてを選択か選択を解除</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Tree mode</source>
-        <translation>Modalità Albero</translation>
+        <translation>木モード</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>List mode</source>
-        <translation>Modalità Lista</translation>
+        <translation>リストモード</translation>
     </message>
     <message>
         <location line="+45"/>
         <source>Amount</source>
-        <translation>Importo</translation>
+        <translation>総額</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Label</source>
-        <translation type="unfinished"/>
+        <translation>レベル</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Address</source>
-        <translation>Indirizzo</translation>
+        <translation>アドレス</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Date</source>
-        <translation>Data</translation>
+        <translation>日付</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirmations</source>
-        <translation>Conferme:</translation>
+        <translation>検証済みの数</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Confirmed</source>
-        <translation>Confermato</translation>
+        <translation>検証済</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Priority</source>
-        <translation>Priorità</translation>
+        <translation>優先</translation>
     </message>
     <message>
         <location filename="../coincontroldialog.cpp" line="-515"/>
         <source>Copy address</source>
-        <translation>Copia l&apos;indirizzo</translation>
+        <translation>アドレスをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Copia l&apos;etichetta</translation>
+        <translation>ラベルをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+26"/>
         <source>Copy amount</source>
-        <translation>Copia l&apos;importo</translation>
+        <translation>総額のコピー</translation>
     </message>
     <message>
         <location line="-25"/>
         <source>Copy transaction ID</source>
-        <translation>Copia l&apos;ID transazione</translation>
+        <translation>処理のIDをコピー</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy quantity</source>
-        <translation>Copia quantità</translation>
+        <translation>数量をコピー</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Copy fee</source>
-        <translation>Copia commissione</translation>
+        <translation>料金をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy after fee</source>
-        <translation>Copia dopo commissione</translation>
+        <translation>料金の後をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy bytes</source>
-        <translation>Copia byte</translation>
+        <translation>バイトをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>Copia priorità</translation>
+        <translation>優先をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Copia low output</translation>
+        <translation>アウトプット低いをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy change</source>
-        <translation>Copia resto</translation>
+        <translation>お釣りをコピー</translation>
     </message>
     <message>
         <location line="+317"/>
         <source>highest</source>
-        <translation>massima</translation>
+        <translation>最高</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>high</source>
-        <translation>alta</translation>
+        <translation>高い</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>medium-high</source>
-        <translation>medio-alta</translation>
+        <translation>中高</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>medium</source>
-        <translation>media</translation>
+        <translation>中</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>low-medium</source>
-        <translation>medio-bassa</translation>
+        <translation>中低</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>low</source>
-        <translation>bassa</translation>
+        <translation>低い</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>lowest</source>
-        <translation>infima</translation>
+        <translation>最低</translation>
     </message>
     <message>
         <location line="+155"/>
         <source>DUST</source>
-        <translation type="unfinished"/>
+        <translation>ほこり</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>yes</source>
-        <translation>si</translation>
+        <translation>はい</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -945,7 +945,11 @@ Indirizzo: %4
  This means a fee of at least %1 per kb is required.
 
  Can vary +/- 1 Byte per input.</source>
-        <translation type="unfinished"/>
+        <translation>このラベルが赤くなったら、処理の大きさは10000バイトより大きいです。
+
+少なくとも%1 KBあたりの料金は必要となります。
+
+入力データによって、料金の+/-1 バイトが可能です。</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -954,7 +958,11 @@ Indirizzo: %4
 This label turns red, if the priority is smaller than &quot;medium&quot;.
 
  This means a fee of at least %1 per kb is required.</source>
-        <translation type="unfinished"/>
+        <translation>高い優先ありの処理の方はブロックに書き込み可能性が高い。
+
+このラベルは優先の設定は中より低いです。
+
+少なくとも%1 KBあたりの料金は必要となります。</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -963,30 +971,36 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
  This means a fee of at least %2 is required. 
 
  Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
-        <translation type="unfinished"/>
+        <translation>任意の受信者は%1より少ない額をもらったばい、このラベルは赤くなる。
+
+少なくとも%2の料金は必要となります。
+
+最小なリレー料金　x　0.546より下の額は、ほこりになります。</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This label turns red, if the change is smaller than %1.
 
  This means a fee of at least %2 is required.</source>
-        <translation type="unfinished"/>
+        <translation>このラベルが赤くなたら、お釣りは%1より少ない。
+
+少なくとも%2の料金は必要となります。</translation>
     </message>
     <message>
         <location line="+36"/>
         <location line="+66"/>
         <source>(no label)</source>
-        <translation>(nessuna etichetta)</translation>
+        <translation>（ラベル無し）</translation>
     </message>
     <message>
         <location line="-9"/>
         <source>change from %1 (%2)</source>
-        <translation>resto da %1 (%2)</translation>
+        <translation>%1 (%2)からお釣り</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>(change)</source>
-        <translation>(resto)</translation>
+        <translation>(お釣り)</translation>
     </message>
 </context>
 <context>
@@ -994,67 +1008,67 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/editaddressdialog.ui" line="+14"/>
         <source>Edit Address</source>
-        <translation>Modifica l&apos;indirizzo</translation>
+        <translation>アドレスの編集</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Label</source>
-        <translation>&amp;Etichetta</translation>
+        <translation>ラベル(&amp;L)</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>The label associated with this address book entry</source>
-        <translation type="unfinished"/>
+        <translation>このアドレス帳の入力のラベル</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Address</source>
-        <translation>&amp;Indirizzo</translation>
+        <translation>アドレス帳 (&amp;A)</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
-        <translation type="unfinished"/>
+        <translation>このアドレス帳の入力のアドレス。通信アドレスした変更ができない。</translation>
     </message>
     <message>
         <location filename="../editaddressdialog.cpp" line="+21"/>
         <source>New receiving address</source>
-        <translation>Nuovo indirizzo di ricezione</translation>
+        <translation>新しい受信アドレス</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>New sending address</source>
-        <translation>Nuovo indirizzo d&apos;invio</translation>
+        <translation>新しい送信アドレス</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Edit receiving address</source>
-        <translation>Modifica indirizzo di ricezione</translation>
+        <translation>受信アドレスを編集</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Edit sending address</source>
-        <translation>Modifica indirizzo d&apos;invio</translation>
+        <translation>送信アドレスを編集</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>The entered address &quot;%1&quot; is already in the address book.</source>
-        <translation>L&apos;indirizzo inserito &quot;%1&quot; è già in rubrica.</translation>
+        <translation>入力されたアドレス &quot;%1&quot; は既にアドレス帳にあります。</translation>
     </message>
     <message>
         <location line="-5"/>
         <source>The entered address &quot;%1&quot; is not a valid WayaWolfCoin address.</source>
-        <translation type="unfinished"/>
+        <translation>入力されたアドレス &quot;%1&quot; 、有効なブラックコインアドレスではない。</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Could not unlock wallet.</source>
-        <translation>Impossibile sbloccare il portamonete.</translation>
+        <translation>ウォレットをアンロックできませんでした。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>New key generation failed.</source>
-        <translation>Generazione della nuova chiave non riuscita.</translation>
+        <translation>新しいキーの生成に失敗しました。</translation>
     </message>
 </context>
 <context>
@@ -1063,42 +1077,42 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../guiutil.cpp" line="+426"/>
         <location line="+12"/>
         <source>WayaWolfCoin-Qt</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインQT</translation>
     </message>
     <message>
         <location line="-12"/>
         <source>version</source>
-        <translation type="unfinished"/>
+        <translation>バージョン</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Usage:</source>
-        <translation type="unfinished"/>
+        <translation>使用法</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>command-line options</source>
-        <translation type="unfinished"/>
+        <translation>コマンドラインのオプション</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>UI options</source>
-        <translation type="unfinished"/>
+        <translation>UIのオプション</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
-        <translation type="unfinished"/>
+        <translation>言語の設定、例: &quot;de_DE&quot; (デフォルト:システムのロケール)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Start minimized</source>
-        <translation type="unfinished"/>
+        <translation>最小化でスタート</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show splash screen on startup (default: 1)</source>
-        <translation type="unfinished"/>
+        <translation>スタートでスプラッシュスクリーンを表示(デフォルト:１)</translation>
     </message>
 </context>
 <context>
@@ -1106,157 +1120,157 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/optionsdialog.ui" line="+14"/>
         <source>Options</source>
-        <translation>Opzioni</translation>
+        <translation>設定</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>&amp;Main</source>
-        <translation>&amp;Principale</translation>
+        <translation>メイン (&amp;M)</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
-        <translation type="unfinished"/>
+        <translation>手続きを早めるためのオプショナル料金。だいたいの処理は1KB。料金の0.01が勧めです。</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>Pay transaction &amp;fee</source>
-        <translation>Paga la &amp;commissione</translation>
+        <translation>支払う取引手数料 (&amp;f)</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
-        <translation type="unfinished"/>
+        <translation>貯金は賭ける参加しないため、いつでも支出できる。</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>Reserve</source>
-        <translation type="unfinished"/>
+        <translation>貯金</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Automatically start WayaWolfCoin after logging in to the system.</source>
-        <translation type="unfinished"/>
+        <translation>システムのログイン次第、自動的にブラックコインをスタート。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Start WayaWolfCoin on system login</source>
-        <translation type="unfinished"/>
+        <translation>システムログイン次第、ブラックコインをスタート</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>&amp;Network</source>
-        <translation>Rete</translation>
+        <translation>ネットワーク (&amp;N)</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
-        <translation type="unfinished"/>
+        <translation>自動的にルーターでブラックコインクライエントソフトウェアのポートを開く。ルーターはUPnPのサポートあり、UPnPを有効にするならできる。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Map port using &amp;UPnP</source>
-        <translation>Mappa le porte tramite l&apos;&amp;UPnP</translation>
+        <translation>UPnP を使ってポートを割り当てる (&amp;U)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Connect to the WayaWolfCoin network through a SOCKS proxy (e.g. when connecting through Tor).</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインのネットワークへSOCKSプロキシで接続する（例：TORで接続するばい）</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Connect through SOCKS proxy:</source>
-        <translation type="unfinished"/>
+        <translation>SOCKSプロキシで接続する</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Proxy &amp;IP:</source>
-        <translation>&amp;IP del proxy:</translation>
+        <translation>プロキシの IP (&amp;I) :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>IP address of the proxy (e.g. 127.0.0.1)</source>
-        <translation type="unfinished"/>
+        <translation>プロキシのIPアドレス （例：127.0.0.1）</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Port:</source>
-        <translation>&amp;Porta:</translation>
+        <translation>ポート (&amp;P) :</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Port of the proxy (e.g. 9050)</source>
-        <translation>Porta del proxy (es. 9050)</translation>
+        <translation>プロキシのポート番号 (例 9050)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>SOCKS &amp;Version:</source>
-        <translation>SOCKS &amp;Version:</translation>
+        <translation>SOCKS バージョン (&amp;V) :</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>SOCKS version of the proxy (e.g. 5)</source>
-        <translation>Versione SOCKS del proxy (es. 5)</translation>
+        <translation>SOCKS プロキシのバージョン (例 5)</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation>&amp;Finestra</translation>
+        <translation>ウインドウ (&amp;W)</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>Mostra solo un&apos;icona nel tray quando si minimizza la finestra</translation>
+        <translation>ウインドウを最小化したあとトレイ アイコンだけを表示する。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Minimizza sul tray invece che sulla barra delle applicazioni</translation>
+        <translation>タスクバーの代わりにトレイに最小化 (&amp;M)</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Quit in the menu.</source>
-        <translation>Riduci ad icona, invece di uscire dall&apos;applicazione quando la finestra viene chiusa. Quando questa opzione è attivata, l&apos;applicazione verrà chiusa solo dopo aver selezionato Esci nel menu.</translation>
+        <translation>ウインドウが閉じられる時アプリケーションを終了せずに最小化します。このオプションが有効な時にアプリケーションを終了するにはメニューから終了を選択します。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>M&amp;inimize on close</source>
-        <translation>M&amp;inimizza alla chiusura</translation>
+        <translation>閉じる時に最小化 (&amp;i)</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>&amp;Display</source>
-        <translation>&amp;Mostra</translation>
+        <translation>表示 (&amp;D)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>User Interface &amp;language:</source>
-        <translation>&amp;Lingua Interfaccia Utente:</translation>
+        <translation>ユーザインターフェースの言語 (&amp;l) :</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>The user interface language can be set here. This setting will take effect after restarting WayaWolfCoin.</source>
-        <translation type="unfinished"/>
+        <translation>ユーザのインターフェースの言語の設定です。リスタートの後、有効します。</translation>
     </message>
     <message>
         <location line="+11"/>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Unità di misura degli importi in:</translation>
+        <translation>額を表示する単位 (&amp;U) :</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Scegli l&apos;unità di suddivisione predefinita per l&apos;interfaccia e per l&apos;invio di monete</translation>
+        <translation>インターフェース上の表示とコインの送信で使用する単位を選択します。</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Whether to show coin control features or not.</source>
-        <translation>Mostrare/non mostrare le funzionalita&apos; di controllo della moneta.</translation>
+        <translation>コインコントロールを表示する／しない。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Display coin &amp;control features (experts only!)</source>
-        <translation type="unfinished"/>
+        <translation>コインコントロールの設定を表示する(有識者のみ！)</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -1281,34 +1295,34 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancella</translation>
+        <translation>キャンセル (&amp;C)</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"/>
+        <translation>適用する</translation>
     </message>
     <message>
         <location filename="../optionsdialog.cpp" line="+53"/>
         <source>default</source>
-        <translation>predefinito</translation>
+        <translation>初期値</translation>
     </message>
     <message>
         <location line="+149"/>
         <location line="+9"/>
         <source>Warning</source>
-        <translation type="unfinished"/>
+        <translation>警告</translation>
     </message>
     <message>
         <location line="-9"/>
         <location line="+9"/>
         <source>This setting will take effect after restarting WayaWolfCoin.</source>
-        <translation type="unfinished"/>
+        <translation>この設定はブラックコインをリスタートした後に有効する。</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>The supplied proxy address is invalid.</source>
-        <translation>L&apos;indirizzo proxy che hai fornito è invalido.</translation>
+        <translation>プロキシアドレスが無効です。</translation>
     </message>
 </context>
 <context>
@@ -1316,79 +1330,79 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/overviewpage.ui" line="+14"/>
         <source>Form</source>
-        <translation>Modulo</translation>
+        <translation>フォーム</translation>
     </message>
     <message>
         <location line="+46"/>
         <location line="+247"/>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the WayaWolfCoin network after a connection is established, but this process has not completed yet.</source>
-        <translation type="unfinished"/>
+        <translation>表示されている情報は時間遅れている。接続したら、ウォレットは自動的にブラックコインネットワークと同期しますが過程は完了してません。</translation>
     </message>
     <message>
         <location line="-173"/>
         <source>Stake:</source>
-        <translation type="unfinished"/>
+        <translation>賭け金：</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Unconfirmed:</source>
-        <translation type="unfinished"/>
+        <translation>未検証：</translation>
     </message>
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation>Portamonete</translation>
+        <translation>ウォレット</translation>
     </message>
     <message>
         <location line="+49"/>
         <source>Spendable:</source>
-        <translation type="unfinished"/>
+        <translation>支出可能：</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Your current spendable balance</source>
-        <translation>Saldo spendibile attuale</translation>
+        <translation>あなたの利用可能残高</translation>
     </message>
     <message>
         <location line="+80"/>
         <source>Immature:</source>
-        <translation>Immaturo:</translation>
+        <translation>未完成:</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Mined balance that has not yet matured</source>
-        <translation>Importo scavato che non è ancora maturato</translation>
+        <translation>完成していない採掘された残高</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Total:</source>
-        <translation>Totale:</translation>
+        <translation>合計:</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Your current total balance</source>
-        <translation>Saldo totale attuale</translation>
+        <translation>あなたの現在の残高</translation>
     </message>
     <message>
         <location line="+50"/>
         <source>&lt;b&gt;Recent transactions&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Transazioni recenti&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;最近の処理&lt;/b&gt;</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the current balance</source>
-        <translation type="unfinished"/>
+        <translation>未確認の合計で、まだ現在の残高に含まれていない。</translation>
     </message>
     <message>
         <location line="-32"/>
         <source>Total of coins that was staked, and do not yet count toward the current balance</source>
-        <translation type="unfinished"/>
+        <translation>賭けているコインの合計で、まだ現在の残高に含まれていない。</translation>
     </message>
     <message>
         <location filename="../overviewpage.cpp" line="+116"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation>fuori sincrono</translation>
+        <translation>同期していない</translation>
     </message>
 </context>
 <context>
@@ -1404,57 +1418,57 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/qrcodedialog.ui" line="+14"/>
         <source>QR Code Dialog</source>
-        <translation type="unfinished"/>
+        <translation>QRコードのダイアログ</translation>
     </message>
     <message>
         <location line="+59"/>
         <source>Request Payment</source>
-        <translation type="unfinished"/>
+        <translation>支払いを要請する</translation>
     </message>
     <message>
         <location line="+56"/>
         <source>Amount:</source>
-        <translation type="unfinished"/>
+        <translation>総額:</translation>
     </message>
     <message>
         <location line="-44"/>
         <source>Label:</source>
-        <translation type="unfinished"/>
+        <translation>レベル</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Message:</source>
-        <translation type="unfinished"/>
+        <translation>メッセージ:</translation>
     </message>
     <message>
         <location line="+71"/>
         <source>&amp;Save As...</source>
-        <translation type="unfinished"/>
+        <translation>&amp;S名前を付けて保存...</translation>
     </message>
     <message>
         <location filename="../qrcodedialog.cpp" line="+62"/>
         <source>Error encoding URI into QR Code.</source>
-        <translation type="unfinished"/>
+        <translation>URIからQRコードにエンコードするエラー。</translation>
     </message>
     <message>
         <location line="+40"/>
         <source>The entered amount is invalid, please check.</source>
-        <translation type="unfinished"/>
+        <translation>入力された額は無効です。確認してください。</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation type="unfinished"/>
+        <translation>URIは長過ぎて、ラベル文字の長さを短くしてください。</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>Save QR Code</source>
-        <translation type="unfinished"/>
+        <translation>QRコードを保存</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>PNG Images (*.png)</source>
-        <translation type="unfinished"/>
+        <translation>PNG イメージ (*.png)</translation>
     </message>
 </context>
 <context>
@@ -1462,7 +1476,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/rpcconsole.ui" line="+46"/>
         <source>Client name</source>
-        <translation>Nome del client</translation>
+        <translation>クライアント名</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1474,52 +1488,52 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+53"/>
         <location line="+23"/>
         <source>N/A</source>
-        <translation>N/D</translation>
+        <translation>N/A</translation>
     </message>
     <message>
         <location line="-194"/>
         <source>Client version</source>
-        <translation>Versione client</translation>
+        <translation>クライアントのバージョン</translation>
     </message>
     <message>
         <location line="-45"/>
         <source>&amp;Information</source>
-        <translation>&amp;Informazione</translation>
+        <translation>情報 (&amp;I)</translation>
     </message>
     <message>
         <location line="+68"/>
         <source>Using OpenSSL version</source>
-        <translation>Versione OpenSSL in uso</translation>
+        <translation>使用中の OpenSSL のバージョン</translation>
     </message>
     <message>
         <location line="+49"/>
         <source>Startup time</source>
-        <translation>Tempo di avvio</translation>
+        <translation>起動した日時</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>Network</source>
-        <translation>Rete</translation>
+        <translation>ネットワーク</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Number of connections</source>
-        <translation>Numero connessioni</translation>
+        <translation>接続数</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>On testnet</source>
-        <translation type="unfinished"/>
+        <translation>testnetで</translation>
     </message>
     <message>
         <location line="+23"/>
         <source>Block chain</source>
-        <translation>Block chain</translation>
+        <translation>ブロック チェーン</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Current number of blocks</source>
-        <translation>Numero attuale di blocchi</translation>
+        <translation>現在のブロック数</translation>
     </message>
     <message>
         <location line="+197"/>
@@ -1549,77 +1563,77 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-383"/>
         <source>Last block time</source>
-        <translation>Ora dell blocco piu recente</translation>
+        <translation>最終ブロックの日時</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>&amp;Open</source>
-        <translation>&amp;Apri</translation>
+        <translation>開く (&amp;O)</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Command-line options</source>
-        <translation type="unfinished"/>
+        <translation>コマンドラインのオプション</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Show the WayaWolfCoin-Qt help message to get a list with possible WayaWolfCoin command-line options.</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインQTのコマンドラインのヘルプ情報を表示する。</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>&amp;Show</source>
-        <translation type="unfinished"/>
+        <translation>(&amp;S)表示</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>&amp;Console</source>
-        <translation>&amp;Console</translation>
+        <translation>コンソール (&amp;C)</translation>
     </message>
     <message>
         <location line="-237"/>
         <source>Build date</source>
-        <translation>Data di creazione</translation>
+        <translation>ビルドの日付</translation>
     </message>
     <message>
         <location line="-104"/>
         <source>WayaWolfCoin - Debug window</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコイン：デバッグウインドウ</translation>
     </message>
     <message>
         <location line="+25"/>
         <source>WayaWolfCoin Core</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインコア</translation>
     </message>
     <message>
         <location line="+256"/>
         <source>Debug log file</source>
-        <translation>File log del Debug</translation>
+        <translation>デバッグ用ログファイル</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Open the WayaWolfCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation type="unfinished"/>
+        <translation>現行のディレクトリからデバッグログファイルを開く。大きなファイルのばい、少し時間かかる。</translation>
     </message>
     <message>
         <location line="+102"/>
         <source>Clear console</source>
-        <translation>Svuota console</translation>
+        <translation>コンソールをクリア</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="+325"/>
         <source>Welcome to the WayaWolfCoin RPC console.</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインRPCコンソールへようこそ。</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
-        <translation>Usa le frecce direzionali per navigare la cronologia, and &lt;b&gt;Ctrl-L&lt;/b&gt; per cancellarla.</translation>
+        <translation>上下の矢印で履歴をたどれます。 &lt;b&gt;Ctrl-L&lt;/b&gt; でスクリーンを消去できます。</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
-        <translation>Scrivi &lt;b&gt;help&lt;/b&gt; per un riassunto dei comandi disponibili</translation>
+        <translation>使用可能なコマンドを見るには &lt;b&gt;help&lt;/b&gt; と入力します。</translation>
     </message>
     <message>
         <location line="+127"/>
@@ -1669,48 +1683,48 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+5"/>
         <location line="+5"/>
         <source>Send Coins</source>
-        <translation>Spedisci WayaWolfCoin</translation>
+        <translation>コインを送る</translation>
     </message>
     <message>
         <location line="+76"/>
         <source>Coin Control Features</source>
-        <translation>Funzionalità di Coin Control</translation>
+        <translation>コインのコントロールの設定</translation>
     </message>
     <message>
         <location line="+20"/>
         <source>Inputs...</source>
-        <translation>Input...</translation>
+        <translation>入力...</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>automatically selected</source>
-        <translation>selezionato automaticamente</translation>
+        <translation>自動的に選択</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>Insufficient funds!</source>
-        <translation>Fondi insufficienti!</translation>
+        <translation>資金不足！</translation>
     </message>
     <message>
         <location line="+77"/>
         <source>Quantity:</source>
-        <translation>Quantità:</translation>
+        <translation>数量：</translation>
     </message>
     <message>
         <location line="+22"/>
         <location line="+35"/>
         <source>0</source>
-        <translation type="unfinished"/>
+        <translation>0</translation>
     </message>
     <message>
         <location line="-19"/>
         <source>Bytes:</source>
-        <translation>Byte:</translation>
+        <translation>バイト</translation>
     </message>
     <message>
         <location line="+51"/>
         <source>Amount:</source>
-        <translation>Importo:</translation>
+        <translation>総額:</translation>
     </message>
     <message>
         <location line="+22"/>
@@ -1718,177 +1732,177 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+86"/>
         <location line="+32"/>
         <source>0.00 TX</source>
-        <translation type="unfinished"/>
+        <translation>123.456 TX {0.00 ?}</translation>
     </message>
     <message>
         <location line="-191"/>
         <source>Priority:</source>
-        <translation>Priorità:</translation>
+        <translation>優先:</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>medium</source>
-        <translation type="unfinished"/>
+        <translation>中</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>Fee:</source>
-        <translation>Commissione:</translation>
+        <translation>料金:</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Low Output:</source>
-        <translation>Low Output:</translation>
+        <translation>アウトプット低い:</translation>
     </message>
     <message>
         <location line="+19"/>
         <source>no</source>
-        <translation type="unfinished"/>
+        <translation>いいえ</translation>
     </message>
     <message>
         <location line="+32"/>
         <source>After Fee:</source>
-        <translation>Dopo Commissione:</translation>
+        <translation>料金の後</translation>
     </message>
     <message>
         <location line="+35"/>
         <source>Change</source>
-        <translation type="unfinished"/>
+        <translation>お釣り:</translation>
     </message>
     <message>
         <location line="+50"/>
         <source>custom change address</source>
-        <translation type="unfinished"/>
+        <translation>カスタムのお釣りのアドレス</translation>
     </message>
     <message>
         <location line="+106"/>
         <source>Send to multiple recipients at once</source>
-        <translation>Spedisci a diversi beneficiari in una volta sola</translation>
+        <translation>一度に複数の人に送る</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Add &amp;Recipient</source>
-        <translation>&amp;Aggiungi beneficiario</translation>
+        <translation>受取人を追加 (&amp;R)</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Remove all transaction fields</source>
-        <translation type="unfinished"/>
+        <translation>全分の処理欄を削除する</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation>Cancella &amp;tutto</translation>
+        <translation>すべてクリア (&amp;A)</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Balance:</source>
-        <translation>Saldo:</translation>
+        <translation>残高:</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>123.456 TX</source>
-        <translation type="unfinished"/>
+        <translation>123.456 TX</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Confirm the send action</source>
-        <translation>Conferma la spedizione</translation>
+        <translation>送る操作を確認する</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation>&amp;Spedisci</translation>
+        <translation>送る (&amp;e)</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインアドレスの入力 (例；ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>Copy quantity</source>
-        <translation>Copia quantità</translation>
+        <translation>数量をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Copia l&apos;importo</translation>
+        <translation>総額のコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy fee</source>
-        <translation>Copia commissione</translation>
+        <translation>料金をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy after fee</source>
-        <translation>Copia dopo commissione</translation>
+        <translation>料金の後をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy bytes</source>
-        <translation>Copia byte</translation>
+        <translation>バイトをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy priority</source>
-        <translation>Copia priorità</translation>
+        <translation>優先をコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy low output</source>
-        <translation>Copia low output</translation>
+        <translation>アウトプット低いをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy change</source>
-        <translation>Copia resto</translation>
+        <translation>お釣りをコピー</translation>
     </message>
     <message>
         <location line="+86"/>
         <source>&lt;b&gt;%1&lt;/b&gt; to %2 (%3)</source>
-        <translation type="unfinished"/>
+        <translation>&lt;b&gt;%1&lt;/b&gt; から %2 (%3)に</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Confirm send coins</source>
-        <translation>Conferma la spedizione di bitcoin</translation>
+        <translation>コインを送る確認</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Are you sure you want to send %1?</source>
-        <translation type="unfinished"/>
+        <translation>%1送付、よろしいですか?</translation>
     </message>
     <message>
         <location line="+0"/>
         <source> and </source>
-        <translation type="unfinished"/>
+        <translation>と</translation>
     </message>
     <message>
         <location line="+29"/>
         <source>The recipient address is not valid, please recheck.</source>
-        <translation>L&apos;indirizzo del beneficiario non è valido, per cortesia controlla.</translation>
+        <translation>受取人のアドレスが不正です。再確認してください。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>L&apos;importo da pagare dev&apos;essere maggiore di 0.</translation>
+        <translation>支払額は0より大きくないといけません。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The amount exceeds your balance.</source>
-        <translation>L&apos;importo è superiore al saldo attuale</translation>
+        <translation>額が残高を超えています。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>Il totale è superiore al saldo attuale includendo la commissione %1.</translation>
+        <translation>%1 の処理手数料を含めると額が残高を超えています。</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Duplicate address found, can only send to each address once per send operation.</source>
-        <translation>Trovato un indirizzo doppio, si può spedire solo una volta a ciascun indirizzo in una singola operazione.</translation>
+        <translation>重複しているアドレスが見つかりました。1回の送信で同じアドレスに送ることは出来ません。</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -1898,22 +1912,22 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+5"/>
         <source>Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
-        <translation type="unfinished"/>
+        <translation>エラー：処理は拒否されました。ウォレットのコインをすでに費やした可能性で、wallet.datのコピーで費やしたが、現行のwallet.datとはアップデートされていない。</translation>
     </message>
     <message>
         <location line="+247"/>
         <source>WARNING: Invalid WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>警告：無効なブラックコインアドレス</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>(no label)</source>
-        <translation>(nessuna etichetta)</translation>
+        <translation>（ラベル無し）</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>WARNING: unknown change address</source>
-        <translation type="unfinished"/>
+        <translation>警告：不明なお釣りのアドレス</translation>
     </message>
 </context>
 <context>
@@ -1921,17 +1935,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/sendcoinsentry.ui" line="+14"/>
         <source>Form</source>
-        <translation type="unfinished"/>
+        <translation>フォーム</translation>
     </message>
     <message>
         <location line="+15"/>
         <source>A&amp;mount:</source>
-        <translation>&amp;Importo:</translation>
+        <translation>金額(&amp;A):</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>Pay &amp;To:</source>
-        <translation>Paga &amp;a:</translation>
+        <translation>送り先(&amp;T):</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -1942,17 +1956,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+60"/>
         <location filename="../sendcoinsentry.cpp" line="+26"/>
         <source>Enter a label for this address to add it to your address book</source>
-        <translation>Inserisci un&apos;etichetta per questo indirizzo, per aggiungerlo nella rubrica</translation>
+        <translation>アドレス帳に追加するには、このアドレスのラベルを入力します</translation>
     </message>
     <message>
         <location line="-78"/>
         <source>&amp;Label:</source>
-        <translation>&amp;Etichetta</translation>
+        <translation>ラベル(&amp;L):</translation>
     </message>
     <message>
         <location line="+28"/>
         <source>Choose address from address book</source>
-        <translation type="unfinished"/>
+        <translation>アドレス帳からアドレスを選択する</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1962,7 +1976,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation>Incollare l&apos;indirizzo dagli appunti</translation>
+        <translation>クリップボードからアドレスを貼付ける</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1972,12 +1986,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Remove this recipient</source>
-        <translation type="unfinished"/>
+        <translation>この受信者を外す</translation>
     </message>
     <message>
         <location filename="../sendcoinsentry.cpp" line="+1"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインアドレスの入力 (例；ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
 </context>
 <context>
@@ -1985,29 +1999,29 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/signverifymessagedialog.ui" line="+14"/>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>Firme - Firma / Verifica un messaggio</translation>
+        <translation>署名 - メッセージの署名/検証</translation>
     </message>
     <message>
         <location line="+13"/>
         <location line="+124"/>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Firma il messaggio</translation>
+        <translation>メッセージの署名 (&amp;S)</translation>
     </message>
     <message>
         <location line="-118"/>
         <source>You can sign messages with your addresses to prove you own them. Be careful not to sign anything vague, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>Puoi firmare messeggi con i tuoi indirizzi per dimostrare che sono tuoi. Fai attenzione a non firmare niente di vago, visto che gli attacchi di phishing potrebbero cercare di spingerti a mettere la tua firma su di loro. Firma solo dichiarazioni completamente dettagliate con cui sei d&apos;accordo.</translation>
+        <translation>あなた自身を立証するためにあなたのアドレスでメッセージに署名することができます。フィッシング攻撃によってあなたを騙して署名を譲渡させようとするかもしれないので、不明確なものは絶対に署名しないように注意してください。あなたが同意する完全に詳細な声明にだけ署名してください。</translation>
     </message>
     <message>
         <location line="+18"/>
         <source>The address to sign the message with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>メッセージの署名するアドレス(例：ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
     <message>
         <location line="+10"/>
         <location line="+203"/>
         <source>Choose an address from the address book</source>
-        <translation type="unfinished"/>
+        <translation>アドレス帳からアドレスを選ぶ</translation>
     </message>
     <message>
         <location line="-193"/>
@@ -2018,7 +2032,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation>Incollare l&apos;indirizzo dagli appunti</translation>
+        <translation>クリップボードからアドレスを貼付ける</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2028,76 +2042,76 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+12"/>
         <source>Enter the message you want to sign here</source>
-        <translation>Inserisci qui il messaggio che vuoi firmare</translation>
+        <translation>ここにあなたが署名するメッセージを入力します</translation>
     </message>
     <message>
         <location line="+24"/>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Copia la firma corrente nella clipboard</translation>
+        <translation>現在の署名をシステムのクリップボードにコピーする</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Sign the message to prove you own this WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>所有権の証明するためこのメサッジを署名する</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Reset all sign message fields</source>
-        <translation>Reimposta tutti i campi della firma</translation>
+        <translation>メッセージ署名の内容をすべて消去します</translation>
     </message>
     <message>
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation>Cancella &amp;tutto</translation>
+        <translation>すべてクリア (&amp;A)</translation>
     </message>
     <message>
         <location line="-87"/>
         <location line="+70"/>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Verifica Messaggio</translation>
+        <translation>メッセージの検証 (&amp;V)</translation>
     </message>
     <message>
         <location line="-64"/>
         <source>Enter the signing address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack.</source>
-        <translation>Inserisci l&apos;indirizzo per la firma, il messaggio (verifica di copiare esattamente anche i ritorni a capo, gli spazi, le tabulazioni, etc) e la firma qui sotto, per verificare il messaggio. Verifica che il contenuto della firma non sia più grande di quello del messaggio per evitare attacchi di tipo man-in-the-middle.</translation>
+        <translation>メッセージを検証するために、署名するアドレスとメッセージ(改行、スペース、タブなどを正確にコピーしてください)、そして署名を入力します。中間者攻撃によってだまされることを避けるために、署名されたメッセージそのものよりも、署名を読み取られないように注意してください。</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>The address the message was signed with (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>メッセージの署名するアドレス(例：ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
     <message>
         <location line="+40"/>
         <source>Verify the message to ensure it was signed with the specified WayaWolfCoin address</source>
-        <translation type="unfinished"/>
+        <translation>受け取ったメッセージの署名を確保のため、メッセージを確認する。</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Reset all verify message fields</source>
-        <translation>Reimposta tutti i campi della verifica messaggio</translation>
+        <translation>入力項目の内容をすべて消去します</translation>
     </message>
     <message>
         <location filename="../signverifymessagedialog.cpp" line="+27"/>
         <location line="+3"/>
         <source>Enter a WayaWolfCoin address (e.g. ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインのアドレスを入力(例：ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg)</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>Click &quot;Sign Message&quot; to generate signature</source>
-        <translation>Clicca &quot;Firma il messaggio&quot; per ottenere la firma</translation>
+        <translation>署名を作成するには&quot;メッセージの署名&quot;をクリック</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Enter WayaWolfCoin signature</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインのデジタル署名を入力</translation>
     </message>
     <message>
         <location line="+82"/>
         <location line="+81"/>
         <source>The entered address is invalid.</source>
-        <translation>L&apos;indirizzo inserito non è valido.</translation>
+        <translation>不正なアドレスが入力されました。</translation>
     </message>
     <message>
         <location line="-81"/>
@@ -2105,59 +2119,59 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+73"/>
         <location line="+8"/>
         <source>Please check the address and try again.</source>
-        <translation>Per favore controlla l&apos;indirizzo e prova ancora</translation>
+        <translation>アドレスを確かめてからもう一度試してください。</translation>
     </message>
     <message>
         <location line="-81"/>
         <location line="+81"/>
         <source>The entered address does not refer to a key.</source>
-        <translation>L&apos;indirizzo bitcoin inserito non è associato a nessuna chiave.</translation>
+        <translation>入力されたアドレスに関連するキーがありません。</translation>
     </message>
     <message>
         <location line="-73"/>
         <source>Wallet unlock was cancelled.</source>
-        <translation>Sblocco del portafoglio annullato.</translation>
+        <translation>ウォレットのアンロックはキャンセルされました。</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Private key for the entered address is not available.</source>
-        <translation>La chiave privata per l&apos;indirizzo inserito non è disponibile.</translation>
+        <translation>入力されたアドレスのプライベート キーが無効です。</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Message signing failed.</source>
-        <translation>Firma messaggio fallita.</translation>
+        <translation>メッセージの署名に失敗しました。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message signed.</source>
-        <translation>Messaggio firmato.</translation>
+        <translation>メッセージに署名しました。</translation>
     </message>
     <message>
         <location line="+59"/>
         <source>The signature could not be decoded.</source>
-        <translation>Non è stato possibile decodificare la firma.</translation>
+        <translation>署名がデコードできません。</translation>
     </message>
     <message>
         <location line="+0"/>
         <location line="+13"/>
         <source>Please check the signature and try again.</source>
-        <translation>Per favore controlla la firma e prova ancora.</translation>
+        <translation>署名を確認してからもう一度試してください。</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>The signature did not match the message digest.</source>
-        <translation>La firma non corrisponde al sunto del messaggio.</translation>
+        <translation>署名はメッセージ ダイジェストと一致しませんでした。</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Message verification failed.</source>
-        <translation>Verifica messaggio fallita.</translation>
+        <translation>メッセージの検証に失敗しました。</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Message verified.</source>
-        <translation>Messaggio verificato.</translation>
+        <translation>メッセージは検証されました。</translation>
     </message>
 </context>
 <context>
@@ -2173,76 +2187,76 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiondesc.cpp" line="+25"/>
         <source>Open until %1</source>
-        <translation>Aperto fino a %1</translation>
+        <translation>ユニット %1 を開く</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>conflicted</source>
-        <translation>in conflitto</translation>
+        <translation>相違</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation>%1/offline</translation>
+        <translation>%1/オフライン</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1/unconfirmed</source>
-        <translation>%1/non confermato</translation>
+        <translation>%1/未検証</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>%1 confirmations</source>
-        <translation>%1 conferme</translation>
+        <translation>%1 確認</translation>
     </message>
     <message>
         <location line="+17"/>
         <source>Status</source>
-        <translation>Stato</translation>
+        <translation>ステータス</translation>
     </message>
     <message numerus="yes">
         <location line="+7"/>
         <source>, broadcast through %n node(s)</source>
-        <translation><numerusform>, trasmesso attraverso %n nodo</numerusform><numerusform>, trasmesso attraverso %n nodi</numerusform></translation>
+        <translation><numerusform>%n ノードにブロードキャスト</numerusform></translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Date</source>
-        <translation>Data</translation>
+        <translation>日付</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Source</source>
-        <translation>Sorgente</translation>
+        <translation>ソース</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Generated</source>
-        <translation>Generato</translation>
+        <translation>生成された</translation>
     </message>
     <message>
         <location line="+5"/>
         <location line="+17"/>
         <source>From</source>
-        <translation>Da</translation>
+        <translation>送信</translation>
     </message>
     <message>
         <location line="+1"/>
         <location line="+22"/>
         <location line="+58"/>
         <source>To</source>
-        <translation>A</translation>
+        <translation>受信</translation>
     </message>
     <message>
         <location line="-77"/>
         <location line="+2"/>
         <source>own address</source>
-        <translation>proprio indirizzo</translation>
+        <translation>自分のアドレス</translation>
     </message>
     <message>
         <location line="-2"/>
         <source>label</source>
-        <translation>etichetta</translation>
+        <translation>ラベル</translation>
     </message>
     <message>
         <location line="+37"/>
@@ -2251,17 +2265,17 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+17"/>
         <location line="+30"/>
         <source>Credit</source>
-        <translation>Credito</translation>
+        <translation>クレジット</translation>
     </message>
     <message numerus="yes">
         <location line="-102"/>
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>matura in %n ulteriore blocco</numerusform><numerusform>matura in altri %n blocchi</numerusform></translation>
+        <translation><numerusform>%n 以上のブロックが満期</numerusform></translation>
     </message>
     <message>
         <location line="+2"/>
         <source>not accepted</source>
-        <translation>non accettate</translation>
+        <translation>承認されなかった</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -2269,82 +2283,82 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+15"/>
         <location line="+30"/>
         <source>Debit</source>
-        <translation>Debito</translation>
+        <translation>引き落とし額</translation>
     </message>
     <message>
         <location line="-39"/>
         <source>Transaction fee</source>
-        <translation>Commissione transazione</translation>
+        <translation>処理の手数料</translation>
     </message>
     <message>
         <location line="+16"/>
         <source>Net amount</source>
-        <translation>Importo netto</translation>
+        <translation>正味金額</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Message</source>
-        <translation>Messaggio</translation>
+        <translation>メッセージ</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Comment</source>
-        <translation>Commento</translation>
+        <translation>コメント</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Transaction ID</source>
-        <translation>ID della transazione</translation>
+        <translation>処理のID</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated coins must mature 510 blocks before they can be spent. When you generated this block, it was broadcast to the network to be added to the block chain. If it fails to get into the chain, its state will change to &quot;not accepted&quot; and it won&apos;t be spendable. This may occasionally happen if another node generates a block within a few seconds of yours.</source>
-        <translation type="unfinished"/>
+        <translation>コインを費やす前に発現されたコインは510ブロック間成熟しなければなりません。このブロックを発現させたときに、ブロックチェインに足すためにネットワークへ放送しました。ブロックチェインに追加失敗したばい、レベルは「受け入られていない」に変わって、費やせられない状況になります。自分のノードと他のノードと同時に新しいブロックを発現させたときに、時折に起こること。</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Debug information</source>
-        <translation>Informazione di debug</translation>
+        <translation>デバッグ情報</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Transaction</source>
-        <translation>Transazione</translation>
+        <translation>処理</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Inputs</source>
-        <translation>Input</translation>
+        <translation>入力</translation>
     </message>
     <message>
         <location line="+21"/>
         <source>Amount</source>
-        <translation>Importo</translation>
+        <translation>総額</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>true</source>
-        <translation>vero</translation>
+        <translation>正しい</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>false</source>
-        <translation>falso</translation>
+        <translation>正しくない</translation>
     </message>
     <message>
         <location line="-209"/>
         <source>, has not been successfully broadcast yet</source>
-        <translation>, non è stato ancora trasmesso con successo</translation>
+        <translation>まだブロードキャストが成功していません</translation>
     </message>
     <message numerus="yes">
         <location line="-36"/>
         <source>Open for %n more block(s)</source>
-        <translation type="unfinished"><numerusform></numerusform><numerusform></numerusform></translation>
+        <translation type="unfinished"><numerusform></numerusform></translation>
     </message>
     <message>
         <location line="+71"/>
         <source>unknown</source>
-        <translation>sconosciuto</translation>
+        <translation>未確認</translation>
     </message>
 </context>
 <context>
@@ -2352,12 +2366,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../forms/transactiondescdialog.ui" line="+14"/>
         <source>Transaction details</source>
-        <translation>Dettagli sulla transazione</translation>
+        <translation>処理の詳細</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>This pane shows a detailed description of the transaction</source>
-        <translation>Questo pannello mostra una descrizione dettagliata della transazione</translation>
+        <translation>ここでは処理の詳細を表示しています</translation>
     </message>
 </context>
 <context>
@@ -2365,127 +2379,127 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiontablemodel.cpp" line="+231"/>
         <source>Date</source>
-        <translation>Data</translation>
+        <translation>日付</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation>タイプ</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Indirizzo</translation>
+        <translation>Helbidea</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Amount</source>
-        <translation>Importo</translation>
+        <translation>総額</translation>
     </message>
     <message>
         <location line="+52"/>
         <source>Open until %1</source>
-        <translation>Aperto fino a %1</translation>
+        <translation>ユニット %1 を開く</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Confirmed (%1 confirmations)</source>
-        <translation>Confermato (%1 conferme)</translation>
+        <translation>検証されました (%1 検証済み)</translation>
     </message>
     <message numerus="yes">
         <location line="-15"/>
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Aperto per %n altro blocco</numerusform><numerusform>Aperto per altri %n blocchi</numerusform></translation>
+        <translation><numerusform>%n 以上のブロックを開く</numerusform></translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Offline</source>
-        <translation>Offline</translation>
+        <translation>オフライン</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Unconfirmed</source>
-        <translation>Non confermato:</translation>
+        <translation>未検証</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation>In conferma (%1 di %2 conferme raccomandate)</translation>
+        <translation>検証最中 (%1 / %2 の進めている検証済み)</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Conflicted</source>
-        <translation>In conflitto</translation>
+        <translation>相違</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Immature (%1 confirmations, will be available after %2)</source>
-        <translation>Immaturo (%1 conferme, sarà disponibile fra %2)</translation>
+        <translation>未熟 (%1 検証,%2の後可用ができる)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>This block was not received by any other nodes and will probably not be accepted!</source>
-        <translation>Questo blocco non è stato ricevuto da altri nodi e probabilmente non sarà accettato!</translation>
+        <translation>このブロックは他のどのノードによっても受け取られないで、多分受け入れられないでしょう！</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Generated but not accepted</source>
-        <translation>Generati, ma non accettati</translation>
+        <translation>生成されましたが承認されませんでした</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Received with</source>
-        <translation>Ricevuto tramite</translation>
+        <translation>受信元</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Received from</source>
-        <translation>Ricevuto da</translation>
+        <translation>送り主</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Sent to</source>
-        <translation>Spedito a</translation>
+        <translation>送り先</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>Pagamento a te stesso</translation>
+        <translation>自分自身への支払い</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Mined</source>
-        <translation>Ottenuto dal mining</translation>
+        <translation>発掘した</translation>
     </message>
     <message>
         <location line="+38"/>
         <source>(n/a)</source>
-        <translation>(N / a)</translation>
+        <translation>(n/a)</translation>
     </message>
     <message>
         <location line="+194"/>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation>Stato della transazione. Passare con il mouse su questo campo per vedere il numero di conferme.</translation>
+        <translation>処理の状況。この欄の上にカーソルを置くと検証の数を表示します。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Date and time that the transaction was received.</source>
-        <translation>Data e ora in cui la transazione è stata ricevuta.</translation>
+        <translation>処理を受信した日時。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Type of transaction.</source>
-        <translation>Tipo di transazione.</translation>
+        <translation>処理の種類。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Destination address of transaction.</source>
-        <translation>Indirizzo di destinazione della transazione.</translation>
+        <translation>処理の宛先アドレス。</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Amount removed from or added to balance.</source>
-        <translation>Importo rimosso o aggiunto al saldo.</translation>
+        <translation>残高に追加または削除された総額。</translation>
     </message>
 </context>
 <context>
@@ -2494,142 +2508,142 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../transactionview.cpp" line="+54"/>
         <location line="+17"/>
         <source>All</source>
-        <translation>Tutti</translation>
+        <translation>すべて</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Today</source>
-        <translation>Oggi</translation>
+        <translation>今日</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This week</source>
-        <translation>Questa settimana</translation>
+        <translation>今週</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This month</source>
-        <translation>Questo mese</translation>
+        <translation>今月</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Last month</source>
-        <translation>Il mese scorso</translation>
+        <translation>先月</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>This year</source>
-        <translation>Quest&apos;anno</translation>
+        <translation>今年</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Range...</source>
-        <translation>Intervallo...</translation>
+        <translation>期間...</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Received with</source>
-        <translation>Ricevuto tramite</translation>
+        <translation>送り主</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Sent to</source>
-        <translation>Spedito a</translation>
+        <translation>送り先</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>To yourself</source>
-        <translation>A te</translation>
+        <translation>自分自身</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Mined</source>
-        <translation>Ottenuto dal mining</translation>
+        <translation>発掘した</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Other</source>
-        <translation>Altro</translation>
+        <translation>その他</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Enter address or label to search</source>
-        <translation>Inserisci un indirizzo o un&apos;etichetta da cercare</translation>
+        <translation>検索するアドレスまたはラベルを入力</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>Min amount</source>
-        <translation>Importo minimo</translation>
+        <translation>最小の額</translation>
     </message>
     <message>
         <location line="+34"/>
         <source>Copy address</source>
-        <translation>Copia l&apos;indirizzo</translation>
+        <translation>アドレスをコピーする</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy label</source>
-        <translation>Copia l&apos;etichetta</translation>
+        <translation>ラベルをコピーする</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy amount</source>
-        <translation>Copia l&apos;importo</translation>
+        <translation>総額のコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Copy transaction ID</source>
-        <translation>Copia l&apos;ID transazione</translation>
+        <translation>処理IDをコピー</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Edit label</source>
-        <translation>Modifica l&apos;etichetta</translation>
+        <translation>ラベルの編集</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Show transaction details</source>
-        <translation>Mostra i dettagli della transazione</translation>
+        <translation>処理の詳細を表示</translation>
     </message>
     <message>
         <location line="+138"/>
         <source>Export Transaction Data</source>
-        <translation type="unfinished"/>
+        <translation>処理のデータを書き出す</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Testo CSV (*.csv)</translation>
+        <translation>テキスト CSV (*.csv)</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Confirmed</source>
-        <translation>Confermato</translation>
+        <translation>検証済み</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Date</source>
-        <translation>Data</translation>
+        <translation>日付</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Type</source>
-        <translation>Tipo</translation>
+        <translation>タイプ</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Label</source>
-        <translation>Etichetta</translation>
+        <translation>ラベル</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Address</source>
-        <translation>Indirizzo</translation>
+        <translation>Helbidea</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Amount</source>
-        <translation>Importo</translation>
+        <translation>総額</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2639,22 +2653,22 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+4"/>
         <source>Error exporting</source>
-        <translation type="unfinished"/>
+        <translation>エラーを書き出す</translation>
     </message>
     <message>
         <location line="+0"/>
         <source>Could not write to file %1.</source>
-        <translation type="unfinished"/>
+        <translation>ファイルを書き込めなかった。%1</translation>
     </message>
     <message>
         <location line="+100"/>
         <source>Range:</source>
-        <translation>Intervallo:</translation>
+        <translation>期間:</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>to</source>
-        <translation>a</translation>
+        <translation>から</translation>
     </message>
 </context>
 <context>
@@ -2662,7 +2676,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../walletmodel.cpp" line="+208"/>
         <source>Sending...</source>
-        <translation type="unfinished"/>
+        <translation>通信中...</translation>
     </message>
 </context>
 <context>
@@ -2670,56 +2684,52 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../bitcoinstrings.cpp" line="+173"/>
         <source>WayaWolfCoin version</source>
-        <translation type="unfinished"/>
+        <translation>ブラックコインバージョン</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Usage:</source>
-        <translation>Utilizzo:</translation>
+        <translation>使用法:</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send command to -server or WayaWolfCoind</source>
-        <translation type="unfinished"/>
+        <translation>-server か WayaWolfCoindへコマンドを送る。</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>List commands</source>
-        <translation>Lista comandi
-</translation>
+        <translation>コマンド一覧</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Get help for a command</source>
-        <translation>Aiuto su un comando
-</translation>
+        <translation>コマンドのヘルプ</translation>
     </message>
     <message>
         <location line="-147"/>
         <source>Options:</source>
-        <translation>Opzioni:
-</translation>
+        <translation>オプション:</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Specify configuration file (default: WayaWolfCoin.conf)</source>
-        <translation type="unfinished"/>
+        <translation>設定ファイルを特定する (デファルト: WayaWolfCoin.conf)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Specify pid file (default: WayaWolfCoind.pid)</source>
-        <translation type="unfinished"/>
+        <translation>pid ファイルを特定する (デフォルト: WayaWolfCoind.pid)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Specify wallet file (within data directory)</source>
-        <translation>Specifica il file portafoglio  (nella cartella dati)</translation>
+        <translation>ウォレットのファイルを指定　(データ・ディレクトリの中に)</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Specify data directory</source>
-        <translation>Specifica la cartella dati
-</translation>
+        <translation>データ ディレクトリの指定</translation>
     </message>
     <message>
         <location line="-25"/>
@@ -2739,37 +2749,37 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+27"/>
         <source>Set database cache size in megabytes (default: 25)</source>
-        <translation>Imposta la dimensione cache del database in megabyte (predefinita: 25)</translation>
+        <translation>データベースのキャッシュサイズをメガバイトで設定 (初期値: 25)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set database disk log size in megabytes (default: 100)</source>
-        <translation type="unfinished"/>
+        <translation>メガバイトでのデータベースのログザイズの大きさの設定(デファルト：100)</translation>
     </message>
     <message>
         <location line="+6"/>
         <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
-        <translation type="unfinished"/>
+        <translation>&lt;port&gt; で 接続をリスン (デフォルト: 15714かtestnet は 25714)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
-        <translation>Mantieni al massimo &lt;n&gt; connessioni ai peer (predefinite: 125)</translation>
+        <translation>ピアの最大接続数 (初期値: 125)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Connect to a node to retrieve peer addresses, and disconnect</source>
-        <translation>Connessione ad un nodo per ricevere l&apos;indirizzo del peer, e disconnessione</translation>
+        <translation>ピア アドレスを取得するためにノードに接続し、そして切断します</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Specify your own public address</source>
-        <translation>Specifica il tuo indirizzo pubblico</translation>
+        <translation>あなた自身のパブリックなアドレスを指定</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Bind to given address. Use [host]:port notation for IPv6</source>
-        <translation type="unfinished"/>
+        <translation>アドレスに結ぶ。IPv6のばい、[host]:port 表記法を使ってください。</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2784,207 +2794,204 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Threshold for disconnecting misbehaving peers (default: 100)</source>
-        <translation>Soglia di disconnessione dei peer di cattiva qualità (predefinita: 100)</translation>
+        <translation>不正なピアを切断するためのしきい値 (初期値: 100)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Number of seconds to keep misbehaving peers from reconnecting (default: 86400)</source>
-        <translation>Numero di secondi di sospensione che i peer di cattiva qualità devono trascorrere prima di riconnettersi (predefiniti: 86400)</translation>
+        <translation>不正なピアを再接続するまでの秒数 (初期値: 86400)</translation>
     </message>
     <message>
         <location line="-37"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv4: %s</source>
-        <translation>Errore riscontrato durante l&apos;impostazione della porta RPC %u per l&apos;ascolto su IPv4: %s</translation>
+        <translation>IPv4 でリスンする RPC ポート %u の設定中にエラーが発生しました: %s</translation>
     </message>
     <message>
         <location line="+65"/>
         <source>Listen for JSON-RPC connections on &lt;port&gt; (default: 15715 or testnet: 25715)</source>
-        <translation type="unfinished"/>
+        <translation>&lt;port&gt; で JSON-RPC 接続をリスン (デフォルト: 15715かtestnet は 25715)</translation>
     </message>
     <message>
         <location line="-17"/>
         <source>Accept command line and JSON-RPC commands</source>
-        <translation>Accetta da linea di comando e da comandi JSON-RPC
-</translation>
+        <translation>コマンドラインと JSON-RPC コマンドを許可</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Run in the background as a daemon and accept commands</source>
-        <translation>Esegui in background come demone e accetta i comandi
-</translation>
+        <translation>デーモンとしてバックグランドで実行しコマンドを許可</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Use the test network</source>
-        <translation>Utilizza la rete di prova
-</translation>
+        <translation>テストのためのネットワークを使用</translation>
     </message>
     <message>
         <location line="-24"/>
         <source>Accept connections from outside (default: 1 if no -proxy or -connect)</source>
-        <translation>Accetta connessioni dall&apos;esterno (predefinito: 1 se no -proxy o -connect)</translation>
+        <translation>外部からの接続を許可 (初期値:  -proxy または -connect を使用していない場合は1)</translation>
     </message>
     <message>
         <location line="-29"/>
         <source>An error occurred while setting up the RPC port %u for listening on IPv6, falling back to IPv4: %s</source>
-        <translation>Errore riscontrato durante l&apos;impostazione della porta RPC %u per l&apos;ascolto su IPv6, tornando su IPv4: %s</translation>
+        <translation>IPv6 でリスンする RPC ポート %u の設定中にエラーが発生したので IPv4 に切り替えます: %s</translation>
     </message>
     <message>
         <location line="+96"/>
         <source>Set maximum size of high-priority/low-fee transactions in bytes (default: 27000)</source>
-        <translation type="unfinished"/>
+        <translation>バイトで、最優先、低料金の処理の最大サイズの設定(デファルト：27000)</translation>
     </message>
     <message>
         <location line="+12"/>
         <source>Warning: -paytxfee is set very high! This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>Attenzione: -paytxfee è molto alta. Questa è la commissione che si paga quando si invia una transazione.</translation>
+        <translation>警告: -paytxfee が非常に高く設定されています! これは処理を送信する場合に支払う取引手数料です。</translation>
     </message>
     <message>
         <location line="-103"/>
         <source>Warning: Please check that your computer&apos;s date and time are correct! If your clock is wrong WayaWolfCoin will not work properly.</source>
-        <translation type="unfinished"/>
+        <translation> 警告：コンピュータの日付と時間を調べてください。時間ずらしかったばい、ブラックコイン QTは正しく行動しない。</translation>
     </message>
     <message>
         <location line="+132"/>
         <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
-        <translation>Attenzione: errore di lettura di wallet.dat!  Tutte le chiave lette correttamente, ma i dati delle transazioni o le voci in rubrica potrebbero mancare o non essere corretti.</translation>
+        <translation>警告: wallet.dat の読み込みエラー! すべてのキーは正しく読み取れますが、処理のデータやアドレス帳のエントリが失われたか、正しくない可能性があります。</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
-        <translation>Attenzione: wallet.dat corrotto, dati salvati! Il wallet.dat originale salvato come wallet.{timestamp}.bak in %s; se il tuo bilancio o le transazioni non sono corrette dovresti ripristinare da un backup.</translation>
+        <translation>警告: wallet.dat のデータはの汚染で、でデータを復旧しました！ オリジナルの wallet.dat は wallet.{timestamp}.bak として %s に保存されました; もしもあなたの残高や処理が正しくないばい、バックアップから復元してください。</translation>
     </message>
     <message>
         <location line="-31"/>
         <source>Attempt to recover private keys from a corrupt wallet.dat</source>
-        <translation>Tenta di recuperare le chiavi private da un wallet.dat corrotto</translation>
+        <translation>壊れた wallet.dat から秘密鍵を復旧することを試す</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Block creation options:</source>
-        <translation>Opzioni creazione blocco:</translation>
+        <translation>ブロック作成オプション:</translation>
     </message>
     <message>
         <location line="-69"/>
         <source>Connect only to the specified node(s)</source>
-        <translation>Connetti solo al nodo specificato</translation>
+        <translation>指定したノードだけに接続</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
-        <translation>Scopri proprio indirizzo IP (predefinito: 1 se in ascolto e no -externalip)</translation>
+        <translation>自分の IP アドレスを発見 (初期値:  リスン中と -externalip を使用していない場合は1)</translation>
     </message>
     <message>
         <location line="+101"/>
         <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
-        <translation>Impossibile mettersi in ascolto su una porta. Usa -listen=0 se vuoi usare questa opzione.</translation>
+        <translation>ポートのリスンに失敗しました。必要であれば -listen=0 を使用してください。</translation>
     </message>
     <message>
         <location line="-91"/>
         <source>Sync checkpoints policy (default: strict)</source>
-        <translation type="unfinished"/>
+        <translation>同期チェックポイント方針(デファルト：厳しい)</translation>
     </message>
     <message>
         <location line="+89"/>
         <source>Invalid -tor address: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <translation>無効なTORアドレス: &apos;%s&apos;</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
-        <translation type="unfinished"/>
+        <translation>-reservebalance=&lt;amount&gt;の額は無効です</translation>
     </message>
     <message>
         <location line="-88"/>
         <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
-        <translation>Buffer di ricezione massimo per connessione, &lt;n&gt;*1000 byte (predefinito: 5000)</translation>
+        <translation>接続毎の最大受信バッファ &lt;n&gt;*1000 バイト (初期値: 5000)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
-        <translation>Buffer di invio massimo per connessione, &lt;n&gt;*1000 byte (predefinito: 1000)</translation>
+        <translation>接続毎の最大送信バッファ &lt;n&gt;*1000 バイト (初期値: 1000)</translation>
     </message>
     <message>
         <location line="-17"/>
         <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
-        <translation>Connetti solo a nodi nella rete &lt;net&gt; (IPv4, IPv6 o Tor)</translation>
+        <translation>&lt;net&gt; (IPv4, IPv6, Tor) ネットワーク内のノードだけに接続する</translation>
     </message>
     <message>
         <location line="+31"/>
         <source>Prepend debug output with timestamp</source>
-        <translation type="unfinished"/>
+        <translation>デバッグのアウトプットはタイムスタンプで先頭に追加する</translation>
     </message>
     <message>
         <location line="+41"/>
         <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
-        <translation>Opzioni SSL: (vedi il wiki di WayaWolfCoin per le istruzioni di configurazione SSL)</translation>
+        <translation>SSL オプション: (SSLのセットアップ手順は WayaWolfCoin Wiki をご覧下さい)</translation>
     </message>
     <message>
         <location line="-81"/>
         <source>Select the version of socks proxy to use (4-5, default: 5)</source>
-        <translation type="unfinished"/>
+        <translation>SOCKSプロクシーのバージョンを選択する (4-5、 デファルト: 5)</translation>
     </message>
     <message>
         <location line="+42"/>
         <source>Send trace/debug info to console instead of debug.log file</source>
-        <translation>Invia le informazioni di trace/debug alla console invece che al file debug.log</translation>
+        <translation>トレース/デバッグ情報を debug.log ファイルの代わりにコンソールへ送る</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Send trace/debug info to debugger</source>
-        <translation type="unfinished"/>
+        <translation>デバッガへ追跡とデバッグ情報を送る。</translation>
     </message>
     <message>
         <location line="+30"/>
         <source>Set maximum block size in bytes (default: 250000)</source>
-        <translation type="unfinished"/>
+        <translation>最大ブロックサイズをバイトで設定 (初期値: 250000)</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Set minimum block size in bytes (default: 0)</source>
-        <translation>Imposta dimensione minima del blocco in bytes (predefinita: 0)</translation>
+        <translation>最小ブロックサイズをバイトで設定 (初期値: 0)</translation>
     </message>
     <message>
         <location line="-35"/>
         <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
-        <translation>Riduci il file debug.log all&apos;avvio del client (predefinito: 1 se non impostato -debug)</translation>
+        <translation>クライアント起動時に debug.log ファイルを縮小 (初期値: -debug オプションを指定しない場合は1)</translation>
     </message>
     <message>
         <location line="-43"/>
         <source>Specify connection timeout in milliseconds (default: 5000)</source>
-        <translation>Specifica il timeout di connessione in millisecondi (predefinito: 5000)</translation>
+        <translation>接続のタイムアウトをミリセコンドで指定 (初期値: 5000)</translation>
     </message>
     <message>
         <location line="+116"/>
         <source>Unable to sign checkpoint, wrong checkpointkey?
 </source>
-        <translation type="unfinished"/>
+        <translation>チェックポイントを署名できません。checkpointkeyは違いますか。
+</translation>
     </message>
     <message>
         <location line="-86"/>
         <source>Use UPnP to map the listening port (default: 0)</source>
-        <translation>Usa UPnP per mappare la porta in ascolto (predefinito: 0)</translation>
+        <translation>リスン ポートの割当に UPnP を使用 (初期値: 0)</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Use UPnP to map the listening port (default: 1 when listening)</source>
-        <translation>Usa UPnP per mappare la porta in ascolto (predefinito: 1 when listening)</translation>
+        <translation>リスン ポートの割当に UPnP を使用 (初期値: リスン中は1)</translation>
     </message>
     <message>
         <location line="-26"/>
         <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
-        <translation type="unfinished"/>
+        <translation>プロクシーでTORヒドゥンサービス(TOR Hidden Services)を接続する(デファルト：-proxyと同じ)</translation>
     </message>
     <message>
         <location line="+47"/>
         <source>Username for JSON-RPC connections</source>
-        <translation>Nome utente per connessioni JSON-RPC
-</translation>
+        <translation>JSON-RPC 接続のユーザー名</translation>
     </message>
     <message>
         <location line="+51"/>
         <source>Verifying database integrity...</source>
-        <translation type="unfinished"/>
+        <translation>データベースの保全性を確認最中...</translation>
     </message>
     <message>
         <location line="+44"/>
@@ -3019,33 +3026,32 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+2"/>
         <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
-        <translation type="unfinished"/>
+        <translation>警告：シンクロナイズドチェックポイント違反を検出したが、チェックポイントを飛ばした。</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Warning: This version is obsolete, upgrade required!</source>
-        <translation>Attenzione: questa versione è obsoleta, aggiornamento necessario!</translation>
+        <translation>警告: このバージョンは古いのでアップグレードが必要です!</translation>
     </message>
     <message>
         <location line="-54"/>
         <source>wallet.dat corrupt, salvage failed</source>
-        <translation>wallet.dat corrotto, salvataggio fallito</translation>
+        <translation>wallet.dat が壊れ、復旧に失敗しました</translation>
     </message>
     <message>
         <location line="-56"/>
         <source>Password for JSON-RPC connections</source>
-        <translation>Password per connessioni JSON-RPC
-</translation>
+        <translation>JSON-RPC 接続のパスワード</translation>
     </message>
     <message>
         <location line="-32"/>
         <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
-        <translation type="unfinished"/>
+        <translation>他のノードと時刻の同期する。確な時刻のコンピューターのばい、無効する。例：NTP同期設定有効ある(デファルト：1)</translation>
     </message>
     <message>
         <location line="+13"/>
         <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
-        <translation type="unfinished"/>
+        <translation>処理を作ると、この額より少ない数字を無視する (デファルト：0.01)</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -3070,13 +3076,12 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+9"/>
         <source>Allow JSON-RPC connections from specified IP address</source>
-        <translation>Consenti connessioni JSON-RPC dall&apos;indirizzo IP specificato
-</translation>
+        <translation>指定した IP アドレスからの JSON-RPC 接続を許可</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
-        <translation>Inviare comandi al nodo in esecuzione su &lt;ip&gt; (predefinito: 127.0.0.1)</translation>
+        <translation>&lt;ip&gt; (初期値: 127.0.0.1) で実行中のノードにコマンドを送信</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3091,64 +3096,62 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+1"/>
         <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
-        <translation>Esegui il comando quando il miglior block cambia(%s nel cmd è sostituito dall&apos;hash del blocco)</translation>
+        <translation>最良のブロックに変更する際にコマンドを実行 (cmd の %s はブロック ハッシュに置換される)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
-        <translation>Esegui comando quando una transazione del portafoglio cambia (%s in cmd è sostituito da TxID)</translation>
+        <translation>ウォレットの処理を変更する際にコマンドを実行 (cmd の %s は TxID に置換される)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Require a confirmations for change (default: 0)</source>
-        <translation type="unfinished"/>
+        <translation>変更するために、確認を必要とする (デファルト：0)</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Execute command when a relevant alert is received (%s in cmd is replaced by message)</source>
-        <translation type="unfinished"/>
+        <translation>関連した警告をもらったら、コマンドを実行する (cmdの中で%sにメッセージを交換される)</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Upgrade wallet to latest format</source>
-        <translation>Aggiorna il wallet all&apos;ultimo formato</translation>
+        <translation>ウォレットを最新のフォーマットにアップグレード</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Set key pool size to &lt;n&gt; (default: 100)</source>
-        <translation>Impostare la quantità di chiavi di riserva a &lt;n&gt; (predefinita: 100)</translation>
+        <translation>key pool のサイズを &lt;n&gt; (初期値: 100) にセット</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescan the block chain for missing wallet transactions</source>
-        <translation>Ripeti analisi della catena dei blocchi per cercare le transazioni  mancanti dal portamonete
-</translation>
+        <translation>失ったウォレットの処理のブロック チェーンを再スキャン</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>How thorough the block verification is (0-6, default: 1)</source>
-        <translation type="unfinished"/>
+        <translation>ブロック検証の徹底の程度　(0-6 、デファルト：1)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Imports blocks from external blk000?.dat file</source>
-        <translation type="unfinished"/>
+        <translation>外部 blk000?.dat ファイルからブロックを読み込む。</translation>
     </message>
     <message>
         <location line="+9"/>
         <source>Use OpenSSL (https) for JSON-RPC connections</source>
-        <translation>Utilizzare OpenSSL (https) per le connessioni  JSON-RPC
-</translation>
+        <translation>JSON-RPC 接続に OpenSSL (https) を使用</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server certificate file (default: server.cert)</source>
-        <translation>File certificato del server (predefinito: server.cert)</translation>
+        <translation>サーバ証明書ファイル (初期値: server.cert)</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Server private key (default: server.pem)</source>
-        <translation>Chiave privata del server (predefinito: server.pem)</translation>
+        <translation>サーバの秘密鍵 (初期値: server.pem)</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -3158,7 +3161,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+50"/>
         <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
-        <translation type="unfinished"/>
+        <translation>エラー：アンロックされたウォレットは賭けるためだけで、処理を作られない。</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -3173,129 +3176,127 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+3"/>
         <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
-        <translation type="unfinished"/>
+        <translation>警告：無効なチェックポイントを見つかりました！表示された処理は正しくない可能性がある！アップグレードするか、デベロッパーに報告する必要があります。</translation>
     </message>
     <message>
         <location line="-174"/>
         <source>This help message</source>
-        <translation>Questo messaggio di aiuto
-</translation>
+        <translation>このヘルプ メッセージ</translation>
     </message>
     <message>
         <location line="+104"/>
         <source>Wallet %s resides outside data directory %s.</source>
-        <translation type="unfinished"/>
+        <translation>%sウォレットはディレクトリ%sの外にあります。</translation>
     </message>
     <message>
         <location line="+37"/>
         <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
-        <translation>Impossibile collegarsi alla %s su questo computer (bind returned error %d, %s)</translation>
+        <translation>このコンピュータの %s にバインドすることができません (バインドが返したエラーは %d, %s)</translation>
     </message>
     <message>
         <location line="-133"/>
         <source>Connect through socks proxy</source>
-        <translation type="unfinished"/>
+        <translation>SOCKSプロキシで接続する</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
-        <translation>Consenti ricerche DNS per aggiungere nodi e collegare
-</translation>
+        <translation>-addnode, -seednode と -connect で DNS ルックアップを許可する</translation>
     </message>
     <message>
         <location line="+126"/>
         <source>Loading addresses...</source>
-        <translation>Caricamento indirizzi...</translation>
+        <translation>アドレスを読み込んでいます...</translation>
     </message>
     <message>
         <location line="-12"/>
         <source>Error loading blkindex.dat</source>
-        <translation type="unfinished"/>
+        <translation>blkindex.dat 読み込みエラー</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Error loading wallet.dat: Wallet corrupted</source>
-        <translation>Errore caricamento wallet.dat: Wallet corrotto</translation>
+        <translation>wallet.dat 読み込みエラー: ウォレットが壊れました</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin</source>
-        <translation type="unfinished"/>
+        <translation>wallet.dat 読み込みエラー: 　ブラックコインQTの最新バージョンが必要です</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
-        <translation type="unfinished"/>
+        <translation>ウォレットのデータをリライトしなければならい：ブラックコインQTをリスタートしてください</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Error loading wallet.dat</source>
-        <translation>Errore caricamento wallet.dat</translation>
+        <translation>wallet.dat 読み込みエラー</translation>
     </message>
     <message>
         <location line="-16"/>
         <source>Invalid -proxy address: &apos;%s&apos;</source>
-        <translation>Indirizzo -proxy non valido: &apos;%s&apos;</translation>
+        <translation>無効な -proxy アドレス: &apos;%s&apos;</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
-        <translation>Rete sconosciuta specificata in -onlynet: &apos;%s&apos;</translation>
+        <translation>-onlynet で指定された &apos;%s&apos; は未知のネットワークです</translation>
     </message>
     <message>
         <location line="-1"/>
         <source>Unknown -socks proxy version requested: %i</source>
-        <translation>Versione -socks proxy sconosciuta richiesta: %i</translation>
+        <translation>-socks で指定された %i は未知のバージョンです</translation>
     </message>
     <message>
         <location line="+4"/>
         <source>Cannot resolve -bind address: &apos;%s&apos;</source>
-        <translation>Impossibile risolvere -bind address: &apos;%s&apos;</translation>
+        <translation>-bind のアドレス &apos;%s&apos; を解決できません</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
-        <translation>Impossibile risolvere indirizzo -externalip: &apos;%s&apos;</translation>
+        <translation>-externalip のアドレス &apos;%s&apos; を解決できません</translation>
     </message>
     <message>
         <location line="-23"/>
         <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation>Importo non valido per -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
+        <translation>-paytxfee=&lt;amount&gt; の額 &apos;%s&apos; が無効です</translation>
     </message>
     <message>
         <location line="+60"/>
         <source>Sending...</source>
-        <translation type="unfinished"/>
+        <translation>通信中...</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Invalid amount</source>
-        <translation>Importo non valido</translation>
+        <translation>無効な総額</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Insufficient funds</source>
-        <translation>Fondi insufficienti</translation>
+        <translation>残高不足</translation>
     </message>
     <message>
         <location line="-40"/>
         <source>Loading block index...</source>
-        <translation>Caricamento dell&apos;indice del blocco...</translation>
+        <translation>ブロック インデックスを読み込んでいます...</translation>
     </message>
     <message>
         <location line="-110"/>
         <source>Add a node to connect to and attempt to keep the connection open</source>
-        <translation>Elérendő csomópont megadása and attempt to keep the connection open</translation>
+        <translation>接続するノードを追加し接続を持続するように試します</translation>
     </message>
     <message>
         <location line="+125"/>
         <source>Unable to bind to %s on this computer. WayaWolfCoin is probably already running.</source>
-        <translation type="unfinished"/>
+        <translation>このコンピューターで%sに結ぶことができなかった。ブラックコインQTは、もう発行してるでしょう。</translation>
     </message>
     <message>
         <location line="-101"/>
         <source>Fee per KB to add to transactions you send</source>
-        <translation type="unfinished"/>
+        <translation>送る処理を足して、KBあたりの料金</translation>
     </message>
     <message>
         <location line="+34"/>
@@ -3325,7 +3326,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+5"/>
         <source>Invalid amount for -mininput=&lt;amount&gt;: &apos;%s&apos;</source>
-        <translation type="unfinished"/>
+        <translation>-mininput=&lt;amount&gt;: &apos;%s&apos;の額は無効です</translation>
     </message>
     <message>
         <location line="+3"/>
@@ -3340,44 +3341,46 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+17"/>
         <source>Loading wallet...</source>
-        <translation>Caricamento portamonete...</translation>
+        <translation>ウォレットを読み込んでいます...</translation>
     </message>
     <message>
         <location line="+8"/>
         <source>Cannot downgrade wallet</source>
-        <translation>Non è possibile retrocedere il wallet</translation>
+        <translation>ウォレットのダウングレードはできません</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Cannot write default address</source>
-        <translation>Non è possibile scrivere l&apos;indirizzo predefinito</translation>
+        <translation>初期値のアドレスを書き込むことができません</translation>
     </message>
     <message>
         <location line="+1"/>
         <source>Rescanning...</source>
-        <translation>Ripetere la scansione...</translation>
+        <translation>再スキャン中...</translation>
     </message>
     <message>
         <location line="+2"/>
         <source>Done loading</source>
-        <translation>Caricamento completato</translation>
+        <translation>読み込み完了</translation>
     </message>
     <message>
         <location line="-161"/>
         <source>To use the %s option</source>
-        <translation>Per usare la opzione %s</translation>
+        <translation>%s オプションを使うには</translation>
     </message>
     <message>
         <location line="+188"/>
         <source>Error</source>
-        <translation>Errore</translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <location line="-18"/>
         <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
 %s
 If the file does not exist, create it with owner-readable-only file permissions.</source>
-        <translation>Devi settare rpcpassword=&lt;password&gt; nel file di configurazione: %s Se il file non esiste, crealo con i permessi di amministratore</translation>
+        <translation>rpcpassword=&lt;password&gt; を設定ファイルでセットしてください:
+%s
+ファイルが無い場合は、オーナーだけが読み取れる権限でファイルを作成してください。</translation>
     </message>
 </context>
 </TS>
