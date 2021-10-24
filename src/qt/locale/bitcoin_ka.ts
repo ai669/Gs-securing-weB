@@ -2837,4 +2837,191 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     </message>
     <message>
         <location line="+132"/>
-        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing o
+        <source>Warning: error reading wallet.dat! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
+        <translation>ყურადღება: არ იკითხება wallet.dat! ყველა გასაღები წაკითხულია, მაგრამ გამორჩენილი ან არასწორია ტრანსაქციის თარიღი ან ჩანაწერები მისამართების წიგნში.</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Warning: wallet.dat corrupt, data salvaged! Original wallet.dat saved as wallet.{timestamp}.bak in %s; if your balance or transactions are incorrect you should restore from a backup.</source>
+        <translation>ყურადღება: wallet.dat დაზიანებულია! ორიგინალური wallet.dat შენახულია როგორც wallet.{timestamp}.bak %s-ში; თუ შეამჩნიეთ უზუსტობა ნაშთში ან ტრანსაქციებში, აღადგინეთ არქივიდან.</translation>
+    </message>
+    <message>
+        <location line="-31"/>
+        <source>Attempt to recover private keys from a corrupt wallet.dat</source>
+        <translation>პირადი გასაღებების აღდგენის მცდელობა wallet.dat-იდან</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Block creation options:</source>
+        <translation>ბლოკის შექმნის ოპციები:</translation>
+    </message>
+    <message>
+        <location line="-69"/>
+        <source>Connect only to the specified node(s)</source>
+        <translation>შეერთება მხოლოდ მითითებულ კვანძ(ებ)თან</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>საკუთარი IP-მისამართის განსაზღვრა (ნაგულისხმევი: 1 თუ ჩართულია მიყურადება და არ გამოიყენება -externalip)</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>ვერ ხერხდება პორტების მიყურადება. თუ გსურთ, გამოიყენეთ -listen=0.</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Sync checkpoints policy (default: strict)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Invalid -tor address: &apos;%s&apos;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-88"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
+        <translation>მიღების ბუფერის მაქსიმალური ზომა შეერთებაზე, &lt;n&gt;*1000 ბაიტი (ნაგულისხმევი: 5000)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
+        <translation>გაგზავნის ბუფერის მაქსიმალური ზომა შეერთებაზე, &lt;n&gt;*1000 ბაიტი (ნაგულისხმევი: 5000)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
+        <translation>შეერთება მხოლოდ &lt;net&gt; ქსელის კვანძებთან (IPv4, IPv6 ან Tor)</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
+        <translation>SSL ოპციები: (იხილე WayaWolfCoin Wiki-ში  SSL-ს მოწყობის ინსტრუქციები)</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <source>Select the version of socks proxy to use (4-5, default: 5)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>ტრასირების/დახვეწის ინფოს გაგზავნა კონსოლზე debug.log ფაილის ნაცვლად</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Set maximum block size in bytes (default: 250000)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Set minimum block size in bytes (default: 0)</source>
+        <translation>დააყენეთ ბლოკის მინიმალური ზომა ბაიტებში (ნაგულისხმევი: 0)</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>debug.log ფაილის შეკუმშვა გაშვებისას (ნაგულისხმევია: 1 როცა არ აყენია -debug)</translation>
+    </message>
+    <message>
+        <location line="-43"/>
+        <source>Specify connection timeout in milliseconds (default: 5000)</source>
+        <translation>მიუთითეთ შეერთების ტაიმაუტი მილიწამებში (ნაგულისხმევი: 5000)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Unable to sign checkpoint, wrong checkpointkey?
+</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Use UPnP to map the listening port (default: 0)</source>
+        <translation>გამოიყენეთ UPnP მისაყურადებელი პორტის გადასამისამართებლად (ნაგულისხმევი: 0)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>გამოიყენეთ UPnP მისაყურადებელი პორტის გადასამისამართებლად (ნაგულისხმევი: 1 როცა ჩართულია მიყურადება)</translation>
+    </message>
+    <message>
+        <location line="-26"/>
+        <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>მომხმარებლის სახელი JSON-RPC-შეერთებისათვის</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Verifying database integrity...</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Error: Wallet locked, unable to create transaction!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Error: Transaction creation failed!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>ყურადღება: ვერსია მოძველებულია, საჭიროა განახლება!</translation>
+    </message>
+    <message>
+        <location line="-54"/>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>wallet.dat დაზიანებულია, აღდგენა ვერ მოხერხდა</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>პაროლი JSON-
