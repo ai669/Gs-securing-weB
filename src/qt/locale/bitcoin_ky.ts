@@ -1,5 +1,5 @@
 
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="kk_KZ" version="2.1">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="ky" version="2.1">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -40,17 +40,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+22"/>
         <source>Double-click to edit address or label</source>
-        <translation>Адресті немесе белгіні өзгерту үшін екі рет шертіңіз</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+24"/>
         <source>Create a new address</source>
-        <translation>Жаңа адрес енгізу</translation>
+        <translation>Жаң даректи жасоо</translation>
     </message>
     <message>
         <location line="+10"/>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Таңдаған адресті тізімнен жою</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="-7"/>
@@ -100,7 +100,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+10"/>
         <source>&amp;Delete</source>
-        <translation>Жою</translation>
+        <translation>Ө&amp;чүрүү</translation>
     </message>
     <message>
         <location filename="../addressbookpage.cpp" line="+65"/>
@@ -120,7 +120,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Үтірмен бөлінген текст (*.csv)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+13"/>
@@ -138,17 +138,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../addresstablemodel.cpp" line="+145"/>
         <source>Label</source>
-        <translation>таңба</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Адрес</translation>
+        <translation>Дарек</translation>
     </message>
     <message>
         <location line="+36"/>
         <source>(no label)</source>
-        <translation>(таңбасыз)</translation>
+        <translation>(аты жок)</translation>
     </message>
 </context>
 <context>
@@ -161,17 +161,17 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+21"/>
         <source>Enter passphrase</source>
-        <translation>Құпия сөзді енгізу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+14"/>
         <source>New passphrase</source>
-        <translation>Жаңа құпия сөзі</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+14"/>
         <source>Repeat new passphrase</source>
-        <translation>Жаңа құпия сөзді қайта енгізу</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+33"/>
@@ -186,32 +186,32 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location filename="../askpassphrasedialog.cpp" line="+38"/>
         <source>Encrypt wallet</source>
-        <translation>Әмиянді шифрлау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+7"/>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>Бұл операциясы бойынша сіздің әмиянізді қоршаудан шығару үшін әмиянның құпия сөзі керек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Unlock wallet</source>
-        <translation>Әмиянізді қоршаудан шығару</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>Бұл операциясы бойынша сіздің әмиянізді шифрлап тастау үшін әмиянның құпия сөзі керек</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+5"/>
         <source>Decrypt wallet</source>
-        <translation>Әмиянізді шифрлап тастау</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+3"/>
         <source>Change passphrase</source>
-        <translation>Құпия сөзді өзгерту</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
@@ -317,7 +317,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+17"/>
         <source>&amp;Transactions</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Транзакциялар</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -432,7 +432,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-5"/>
         <source>&amp;Verify message...</source>
-        <translation type="unfinished"/>
+        <translation>Билдирүүнү &amp;текшерүү...</translation>
     </message>
     <message>
         <location line="-214"/>
@@ -443,7 +443,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="-551"/>
         <source>Wallet</source>
-        <translation type="unfinished"/>
+        <translation>Капчык</translation>
     </message>
     <message>
         <location line="+193"/>
@@ -473,7 +473,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+28"/>
         <source>&amp;File</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Файл</translation>
     </message>
     <message>
         <location line="+8"/>
@@ -483,7 +483,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+8"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Жардам</translation>
     </message>
     <message>
         <location line="+17"/>
@@ -555,7 +555,7 @@ This product includes software developed by the OpenSSL Project for use in the O
     <message>
         <location line="+273"/>
         <source>Up to date</source>
-        <translation type="unfinished"/>
+        <translation>Жаңыланган</translation>
     </message>
     <message>
         <location line="+43"/>
@@ -810,12 +810,12 @@ Address: %4
     <message>
         <location line="+5"/>
         <source>Address</source>
-        <translation>Адрес</translation>
+        <translation>Дарек</translation>
     </message>
     <message>
         <location line="+5"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Дата</translation>
     </message>
     <message>
         <location line="+5"/>
@@ -971,7 +971,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+36"/>
         <location line="+66"/>
         <source>(no label)</source>
-        <translation>(таңбасыз)</translation>
+        <translation>(аты жок)</translation>
     </message>
     <message>
         <location line="-9"/>
@@ -1004,7 +1004,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Address</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Дарек</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1141,7 +1141,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+21"/>
         <source>&amp;Network</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Тармак</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1176,7 +1176,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>&amp;Port:</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Порт:</translation>
     </message>
     <message>
         <location line="+19"/>
@@ -1196,7 +1196,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+36"/>
         <source>&amp;Window</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Терезе</translation>
     </message>
     <message>
         <location line="+6"/>
@@ -1271,12 +1271,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+71"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Жарайт</translation>
     </message>
     <message>
         <location line="+7"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Жокко чыгаруу</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -1286,7 +1286,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../optionsdialog.cpp" line="+53"/>
         <source>default</source>
-        <translation type="unfinished"/>
+        <translation>жарыяланбаган</translation>
     </message>
     <message>
         <location line="+149"/>
@@ -1332,7 +1332,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-113"/>
         <source>Wallet</source>
-        <translation type="unfinished"/>
+        <translation>Капчык</translation>
     </message>
     <message>
         <location line="+49"/>
@@ -1383,7 +1383,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location filename="../overviewpage.cpp" line="+116"/>
         <location line="+1"/>
         <source>out of sync</source>
-        <translation type="unfinished"/>
+        <translation>синхрондоштурулган эмес</translation>
     </message>
 </context>
 <context>
@@ -1549,7 +1549,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+52"/>
         <source>&amp;Open</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Ачуу</translation>
     </message>
     <message>
         <location line="+16"/>
@@ -1569,7 +1569,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+24"/>
         <source>&amp;Console</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Консоль</translation>
     </message>
     <message>
         <location line="-237"/>
@@ -1599,7 +1599,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+102"/>
         <source>Clear console</source>
-        <translation type="unfinished"/>
+        <translation>Консолду тазалоо</translation>
     </message>
     <message>
         <location filename="../rpcconsole.cpp" line="+325"/>
@@ -1773,7 +1773,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Бардыгын тазалоо</translation>
     </message>
     <message>
         <location line="+24"/>
@@ -1793,7 +1793,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+3"/>
         <source>S&amp;end</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Жөнөтүү</translation>
     </message>
     <message>
         <location filename="../sendcoinsdialog.cpp" line="-173"/>
@@ -1903,7 +1903,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+13"/>
         <source>(no label)</source>
-        <translation>(таңбасыз)</translation>
+        <translation>(аты жок)</translation>
     </message>
     <message>
         <location line="+4"/>
@@ -1957,7 +1957,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+7"/>
         <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Даректи алмашуу буферинен коюу</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2013,7 +2013,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="-193"/>
         <source>Paste address from clipboard</source>
-        <translation type="unfinished"/>
+        <translation>Даректи алмашуу буферинен коюу</translation>
     </message>
     <message>
         <location line="+10"/>
@@ -2044,7 +2044,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <location line="+3"/>
         <location line="+146"/>
         <source>Clear &amp;All</source>
-        <translation type="unfinished"/>
+        <translation>&amp;Бардыгын тазалоо</translation>
     </message>
     <message>
         <location line="-87"/>
@@ -2178,7 +2178,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+2"/>
         <source>%1/offline</source>
-        <translation type="unfinished"/>
+        <translation>%1/тармакта эмес</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2203,7 +2203,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+4"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Дата</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -2279,7 +2279,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+6"/>
         <source>Message</source>
-        <translation type="unfinished"/>
+        <translation>Билдирүү</translation>
     </message>
     <message>
         <location line="+2"/>
@@ -2360,7 +2360,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location filename="../transactiontablemodel.cpp" line="+231"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Дата</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -2370,7 +2370,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+0"/>
         <source>Address</source>
-        <translation>Адрес</translation>
+        <translation>Дарек</translation>
     </message>
     <message>
         <location line="+0"/>
@@ -2594,7 +2594,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Comma separated file (*.csv)</source>
-        <translation>Үтірмен бөлінген файл (*.csv)</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+8"/>
@@ -2604,7 +2604,7 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Date</source>
-        <translation type="unfinished"/>
+        <translation>Дата</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -2614,12 +2614,12 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     <message>
         <location line="+1"/>
         <source>Label</source>
-        <translation>таңба</translation>
+        <translation type="unfinished"/>
     </message>
     <message>
         <location line="+1"/>
         <source>Address</source>
-        <translation>Адрес</translation>
+        <translation>Дарек</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -3351,7 +3351,7 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     <message>
         <location line="+188"/>
         <source>Error</source>
-        <translation type="unfinished"/>
+        <translation>Ката</translation>
     </message>
     <message>
         <location line="-18"/>
