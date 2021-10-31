@@ -258,4 +258,235 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+82"/>
-        <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coin
+        <source>WayaWolfCoin will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your coins from being stolen by malware infecting your computer.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+13"/>
+        <location line="+7"/>
+        <location line="+44"/>
+        <location line="+6"/>
+        <source>Wallet encryption failed</source>
+        <translation>Kryptering av lommebok feilet</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Kryptering av lommebok feilet på grunn av en intern feil. Din lommebok ble ikke kryptert.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+50"/>
+        <source>The supplied passphrases do not match.</source>
+        <translation>De angitte adgangsfrasene er ulike.</translation>
+    </message>
+    <message>
+        <location line="-38"/>
+        <source>Wallet unlock failed</source>
+        <translation>Opplåsing av lommebok feilet</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+12"/>
+        <location line="+19"/>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>Adgangsfrasen angitt for dekryptering av lommeboken var feil.</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>Wallet decryption failed</source>
+        <translation>Dekryptering av lommebok feilet</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>Adgangsfrase for lommebok endret.</translation>
+    </message>
+</context>
+<context>
+    <name>WayaWolfCoinGUI</name>
+    <message>
+        <location filename="../bitcoingui.cpp" line="+297"/>
+        <source>Sign &amp;message...</source>
+        <translation>Signer &amp;melding...</translation>
+    </message>
+    <message>
+        <location line="-64"/>
+        <source>Show general overview of wallet</source>
+        <translation>Vis generell oversikt over lommeboken</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Transaksjoner</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Browse transaction history</source>
+        <translation>Vis transaksjonshistorikk</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Address Book</source>
+        <translation>&amp;Adressebok</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Endre listen med lagrede adresser og merkelapper</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Vis listen med adresser for å motta betalinger</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>E&amp;xit</source>
+        <translation>&amp;Avslutt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Quit application</source>
+        <translation>Avslutt applikasjonen</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Show information about WayaWolfCoin</source>
+        <translation>Vis info om WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>About &amp;Qt</source>
+        <translation>Om &amp;Qt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Qt</source>
+        <translation>Vis informasjon om Qt</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Innstillinger...</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>&amp;Krypter Lommebok...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation>Lag &amp;Sikkerhetskopi av Lommebok...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation>&amp;Endre Adgangsfrase...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Eksporter...</translation>
+    </message>
+    <message>
+        <location line="-55"/>
+        <source>Send coins to a WayaWolfCoin address</source>
+        <translation>Send coins til en WayaWolfCoin adresse</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Modify configuration options for WayaWolfCoin</source>
+        <translation>Endre innstillingene til WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Eksporter dataene i nåværende fane til en fil</translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Krypter eller dekrypter lommeboken</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Backup wallet to another location</source>
+        <translation>Sikkerhetskopiér lommebok til annet sted</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Endre adgangsfrasen brukt for kryptering av lommebok</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Debug window</source>
+        <translation>&amp;Feilsøkingsvindu</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Åpne konsoll for feilsøk og diagnostikk</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Verifiser melding...</translation>
+    </message>
+    <message>
+        <location line="-214"/>
+        <location line="+551"/>
+        <source>WayaWolfCoin</source>
+        <translation>WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="-551"/>
+        <source>Wallet</source>
+        <translation>Lommebok</translation>
+    </message>
+    <message>
+        <location line="+193"/>
+        <source>&amp;About WayaWolfCoin</source>
+        <translation>&amp;Om WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Show / Hide</source>
+        <translation>&amp;Gjem / vis</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Unlock wallet</source>
+        <translation>Lås opp lommebok</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Lock Wallet</source>
+        <translation>&amp;Lås Lommeboken</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation>Lås lommeboken</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;File</source>
+        <translation>&amp;Fil</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Innstillinger</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Help</source>
+        <translation>&amp;Hjelp</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Tabs toolbar</source>
+        <translation>Verktøylinje for f
