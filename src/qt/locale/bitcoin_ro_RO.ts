@@ -271,4 +271,233 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="-56"/>
-        <source>Wallet encryption failed due to an internal error. 
+        <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
+        <translation>Criptarea portofelului a eșuat din cauza unei erori interne. Portofelul tău nu a fost criptat.</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <location line="+50"/>
+        <source>The supplied passphrases do not match.</source>
+        <translation>Frazele de acces introduse nu se potrivesc.</translation>
+    </message>
+    <message>
+        <location line="-38"/>
+        <source>Wallet unlock failed</source>
+        <translation>Deblocarea portofelului a eșuat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+12"/>
+        <location line="+19"/>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>Fraza de acces introdusă pentru decriptarea portofelului a fost incorectă.</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>Wallet decryption failed</source>
+        <translation>Decriptarea portofelului a eșuat</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>Parola portofelului electronic a fost schimbată.</translation>
+    </message>
+</context>
+<context>
+    <name>WayaWolfCoinGUI</name>
+    <message>
+        <location filename="../bitcoingui.cpp" line="+297"/>
+        <source>Sign &amp;message...</source>
+        <translation>Semnează &amp;mesaj...</translation>
+    </message>
+    <message>
+        <location line="-64"/>
+        <source>Show general overview of wallet</source>
+        <translation>Arată o stare generală de ansamblu a portofelului</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Transactions</source>
+        <translation>&amp;Tranzacții</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Browse transaction history</source>
+        <translation>Răsfoiește istoricul tranzacțiilor</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Address Book</source>
+        <translation>Agendă</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>Editează lista de adrese si etichete stocate</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>Arată lista de adrese pentru primire plăți</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>E&amp;xit</source>
+        <translation>&amp;Ieșire</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Quit application</source>
+        <translation>Închide aplicația</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Show information about WayaWolfCoin</source>
+        <translation>Arată informații despre WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>About &amp;Qt</source>
+        <translation>Despre &amp;Qt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Qt</source>
+        <translation>Arată informații despre Qt</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Options...</source>
+        <translation>&amp;Setări...</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>Criptează portofelul electronic...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation>&amp;Fă o copie de siguranță a  portofelului...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation>S&amp;chimbă parola...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Export...</source>
+        <translation>&amp;Exportă</translation>
+    </message>
+    <message>
+        <location line="-55"/>
+        <source>Send coins to a WayaWolfCoin address</source>
+        <translation>Trimite monede către o adresă WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Modify configuration options for WayaWolfCoin</source>
+        <translation>Modifică opțiuni de configurare pentru WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>Exportă datele din tab-ul curent într-un fișier</translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>Criptează sau decriptează portofelul</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Backup wallet to another location</source>
+        <translation>Creează o copie de rezervă a portofelului într-o locație diferită</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>Schimbă fraza de acces folosită pentru criptarea portofelului</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Debug window</source>
+        <translation>Fereastră &amp;debug</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>Deschide consola de debug și diagnosticare</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>&amp;Verify message...</source>
+        <translation>&amp;Verifică mesajul...</translation>
+    </message>
+    <message>
+        <location line="-214"/>
+        <location line="+551"/>
+        <source>WayaWolfCoin</source>
+        <translation>WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="-551"/>
+        <source>Wallet</source>
+        <translation>Portofelul</translation>
+    </message>
+    <message>
+        <location line="+193"/>
+        <source>&amp;About WayaWolfCoin</source>
+        <translation>Despre WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Show / Hide</source>
+        <translation>Arata/Ascunde</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Unlock wallet</source>
+        <translation>Deblochează portofelul</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Lock Wallet</source>
+        <translation>Blochează portofelul</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation>Blochează portofelul</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;File</source>
+        <translation>&amp;Fișier</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Setări</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Help</source>
+        <translation>A&amp;jutor</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Tabs toolbar</source>
+        <translation>Bara de file</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <location line="+9"/>
+        <source>[testnet]</source>
+        <translation>[testnet]</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+58"/>
+        <source>WayaWolfCoin client<
