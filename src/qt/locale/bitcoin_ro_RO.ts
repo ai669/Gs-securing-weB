@@ -960,4 +960,210 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
  This means a fee of at least %1 per kb is required.</source>
         <translation>Tranzacțiile cu prioritate mai mare ajunge mult mai probabil într-un bloc
 
-Aceasta eticheta se inroseste daca prioritatea este mai mica de
+Aceasta eticheta se inroseste daca prioritatea este mai mica decat &quot;medium&quot;
+
+Acest lucru inseamna ca este necesar un comision cel putin de %1 pe kB</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This label turns red, if any recipient receives an amount smaller than %1.
+
+ This means a fee of at least %2 is required. 
+
+ Amounts below 0.546 times the minimum relay fee are shown as DUST.</source>
+        <translation>Aceasta eticheta se inroseste daca oricare din contacte primeste o suma mai mica decat %1.
+
+Acest lucru inseamna ca un comision de cel putin %2 este necesar.
+
+Sume mai mici decat 0.546 ori minimul comisionului de relay sunt afisate ca DUST</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This label turns red, if the change is smaller than %1.
+
+ This means a fee of at least %2 is required.</source>
+        <translation>Această eticheta se înroseste dacă schimbul este mai mic de %1.
+
+Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
+    </message>
+    <message>
+        <location line="+36"/>
+        <location line="+66"/>
+        <source>(no label)</source>
+        <translation>(fără etichetă)</translation>
+    </message>
+    <message>
+        <location line="-9"/>
+        <source>change from %1 (%2)</source>
+        <translation>schimbă la %1(%2)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>(change)</source>
+        <translation>(schimb)</translation>
+    </message>
+</context>
+<context>
+    <name>EditAddressDialog</name>
+    <message>
+        <location filename="../forms/editaddressdialog.ui" line="+14"/>
+        <source>Edit Address</source>
+        <translation>Editează adresa</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>&amp;Label</source>
+        <translation>&amp;Etichetă</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The label associated with this address book entry</source>
+        <translation>Eticheta asociată cu această intrare în agendă</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>&amp;Address</source>
+        <translation>&amp;Adresă</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>The address associated with this address book entry. This can only be modified for sending addresses.</source>
+        <translation>Adresa asociată cu această intrare în agendă. Acest lucru poate fi modificat numai pentru adresele de trimitere.</translation>
+    </message>
+    <message>
+        <location filename="../editaddressdialog.cpp" line="+21"/>
+        <source>New receiving address</source>
+        <translation>Noua adresă de primire</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>New sending address</source>
+        <translation>Noua adresă de trimitere</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Edit receiving address</source>
+        <translation>Editează adresa de primire</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Edit sending address</source>
+        <translation>Editează adresa de trimitere</translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>The entered address &quot;%1&quot; is already in the address book.</source>
+        <translation>Adresa introdusă &quot;%1&quot; se află deja în lista de adrese.</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>The entered address &quot;%1&quot; is not a valid WayaWolfCoin address.</source>
+        <translation>Adresa introdusă &quot;%1&quot; nu este o adresă WayaWolfCoin validă</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Could not unlock wallet.</source>
+        <translation>Portofelul nu a putut fi deblocat.</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>New key generation failed.</source>
+        <translation>Generarea noii chei a eșuat.</translation>
+    </message>
+</context>
+<context>
+    <name>GUIUtil::HelpMessageBox</name>
+    <message>
+        <location filename="../guiutil.cpp" line="+426"/>
+        <location line="+12"/>
+        <source>WayaWolfCoin-Qt</source>
+        <translation>WayaWolfCoin-Qt</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>version</source>
+        <translation>versiune</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Usage:</source>
+        <translation>Utilizare:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>command-line options</source>
+        <translation>Optiuni linie de comanda</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>UI options</source>
+        <translation>Setări UI</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set language, for example &quot;de_DE&quot; (default: system locale)</source>
+        <translation>Setează limba, de exemplu: &quot;de_DE&quot; (inițial: setare locală)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Start minimized</source>
+        <translation>Pornește miniaturizat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show splash screen on startup (default: 1)</source>
+        <translation>Afișează ecran splash la pornire (implicit: 1)</translation>
+    </message>
+</context>
+<context>
+    <name>OptionsDialog</name>
+    <message>
+        <location filename="../forms/optionsdialog.ui" line="+14"/>
+        <source>Options</source>
+        <translation>Setări</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>&amp;Main</source>
+        <translation>&amp;Principal</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Optional transaction fee per kB that helps make sure your transactions are processed quickly. Most transactions are 1 kB. Fee 0.01 recommended.</source>
+        <translation>Comision de tranzacție opțional pe kB, care vă ajută ca tranzacțiile sa fie procesate rapid. Majoritatea tranzactiilor sunt de 1 kB. Comision de 0.01 recomandat</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Pay transaction &amp;fee</source>
+        <translation>Plăteşte comision pentru tranzacţie &amp;f</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Reserved amount does not participate in staking and is therefore spendable at any time.</source>
+        <translation>Suma rezervată nu participă la maturare și, prin urmare, se poate cheltui  în orice moment.</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Reserve</source>
+        <translation>Rezervă</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Automatically start WayaWolfCoin after logging in to the system.</source>
+        <translation>Pornește WayaWolfCoin imdiat după logarea în sistem</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Start WayaWolfCoin on system login</source>
+        <translation>$Pornește WayaWolfCoin la logarea în sistem</translation>
+    </message>
+    <message>
+        <location line="+21"/>
+        <source>&amp;Network</source>
+        <translation>&amp;Retea</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Automatically open the WayaWolfCoin client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <translation>Deschide automat portul pentru cientul WayaWolfCoin pe router. Aces lucru este posibil doara daca routerul suporta UPnP si este activat</translation>
+   
