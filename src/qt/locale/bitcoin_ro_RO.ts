@@ -2464,4 +2464,262 @@ Acest lucru înseamnă că o taxă de cel puțin %2 este necesară</translation>
     <message>
         <location line="+2"/>
         <source>Payment to yourself</source>
-        <translation>Plată către tine</translati
+        <translation>Plată către tine</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Mined</source>
+        <translation>Produs</translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>(n/a)</source>
+        <translation>(n/a)</translation>
+    </message>
+    <message>
+        <location line="+194"/>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation>Starea tranzacției. Treci cu mausul peste acest câmp pentru afișarea numărului de confirmări.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Date and time that the transaction was received.</source>
+        <translation>Data și ora la care a fost recepționată tranzacția.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Type of transaction.</source>
+        <translation>Tipul tranzacției.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Destination address of transaction.</source>
+        <translation>Adresa de destinație a tranzacției.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Amount removed from or added to balance.</source>
+        <translation>Suma extrasă sau adăugată la sold.</translation>
+    </message>
+</context>
+<context>
+    <name>TransactionView</name>
+    <message>
+        <location filename="../transactionview.cpp" line="+54"/>
+        <location line="+17"/>
+        <source>All</source>
+        <translation>Toate</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <source>Today</source>
+        <translation>Astăzi</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This week</source>
+        <translation>Săptămâna aceasta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This month</source>
+        <translation>Luna aceasta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Last month</source>
+        <translation>Luna trecută</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This year</source>
+        <translation>Anul acesta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Range...</source>
+        <translation>Între...</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Received with</source>
+        <translation>Recepționat cu</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Sent to</source>
+        <translation>Trimis către</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To yourself</source>
+        <translation>Către tine</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Mined</source>
+        <translation>Produs</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Other</source>
+        <translation>Altele</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Enter address or label to search</source>
+        <translation>Introdu adresa sau eticheta pentru căutare</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Min amount</source>
+        <translation>Cantitatea minimă</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Copy address</source>
+        <translation>Copiază adresa</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy label</source>
+        <translation>Copiază eticheta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy amount</source>
+        <translation>Copiază suma</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy transaction ID</source>
+        <translation>Copiază ID tranzacție</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit label</source>
+        <translation>Editează eticheta</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show transaction details</source>
+        <translation>Arată detaliile tranzacției</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>Export Transaction Data</source>
+        <translation>Exporta datele trazactiei</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>Fișier text cu valori separate prin virgulă (*.csv)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Confirmed</source>
+        <translation>Confirmat</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Date</source>
+        <translation>Data</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type</source>
+        <translation>Tipul</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Label</source>
+        <translation>Etichetă</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Address</source>
+        <translation>Adresă</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Amount</source>
+        <translation>Sumă</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error exporting</source>
+        <translation>Eroare la exportare</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Could not write to file %1.</source>
+        <translation>Nu s-a putut scrie în fișier %1.</translation>
+    </message>
+    <message>
+        <location line="+100"/>
+        <source>Range:</source>
+        <translation>Interval:</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>to</source>
+        <translation>către</translation>
+    </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <location filename="../walletmodel.cpp" line="+208"/>
+        <source>Sending...</source>
+        <translation>Se trimite...</translation>
+    </message>
+</context>
+<context>
+    <name>bitcoin-core</name>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="+173"/>
+        <source>WayaWolfCoin version</source>
+        <translation>Versiune WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Usage:</source>
+        <translation>Uz:</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send command to -server or WayaWolfCoind</source>
+        <translation>Trimite comanda catre server sau WayaWolfCoind</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>List commands</source>
+        <translation>Listă de comenzi</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get help for a command</source>
+        <translation>Ajutor pentru o comandă</translation>
+    </message>
+    <message>
+        <location line="-147"/>
+        <source>Options:</source>
+        <translation>Setări:</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify configuration file (default: WayaWolfCoin.conf)</source>
+        <translation>Specifica fisier de configurare(implicit: WayaWolfCoin.conf)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specify pid file (default: WayaWolfCoind.pid)</source>
+        <translation>Speficica fisier pid(implicit: WayaWolfCoin.pid)</translation>
+    </message>
+    <message>
+        <location
