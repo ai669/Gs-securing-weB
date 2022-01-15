@@ -2877,4 +2877,177 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
         <translation>Conecteaza-te doar la nod(urile) specifice</translation>
     </message>
     <message>
-        <
+        <location line="+4"/>
+        <source>Discover own IP address (default: 1 when listening and no -externalip)</source>
+        <translation>Descopera propria ta adresa IP (intial: 1)</translation>
+    </message>
+    <message>
+        <location line="+101"/>
+        <source>Failed to listen on any port. Use -listen=0 if you want this.</source>
+        <translation>Am esuat ascultarea pe orice port. Folositi -listen=0 daca vreti asta.</translation>
+    </message>
+    <message>
+        <location line="-91"/>
+        <source>Sync checkpoints policy (default: strict)</source>
+        <translation>Sincronizeaza politica checkpoint(implicit: strict)</translation>
+    </message>
+    <message>
+        <location line="+89"/>
+        <source>Invalid -tor address: &apos;%s&apos;</source>
+        <translation>Adresa -tor invalida: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Invalid amount for -reservebalance=&lt;amount&gt;</source>
+        <translation>Suma invalida pentru -reservebalance=&lt;amount&gt;</translation>
+    </message>
+    <message>
+        <location line="-88"/>
+        <source>Maximum per-connection receive buffer, &lt;n&gt;*1000 bytes (default: 5000)</source>
+        <translation>Tampon maxim pentru recepție per conexiune, &lt;n&gt;*1000 baiți (implicit: 5000)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maximum per-connection send buffer, &lt;n&gt;*1000 bytes (default: 1000)</source>
+        <translation>Tampon maxim pentru transmitere per conexiune, &lt;n&gt;*1000 baiți (implicit: 1000)</translation>
+    </message>
+    <message>
+        <location line="-17"/>
+        <source>Only connect to nodes in network &lt;net&gt; (IPv4, IPv6 or Tor)</source>
+        <translation>Efectuează conexiuni doar către nodurile din rețeaua &lt;net&gt; (IPv4, IPv6 sau Tor)</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Prepend debug output with timestamp</source>
+        <translation>Ataseaza output depanare cu log de timp</translation>
+    </message>
+    <message>
+        <location line="+41"/>
+        <source>SSL options: (see the WayaWolfCoin Wiki for SSL setup instructions)</source>
+        <translation>Optiuni SSl (vezi WayaWolfCoin wiki pentru intructiunile de instalare)</translation>
+    </message>
+    <message>
+        <location line="-81"/>
+        <source>Select the version of socks proxy to use (4-5, default: 5)</source>
+        <translation>Selectati versiunea de proxy socks(4-5, implicit: 5)</translation>
+    </message>
+    <message>
+        <location line="+42"/>
+        <source>Send trace/debug info to console instead of debug.log file</source>
+        <translation>Trimite informațiile trace/debug la consolă în locul fișierului debug.log</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Send trace/debug info to debugger</source>
+        <translation>Trimite informațiile trace/debug la consolă</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Set maximum block size in bytes (default: 250000)</source>
+        <translation>Setează mărimea maxima a blocului în bytes (implicit: 250000)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Set minimum block size in bytes (default: 0)</source>
+        <translation>Setează mărimea minimă a blocului în baiți (implicit: 0)</translation>
+    </message>
+    <message>
+        <location line="-35"/>
+        <source>Shrink debug.log file on client startup (default: 1 when no -debug)</source>
+        <translation>Micsorati fisierul debug.log la inceperea clientului (implicit: 1 cand nu -debug)</translation>
+    </message>
+    <message>
+        <location line="-43"/>
+        <source>Specify connection timeout in milliseconds (default: 5000)</source>
+        <translation>Specifică intervalul maxim de conectare în milisecunde (implicit: 5000)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Unable to sign checkpoint, wrong checkpointkey?
+</source>
+        <translation>În imposibilitatea de a semna checkpoint-ul, checkpointkey greșit?
+</translation>
+    </message>
+    <message>
+        <location line="-86"/>
+        <source>Use UPnP to map the listening port (default: 0)</source>
+        <translation>Foloseste UPnP pentru a vedea porturile (initial: 0)</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Use UPnP to map the listening port (default: 1 when listening)</source>
+        <translation>Foloseste UPnP pentru a vedea porturile (initial: 1 cand listezi)</translation>
+    </message>
+    <message>
+        <location line="-26"/>
+        <source>Use proxy to reach tor hidden services (default: same as -proxy)</source>
+        <translation>Utilizati proxy pentru a ajunge la serviciile tor (implicit: la fel ca proxy)</translation>
+    </message>
+    <message>
+        <location line="+47"/>
+        <source>Username for JSON-RPC connections</source>
+        <translation>Utilizator pentru conexiunile JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Verifying database integrity...</source>
+        <translation>Se verifica integritatea bazei de date...</translation>
+    </message>
+    <message>
+        <location line="+44"/>
+        <source>Error: Wallet locked, unable to create transaction!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: This transaction requires a transaction fee of at least %s because of its amount, complexity, or use of recently received funds!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Error: Transaction creation failed!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error: The transaction was rejected! This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Warning</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Information</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>WARNING: syncronized checkpoint violation detected, but skipped!</source>
+        <translation>ATENTIONARE: s-a detectat o violare a checkpoint-ului sincronizat, dar s-a ignorat!</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Warning: This version is obsolete, upgrade required!</source>
+        <translation>Atenție: această versiune este depășită, este necesară actualizarea!</translation>
+    </message>
+    <message>
+        <location line="-54"/>
+        <source>wallet.dat corrupt, salvage failed</source>
+        <translation>wallet.dat corupt, recuperare eșuată</translation>
+    </message>
+    <message>
+        <location line="-56"/>
+        <source>Password for JSON-RPC connections</source>
+        <translation>Parola pentru conexiunile JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="-32"/>
+        <source>Sync time with other nodes. Disable if time on your system is precise e.g. syncing with NTP (default: 1)</source>
+        <translation>Sincronizează timp cu alte noduri. Dezactivează daca timpul de pe sistemul dumneavoastră este precis ex: sincronizare cu NTP (implicit: 1)</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>When creat
