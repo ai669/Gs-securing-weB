@@ -3050,4 +3050,180 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     </message>
     <message>
         <location line="+13"/>
-        <source>When creat
+        <source>When creating transactions, ignore inputs with value less than this (default: 0.01)</source>
+        <translation>Când creați tranzacții, ignorați intrări cu valori mai mici decât aceasta (implicit: 0,01)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Output debugging information (default: 0, supplying &lt;category&gt; is optional)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>If &lt;category&gt; is not supplied, output all debugging information.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&lt;category&gt; can be:</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Enter regression test mode, which uses a special chain in which blocks can be solved instantly. This is intended for regression testing tools and app development.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Allow JSON-RPC connections from specified IP address</source>
+        <translation>Permite conexiuni JSON-RPC de la adresa IP specificată</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send commands to node running on &lt;ip&gt; (default: 127.0.0.1)</source>
+        <translation>Trimite comenzi la nodul care rulează la &lt;ip&gt; (implicit: 127.0.0.1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wait for RPC server to start</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set the number of threads to service RPC calls (default: 4)</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Execute command when the best block changes (%s in cmd is replaced by block hash)</source>
+        <translation>Execută comanda când cel mai bun bloc se modifică (%s în cmd este înlocuit cu hash-ul blocului)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Execute command when a wallet transaction changes (%s in cmd is replaced by TxID)</source>
+        <translation>Executati comanda cand o tranzactie a portofelului se schimba (%s in cmd este inlocuit de TxID)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Require a confirmations for change (default: 0)</source>
+        <translation>Necesita confirmari pentru schimbare (implicit: 0)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Execute command when a relevant alert is received (%s in cmd is replaced by message)</source>
+        <translation>Execută o comandă când o alerta relevantâ este primitâ(%s in cmd este înlocuit de mesaj)</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Upgrade wallet to latest format</source>
+        <translation>Actualizează portofelul la ultimul format</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set key pool size to &lt;n&gt; (default: 100)</source>
+        <translation>Setează mărimea bazinului de chei la &lt;n&gt; (implicit: 100)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Rescan the block chain for missing wallet transactions</source>
+        <translation>Rescanează lanțul de bloc pentru tranzacțiile portofel lipsă</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>How thorough the block verification is (0-6, default: 1)</source>
+        <translation>Cat de temeinica sa fie verificarea blocurilor( 0-6, implicit: 1)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Imports blocks from external blk000?.dat file</source>
+        <translation>Importă blocuri dintr-un fișier extern blk000?.dat</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>Folosește OpenSSL (https) pentru conexiunile JSON-RPC</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Certificatul serverului (implicit: server.cert)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Cheia privată a serverului (implicit: server.pem)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Initialization sanity check failed. WayaWolfCoin is shutting down.</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <translation>Eroare: portofel blocat doar pentru staking, tranzactia nu s-a creat.</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Error: Disk space is low!</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation type="unfinished"/>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
+        <translation>ATENTIONARE: checkpoint invalid! Trazatiile afisate pot fi incorecte! Posibil să aveți nevoie să faceți upgrade, sau să  notificati dezvoltatorii.</translation>
+    </message>
+    <message>
+        <location line="-174"/>
+        <source>This help message</source>
+        <translation>Acest mesaj de ajutor</translation>
+    </message>
+    <message>
+        <location line="+104"/>
+        <source>Wallet %s resides outside data directory %s.</source>
+        <translation>Portofelul %s este in afara directorului %s</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
+        <translation>Nu se poate folosi %s pe acest calculator (eroarea returnată este %d, %s)</translation>
+    </message>
+    <message>
+        <location line="-133"/>
+        <source>Connect through socks proxy</source>
+        <translation>Conectează-te printr-un proxy socks</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
+        <translation>Permite căutări DNS pentru -addnode, -seednode și -connect</translation>
+    </message>
+    <message>
+        <location line="+126"/>
+        <source>Loading addresses...</source>
+        <translation>Încarc adrese...</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Eroare la încărcarea blkindex.dat</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Eroare la încărcarea wallet.dat: Portofel corupt</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin</source>
+        <translation>Eroare la încărcarea wallet.dat: Portofelul necesita o versiune mai noua de WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
+        <translation>A fost nevoie de rescrierea portofelului: restartați WayaWolfC
