@@ -640,4 +640,231 @@ Adresa: %4</translation>
     <message>
         <location line="+0"/>
         <source>There was an error trying to save the wallet data to the new location.</source>
-        <translation>Došlo k chybe pri pokuse 
+        <translation>Došlo k chybe pri pokuse o uloženie dát peňaženky do nového umiestnenia.</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+91"/>
+        <source>%n second(s)</source>
+        <translation><numerusform>%n sekunda</numerusform><numerusform>%n sekúnd</numerusform><numerusform>%n sekúnd</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location line="+4"/>
+        <source>%n minute(s)</source>
+        <translation><numerusform>%n minúta</numerusform><numerusform>%n minút</numerusform><numerusform>%n minút</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location line="-429"/>
+        <location line="+433"/>
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n hodina</numerusform><numerusform>%n hodiny</numerusform><numerusform>%n hodín</numerusform></translation>
+    </message>
+    <message>
+        <location line="-456"/>
+        <source>Processed %1 blocks of transaction history.</source>
+        <translation>Spracovaných %1 blokov transakčnej histórie.</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+27"/>
+        <location line="+433"/>
+        <source>%n day(s)</source>
+        <translation><numerusform>%n deň</numerusform><numerusform>%n dni</numerusform><numerusform>%n dní</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <location line="-429"/>
+        <location line="+6"/>
+        <source>%n week(s)</source>
+        <translation><numerusform>%n týždeň</numerusform><numerusform>%n týždne</numerusform><numerusform>%n týždňov</numerusform></translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>%1 and %2</source>
+        <translation>%1 a %2</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+0"/>
+        <source>%n year(s)</source>
+        <translation><numerusform>%n rok</numerusform><numerusform>%n roky</numerusform><numerusform>%n rokov</numerusform></translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 behind</source>
+        <translation>%1 pozadu</translation>
+    </message>
+    <message>
+        <location line="+15"/>
+        <source>Last received block was generated %1 ago.</source>
+        <translation>Posledný prijatý blok bol vytvorený pred %1.</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transactions after this will not yet be visible.</source>
+        <translation>Transakcie po tejto ešte nebudú viditeľné</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>Error</source>
+        <translation>Chyba</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Warning</source>
+        <translation>Varovanie</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Information</source>
+        <translation>Informácia</translation>
+    </message>
+    <message>
+        <location line="+69"/>
+        <source>This transaction is over the size limit. You can still send it for a fee of %1, which goes to the nodes that process your transaction and helps to support the network. Do you want to pay the fee?</source>
+        <translation>Táto transakcia je nad veľkostný limit. Stále ju môžete poslať za poplatok %1, ktorý ide uzlom spracujúcim vaše transakcie, čím pomáhate podporovať sieť. Chcete zaplatiť poplatok?</translation>
+    </message>
+    <message>
+        <location line="+324"/>
+        <source>Not staking</source>
+        <translation>Nestávkuje sa</translation>
+    </message>
+    <message>
+        <location filename="../bitcoin.cpp" line="+104"/>
+        <source>A fatal error occurred. WayaWolfCoin can no longer continue safely and will quit.</source>
+        <translation>Došlo k závažnej chybe. WayaWolfCoin už nemôže pokračovať bezpečne a bude ukončený.</translation>
+    </message>
+</context>
+<context>
+    <name>ClientModel</name>
+    <message>
+        <location filename="../clientmodel.cpp" line="+110"/>
+        <source>Network Alert</source>
+        <translation>Výstraha siete</translation>
+    </message>
+</context>
+<context>
+    <name>CoinControlDialog</name>
+    <message>
+        <location filename="../forms/coincontroldialog.ui" line="+14"/>
+        <source>Coin Control</source>
+        <translation>Kontrola mincí</translation>
+    </message>
+    <message>
+        <location line="+31"/>
+        <source>Quantity:</source>
+        <translation>Množstvo:</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Bytes:</source>
+        <translation>Bajty:</translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>Amount:</source>
+        <translation>Suma:</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Priority:</source>
+        <translation>Priorita:</translation>
+    </message>
+    <message>
+        <location line="+48"/>
+        <source>Fee:</source>
+        <translation>Poplatok:</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Low Output:</source>
+        <translation>Nízky výstup:</translation>
+    </message>
+    <message>
+        <location filename="../coincontroldialog.cpp" line="+552"/>
+        <source>no</source>
+        <translation>nie</translation>
+    </message>
+    <message>
+        <location filename="../forms/coincontroldialog.ui" line="+51"/>
+        <source>After Fee:</source>
+        <translation>Po poplatku:</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Change:</source>
+        <translation>Zmena:</translation>
+    </message>
+    <message>
+        <location line="+69"/>
+        <source>(un)select all</source>
+        <translation>(Ne)označiť všetko</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Tree mode</source>
+        <translation>Stromový režim</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>List mode</source>
+        <translation>Zoznamový režim</translation>
+    </message>
+    <message>
+        <location line="+45"/>
+        <source>Amount</source>
+        <translation>Suma</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Label</source>
+        <translation>Menovka</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Address</source>
+        <translation>Adresa</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Date</source>
+        <translation>Dátum</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Confirmations</source>
+        <translation>Potvrdenia</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Confirmed</source>
+        <translation>Potvrdené</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Priority</source>
+        <translation>Priorita</translation>
+    </message>
+    <message>
+        <location filename="../coincontroldialog.cpp" line="-515"/>
+        <source>Copy address</source>
+        <translation>Kopírovať adresu</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy label</source>
+        <translation>Kopírovať popis</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+26"/>
+        <source>Copy amount</source>
+        <translation>Kopírovať sumu</translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <source>Copy transaction ID</source>
+        <translation>Kopírovať ID transakcie</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>Copy quantity</source>
+        <translation>Kopírovať množstvo</translation>
+    </message>
+    
