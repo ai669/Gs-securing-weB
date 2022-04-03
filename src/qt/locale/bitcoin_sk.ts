@@ -3154,4 +3154,183 @@ napríklad: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin upozornenie&quot; 
     </message>
     <message>
         <location line="+9"/>
-        <source>Use OpenSSL (https) for JSO
+        <source>Use OpenSSL (https) for JSON-RPC connections</source>
+        <translation>Použiť OpenSSL (https) pre JSON-RPC spojenia</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server certificate file (default: server.cert)</source>
+        <translation>Súbor s certifikátom servra (predvolené: server.cert)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Server private key (default: server.pem)</source>
+        <translation>Súkromný kľúč servra (predvolené: server.pem)</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Initialization sanity check failed. WayaWolfCoin is shutting down.</source>
+        <translation>Úvodné kontrolné testy zlyhali. WayaWolfCoin sa teraz zatvori.</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>Error: Wallet unlocked for staking only, unable to create transaction.</source>
+        <translation>Chyba: Peňaženka je odomknutá len pre stávkovanie, nemožné vytvoriť transakciu.</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Error: Disk space is low!</source>
+        <translation>Chyba: Nedostatok miesta na disku!</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This is a pre-release test build - use at your own risk - do not use for mining or merchant applications</source>
+        <translation>Toto je predbežná testovacia zostava - používate na vlastné riziko - nepoužívajte na ťaženie alebo obchodné aplikácie</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>WARNING: Invalid checkpoint found! Displayed transactions may not be correct! You may need to upgrade, or notify developers.</source>
+        <translation>UPOZORNENIE: Neplatný checkpoint nájdený! Uvedené transakcie nemusia byť správne! Možno budete musieť upgradovať, alebo upozorniť vývojárov.</translation>
+    </message>
+    <message>
+        <location line="-174"/>
+        <source>This help message</source>
+        <translation>Táto pomocná správa</translation>
+    </message>
+    <message>
+        <location line="+104"/>
+        <source>Wallet %s resides outside data directory %s.</source>
+        <translation>Peňaženka %s bydlisko mimo dátový adresár %s.</translation>
+    </message>
+    <message>
+        <location line="+37"/>
+        <source>Unable to bind to %s on this computer (bind returned error %d, %s)</source>
+        <translation>Nemôžem sa pripojiť k %s na tomto počítači (bind vrátil chybu %d, %s)</translation>
+    </message>
+    <message>
+        <location line="-133"/>
+        <source>Connect through socks proxy</source>
+        <translation>Pripojenie cez SOCKS proxy</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Allow DNS lookups for -addnode, -seednode and -connect</source>
+        <translation>Povoliť vyhľadávanie DNS pre pridanie nódy a spojenie</translation>
+    </message>
+    <message>
+        <location line="+126"/>
+        <source>Loading addresses...</source>
+        <translation>Načítavanie adries...</translation>
+    </message>
+    <message>
+        <location line="-12"/>
+        <source>Error loading blkindex.dat</source>
+        <translation>Chyba pri načítaní blkindex.dat</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Error loading wallet.dat: Wallet corrupted</source>
+        <translation>Chyba načítania wallet.dat: Peňaženka je poškodená</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error loading wallet.dat: Wallet requires newer version of WayaWolfCoin</source>
+        <translation>Chyba pri načítaní wallet.dat: Peňaženka vyžaduje novšiu verziu WayaWolfCoin</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wallet needed to be rewritten: restart WayaWolfCoin to complete</source>
+        <translation>Peňaženka potrebuje byť prepísaná: reštartujte WayaWolfCoin k dokončeniu</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Error loading wallet.dat</source>
+        <translation>Chyba načítania wallet.dat</translation>
+    </message>
+    <message>
+        <location line="-16"/>
+        <source>Invalid -proxy address: &apos;%s&apos;</source>
+        <translation>Neplatná adresa proxy: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Unknown network specified in -onlynet: &apos;%s&apos;</source>
+        <translation>Neznámy siete je uvedené v -onlynet: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Unknown -socks proxy version requested: %i</source>
+        <translation>Neznáma požadovaná SOCKS proxy verzia:% i</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Cannot resolve -bind address: &apos;%s&apos;</source>
+        <translation>Nemožno rozložiť -bind adresu: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Cannot resolve -externalip address: &apos;%s&apos;</source>
+        <translation>Nemožno rozložiť -externalip adresu: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="-23"/>
+        <source>Invalid amount for -paytxfee=&lt;amount&gt;: &apos;%s&apos;</source>
+        <translation>Neplatná suma pre -paytxfee=&lt;amount&gt;: &apos;%s&apos;</translation>
+    </message>
+    <message>
+        <location line="+60"/>
+        <source>Sending...</source>
+        <translation>Posielam...</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>Invalid amount</source>
+        <translation>Neplatná suma</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Insufficient funds</source>
+        <translation>Nedostatok prostriedkov</translation>
+    </message>
+    <message>
+        <location line="-40"/>
+        <source>Loading block index...</source>
+        <translation>Načítavanie zoznamu blokov...</translation>
+    </message>
+    <message>
+        <location line="-110"/>
+        <source>Add a node to connect to and attempt to keep the connection open</source>
+        <translation>Pridať nód na pripojenie a pokus o udržanie pripojenia otvoreného</translation>
+    </message>
+    <message>
+        <location line="+125"/>
+        <source>Unable to bind to %s on this computer. WayaWolfCoin is probably already running.</source>
+        <translation>Nemôžem sa pripojiť na %s na tomto počítači. WayaWolfCoin je pravdepodobne už beží.</translation>
+    </message>
+    <message>
+        <location line="-101"/>
+        <source>Fee per KB to add to transactions you send</source>
+        <translation>Poplatok za KB pridať do transakcií, ktoré odosielate</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Minimize weight consumption (experimental) (default: 0)</source>
+        <translation>Minimalizovať spotrebu hmotnosti (experimentálne) (predvolené: 0)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>How many blocks to check at startup (default: 500, 0 = all)</source>
+        <translation>Koľko blokov skontrolovať pri štarte (predvolené: 2500, 0 = všetky) {500, 0 ?}</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Keep at most &lt;n&gt; unconnectable blocks in memory (default: %u)</source>
+        <translation>Uchovávať najviac &lt;n&gt; nepripojiteľných blokov v pamäti (predvolené: %u)</translation>
+    </message>
+    <message>
+        <location line="+11"/>
+        <source>Acceptable ciphers (default: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)</source>
+        <translation>Akceptovateľné šifry (predvolené: TLSv1.2+HIGH:TLSv1+HIGH:!SSLv2:!aNULL:!eNULL:!3DES:@STRENGTH)</translation>
+    </message>
+    <message>
+      
