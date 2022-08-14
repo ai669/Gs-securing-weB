@@ -281,4 +281,251 @@ This product includes software developed by the OpenSSL Project for use in the O
     </message>
     <message>
         <location line="+7"/>
-        <location line="+
+        <location line="+50"/>
+        <source>The supplied passphrases do not match.</source>
+        <translation>密码不匹配。</translation>
+    </message>
+    <message>
+        <location line="-38"/>
+        <source>Wallet unlock failed</source>
+        <translation>钱包解锁失败</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <location line="+12"/>
+        <location line="+19"/>
+        <source>The passphrase entered for the wallet decryption was incorrect.</source>
+        <translation>用于解密钱包的密码不正确。</translation>
+    </message>
+    <message>
+        <location line="-20"/>
+        <source>Wallet decryption failed</source>
+        <translation>钱包解密失败。</translation>
+    </message>
+    <message>
+        <location line="+14"/>
+        <source>Wallet passphrase was successfully changed.</source>
+        <translation>修改钱包密码成功。</translation>
+    </message>
+</context>
+<context>
+    <name>WayaWolfCoinGUI</name>
+    <message>
+        <location filename="../bitcoingui.cpp" line="+297"/>
+        <source>Sign &amp;message...</source>
+        <translation>消息签名(&amp;M)...</translation>
+    </message>
+    <message>
+        <location line="-64"/>
+        <source>Show general overview of wallet</source>
+        <translation>显示钱包概况</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>&amp;Transactions</source>
+        <translation>交易记录(&amp;T)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Browse transaction history</source>
+        <translation>查看交易历史</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>&amp;Address Book</source>
+        <translation>地址簿(&amp;A)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit the list of stored addresses and labels</source>
+        <translation>管理已储存的地址和标签</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>Show the list of addresses for receiving payments</source>
+        <translation>显示用于接收支付的地址列表</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>E&amp;xit</source>
+        <translation>退出(&amp;X)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Quit application</source>
+        <translation>退出程序</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Show information about WayaWolfCoin</source>
+        <translation>显示关于黑币的信息</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>About &amp;Qt</source>
+        <translation>关于 &amp;Qt</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show information about Qt</source>
+        <translation>显示 Qt 相关信息</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Options...</source>
+        <translation>选项(&amp;O)...</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>&amp;Encrypt Wallet...</source>
+        <translation>加密钱包(&amp;E)...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Backup Wallet...</source>
+        <translation>备份钱包(&amp;B)...</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Change Passphrase...</source>
+        <translation>更改密码(&amp;C)...</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Export...</source>
+        <translation>导出(&amp;E)</translation>
+    </message>
+    <message>
+        <location line="-55"/>
+        <source>Send coins to a WayaWolfCoin address</source>
+        <translation>向指定的地址发送黑币</translation>
+    </message>
+    <message>
+        <location line="+39"/>
+        <source>Modify configuration options for WayaWolfCoin</source>
+        <translation>更改设置选项</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Export the data in the current tab to a file</source>
+        <translation>导出当前标签页的数据</translation>
+    </message>
+    <message>
+        <location line="-13"/>
+        <source>Encrypt or decrypt wallet</source>
+        <translation>加密/解密钱包</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Backup wallet to another location</source>
+        <translation>备份钱包到其他文件夹</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Change the passphrase used for wallet encryption</source>
+        <translation>更改钱包加密口令</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>&amp;Debug window</source>
+        <translation>调试窗口(&amp;D)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Open debugging and diagnostic console</source>
+        <translation>打开调试和诊断控制台</translation>
+    </message>
+    <message>
+        <location line="-5"/>
+        <source>&amp;Verify message...</source>
+        <translation>验证消息(&amp;V)...</translation>
+    </message>
+    <message>
+        <location line="-214"/>
+        <location line="+551"/>
+        <source>WayaWolfCoin</source>
+        <translation>黑币</translation>
+    </message>
+    <message>
+        <location line="-551"/>
+        <source>Wallet</source>
+        <translation>钱包</translation>
+    </message>
+    <message>
+        <location line="+193"/>
+        <source>&amp;About WayaWolfCoin</source>
+        <translation>关于黑币(&amp;A)</translation>
+    </message>
+    <message>
+        <location line="+9"/>
+        <source>&amp;Show / Hide</source>
+        <translation>显示 / 隐藏(&amp;S)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Unlock wallet</source>
+        <translation>解锁钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Lock Wallet</source>
+        <translation>锁定钱包(&amp;L)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation>锁定钱包</translation>
+    </message>
+    <message>
+        <location line="+28"/>
+        <source>&amp;File</source>
+        <translation>文件(&amp;F)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Settings</source>
+        <translation>设置(&amp;S)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>&amp;Help</source>
+        <translation>帮助(&amp;H)</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Tabs toolbar</source>
+        <translation>分页工具栏</translation>
+    </message>
+    <message>
+        <location line="+46"/>
+        <location line="+9"/>
+        <source>[testnet]</source>
+        <translation>[测试网络]</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <location line="+58"/>
+        <source>WayaWolfCoin client</source>
+        <translation>黑币客户端</translation>
+    </message>
+    <message numerus="yes">
+        <location line="+70"/>
+        <source>%n active connection(s) to WayaWolfCoin network</source>
+        <translation><numerusform>与黑币网络建立了 %n 个连接</numerusform></translation>
+    </message>
+    <message>
+        <location line="+488"/>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>权益增值中 &lt;br&gt;您的权重为 %1 &lt;br&gt;网络总权重为 %2&lt;br&gt;预计将在 %3 之后获得收益</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Not staking because wallet is locked</source>
+        <translation>未进行权益增值，因为钱包已锁定</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is offline</source>
+        <translation>未进行权益增值，因为钱包处于离线状态</translation>
+    </message>
+    <me
