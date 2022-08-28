@@ -1524,4 +1524,270 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
         <translation>测试网</translation>
     </message>
     <message>
-  
+        <location line="+23"/>
+        <source>Block chain</source>
+        <translation>数据链</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Current number of blocks</source>
+        <translation>当前数据块数量</translation>
+    </message>
+    <message>
+        <location line="+197"/>
+        <source>&amp;Network Traffic</source>
+        <translation>网络流量(&amp;N)</translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>&amp;Clear</source>
+        <translation>清除(&amp;A)</translation>
+    </message>
+    <message>
+        <location line="+13"/>
+        <source>Totals</source>
+        <translation>总额</translation>
+    </message>
+    <message>
+        <location line="+64"/>
+        <source>In:</source>
+        <translation>入：</translation>
+    </message>
+    <message>
+        <location line="+80"/>
+        <source>Out:</source>
+        <translation>出：</translation>
+    </message>
+    <message>
+        <location line="-383"/>
+        <source>Last block time</source>
+        <translation>上一数据块时间</translation>
+    </message>
+    <message>
+        <location line="+52"/>
+        <source>&amp;Open</source>
+        <translation>打开(&amp;O)</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Command-line options</source>
+        <translation>命令行选项</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Show the WayaWolfCoin-Qt help message to get a list with possible WayaWolfCoin command-line options.</source>
+        <translation>显示关于命令行选项的帮助信息。</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>&amp;Show</source>
+        <translation>显示(&amp;S)</translation>
+    </message>
+    <message>
+        <location line="+24"/>
+        <source>&amp;Console</source>
+        <translation>控制台(&amp;C)</translation>
+    </message>
+    <message>
+        <location line="-237"/>
+        <source>Build date</source>
+        <translation>创建时间</translation>
+    </message>
+    <message>
+        <location line="-104"/>
+        <source>WayaWolfCoin - Debug window</source>
+        <translation>黑币客户端-调试窗口</translation>
+    </message>
+    <message>
+        <location line="+25"/>
+        <source>WayaWolfCoin Core</source>
+        <translation>黑币核心进程</translation>
+    </message>
+    <message>
+        <location line="+256"/>
+        <source>Debug log file</source>
+        <translation>调试日志文件</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Open the WayaWolfCoin debug log file from the current data directory. This can take a few seconds for large log files.</source>
+        <translation>打开调试日志文件，对于较大的文件，这可能持续几秒钟。</translation>
+    </message>
+    <message>
+        <location line="+102"/>
+        <source>Clear console</source>
+        <translation>清空控制台</translation>
+    </message>
+    <message>
+        <location filename="../rpcconsole.cpp" line="+325"/>
+        <source>Welcome to the WayaWolfCoin RPC console.</source>
+        <translation>欢迎使用黑币RPC控制台。</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Use up and down arrows to navigate history, and &lt;b&gt;Ctrl-L&lt;/b&gt; to clear screen.</source>
+        <translation>使用上下方向键浏览历史,  &lt;b&gt;Ctrl-L&lt;/b&gt;清除屏幕。</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type &lt;b&gt;help&lt;/b&gt; for an overview of available commands.</source>
+        <translation>使用 &lt;b&gt;help&lt;/b&gt; 命令显示帮助信息。</translation>
+    </message>
+    <message>
+        <location line="+127"/>
+        <source>%1 B</source>
+        <translation>%1 B</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 KB</source>
+        <translation>%1 KB</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 MB</source>
+        <translation>%1 MB</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 GB</source>
+        <translation>%1 GB</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>%1 m</source>
+        <translation>%1 分钟</translation>
+    </message>
+    <message>
+        <location line="+5"/>
+        <source>%1 h</source>
+        <translation>%1 小时</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 h %2 m</source>
+        <translation>%1 时 %2 分</translation>
+    </message>
+</context>
+<context>
+    <name>SendCoinsDialog</name>
+    <message>
+        <location filename="../forms/sendcoinsdialog.ui" line="+14"/>
+        <location filename="../sendcoinsdialog.cpp" line="+181"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <location line="+6"/>
+        <location line="+5"/>
+        <location line="+5"/>
+        <source>Send Coins</source>
+        <translation>发送货币</translation>
+    </message>
+    <message>
+        <location line="+76"/>
+        <source>Coin Control Features</source>
+        <translation>交易源地址控制功能</translation>
+    </message>
+    <message>
+        <location line="+20"/>
+        <source>Inputs...</source>
+        <translation>输入...</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>automatically selected</source>
+        <translation>自动选择</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>Insufficient funds!</source>
+        <translation>存款不足！</translation>
+    </message>
+    <message>
+        <location line="+77"/>
+        <source>Quantity:</source>
+        <translation>总量：</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+35"/>
+        <source>0</source>
+        <translation>0</translation>
+    </message>
+    <message>
+        <location line="-19"/>
+        <source>Bytes:</source>
+        <translation>字节：</translation>
+    </message>
+    <message>
+        <location line="+51"/>
+        <source>Amount:</source>
+        <translation>金额：</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <location line="+86"/>
+        <location line="+86"/>
+        <location line="+32"/>
+        <source>0.00 TX</source>
+        <translation>123.456 TX {0.00 ?}</translation>
+    </message>
+    <message>
+        <location line="-191"/>
+        <source>Priority:</source>
+        <translation>优先级：</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>medium</source>
+        <translation>中等</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Fee:</source>
+        <translation>费用：</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Low Output:</source>
+        <translation>低输出</translation>
+    </message>
+    <message>
+        <location line="+19"/>
+        <source>no</source>
+        <translation>no</translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>After Fee:</source>
+        <translation>加上交易费用后:</translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <source>Change</source>
+        <translation>零钱</translation>
+    </message>
+    <message>
+        <location line="+50"/>
+        <source>custom change address</source>
+        <translation>自定义零钱地址</translation>
+    </message>
+    <message>
+        <location line="+106"/>
+        <source>Send to multiple recipients at once</source>
+        <translation>一次发送给多个接收者</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Add &amp;Recipient</source>
+        <translation>添加收款人(&amp;R)</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>Remove all transaction fields</source>
+        <translation>删除所有交易区域</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Clear &amp;All</source>
+        <translation>清除所有(&amp;A)</translat
