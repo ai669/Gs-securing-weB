@@ -2510,4 +2510,273 @@ This label turns red, if the priority is smaller than &quot;medium&quot;.
     </message>
     <message>
         <location line="-16"/>
-        <s
+        <source>Today</source>
+        <translation>今天</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This week</source>
+        <translation>本周</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This month</source>
+        <translation>本月</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Last month</source>
+        <translation>上月</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>This year</source>
+        <translation>今年</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Range...</source>
+        <translation>范围...</translation>
+    </message>
+    <message>
+        <location line="+12"/>
+        <source>Received with</source>
+        <translation>接收于</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Sent to</source>
+        <translation>发送给</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To yourself</source>
+        <translation>到自己</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Mined</source>
+        <translation>挖矿所得</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Other</source>
+        <translation>其他</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Enter address or label to search</source>
+        <translation>输入地址或标签进行搜索</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Min amount</source>
+        <translation>最小金额</translation>
+    </message>
+    <message>
+        <location line="+34"/>
+        <source>Copy address</source>
+        <translation>复制地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy label</source>
+        <translation>复制标签</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy amount</source>
+        <translation>复制金额</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy transaction ID</source>
+        <translation>复制交易编号</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Edit label</source>
+        <translation>编辑标签</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Show transaction details</source>
+        <translation>显示交易详情</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>Export Transaction Data</source>
+        <translation>输出交易数据</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Comma separated file (*.csv)</source>
+        <translation>逗号分隔文件 (*.csv)</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>Confirmed</source>
+        <translation>已确认</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Date</source>
+        <translation>日期</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Type</source>
+        <translation>类别</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Label</source>
+        <translation>标签</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Address</source>
+        <translation>地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Amount</source>
+        <translation>金额</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ID</source>
+        <translation>ID</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Error exporting</source>
+        <translation>导出出现错误</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Could not write to file %1.</source>
+        <translation>无法写入文件 %1 。</translation>
+    </message>
+    <message>
+        <location line="+100"/>
+        <source>Range:</source>
+        <translation>范围：</translation>
+    </message>
+    <message>
+        <location line="+8"/>
+        <source>to</source>
+        <translation>到</translation>
+    </message>
+</context>
+<context>
+    <name>WalletModel</name>
+    <message>
+        <location filename="../walletmodel.cpp" line="+208"/>
+        <source>Sending...</source>
+        <translation>正在发送</translation>
+    </message>
+</context>
+<context>
+    <name>bitcoin-core</name>
+    <message>
+        <location filename="../bitcoinstrings.cpp" line="+173"/>
+        <source>WayaWolfCoin version</source>
+        <translation>黑币客户端 版本</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Usage:</source>
+        <translation>使用：</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Send command to -server or WayaWolfCoind</source>
+        <translation>向-server服务器或WayaWolfCoind发送命令</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>List commands</source>
+        <translation>列出命令
+</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Get help for a command</source>
+        <translation>获得某条命令的帮助
+</translation>
+    </message>
+    <message>
+        <location line="-147"/>
+        <source>Options:</source>
+        <translation>选项：
+</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify configuration file (default: WayaWolfCoin.conf)</source>
+        <translation>指定配置文件(默认: WayaWolfCoin.conf)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Specify pid file (default: WayaWolfCoind.pid)</source>
+        <translation>指定pid文件(默认: WayaWolfCoind.pid)</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Specify wallet file (within data directory)</source>
+        <translation>指定钱包文件（数据目录内）</translation>
+    </message>
+    <message>
+        <location line="-1"/>
+        <source>Specify data directory</source>
+        <translation>指定数据目录
+</translation>
+    </message>
+    <message>
+        <location line="-25"/>
+        <source>%s, you must set a rpcpassword in the configuration file:
+%s
+It is recommended you use the following random password:
+rpcuser=WayaWolfCoinrpc
+rpcpassword=%s
+(you do not need to remember this password)
+The username and password MUST NOT be the same.
+If the file does not exist, create it with owner-readable-only file permissions.
+It is also recommended to set alertnotify so you are notified of problems;
+for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin@foo.com
+</source>
+        <translation>%s, 必须在配置文件里设置rpc密码:
+ %s
+建议使用如下的随机密码:
+rpcuser=WayaWolfCoinrpc
+rpcpassword=%s
+(不需要记住该密码)
+用户名和密码不能重复。
+如果该文件不存在，请自行创建并设为用户本身只读权限。
+建议创建提示以监测可能的问题，如：
+alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin@foo.com
+</translation>
+    </message>
+    <message>
+        <location line="+27"/>
+        <source>Set database cache size in megabytes (default: 25)</source>
+        <translation>设置数据库缓冲区大小 (缺省: 25MB)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Set database disk log size in megabytes (default: 100)</source>
+        <translation>设置数据库日志文件大小(单位MB，默认值100)</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Listen for connections on &lt;port&gt; (default: 15714 or testnet: 25714)</source>
+        <translation>监听&lt;port&gt;端口的连接 (默认: 15714 测试网: 25714)</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Maintain at most &lt;n&gt; connections to peers (default: 125)</source>
+        <translation>最大连接数 &lt;n&gt; （缺省: 125）</translation>
+    </message>
+    <message>
+        <
