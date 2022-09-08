@@ -3392,4 +3392,15 @@ alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin@foo.com
         <location line="+188"/>
         <source>Error</source>
         <translation>错误</translation>
-    </me
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>您必须在配置文件中加入选项 rpcpassword :
+ %s
+如果配置文件不存在，请新建，并将文件权限设置为仅允许文件所有者读取.</translation>
+    </message>
+</context>
+</TS>
