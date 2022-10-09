@@ -241,4 +241,259 @@ public:
     MessageTableEntry *index(int idx)
     {
         if(idx >= 0 && idx < cachedMessageTable.size())
-       
+            return &cachedMessageTable[idx];
+        else
+            return 0;
+    }
+
+private:
+    // Get the json value
+    const json_spirit::mValue & find_value(json_spirit::mObject & obj, const char * key)
+    {
+        std::string newKey = key;
+
+        json_spirit::mObject::const_iterator i = obj.find(newKey);
+
+        if(i != obj.end() && i->first == newKey)
+            return i->second;
+        else
+            return json_spirit::mValue::null;
+    }
+
+    const std::string get_value(json_spirit::mObject & obj, const char * key)
+    {
+        json_spirit::mValue val = find_value(obj, key);
+
+        if(val.is_null())
+            return "";
+        else
+            return val.get_str();
+    }
+
+    // Determine if it is a special message, i.e.: Invoice, Receipt, etc...
+    void handleMessageEntry(const MessageTableEntry & message, const bool append)
+    {
+        addMessageEntry(message, append);
+        json_spirit::mValue mVal;
+        json_spirit::read(message.message.toStdString(), mVal);
+
+        if(mVal.is_null())
+        {
+            addMessageEntry(message, append);
+            return;
+        }
+
+        json_spirit::mObject mObj(mVal.get_obj());
+        json_spirit::mValue mvType = find_value(mObj, "type");
+
+    }
+
+    void addMessageEntry(const MessageTableEntry & message, const bool & append)
+    {
+        if(append)
+        {
+            cachedMessageTable.append(message);
+        } else
+        {
+            int index = qLowerBound(cachedMessageTable.begin(), cachedMessageTable.end(), message.received_datetime, MessageTableEntryLessThan()) - cachedMessageTable.begin();
+            parent->beginInsertRows(QModelIndex(), index, index);
+            cachedMessageTable.insert(
+                        index,
+                        message);
+            parent->endInsertRows();
+        }
+    }
+
+};
+
+MessageModel::MessageModel(CWallet *wallet, WalletModel *walletModel, QObject *parent) :
+    QAbstractTableModel(parent), wallet(wallet), walletModel(walletModel), optionsModel(0), priv(0)
+{
+    columns << tr("Type") << tr("Sent Date Time") << tr("Received Date Time") << tr("Label") << tr("To Address") << tr("From Address") << tr("Message");
+    
+    proxyModel = NULL;
+    
+    optionsModel = walletModel->getOptionsModel();
+
+    priv = new MessageTablePriv(this);
+    priv->refreshMessageTable();
+
+    subscribeToCoreSignals();
+}
+
+MessageModel::~MessageModel()
+{
+    if (proxyModel)
+        delete proxyModel;
+    
+    delete priv;
+    unsubscribeFromCoreSignals();
+}
+
+bool MessageModel::getAddressOrPubkey(QString &address, QString &pubkey) const
+{
+    CWayaWolfCoinAddress addressParsed(address.toStdString());
+
+    if(addressParsed.IsValid()) {
+        CKeyID  destinationAddress;
+        CPubKey destinationKey;
+
+        addressParsed.GetKeyID(destinationAddress);
+
+        if (SecureMsgGetStoredKey(destinationAddress, destinationKey) != 0
+            && SecureMsgGetLocalKey(destinationAddress, destinationKey) != 0) // test if it's a local key
+            return false;
+
+        address = destinationAddress.ToString().c_str();
+        pubkey = EncodeBase58(destinationKey.Raw()).c_str();
+
+        return true;
+    }
+
+    return false;
+}
+
+WalletModel *MessageModel::getWalletModel()
+{
+    return walletModel;
+}
+
+OptionsModel *MessageModel::getOptionsModel()
+{
+    return optionsModel;
+}
+
+MessageModel::StatusCode MessageModel::sendMessages(const QList<SendMessagesRecipient> &recipients, const QString &addressFrom)
+{
+
+    QSet<QString> setAddress;
+
+    if(recipients.empty())
+        return OK;
+
+    // Pre-check input data for validity
+    foreach(const SendMessagesRecipient &rcp, recipients)
+    {
+        if(!walletModel->validateAddress(rcp.address))
+            return InvalidAddress;
+
+        if(rcp.message == "")
+            return MessageCreationFailed;
+
+        std::string sendTo  = rcp.address.toStdString();
+        std::string pubkey  = rcp.pubkey.toStdString();
+        std::string message = rcp.message.toStdString();
+        std::string addFrom = addressFrom.toStdString();
+
+        SecureMsgAddAddress(sendTo, pubkey);
+        setAddress.insert(rcp.address);
+        
+        std::string sError;
+        if (SecureMsgSend(addFrom, sendTo, message, sError) != 0)
+        {
+            QMessageBox::warning(NULL, tr("Send Secure Message"),
+                tr("Send failed: %1.").arg(sError.c_str()),
+                QMessageBox::Ok, QMessageBox::Ok);
+            
+            return FailedErrorShown;
+        };
+
+        // Add addresses / update labels that we've sent to to the address book
+        std::string strAddress = rcp.address.toStdString();
+        CTxDestination dest = CWayaWolfCoinAddress(strAddress).Get();
+        std::string strLabel = rcp.label.toStdString();
+        {
+            LOCK(wallet->cs_wallet);
+
+            std::map<CTxDestination, std::string>::iterator mi = wallet->mapAddressBook.find(dest);
+
+            // Check if we have a new address or an updated label
+            if (mi == wallet->mapAddressBook.end() || mi->second != strLabel)
+            {
+                wallet->SetAddressBookName(dest, strLabel);
+            }
+        }
+    }
+
+    if(recipients.size() > setAddress.size())
+        return DuplicateAddress;
+
+    return OK;
+}
+
+MessageModel::StatusCode MessageModel::sendMessages(const QList<SendMessagesRecipient> &recipients)
+{
+    return sendMessages(recipients, "anon");
+}
+
+int MessageModel::rowCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return priv->cachedMessageTable.size();
+}
+
+int MessageModel::columnCount(const QModelIndex &parent) const
+{
+    Q_UNUSED(parent);
+    return columns.length();
+}
+
+QVariant MessageModel::data(const QModelIndex &index, int role) const
+{
+    if(!index.isValid())
+        return QVariant();
+
+    MessageTableEntry *rec = static_cast<MessageTableEntry*>(index.internalPointer());
+
+    switch(role)
+    {
+    /*
+    case Qt::DecorationRole:
+        switch(index.column())
+        {
+            return txStatusDecoration(rec);
+        case ToAddress:
+            return txAddressDecoration(rec);
+        }
+        break;*/
+    case Qt::DisplayRole:
+        switch(index.column())
+        {
+            case Label:	           return (rec->label.isEmpty() ? tr("(no label)") : rec->label);
+            case ToAddress:	       return rec->to_address;
+            case FromAddress:      return rec->from_address;
+            case SentDateTime:     return rec->sent_datetime;
+            case ReceivedDateTime: return rec->received_datetime;
+            case Message:          return rec->message;
+            case TypeInt:          return rec->type;
+            case HTML:             return rec->received_datetime.toString() + "<br>"  + (rec->label.isEmpty() ? rec->from_address : rec->label)  + "<br>" + rec->message;
+            case Type:
+                switch(rec->type)
+                {
+                    case MessageTableEntry::Sent:     return Sent;
+                    case MessageTableEntry::Received: return Received;
+                    default: break;
+                }
+            case Key:               return QVariant::fromValue(rec->chKey);
+        }
+        break;
+
+    case KeyRole:           return QVariant::fromValue(rec->chKey);
+    case TypeRole:          return rec->type;
+    case SentDateRole:      return rec->sent_datetime;
+    case ReceivedDateRole:  return rec->received_datetime;
+    case FromAddressRole:   return rec->from_address;
+    case ToAddressRole:     return rec->to_address;
+    case FilterAddressRole: return (rec->type == MessageTableEntry::Sent ? rec->to_address + rec->from_address : rec->from_address + rec->to_address);
+    case LabelRole:         return rec->label;
+    case MessageRole:       return rec->message;
+    case ShortMessageRole:  return rec->message; // TODO: Short message
+    case HTMLRole:          return rec->received_datetime.toString() + "<br>"  + (rec->label.isEmpty() ? rec->from_address : rec->label)  + "<br>" + rec->message;
+    case Ambiguous:
+        int it;
+
+        for (it = 0; it<ambiguous.length(); it++) {
+            if(ambiguous[it] == (rec->type == MessageTableEntry::Sent ? rec->to_address + rec->from_address : rec->from_address + rec->to_address))
+                return false;
+        }
+        Q
