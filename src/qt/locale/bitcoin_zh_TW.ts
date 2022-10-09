@@ -3349,4 +3349,22 @@ for example: alertnotify=echo %%s | mail -s &quot;WayaWolfCoin Alert&quot; admin
     </message>
     <message>
         <location line="-161"/>
-        <source>To use
+        <source>To use the %s option</source>
+        <translation>為了要使用 %s 選項</translation>
+    </message>
+    <message>
+        <location line="+188"/>
+        <source>Error</source>
+        <translation>錯誤</translation>
+    </message>
+    <message>
+        <location line="-18"/>
+        <source>You must set rpcpassword=&lt;password&gt; in the configuration file:
+%s
+If the file does not exist, create it with owner-readable-only file permissions.</source>
+        <translation>你必須在以下設定檔中設定 RPC 密碼(rpcpassword=&lt;password&gt;):
+%s
+如果還沒有這個檔案，請在造出來的時候，設定檔案權限成只有主人才能讀取。</translation>
+    </message>
+</context>
+</TS>
