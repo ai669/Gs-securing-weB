@@ -124,4 +124,219 @@ void MessagePage::setModel(MessageModel *model)
     if(!model)
         return;
 
-    //if (model->proxyM
+    //if (model->proxyModel)
+    //    delete model->proxyModel;
+    model->proxyModel = new QSortFilterProxyModel(this);
+    model->proxyModel->setSourceModel(model);
+    model->proxyModel->setDynamicSortFilter(true);
+    model->proxyModel->setSortCaseSensitivity(Qt::CaseInsensitive);
+    model->proxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
+    model->proxyModel->sort(MessageModel::ReceivedDateTime);
+    model->proxyModel->setFilterRole(MessageModel::Ambiguous);
+    model->proxyModel->setFilterFixedString("true");
+
+    ui->tableView->setModel(model->proxyModel);
+    ui->tableView->sortByColumn(MessageModel::ReceivedDateTime, Qt::DescendingOrder);
+
+    ui->listConversation->setModel(model->proxyModel);
+    ui->listConversation->setModelColumn(MessageModel::HTML);
+
+    // Set column widths
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::Type,             100);
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::Label,            100);
+    ui->tableView->horizontalHeader()->setSectionResizeMode(MessageModel::Label,            QHeaderView::Stretch);
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::FromAddress,      320);
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::ToAddress,        320);
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::SentDateTime,     170);
+    ui->tableView->horizontalHeader()->resizeSection(MessageModel::ReceivedDateTime, 170);
+
+    //ui->messageEdit->setMinimumHeight(100);
+
+    // Hidden columns
+    ui->tableView->setColumnHidden(MessageModel::Message, true);
+
+    connect(ui->tableView->selectionModel(),        SIGNAL(selectionChanged(QItemSelection, QItemSelection)), this, SLOT(selectionChanged()));
+    connect(ui->tableView,                          SIGNAL(doubleClicked(QModelIndex)),                       this, SLOT(selectionChanged()));
+    connect(ui->listConversation->selectionModel(), SIGNAL(selectionChanged(QItemSelection,QItemSelection)),  this, SLOT(itemSelectionChanged()));
+    connect(ui->listConversation,                   SIGNAL(doubleClicked(QModelIndex)),                       this, SLOT(itemSelectionChanged()));
+    //connect(ui->messageEdit,                        SIGNAL(textChanged()),                                    this, SLOT(messageTextChanged()));
+
+    // Scroll to bottom
+    connect(model, SIGNAL(rowsInserted(QModelIndex,int,int)), this, SLOT(incomingMessage()));
+
+    selectionChanged();
+}
+
+void MessagePage::on_sendButton_clicked()
+{
+    if(!model)
+        return;
+
+    std::string sError;
+    std::string sendTo  = replyToAddress.toStdString();
+    std::string message = ui->messageEdit->toHtml().toStdString();
+    std::string addFrom = replyFromAddress.toStdString();
+
+    if (SecureMsgSend(addFrom, sendTo, message, sError) != 0)
+    {
+        QMessageBox::warning(NULL, tr("Send Secure Message"),
+            tr("Send failed: %1.").arg(sError.c_str()),
+            QMessageBox::Ok, QMessageBox::Ok);
+
+        return;
+    };
+
+    //ui->messageEdit->setMaximumHeight(30);
+    ui->messageEdit->clear();
+    ui->listConversation->scrollToBottom();
+}
+
+void MessagePage::on_newButton_clicked()
+{
+    if(!model)
+        return;
+
+    SendMessagesDialog dlg(SendMessagesDialog::Encrypted, SendMessagesDialog::Dialog, this);
+
+    dlg.setModel(model);
+    dlg.exec();
+}
+
+void MessagePage::on_copyFromAddressButton_clicked()
+{
+    GUIUtil::copyEntryData(ui->tableView, MessageModel::FromAddress, Qt::DisplayRole);
+}
+
+void MessagePage::on_copyToAddressButton_clicked()
+{
+    GUIUtil::copyEntryData(ui->tableView, MessageModel::ToAddress, Qt::DisplayRole);
+}
+
+void MessagePage::on_deleteButton_clicked()
+{
+    QListView *list = ui->listConversation;
+
+    if(!list->selectionModel())
+        return;
+
+    QModelIndexList indexes = list->selectionModel()->selectedIndexes();
+
+    if(!indexes.isEmpty())
+    {
+        list->model()->removeRow(indexes.at(0).row());
+        indexes = list->selectionModel()->selectedIndexes();
+
+        if(indexes.isEmpty())
+            on_backButton_clicked();
+    }
+}
+
+void MessagePage::on_backButton_clicked()
+{
+    model->proxyModel->setFilterRole(false);
+    model->proxyModel->setFilterFixedString("");
+    model->resetFilter();
+    model->proxyModel->setFilterRole(MessageModel::Ambiguous);
+    model->proxyModel->setFilterFixedString("true");
+
+    ui->tableView->clearSelection();
+    ui->listConversation->clearSelection();
+    itemSelectionChanged();
+    selectionChanged();
+
+    ui->messageDetails->hide();
+    ui->tableView->show();
+    ui->newButton->setEnabled(true);
+    ui->newButton->setVisible(true);
+    ui->sendButton->setEnabled(false);
+    ui->sendButton->setVisible(false);
+    ui->messageEdit->setVisible(false);
+}
+
+void MessagePage::selectionChanged()
+{
+    // Set button states based on selected tab and selection
+    QTableView *table = ui->tableView;
+    if(!table->selectionModel())
+        return;
+
+    if(table->selectionModel()->hasSelection())
+    {
+        replyAction->setEnabled(true);
+        copyFromAddressAction->setEnabled(true);
+        copyToAddressAction->setEnabled(true);
+        deleteAction->setEnabled(true);
+
+        ui->copyFromAddressButton->setEnabled(true);
+        ui->copyToAddressButton->setEnabled(true);
+        ui->deleteButton->setEnabled(true);
+
+        ui->newButton->setEnabled(false);
+        ui->newButton->setVisible(false);
+        ui->sendButton->setEnabled(true);
+        ui->sendButton->setVisible(true);
+        ui->messageEdit->setVisible(true);
+
+        ui->tableView->hide();
+
+        // Figure out which message was selected
+        QModelIndexList labelColumn       = table->selectionModel()->selectedRows(MessageModel::Label);
+        QModelIndexList addressFromColumn = table->selectionModel()->selectedRows(MessageModel::FromAddress);
+        QModelIndexList addressToColumn   = table->selectionModel()->selectedRows(MessageModel::ToAddress);
+        QModelIndexList typeColumn        = table->selectionModel()->selectedRows(MessageModel::Type);
+
+        int type;
+
+        foreach (QModelIndex index, typeColumn)
+            type = (table->model()->data(index).toString() == MessageModel::Sent ? MessageTableEntry::Sent : MessageTableEntry::Received);
+
+        foreach (QModelIndex index, labelColumn)
+            ui->contactLabel->setText(table->model()->data(index).toString());
+
+        foreach (QModelIndex index, addressFromColumn)
+            if(type == MessageTableEntry::Sent)
+                replyFromAddress = table->model()->data(index).toString();
+            else
+                replyToAddress = table->model()->data(index).toString();
+
+        foreach (QModelIndex index, addressToColumn)
+            if(type == MessageTableEntry::Sent)
+                replyToAddress = table->model()->data(index).toString();
+            else
+                replyFromAddress = table->model()->data(index).toString();
+
+        QString filter = (type == MessageTableEntry::Sent ? replyToAddress + replyFromAddress : replyToAddress + replyFromAddress);
+
+        model->proxyModel->setFilterRole(false);
+        model->proxyModel->setFilterFixedString("");
+        model->proxyModel->sort(MessageModel::ReceivedDateTime);
+        model->proxyModel->setFilterRole(MessageModel::FilterAddressRole);
+        model->proxyModel->setFilterFixedString(filter);
+        ui->messageDetails->show();
+        ui->listConversation->setCurrentIndex(model->proxyModel->index(0, 0, QModelIndex()));
+    }
+    else
+    {
+        ui->newButton->setEnabled(true);
+        ui->newButton->setVisible(true);
+        ui->sendButton->setEnabled(false);
+        ui->sendButton->setVisible(false);
+        ui->copyFromAddressButton->setEnabled(false);
+        ui->copyToAddressButton->setEnabled(false);
+        ui->deleteButton->setEnabled(false);
+        ui->messageEdit->hide();
+        ui->messageDetails->hide();
+        ui->messageEdit->clear();
+    }
+}
+
+void MessagePage::itemSelectionChanged()
+{
+    // Set button states based on selected tab and selection
+    QListView *list = ui->listConversation;
+    if(!list->selectionModel())
+        return;
+
+    if(list->selectionModel()->hasSelection())
+    {
+        repl
