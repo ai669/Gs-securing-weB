@@ -496,4 +496,126 @@ QVariant MessageModel::data(const QModelIndex &index, int role) const
             if(ambiguous[it] == (rec->type == MessageTableEntry::Sent ? rec->to_address + rec->from_address : rec->from_address + rec->to_address))
                 return false;
         }
-        Q
+        QString address = (rec->type == MessageTableEntry::Sent ? rec->to_address + rec->from_address : rec->from_address + rec->to_address);
+        ambiguous.append(address);
+
+        return "true";
+        break;
+    }
+
+    return QVariant();
+}
+
+QVariant MessageModel::headerData(int section, Qt::Orientation orientation, int role) const
+{
+    return (orientation == Qt::Horizontal && role == Qt::DisplayRole ? columns[section] : QVariant());
+}
+
+Qt::ItemFlags MessageModel::flags(const QModelIndex & index) const
+{
+    if(index.isValid())
+        return Qt::ItemIsSelectable | Qt::ItemIsEnabled;
+
+    return 0;
+}
+
+QModelIndex MessageModel::index(int row, int column, const QModelIndex & parent) const
+{
+    Q_UNUSED(parent);
+    MessageTableEntry *data = priv->index(row);
+    return (data ? createIndex(row, column, priv->index(row)) : QModelIndex());
+}
+
+bool MessageModel::removeRows(int row, int count, const QModelIndex & parent)
+{
+    MessageTableEntry *rec = priv->index(row);
+    if(count != 1 || !rec)
+        // Can only remove one row at a time, and cannot remove rows not in model.
+        // Also refuse to remove receiving addresses.
+        return false;
+
+    {
+        LOCK(cs_smsgDB);
+        SecMsgDB dbSmsg;
+
+        if (!dbSmsg.Open("cr+"))
+            //throw runtime_error("Could not open DB.");
+            return false;
+
+        dbSmsg.EraseSmesg(&rec->chKey[0]);
+    }
+
+    beginRemoveRows(parent, row, row);
+    priv->cachedMessageTable.removeAt(row);
+    endRemoveRows();
+
+    return true;
+}
+
+void MessageModel::resetFilter()
+{
+    ambiguous.clear();
+}
+
+void MessageModel::newMessage(const SecMsgStored &smsg)
+{
+    priv->newMessage(smsg);
+}
+
+
+void MessageModel::newOutboxMessage(const SecMsgStored &smsgOutbox)
+{
+    priv->newOutboxMessage(smsgOutbox);
+}
+
+
+void MessageModel::walletUnlocked()
+{
+    priv->walletUnlocked();
+}
+
+void MessageModel::setEncryptionStatus(int status)
+{
+    priv->setEncryptionStatus(status);
+}
+
+
+static void NotifySecMsgInbox(MessageModel *messageModel, SecMsgStored inboxHdr)
+{
+    // Too noisy: OutputDebugStringF("NotifySecMsgInboxChanged %s\n", message);
+    QMetaObject::invokeMethod(messageModel, "newMessage", Qt::QueuedConnection,
+                              Q_ARG(SecMsgStored, inboxHdr));
+}
+
+static void NotifySecMsgOutbox(MessageModel *messageModel, SecMsgStored outboxHdr)
+{
+    QMetaObject::invokeMethod(messageModel, "newOutboxMessage", Qt::QueuedConnection,
+                              Q_ARG(SecMsgStored, outboxHdr));
+}
+
+static void NotifySecMsgWallet(MessageModel *messageModel)
+{
+    QMetaObject::invokeMethod(messageModel, "walletUnlocked", Qt::QueuedConnection);
+}
+
+void MessageModel::subscribeToCoreSignals()
+{
+    qRegisterMetaType<SecMsgStored>("SecMsgStored");
+
+    // Connect signals
+    NotifySecMsgInboxChanged.connect(boost::bind(NotifySecMsgInbox, this, _1));
+    NotifySecMsgOutboxChanged.connect(boost::bind(NotifySecMsgOutbox, this, _1));
+    NotifySecMsgWalletUnlocked.connect(boost::bind(NotifySecMsgWallet, this));
+    
+    connect(walletModel, SIGNAL(encryptionStatusChanged(int)), this, SLOT(setEncryptionStatus(int)));
+}
+
+void MessageModel::unsubscribeFromCoreSignals()
+{
+    // Disconnect signals
+    NotifySecMsgInboxChanged.disconnect(boost::bind(NotifySecMsgInbox, this, _1));
+    NotifySecMsgOutboxChanged.disconnect(boost::bind(NotifySecMsgOutbox, this, _1));
+    NotifySecMsgWalletUnlocked.disconnect(boost::bind(NotifySecMsgWallet, this));
+    
+    disconnect(walletModel, SIGNAL(encryptionStatusChanged(int)), this, SLOT(setEncryptionStatus(int)));
+}
