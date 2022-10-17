@@ -339,4 +339,91 @@ void MessagePage::itemSelectionChanged()
 
     if(list->selectionModel()->hasSelection())
     {
-        repl
+        replyAction->setEnabled(true);
+        copyFromAddressAction->setEnabled(true);
+        copyToAddressAction->setEnabled(true);
+        deleteAction->setEnabled(true);
+
+        ui->copyFromAddressButton->setEnabled(true);
+        ui->copyToAddressButton->setEnabled(true);
+        ui->deleteButton->setEnabled(true);
+
+        ui->newButton->setEnabled(false);
+        ui->newButton->setVisible(false);
+        ui->sendButton->setEnabled(true);
+        ui->sendButton->setVisible(true);
+        ui->messageEdit->setVisible(true);
+
+        ui->tableView->hide();
+
+    }
+    else
+    {
+        ui->newButton->setEnabled(true);
+        ui->newButton->setVisible(true);
+        ui->sendButton->setEnabled(false);
+        ui->sendButton->setVisible(false);
+        ui->copyFromAddressButton->setEnabled(false);
+        ui->copyToAddressButton->setEnabled(false);
+        ui->deleteButton->setEnabled(false);
+        ui->messageEdit->hide();
+        ui->messageDetails->hide();
+        ui->messageEdit->clear();
+    }
+}
+
+void MessagePage::incomingMessage()
+{
+    ui->listConversation->scrollToBottom();
+}
+
+void MessagePage::messageTextChanged()
+{
+    /*
+    if(ui->messageEdit->toPlainText().endsWith("\n"))
+    {
+        ui->messageEdit->setMaximumHeight(80);
+        ui->messageEdit->resize(256, ui->messageEdit->document()->size().height() + 10);
+    }*/
+
+}
+
+void MessagePage::exportClicked()
+{
+    // CSV is currently the only supported format
+    QString filename = GUIUtil::getSaveFileName(
+            this,
+            tr("Export Messages"), QString(),
+            tr("Comma separated file (*.csv)"));
+
+    if (filename.isNull()) return;
+
+    CSVModelWriter writer(filename);
+
+    // name, column, role
+    writer.setModel(model->proxyModel);
+    writer.addColumn("Type",             MessageModel::Type,             Qt::DisplayRole);
+    writer.addColumn("Label",            MessageModel::Label,            Qt::DisplayRole);
+    writer.addColumn("FromAddress",      MessageModel::FromAddress,      Qt::DisplayRole);
+    writer.addColumn("ToAddress",        MessageModel::ToAddress,        Qt::DisplayRole);
+    writer.addColumn("SentDateTime",     MessageModel::SentDateTime,     Qt::DisplayRole);
+    writer.addColumn("ReceivedDateTime", MessageModel::ReceivedDateTime, Qt::DisplayRole);
+    writer.addColumn("Message",          MessageModel::Message,          Qt::DisplayRole);
+
+    if(!writer.write())
+    {
+        QMessageBox::critical(this, tr("Error exporting"), tr("Could not write to file %1.").arg(filename),
+                              QMessageBox::Abort, QMessageBox::Abort);
+    }
+}
+
+
+void MessagePage::contextualMenu(const QPoint &point)
+{
+    QModelIndex index = ui->tableView->indexAt(point);
+    if(index.isValid())
+    {
+        contextMenu->exec(QCursor::pos());
+    }
+}
+
