@@ -209,4 +209,261 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& stake, cons
     bool showImmature = true;
     bool showWatchOnlyImmature = watchImmatureBalance != 0;
 
-    // for symmetry reasons also show immature label when the
+    // for symmetry reasons also show immature label when the watch-only one is shown
+    ui->labelImmature->setVisible(showImmature || showWatchOnlyImmature);
+    ui->labelImmatureText->setVisible(showImmature || showWatchOnlyImmature);
+    //ui->labelWatchImmature->setVisible(showWatchOnlyImmature); // show watch-only immature balance
+}
+
+// show/hide watch-only labels
+void OverviewPage::updateWatchOnlyLabels(bool showWatchOnly)
+{
+    //ui->labelSpendable->setVisible(showWatchOnly);      // show spendable label (only when watch-only is active)
+    //ui->labelWatchonly->setVisible(showWatchOnly);      // show watch-only label
+    //ui->labelWWtotalimg->setVisible(showWatchOnly);    // show watch-only balance separator line
+    //ui->labelWatchStake->setVisible(showWatchOnly);    // show watch-only balance separator line
+    //ui->labelWatchAvailable->setVisible(showWatchOnly); // show watch-only available balance
+    //ui->labelWatchPending->setVisible(showWatchOnly);   // show watch-only pending balance
+    //ui->labelWatchTotal->setVisible(showWatchOnly);     // show watch-only total balance
+
+    if (!showWatchOnly){
+        //ui->labelWatchImmature->hide();
+    }
+    else{
+        ui->labelBalance->setIndent(20);
+        ui->labelStake->setIndent(20);
+        ui->labelUnconfirmed->setIndent(20);
+        ui->labelImmature->setIndent(20);
+        ui->labelTotal->setIndent(20);
+    }
+}
+
+void OverviewPage::setClientModel(ClientModel *model)
+{
+    this->clientModel = model;
+    if(model)
+    {
+        // Show warning if this is a prerelease version
+        connect(model, SIGNAL(alertsChanged(QString)), this, SLOT(updateAlerts(QString)));
+        updateAlerts(model->getStatusBarWarnings());
+
+        // Update network status display
+        setCntConnections(model->getNumConnections());
+        connect(model, SIGNAL(numConnectionsChanged(int)), this, SLOT(setCntConnections(int)));
+        // ''
+        setCntBlocks(model->getNumBlocks());
+        connect(model, SIGNAL(numBlocksChanged(int)), this, SLOT(setCntBlocks(int)));
+        //
+        connect(model, SIGNAL(statusWalletLockChanged(bool)), this, SLOT(setLockStatus()));
+    }
+}
+
+void OverviewPage::setWalletModel(WalletModel *model)
+{
+    this->walletModel = model;
+    if(model && model->getOptionsModel())
+    {
+        // Set up transaction list
+        filter = new TransactionFilterProxy();
+        filter->setSourceModel(model->getTransactionTableModel());
+        filter->setLimit(NUM_ITEMS);
+        filter->setDynamicSortFilter(true);
+        filter->setSortRole(Qt::EditRole);
+        filter->setShowInactive(false);
+        filter->sort(TransactionTableModel::Status, Qt::DescendingOrder);
+
+        ui->listTransactions_2->setModel(filter);
+        ui->listTransactions_2->setModelColumn(TransactionTableModel::ToAddress);
+
+        // Keep up to date with wallet
+        setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance(),
+             model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+        connect(model, SIGNAL(balanceChanged(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)), this, SLOT(setBalance(CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount, CAmount)));
+
+        connect(model->getOptionsModel(), SIGNAL(displayUnitChanged(int)), this, SLOT(updateDisplayUnit()));
+
+        updateWatchOnlyLabels(model->haveWatchOnly());
+        connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
+
+        // lockstatusLabel
+        // Initialize status icon
+        if(settingsStatus)
+        {
+            setLockIconLocked();
+        } else
+        {
+            setLockIconUnlocked();
+        }
+    }
+
+    // update the display unit, to not use the default ("WW")
+    updateDisplayUnit();
+}
+
+void OverviewPage::updateDisplayUnit()
+{
+    if(walletModel && walletModel->getOptionsModel())
+    {
+
+        nDisplayUnit = walletModel->getOptionsModel()->getDisplayUnit();
+        if(currentBalance != -1)
+            setBalance(currentBalance, currentStake, currentUnconfirmedBalance, currentImmatureBalance,
+                currentWatchOnlyBalance, currentWatchOnlyStake, currentWatchUnconfBalance, currentWatchImmatureBalance);
+
+        // Update txdelegate->unit with the current unit
+        txdelegate->unit = nDisplayUnit;
+
+       ui->listTransactions_2->update();
+    }
+}
+
+void OverviewPage::updateAlerts(const QString &warnings)
+{
+    this->ui->labelAlerts->setVisible(!warnings.isEmpty());
+    this->ui->labelAlerts->setText(warnings);
+}
+
+void OverviewPage::showOutOfSyncWarning(bool fShow)
+{
+    fShow = false;
+    //ui->labelWalletStatus->setVisible(fShow);
+}
+
+void OverviewPage::ShowSynchronizedMessage(bool fSyncFinish)
+{
+    if(fSyncFinish) {
+        ui->labelTransactionsStatus->setText(tr("Synchronized"));
+        ui->syncLabel->clear();
+        ui->syncLabel->setPixmap(QPixmap(":/icons/synced"));
+    } else {
+        ui->labelTransactionsStatus->setText(tr("Synchronizing... Please wait"));
+        QMovie *SYNCmovie = new QMovie(":/gifs/syncgif");
+        ui->syncLabel->setMovie(SYNCmovie);
+        SYNCmovie->start();// Set syncing animation
+    }
+}
+
+void OverviewPage::on_viewQR_clicked()
+{
+    QRCodeDialog qrpage("", "test", true, this);
+    qrpage.setModel(walletModel->getOptionsModel());
+    qrpage.exec();
+}
+
+//
+// Network logic rerporting
+//
+//
+
+std::string getPoSHash(int Height)
+{
+    if(Height < 0) { return "351c6703813172725c6d660aa539ee6a3d7a9fe784c87fae7f36582e3b797058"; }
+    int desiredheight;
+    desiredheight = Height;
+    if (desiredheight < 0 || desiredheight > nBestHeight)
+        return 0;
+
+    CBlock block;
+    CBlockIndex* pblockindex = mapBlockIndex[hashBestChain];
+    while (pblockindex->nHeight > desiredheight)
+        pblockindex = pblockindex->pprev;
+    return pblockindex->phashBlock->GetHex();
+}
+
+
+double getPoSHardness(int height)
+{
+    const CBlockIndex* blockindex = getPoSIndex(height);
+
+    int nShift = (blockindex->nBits >> 24) & 0xff;
+
+    double dDiff =
+        (double)0x0000ffff / (double)(blockindex->nBits & 0x00ffffff);
+
+    while (nShift < 29)
+    {
+        dDiff *= 256.0;
+        nShift++;
+    }
+    while (nShift > 29)
+    {
+        dDiff /= 256.0;
+        nShift--;
+    }
+
+    return dDiff;
+
+}
+
+const CBlockIndex* getPoSIndex(int height)
+{
+    std::string hex = getPoSHash(height);
+    uint256 hash(hex);
+    return mapBlockIndex[hash];
+}
+
+int getPoSTime(int Height)
+{
+    std::string strHash = getPoSHash(Height);
+    uint256 hash(strHash);
+
+    if (mapBlockIndex.count(hash) == 0)
+        return 0;
+
+    CBlock block;
+    CBlockIndex* pblockindex = mapBlockIndex[hash];
+    return pblockindex->nTime;
+}
+
+int PoSInPastHours(int hours)
+{
+    int wayback = hours * 3600;
+    bool check = true;
+    int height = pindexBest->nHeight;
+    int heightHour = pindexBest->nHeight;
+    int utime = (int)time(NULL);
+    int target = utime - wayback;
+
+    while(check)
+    {
+        if(getPoSTime(heightHour) < target)
+        {
+            check = false;
+            return height - heightHour;
+        } else {
+            heightHour = heightHour - 1;
+        }
+    }
+
+    return 0;
+}
+
+double convertPoSCoins(int64_t amount)
+{
+    return (double)amount / (double)COIN;
+}
+
+void OverviewPage::updatePoSstat(bool stat)
+{
+    if(stat)
+    {
+        uint64_t nWeight = 0;
+        if (pwalletMain)
+            nWeight = pwalletMain->GetStakeWeight();
+        uint64_t nNetworkWeight = GetPoSKernelPS();
+        bool staking = nLastCoinStakeSearchInterval && nWeight;
+        uint64_t nExpectedTime = staking ? (GetTargetSpacing * nNetworkWeight / nWeight) : 0;
+        QString Qseconds = " Second(s)";
+        if(nExpectedTime > 86399)
+        {
+           nExpectedTime = nExpectedTime / 60 / 60 / 24;
+           Qseconds = " Day(s)";
+        }
+        else if(nExpectedTime > 3599)
+        {
+           nExpectedTime = nExpectedTime / 60 / 60;
+           Qseconds = " Hour(s)";
+        }
+        else if(nExpectedTime > 59)
+        {
+           nExpectedTime =
