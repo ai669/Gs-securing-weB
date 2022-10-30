@@ -67,4 +67,8 @@ public slots:
 private slots:
     void handleURIConnection();
 
-private
+private:
+    OptionsModel *optionsModel;
+};
+
+#endif // PAYMENTSERVER_H
