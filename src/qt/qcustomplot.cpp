@@ -22510,3 +22510,1201 @@ void QCPItemText::setText(const QString &text)
   
   Examples:
   \li If \a alignment is <tt>Qt::AlignHCenter | Qt::AlignTop</tt>, the text will be positioned such
+  that the top of the text rect will be horizontally centered on \a position.
+  \li If \a alignment is <tt>Qt::AlignLeft | Qt::AlignBottom</tt>, \a position will indicate the
+  bottom left corner of the text rect.
+  
+  If you want to control the alignment of (multi-lined) text within the text rect, use \ref
+  setTextAlignment.
+*/
+void QCPItemText::setPositionAlignment(Qt::Alignment alignment)
+{
+  mPositionAlignment = alignment;
+}
+
+/*!
+  Controls how (multi-lined) text is aligned inside the text rect (typically Qt::AlignLeft, Qt::AlignCenter or Qt::AlignRight).
+*/
+void QCPItemText::setTextAlignment(Qt::Alignment alignment)
+{
+  mTextAlignment = alignment;
+}
+
+/*!
+  Sets the angle in degrees by which the text (and the text rectangle, if visible) will be rotated
+  around \a position.
+*/
+void QCPItemText::setRotation(double degrees)
+{
+  mRotation = degrees;
+}
+
+/*!
+  Sets the distance between the border of the text rectangle and the text. The appearance (and
+  visibility) of the text rectangle can be controlled with \ref setPen and \ref setBrush.
+*/
+void QCPItemText::setPadding(const QMargins &padding)
+{
+  mPadding = padding;
+}
+
+/* inherits documentation from base class */
+double QCPItemText::selectTest(const QPointF &pos, bool onlySelectable, QVariant *details) const
+{
+  Q_UNUSED(details)
+  if (onlySelectable && !mSelectable)
+    return -1;
+  
+  // The rect may be rotated, so we transform the actual clicked pos to the rotated
+  // coordinate system, so we can use the normal rectSelectTest function for non-rotated rects:
+  QPointF positionPixels(position->pixelPoint());
+  QTransform inputTransform;
+  inputTransform.translate(positionPixels.x(), positionPixels.y());
+  inputTransform.rotate(-mRotation);
+  inputTransform.translate(-positionPixels.x(), -positionPixels.y());
+  QPointF rotatedPos = inputTransform.map(pos);
+  QFontMetrics fontMetrics(mFont);
+  QRect textRect = fontMetrics.boundingRect(0, 0, 0, 0, Qt::TextDontClip|mTextAlignment, mText);
+  QRect textBoxRect = textRect.adjusted(-mPadding.left(), -mPadding.top(), mPadding.right(), mPadding.bottom());
+  QPointF textPos = getTextDrawPoint(positionPixels, textBoxRect, mPositionAlignment);
+  textBoxRect.moveTopLeft(textPos.toPoint());
+
+  return rectSelectTest(textBoxRect, rotatedPos, true);
+}
+
+/* inherits documentation from base class */
+void QCPItemText::draw(QCPPainter *painter)
+{
+  QPointF pos(position->pixelPoint());
+  QTransform transform = painter->transform();
+  transform.translate(pos.x(), pos.y());
+  if (!qFuzzyIsNull(mRotation))
+    transform.rotate(mRotation);
+  painter->setFont(mainFont());
+  QRect textRect = painter->fontMetrics().boundingRect(0, 0, 0, 0, Qt::TextDontClip|mTextAlignment, mText);
+  QRect textBoxRect = textRect.adjusted(-mPadding.left(), -mPadding.top(), mPadding.right(), mPadding.bottom());
+  QPointF textPos = getTextDrawPoint(QPointF(0, 0), textBoxRect, mPositionAlignment); // 0, 0 because the transform does the translation
+  textRect.moveTopLeft(textPos.toPoint()+QPoint(mPadding.left(), mPadding.top()));
+  textBoxRect.moveTopLeft(textPos.toPoint());
+  double clipPad = mainPen().widthF();
+  QRect boundingRect = textBoxRect.adjusted(-clipPad, -clipPad, clipPad, clipPad);
+  if (transform.mapRect(boundingRect).intersects(painter->transform().mapRect(clipRect())))
+  {
+    painter->setTransform(transform);
+    if ((mainBrush().style() != Qt::NoBrush && mainBrush().color().alpha() != 0) ||
+        (mainPen().style() != Qt::NoPen && mainPen().color().alpha() != 0))
+    {
+      painter->setPen(mainPen());
+      painter->setBrush(mainBrush());
+      painter->drawRect(textBoxRect);
+    }
+    painter->setBrush(Qt::NoBrush);
+    painter->setPen(QPen(mainColor()));
+    painter->drawText(textRect, Qt::TextDontClip|mTextAlignment, mText);
+  }
+}
+
+/* inherits documentation from base class */
+QPointF QCPItemText::anchorPixelPoint(int anchorId) const
+{
+  // get actual rect points (pretty much copied from draw function):
+  QPointF pos(position->pixelPoint());
+  QTransform transform;
+  transform.translate(pos.x(), pos.y());
+  if (!qFuzzyIsNull(mRotation))
+    transform.rotate(mRotation);
+  QFontMetrics fontMetrics(mainFont());
+  QRect textRect = fontMetrics.boundingRect(0, 0, 0, 0, Qt::TextDontClip|mTextAlignment, mText);
+  QRectF textBoxRect = textRect.adjusted(-mPadding.left(), -mPadding.top(), mPadding.right(), mPadding.bottom());
+  QPointF textPos = getTextDrawPoint(QPointF(0, 0), textBoxRect, mPositionAlignment); // 0, 0 because the transform does the translation
+  textBoxRect.moveTopLeft(textPos.toPoint());
+  QPolygonF rectPoly = transform.map(QPolygonF(textBoxRect));
+  
+  switch (anchorId)
+  {
+    case aiTopLeft:     return rectPoly.at(0);
+    case aiTop:         return (rectPoly.at(0)+rectPoly.at(1))*0.5;
+    case aiTopRight:    return rectPoly.at(1);
+    case aiRight:       return (rectPoly.at(1)+rectPoly.at(2))*0.5;
+    case aiBottomRight: return rectPoly.at(2);
+    case aiBottom:      return (rectPoly.at(2)+rectPoly.at(3))*0.5;
+    case aiBottomLeft:  return rectPoly.at(3);
+    case aiLeft:        return (rectPoly.at(3)+rectPoly.at(0))*0.5;
+  }
+  
+  qDebug() << Q_FUNC_INFO << "invalid anchorId" << anchorId;
+  return QPointF();
+}
+
+/*! \internal
+  
+  Returns the point that must be given to the QPainter::drawText function (which expects the top
+  left point of the text rect), according to the position \a pos, the text bounding box \a rect and
+  the requested \a positionAlignment.
+  
+  For example, if \a positionAlignment is <tt>Qt::AlignLeft | Qt::AlignBottom</tt> the returned point
+  will be shifted upward by the height of \a rect, starting from \a pos. So if the text is finally
+  drawn at that point, the lower left corner of the resulting text rect is at \a pos.
+*/
+QPointF QCPItemText::getTextDrawPoint(const QPointF &pos, const QRectF &rect, Qt::Alignment positionAlignment) const
+{
+  if (positionAlignment == 0 || positionAlignment == (Qt::AlignLeft|Qt::AlignTop))
+    return pos;
+  
+  QPointF result = pos; // start at top left
+  if (positionAlignment.testFlag(Qt::AlignHCenter))
+    result.rx() -= rect.width()/2.0;
+  else if (positionAlignment.testFlag(Qt::AlignRight))
+    result.rx() -= rect.width();
+  if (positionAlignment.testFlag(Qt::AlignVCenter))
+    result.ry() -= rect.height()/2.0;
+  else if (positionAlignment.testFlag(Qt::AlignBottom))
+    result.ry() -= rect.height();
+  return result;
+}
+
+/*! \internal
+
+  Returns the font that should be used for drawing text. Returns mFont when the item is not selected
+  and mSelectedFont when it is.
+*/
+QFont QCPItemText::mainFont() const
+{
+  return mSelected ? mSelectedFont : mFont;
+}
+
+/*! \internal
+
+  Returns the color that should be used for drawing text. Returns mColor when the item is not
+  selected and mSelectedColor when it is.
+*/
+QColor QCPItemText::mainColor() const
+{
+  return mSelected ? mSelectedColor : mColor;
+}
+
+/*! \internal
+
+  Returns the pen that should be used for drawing lines. Returns mPen when the item is not selected
+  and mSelectedPen when it is.
+*/
+QPen QCPItemText::mainPen() const
+{
+  return mSelected ? mSelectedPen : mPen;
+}
+
+/*! \internal
+
+  Returns the brush that should be used for drawing fills of the item. Returns mBrush when the item
+  is not selected and mSelectedBrush when it is.
+*/
+QBrush QCPItemText::mainBrush() const
+{
+  return mSelected ? mSelectedBrush : mBrush;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// QCPItemEllipse
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*! \class QCPItemEllipse
+  \brief An ellipse
+
+  \image html QCPItemEllipse.png "Ellipse example. Blue dotted circles are anchors, solid blue discs are positions."
+
+  It has two positions, \a topLeft and \a bottomRight, which define the rect the ellipse will be drawn in.
+*/
+
+/*!
+  Creates an ellipse item and sets default values.
+  
+  The constructed item can be added to the plot with QCustomPlot::addItem.
+*/
+QCPItemEllipse::QCPItemEllipse(QCustomPlot *parentPlot) :
+  QCPAbstractItem(parentPlot),
+  topLeft(createPosition("topLeft")),
+  bottomRight(createPosition("bottomRight")),
+  topLeftRim(createAnchor("topLeftRim", aiTopLeftRim)),
+  top(createAnchor("top", aiTop)),
+  topRightRim(createAnchor("topRightRim", aiTopRightRim)),
+  right(createAnchor("right", aiRight)),
+  bottomRightRim(createAnchor("bottomRightRim", aiBottomRightRim)),
+  bottom(createAnchor("bottom", aiBottom)),
+  bottomLeftRim(createAnchor("bottomLeftRim", aiBottomLeftRim)),
+  left(createAnchor("left", aiLeft)),
+  center(createAnchor("center", aiCenter))
+{
+  topLeft->setCoords(0, 1);
+  bottomRight->setCoords(1, 0);
+  
+  setPen(QPen(Qt::black));
+  setSelectedPen(QPen(Qt::blue, 2));
+  setBrush(Qt::NoBrush);
+  setSelectedBrush(Qt::NoBrush);
+}
+
+QCPItemEllipse::~QCPItemEllipse()
+{
+}
+
+/*!
+  Sets the pen that will be used to draw the line of the ellipse
+  
+  \see setSelectedPen, setBrush
+*/
+void QCPItemEllipse::setPen(const QPen &pen)
+{
+  mPen = pen;
+}
+
+/*!
+  Sets the pen that will be used to draw the line of the ellipse when selected
+  
+  \see setPen, setSelected
+*/
+void QCPItemEllipse::setSelectedPen(const QPen &pen)
+{
+  mSelectedPen = pen;
+}
+
+/*!
+  Sets the brush that will be used to fill the ellipse. To disable filling, set \a brush to
+  Qt::NoBrush.
+  
+  \see setSelectedBrush, setPen
+*/
+void QCPItemEllipse::setBrush(const QBrush &brush)
+{
+  mBrush = brush;
+}
+
+/*!
+  Sets the brush that will be used to fill the ellipse when selected. To disable filling, set \a
+  brush to Qt::NoBrush.
+  
+  \see setBrush
+*/
+void QCPItemEllipse::setSelectedBrush(const QBrush &brush)
+{
+  mSelectedBrush = brush;
+}
+
+/* inherits documentation from base class */
+double QCPItemEllipse::selectTest(const QPointF &pos, bool onlySelectable, QVariant *details) const
+{
+  Q_UNUSED(details)
+  if (onlySelectable && !mSelectable)
+    return -1;
+  
+  double result = -1;
+  QPointF p1 = topLeft->pixelPoint();
+  QPointF p2 = bottomRight->pixelPoint();
+  QPointF center((p1+p2)/2.0);
+  double a = qAbs(p1.x()-p2.x())/2.0;
+  double b = qAbs(p1.y()-p2.y())/2.0;
+  double x = pos.x()-center.x();
+  double y = pos.y()-center.y();
+  
+  // distance to border:
+  double c = 1.0/qSqrt(x*x/(a*a)+y*y/(b*b));
+  result = qAbs(c-1)*qSqrt(x*x+y*y);
+  // filled ellipse, allow click inside to count as hit:
+  if (result > mParentPlot->selectionTolerance()*0.99 && mBrush.style() != Qt::NoBrush && mBrush.color().alpha() != 0)
+  {
+    if (x*x/(a*a) + y*y/(b*b) <= 1)
+      result = mParentPlot->selectionTolerance()*0.99;
+  }
+  return result;
+}
+
+/* inherits documentation from base class */
+void QCPItemEllipse::draw(QCPPainter *painter)
+{
+  QPointF p1 = topLeft->pixelPoint();
+  QPointF p2 = bottomRight->pixelPoint();
+  if (p1.toPoint() == p2.toPoint())
+    return;
+  QRectF ellipseRect = QRectF(p1, p2).normalized();
+  QRect clip = clipRect().adjusted(-mainPen().widthF(), -mainPen().widthF(), mainPen().widthF(), mainPen().widthF());
+  if (ellipseRect.intersects(clip)) // only draw if bounding rect of ellipse is visible in cliprect
+  {
+    painter->setPen(mainPen());
+    painter->setBrush(mainBrush());
+#ifdef __EXCEPTIONS
+    try // drawEllipse sometimes throws exceptions if ellipse is too big
+    {
+#endif
+      painter->drawEllipse(ellipseRect);
+#ifdef __EXCEPTIONS
+    } catch (...)
+    {
+      qDebug() << Q_FUNC_INFO << "Item too large for memory, setting invisible";
+      setVisible(false);
+    }
+#endif
+  }
+}
+
+/* inherits documentation from base class */
+QPointF QCPItemEllipse::anchorPixelPoint(int anchorId) const
+{
+  QRectF rect = QRectF(topLeft->pixelPoint(), bottomRight->pixelPoint());
+  switch (anchorId)
+  {
+    case aiTopLeftRim:     return rect.center()+(rect.topLeft()-rect.center())*1/qSqrt(2);
+    case aiTop:            return (rect.topLeft()+rect.topRight())*0.5;
+    case aiTopRightRim:    return rect.center()+(rect.topRight()-rect.center())*1/qSqrt(2);
+    case aiRight:          return (rect.topRight()+rect.bottomRight())*0.5;
+    case aiBottomRightRim: return rect.center()+(rect.bottomRight()-rect.center())*1/qSqrt(2);
+    case aiBottom:         return (rect.bottomLeft()+rect.bottomRight())*0.5;
+    case aiBottomLeftRim:  return rect.center()+(rect.bottomLeft()-rect.center())*1/qSqrt(2);
+    case aiLeft:           return (rect.topLeft()+rect.bottomLeft())*0.5;
+    case aiCenter:         return (rect.topLeft()+rect.bottomRight())*0.5;
+  }
+  
+  qDebug() << Q_FUNC_INFO << "invalid anchorId" << anchorId;
+  return QPointF();
+}
+
+/*! \internal
+
+  Returns the pen that should be used for drawing lines. Returns mPen when the item is not selected
+  and mSelectedPen when it is.
+*/
+QPen QCPItemEllipse::mainPen() const
+{
+  return mSelected ? mSelectedPen : mPen;
+}
+
+/*! \internal
+
+  Returns the brush that should be used for drawing fills of the item. Returns mBrush when the item
+  is not selected and mSelectedBrush when it is.
+*/
+QBrush QCPItemEllipse::mainBrush() const
+{
+  return mSelected ? mSelectedBrush : mBrush;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// QCPItemPixmap
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*! \class QCPItemPixmap
+  \brief An arbitrary pixmap
+
+  \image html QCPItemPixmap.png "Pixmap example. Blue dotted circles are anchors, solid blue discs are positions."
+
+  It has two positions, \a topLeft and \a bottomRight, which define the rectangle the pixmap will
+  be drawn in. Depending on the scale setting (\ref setScaled), the pixmap will be either scaled to
+  fit the rectangle or be drawn aligned to the topLeft position.
+  
+  If scaling is enabled and \a topLeft is further to the bottom/right than \a bottomRight (as shown
+  on the right side of the example image), the pixmap will be flipped in the respective
+  orientations.
+*/
+
+/*!
+  Creates a rectangle item and sets default values.
+  
+  The constructed item can be added to the plot with QCustomPlot::addItem.
+*/
+QCPItemPixmap::QCPItemPixmap(QCustomPlot *parentPlot) :
+  QCPAbstractItem(parentPlot),
+  topLeft(createPosition("topLeft")),
+  bottomRight(createPosition("bottomRight")),
+  top(createAnchor("top", aiTop)),
+  topRight(createAnchor("topRight", aiTopRight)),
+  right(createAnchor("right", aiRight)),
+  bottom(createAnchor("bottom", aiBottom)),
+  bottomLeft(createAnchor("bottomLeft", aiBottomLeft)),
+  left(createAnchor("left", aiLeft))
+{
+  topLeft->setCoords(0, 1);
+  bottomRight->setCoords(1, 0);
+  
+  setPen(Qt::NoPen);
+  setSelectedPen(QPen(Qt::blue));
+  setScaled(false, Qt::KeepAspectRatio);
+}
+
+QCPItemPixmap::~QCPItemPixmap()
+{
+}
+
+/*!
+  Sets the pixmap that will be displayed.
+*/
+void QCPItemPixmap::setPixmap(const QPixmap &pixmap)
+{
+  mPixmap = pixmap;
+  if (mPixmap.isNull())
+    qDebug() << Q_FUNC_INFO << "pixmap is null";
+}
+
+/*!
+  Sets whether the pixmap will be scaled to fit the rectangle defined by the \a topLeft and \a
+  bottomRight positions.
+*/
+void QCPItemPixmap::setScaled(bool scaled, Qt::AspectRatioMode aspectRatioMode)
+{
+  mScaled = scaled;
+  mAspectRatioMode = aspectRatioMode;
+  updateScaledPixmap();
+}
+
+/*!
+  Sets the pen that will be used to draw a border around the pixmap.
+  
+  \see setSelectedPen, setBrush
+*/
+void QCPItemPixmap::setPen(const QPen &pen)
+{
+  mPen = pen;
+}
+
+/*!
+  Sets the pen that will be used to draw a border around the pixmap when selected
+  
+  \see setPen, setSelected
+*/
+void QCPItemPixmap::setSelectedPen(const QPen &pen)
+{
+  mSelectedPen = pen;
+}
+
+/* inherits documentation from base class */
+double QCPItemPixmap::selectTest(const QPointF &pos, bool onlySelectable, QVariant *details) const
+{
+  Q_UNUSED(details)
+  if (onlySelectable && !mSelectable)
+    return -1;
+  
+  return rectSelectTest(getFinalRect(), pos, true);
+}
+
+/* inherits documentation from base class */
+void QCPItemPixmap::draw(QCPPainter *painter)
+{
+  bool flipHorz = false;
+  bool flipVert = false;
+  QRect rect = getFinalRect(&flipHorz, &flipVert);
+  double clipPad = mainPen().style() == Qt::NoPen ? 0 : mainPen().widthF();
+  QRect boundingRect = rect.adjusted(-clipPad, -clipPad, clipPad, clipPad);
+  if (boundingRect.intersects(clipRect()))
+  {
+    updateScaledPixmap(rect, flipHorz, flipVert);
+    painter->drawPixmap(rect.topLeft(), mScaled ? mScaledPixmap : mPixmap);
+    QPen pen = mainPen();
+    if (pen.style() != Qt::NoPen)
+    {
+      painter->setPen(pen);
+      painter->setBrush(Qt::NoBrush);
+      painter->drawRect(rect);
+    }
+  }
+}
+
+/* inherits documentation from base class */
+QPointF QCPItemPixmap::anchorPixelPoint(int anchorId) const
+{
+  bool flipHorz;
+  bool flipVert;
+  QRect rect = getFinalRect(&flipHorz, &flipVert);
+  // we actually want denormal rects (negative width/height) here, so restore
+  // the flipped state:
+  if (flipHorz)
+    rect.adjust(rect.width(), 0, -rect.width(), 0);
+  if (flipVert)
+    rect.adjust(0, rect.height(), 0, -rect.height());
+  
+  switch (anchorId)
+  {
+    case aiTop:         return (rect.topLeft()+rect.topRight())*0.5;
+    case aiTopRight:    return rect.topRight();
+    case aiRight:       return (rect.topRight()+rect.bottomRight())*0.5;
+    case aiBottom:      return (rect.bottomLeft()+rect.bottomRight())*0.5;
+    case aiBottomLeft:  return rect.bottomLeft();
+    case aiLeft:        return (rect.topLeft()+rect.bottomLeft())*0.5;;
+  }
+  
+  qDebug() << Q_FUNC_INFO << "invalid anchorId" << anchorId;
+  return QPointF();
+}
+
+/*! \internal
+  
+  Creates the buffered scaled image (\a mScaledPixmap) to fit the specified \a finalRect. The
+  parameters \a flipHorz and \a flipVert control whether the resulting image shall be flipped
+  horizontally or vertically. (This is used when \a topLeft is further to the bottom/right than \a
+  bottomRight.)
+  
+  This function only creates the scaled pixmap when the buffered pixmap has a different size than
+  the expected result, so calling this function repeatedly, e.g. in the \ref draw function, does
+  not cause expensive rescaling every time.
+  
+  If scaling is disabled, sets mScaledPixmap to a null QPixmap.
+*/
+void QCPItemPixmap::updateScaledPixmap(QRect finalRect, bool flipHorz, bool flipVert)
+{
+  if (mPixmap.isNull())
+    return;
+  
+  if (mScaled)
+  {
+    if (finalRect.isNull())
+      finalRect = getFinalRect(&flipHorz, &flipVert);
+    if (finalRect.size() != mScaledPixmap.size())
+    {
+      mScaledPixmap = mPixmap.scaled(finalRect.size(), mAspectRatioMode, Qt::SmoothTransformation);
+      if (flipHorz || flipVert)
+        mScaledPixmap = QPixmap::fromImage(mScaledPixmap.toImage().mirrored(flipHorz, flipVert));
+    }
+  } else if (!mScaledPixmap.isNull())
+    mScaledPixmap = QPixmap();
+}
+
+/*! \internal
+  
+  Returns the final (tight) rect the pixmap is drawn in, depending on the current item positions
+  and scaling settings.
+  
+  The output parameters \a flippedHorz and \a flippedVert return whether the pixmap should be drawn
+  flipped horizontally or vertically in the returned rect. (The returned rect itself is always
+  normalized, i.e. the top left corner of the rect is actually further to the top/left than the
+  bottom right corner). This is the case when the item position \a topLeft is further to the
+  bottom/right than \a bottomRight.
+  
+  If scaling is disabled, returns a rect with size of the original pixmap and the top left corner
+  aligned with the item position \a topLeft. The position \a bottomRight is ignored.
+*/
+QRect QCPItemPixmap::getFinalRect(bool *flippedHorz, bool *flippedVert) const
+{
+  QRect result;
+  bool flipHorz = false;
+  bool flipVert = false;
+  QPoint p1 = topLeft->pixelPoint().toPoint();
+  QPoint p2 = bottomRight->pixelPoint().toPoint();
+  if (p1 == p2)
+    return QRect(p1, QSize(0, 0));
+  if (mScaled)
+  {
+    QSize newSize = QSize(p2.x()-p1.x(), p2.y()-p1.y());
+    QPoint topLeft = p1;
+    if (newSize.width() < 0)
+    {
+      flipHorz = true;
+      newSize.rwidth() *= -1;
+      topLeft.setX(p2.x());
+    }
+    if (newSize.height() < 0)
+    {
+      flipVert = true;
+      newSize.rheight() *= -1;
+      topLeft.setY(p2.y());
+    }
+    QSize scaledSize = mPixmap.size();
+    scaledSize.scale(newSize, mAspectRatioMode);
+    result = QRect(topLeft, scaledSize);
+  } else
+  {
+    result = QRect(p1, mPixmap.size());
+  }
+  if (flippedHorz)
+    *flippedHorz = flipHorz;
+  if (flippedVert)
+    *flippedVert = flipVert;
+  return result;
+}
+
+/*! \internal
+
+  Returns the pen that should be used for drawing lines. Returns mPen when the item is not selected
+  and mSelectedPen when it is.
+*/
+QPen QCPItemPixmap::mainPen() const
+{
+  return mSelected ? mSelectedPen : mPen;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// QCPItemTracer
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*! \class QCPItemTracer
+  \brief Item that sticks to QCPGraph data points
+
+  \image html QCPItemTracer.png "Tracer example. Blue dotted circles are anchors, solid blue discs are positions."
+
+  The tracer can be connected with a QCPGraph via \ref setGraph. Then it will automatically adopt
+  the coordinate axes of the graph and update its \a position to be on the graph's data. This means
+  the key stays controllable via \ref setGraphKey, but the value will follow the graph data. If a
+  QCPGraph is connected, note that setting the coordinates of the tracer item directly via \a
+  position will have no effect because they will be overriden in the next redraw (this is when the
+  coordinate update happens).
+  
+  If the specified key in \ref setGraphKey is outside the key bounds of the graph, the tracer will
+  stay at the corresponding end of the graph.
+  
+  With \ref setInterpolating you may specify whether the tracer may only stay exactly on data
+  points or whether it interpolates data points linearly, if given a key that lies between two data
+  points of the graph.
+  
+  The tracer has different visual styles, see \ref setStyle. It is also possible to make the tracer
+  have no own visual appearance (set the style to \ref tsNone), and just connect other item
+  positions to the tracer \a position (used as an anchor) via \ref
+  QCPItemPosition::setParentAnchor.
+  
+  \note The tracer position is only automatically updated upon redraws. So when the data of the
+  graph changes and immediately afterwards (without a redraw) the a position coordinates of the
+  tracer are retrieved, they will not reflect the updated data of the graph. In this case \ref
+  updatePosition must be called manually, prior to reading the tracer coordinates.
+*/
+
+/*!
+  Creates a tracer item and sets default values.
+  
+  The constructed item can be added to the plot with QCustomPlot::addItem.
+*/
+QCPItemTracer::QCPItemTracer(QCustomPlot *parentPlot) :
+  QCPAbstractItem(parentPlot),
+  position(createPosition("position")),
+  mGraph(0)
+{
+  position->setCoords(0, 0);
+
+  setBrush(Qt::NoBrush);
+  setSelectedBrush(Qt::NoBrush);
+  setPen(QPen(Qt::black));
+  setSelectedPen(QPen(Qt::blue, 2));
+  setStyle(tsCrosshair);
+  setSize(6);
+  setInterpolating(false);
+  setGraphKey(0);
+}
+
+QCPItemTracer::~QCPItemTracer()
+{
+}
+
+/*!
+  Sets the pen that will be used to draw the line of the tracer
+  
+  \see setSelectedPen, setBrush
+*/
+void QCPItemTracer::setPen(const QPen &pen)
+{
+  mPen = pen;
+}
+
+/*!
+  Sets the pen that will be used to draw the line of the tracer when selected
+  
+  \see setPen, setSelected
+*/
+void QCPItemTracer::setSelectedPen(const QPen &pen)
+{
+  mSelectedPen = pen;
+}
+
+/*!
+  Sets the brush that will be used to draw any fills of the tracer
+  
+  \see setSelectedBrush, setPen
+*/
+void QCPItemTracer::setBrush(const QBrush &brush)
+{
+  mBrush = brush;
+}
+
+/*!
+  Sets the brush that will be used to draw any fills of the tracer, when selected.
+  
+  \see setBrush, setSelected
+*/
+void QCPItemTracer::setSelectedBrush(const QBrush &brush)
+{
+  mSelectedBrush = brush;
+}
+
+/*!
+  Sets the size of the tracer in pixels, if the style supports setting a size (e.g. \ref tsSquare
+  does, \ref tsCrosshair does not).
+*/
+void QCPItemTracer::setSize(double size)
+{
+  mSize = size;
+}
+
+/*!
+  Sets the style/visual appearance of the tracer.
+  
+  If you only want to use the tracer \a position as an anchor for other items, set \a style to
+  \ref tsNone.
+*/
+void QCPItemTracer::setStyle(QCPItemTracer::TracerStyle style)
+{
+  mStyle = style;
+}
+
+/*!
+  Sets the QCPGraph this tracer sticks to. The tracer \a position will be set to type
+  QCPItemPosition::ptPlotCoords and the axes will be set to the axes of \a graph.
+  
+  To free the tracer from any graph, set \a graph to 0. The tracer \a position can then be placed
+  freely like any other item position. This is the state the tracer will assume when its graph gets
+  deleted while still attached to it.
+  
+  \see setGraphKey
+*/
+void QCPItemTracer::setGraph(QCPGraph *graph)
+{
+  if (graph)
+  {
+    if (graph->parentPlot() == mParentPlot)
+    {
+      position->setType(QCPItemPosition::ptPlotCoords);
+      position->setAxes(graph->keyAxis(), graph->valueAxis());
+      mGraph = graph;
+      updatePosition();
+    } else
+      qDebug() << Q_FUNC_INFO << "graph isn't in same QCustomPlot instance as this item";
+  } else
+  {
+    mGraph = 0;
+  }
+}
+
+/*!
+  Sets the key of the graph's data point the tracer will be positioned at. This is the only free
+  coordinate of a tracer when attached to a graph.
+  
+  Depending on \ref setInterpolating, the tracer will be either positioned on the data point
+  closest to \a key, or will stay exactly at \a key and interpolate the value linearly.
+  
+  \see setGraph, setInterpolating
+*/
+void QCPItemTracer::setGraphKey(double key)
+{
+  mGraphKey = key;
+}
+
+/*!
+  Sets whether the value of the graph's data points shall be interpolated, when positioning the
+  tracer.
+  
+  If \a enabled is set to false and a key is given with \ref setGraphKey, the tracer is placed on
+  the data point of the graph which is closest to the key, but which is not necessarily exactly
+  there. If \a enabled is true, the tracer will be positioned exactly at the specified key, and
+  the appropriate value will be interpolated from the graph's data points linearly.
+  
+  \see setGraph, setGraphKey
+*/
+void QCPItemTracer::setInterpolating(bool enabled)
+{
+  mInterpolating = enabled;
+}
+
+/* inherits documentation from base class */
+double QCPItemTracer::selectTest(const QPointF &pos, bool onlySelectable, QVariant *details) const
+{
+  Q_UNUSED(details)
+  if (onlySelectable && !mSelectable)
+    return -1;
+
+  QPointF center(position->pixelPoint());
+  double w = mSize/2.0;
+  QRect clip = clipRect();
+  switch (mStyle)
+  {
+    case tsNone: return -1;
+    case tsPlus:
+    {
+      if (clipRect().intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+        return qSqrt(qMin(distSqrToLine(center+QPointF(-w, 0), center+QPointF(w, 0), pos),
+                          distSqrToLine(center+QPointF(0, -w), center+QPointF(0, w), pos)));
+      break;
+    }
+    case tsCrosshair:
+    {
+      return qSqrt(qMin(distSqrToLine(QPointF(clip.left(), center.y()), QPointF(clip.right(), center.y()), pos),
+                        distSqrToLine(QPointF(center.x(), clip.top()), QPointF(center.x(), clip.bottom()), pos)));
+    }
+    case tsCircle:
+    {
+      if (clip.intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+      {
+        // distance to border:
+        double centerDist = QVector2D(center-pos).length();
+        double circleLine = w;
+        double result = qAbs(centerDist-circleLine);
+        // filled ellipse, allow click inside to count as hit:
+        if (result > mParentPlot->selectionTolerance()*0.99 && mBrush.style() != Qt::NoBrush && mBrush.color().alpha() != 0)
+        {
+          if (centerDist <= circleLine)
+            result = mParentPlot->selectionTolerance()*0.99;
+        }
+        return result;
+      }
+      break;
+    }
+    case tsSquare:
+    {
+      if (clip.intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+      {
+        QRectF rect = QRectF(center-QPointF(w, w), center+QPointF(w, w));
+        bool filledRect = mBrush.style() != Qt::NoBrush && mBrush.color().alpha() != 0;
+        return rectSelectTest(rect, pos, filledRect);
+      }
+      break;
+    }
+  }
+  return -1;
+}
+
+/* inherits documentation from base class */
+void QCPItemTracer::draw(QCPPainter *painter)
+{
+  updatePosition();
+  if (mStyle == tsNone)
+    return;
+
+  painter->setPen(mainPen());
+  painter->setBrush(mainBrush());
+  QPointF center(position->pixelPoint());
+  double w = mSize/2.0;
+  QRect clip = clipRect();
+  switch (mStyle)
+  {
+    case tsNone: return;
+    case tsPlus:
+    {
+      if (clip.intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+      {
+        painter->drawLine(QLineF(center+QPointF(-w, 0), center+QPointF(w, 0)));
+        painter->drawLine(QLineF(center+QPointF(0, -w), center+QPointF(0, w)));
+      }
+      break;
+    }
+    case tsCrosshair:
+    {
+      if (center.y() > clip.top() && center.y() < clip.bottom())
+        painter->drawLine(QLineF(clip.left(), center.y(), clip.right(), center.y()));
+      if (center.x() > clip.left() && center.x() < clip.right())
+        painter->drawLine(QLineF(center.x(), clip.top(), center.x(), clip.bottom()));
+      break;
+    }
+    case tsCircle:
+    {
+      if (clip.intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+        painter->drawEllipse(center, w, w);
+      break;
+    }
+    case tsSquare:
+    {
+      if (clip.intersects(QRectF(center-QPointF(w, w), center+QPointF(w, w)).toRect()))
+        painter->drawRect(QRectF(center-QPointF(w, w), center+QPointF(w, w)));
+      break;
+    }
+  }
+}
+
+/*!
+  If the tracer is connected with a graph (\ref setGraph), this function updates the tracer's \a
+  position to reside on the graph data, depending on the configured key (\ref setGraphKey).
+  
+  It is called automatically on every redraw and normally doesn't need to be called manually. One
+  exception is when you want to read the tracer coordinates via \a position and are not sure that
+  the graph's data (or the tracer key with \ref setGraphKey) hasn't changed since the last redraw.
+  In that situation, call this function before accessing \a position, to make sure you don't get
+  out-of-date coordinates.
+  
+  If there is no graph set on this tracer, this function does nothing.
+*/
+void QCPItemTracer::updatePosition()
+{
+  if (mGraph)
+  {
+    if (mParentPlot->hasPlottable(mGraph))
+    {
+      if (mGraph->data()->size() > 1)
+      {
+        QCPDataMap::const_iterator first = mGraph->data()->constBegin();
+        QCPDataMap::const_iterator last = mGraph->data()->constEnd()-1;
+        if (mGraphKey < first.key())
+          position->setCoords(first.key(), first.value().value);
+        else if (mGraphKey > last.key())
+          position->setCoords(last.key(), last.value().value);
+        else
+        {
+          QCPDataMap::const_iterator it = mGraph->data()->lowerBound(mGraphKey);
+          if (it != first) // mGraphKey is somewhere between iterators
+          {
+            QCPDataMap::const_iterator prevIt = it-1;
+            if (mInterpolating)
+            {
+              // interpolate between iterators around mGraphKey:
+              double slope = 0;
+              if (!qFuzzyCompare((double)it.key(), (double)prevIt.key()))
+                slope = (it.value().value-prevIt.value().value)/(it.key()-prevIt.key());
+              position->setCoords(mGraphKey, (mGraphKey-prevIt.key())*slope+prevIt.value().value);
+            } else
+            {
+              // find iterator with key closest to mGraphKey:
+              if (mGraphKey < (prevIt.key()+it.key())*0.5)
+                it = prevIt;
+              position->setCoords(it.key(), it.value().value);
+            }
+          } else // mGraphKey is exactly on first iterator
+            position->setCoords(it.key(), it.value().value);
+        }
+      } else if (mGraph->data()->size() == 1)
+      {
+        QCPDataMap::const_iterator it = mGraph->data()->constBegin();
+        position->setCoords(it.key(), it.value().value);
+      } else
+        qDebug() << Q_FUNC_INFO << "graph has no data";
+    } else
+      qDebug() << Q_FUNC_INFO << "graph not contained in QCustomPlot instance (anymore)";
+  }
+}
+
+/*! \internal
+
+  Returns the pen that should be used for drawing lines. Returns mPen when the item is not selected
+  and mSelectedPen when it is.
+*/
+QPen QCPItemTracer::mainPen() const
+{
+  return mSelected ? mSelectedPen : mPen;
+}
+
+/*! \internal
+
+  Returns the brush that should be used for drawing fills of the item. Returns mBrush when the item
+  is not selected and mSelectedBrush when it is.
+*/
+QBrush QCPItemTracer::mainBrush() const
+{
+  return mSelected ? mSelectedBrush : mBrush;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////// QCPItemBracket
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*! \class QCPItemBracket
+  \brief A bracket for referencing/highlighting certain parts in the plot.
+
+  \image html QCPItemBracket.png "Bracket example. Blue dotted circles are anchors, solid blue discs are positions."
+
+  It has two positions, \a left and \a right, which define the span of the bracket. If \a left is
+  actually farther to the left than \a right, the bracket is opened to the bottom, as shown in the
+  example image.
+  
+  The bracket supports multiple styles via \ref setStyle. The length, i.e. how far the bracket
+  stretches away from the embraced span, can be controlled with \ref setLength.
+  
+  \image html QCPItemBracket-length.png
+  <center>Demonstrating the effect of different values for \ref setLength, for styles \ref
+  bsCalligraphic and \ref bsSquare. Anchors and positions are displayed for reference.</center>
+  
+  It provides an anchor \a center, to allow connection of other items, e.g. an arrow (QCPItemLine
+  or QCPItemCurve) or a text label (QCPItemText), to the bracket.
+*/
+
+/*!
+  Creates a bracket item and sets default values.
+  
+  The constructed item can be added to the plot with QCustomPlot::addItem.
+*/
+QCPItemBracket::QCPItemBracket(QCustomPlot *parentPlot) :
+  QCPAbstractItem(parentPlot),
+  left(createPosition("left")),
+  right(createPosition("right")),
+  center(createAnchor("center", aiCenter))
+{
+  left->setCoords(0, 0);
+  right->setCoords(1, 1);
+  
+  setPen(QPen(Qt::black));
+  setSelectedPen(QPen(Qt::blue, 2));
+  setLength(8);
+  setStyle(bsCalligraphic);
+}
+
+QCPItemBracket::~QCPItemBracket()
+{
+}
+
+/*!
+  Sets the pen that will be used to draw the bracket.
+  
+  Note that when the style is \ref bsCalligraphic, only the color will be taken from the pen, the
+  stroke and width are ignored. To change the apparent stroke width of a calligraphic bracket, use
+  \ref setLength, which has a similar effect.
+  
+  \see setSelectedPen
+*/
+void QCPItemBracket::setPen(const QPen &pen)
+{
+  mPen = pen;
+}
+
+/*!
+  Sets the pen that will be used to draw the bracket when selected
+  
+  \see setPen, setSelected
+*/
+void QCPItemBracket::setSelectedPen(const QPen &pen)
+{
+  mSelectedPen = pen;
+}
+
+/*!
+  Sets the \a length in pixels how far the bracket extends in the direction towards the embraced
+  span of the bracket (i.e. perpendicular to the <i>left</i>-<i>right</i>-direction)
+  
+  \image html QCPItemBracket-length.png
+  <center>Demonstrating the effect of different values for \ref setLength, for styles \ref
+  bsCalligraphic and \ref bsSquare. Anchors and positions are displayed for reference.</center>
+*/
+void QCPItemBracket::setLength(double length)
+{
+  mLength = length;
+}
+
+/*!
+  Sets the style of the bracket, i.e. the shape/visual appearance.
+  
+  \see setPen
+*/
+void QCPItemBracket::setStyle(QCPItemBracket::BracketStyle style)
+{
+  mStyle = style;
+}
+
+/* inherits documentation from base class */
+double QCPItemBracket::selectTest(const QPointF &pos, bool onlySelectable, QVariant *details) const
+{
+  Q_UNUSED(details)
+  if (onlySelectable && !mSelectable)
+    return -1;
+  
+  QVector2D leftVec(left->pixelPoint());
+  QVector2D rightVec(right->pixelPoint());
+  if (leftVec.toPoint() == rightVec.toPoint())
+    return -1;
+  
+  QVector2D widthVec = (rightVec-leftVec)*0.5f;
+  QVector2D lengthVec(-widthVec.y(), widthVec.x());
+  lengthVec = lengthVec.normalized()*mLength;
+  QVector2D centerVec = (rightVec+leftVec)*0.5f-lengthVec;
+  
+  return qSqrt(distSqrToLine((centerVec-widthVec).toPointF(), (centerVec+widthVec).toPointF(), pos));
+}
+
+/* inherits documentation from base class */
+void QCPItemBracket::draw(QCPPainter *painter)
+{
+  QVector2D leftVec(left->pixelPoint());
+  QVector2D rightVec(right->pixelPoint());
+  if (leftVec.toPoint() == rightVec.toPoint())
+    return;
+  
+  QVector2D widthVec = (rightVec-leftVec)*0.5f;
+  QVector2D lengthVec(-widthVec.y(), widthVec.x());
+  lengthVec = lengthVec.normalized()*mLength;
+  QVector2D centerVec = (rightVec+leftVec)*0.5f-lengthVec;
+
+  QPolygon boundingPoly;
+  boundingPoly << leftVec.toPoint() << rightVec.toPoint()
+               << (rightVec-lengthVec).toPoint() << (leftVec-lengthVec).toPoint();
+  QRect clip = clipRect().adjusted(-mainPen().widthF(), -mainPen().widthF(), mainPen().widthF(), mainPen().widthF());
+  if (clip.intersects(boundingPoly.boundingRect()))
+  {
+    painter->setPen(mainPen());
+    switch (mStyle)
+    {
+      case bsSquare:
+      {
+        painter->drawLine((centerVec+widthVec).toPointF(), (centerVec-widthVec).toPointF());
+        painter->drawLine((centerVec+widthVec).toPointF(), (centerVec+widthVec+lengthVec).toPointF());
+        painter->drawLine((centerVec-widthVec).toPointF(), (centerVec-widthVec+lengthVec).toPointF());
+        break;
+      }
+      case bsRound:
+      {
+        painter->setBrush(Qt::NoBrush);
+        QPainterPath path;
+        path.moveTo((centerVec+widthVec+lengthVec).toPointF());
+        path.cubicTo((centerVec+widthVec).toPointF(), (centerVec+widthVec).toPointF(), centerVec.toPointF());
+        path.cubicTo((centerVec-widthVec).toPointF(), (centerVec-widthVec).toPointF(), (centerVec-widthVec+lengthVec).toPointF());
+        painter->drawPath(path);
+        break;
+      }
+      case bsCurly:
+      {
+        painter->setBrush(Qt::NoBrush);
+        QPainterPath path;
+        path.moveTo((centerVec+widthVec+lengthVec).toPointF());
+        path.cubicTo((centerVec+widthVec-lengthVec*0.8f).toPointF(), (centerVec+0.4f*widthVec+lengthVec).toPointF(), centerVec.toPointF());
+        path.cubicTo((centerVec-0.4f*widthVec+lengthVec).toPointF(), (centerVec-widthVec-lengthVec*0.8f).toPointF(), (centerVec-widthVec+lengthVec).toPointF());
+        painter->drawPath(path);
+        break;
+      }
+      case bsCalligraphic:
+      {
+        painter->setPen(Qt::NoPen);
+        painter->setBrush(QBrush(mainPen().color()));
+        QPainterPath path;
+        path.moveTo((centerVec+widthVec+lengthVec).toPointF());
+        
+        path.cubicTo((centerVec+widthVec-lengthVec*0.8f).toPointF(), (centerVec+0.4f*widthVec+0.8f*lengthVec).toPointF(), centerVec.toPointF());
+        path.cubicTo((centerVec-0.4f*widthVec+0.8f*lengthVec).toPointF(), (centerVec-widthVec-lengthVec*0.8f).toPointF(), (centerVec-widthVec+lengthVec).toPointF());
+        
+        path.cubicTo((centerVec-widthVec-lengthVec*0.5f).toPointF(), (centerVec-0.2f*widthVec+1.2f*lengthVec).toPointF(), (centerVec+lengthVec*0.2f).toPointF());
+        path.cubicTo((centerVec+0.2f*widthVec+1.2f*lengthVec).toPointF(), (centerVec+widthVec-lengthVec*0.5f).toPointF(), (centerVec+widthVec+lengthVec).toPointF());
+        
+        painter->drawPath(path);
+        break;
+      }
+    }
+  }
+}
+
+/* inherits documentation from base class */
+QPointF QCPItemBracket::anchorPixelPoint(int anchorId) const
+{
+  QVector2D leftVec(left->pixelPoint());
+  QVector2D rightVec(right->pixelPoint());
+  if (leftVec.toPoint() == rightVec.toPoint())
+    return leftVec.toPointF();
+  
+  QVector2D widthVec = (rightVec-leftVec)*0.5f;
+  QVector2D lengthVec(-widthVec.y(), widthVec.x());
+  lengthVec = lengthVec.normalized()*mLength;
+  QVector2D centerVec = (rightVec+leftVec)*0.5f-lengthVec;
+  
+  switch (anchorId)
+  {
+    case aiCenter:
+      return centerVec.toPointF();
+  }
+  qDebug() << Q_FUNC_INFO << "invalid anchorId" << anchorId;
+  return QPointF();
+}
+
+/*! \internal
+
+  Returns the pen that should be used for drawing lines. Returns mPen when the
+  item is not selected and mSelectedPen when it is.
+*/
+QPen QCPItemBracket::mainPen() const
+{
+    return mSelected ? mSelectedPen : mPen;
+}
