@@ -199,3 +199,256 @@ SendCoinsDialog::~SendCoinsDialog()
 
 void SendCoinsDialog::on_sendButton_clicked()
 {
+    if(!model || !model->getOptionsModel())
+        return;
+    QList<SendCoinsRecipient> recipients;
+    bool valid = true;
+
+    for(int i = 0; i < ui->entries->count(); ++i)
+    {
+        SendCoinsEntry *entry = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(i)->widget());
+        if(entry)
+        {
+            if(entry->validate())
+            {
+                recipients.append(entry->getValue());
+            }
+            else
+            {
+                valid = false;
+            }
+        }
+    }
+
+    if(!valid || recipients.isEmpty())
+    {
+        return;
+    }
+
+    QString strFunds = tr("using") + " <b>" + tr("available funds") + "</b>";
+    QString strFee = "";
+    recipients[0].inputType = ALL_COINS;
+
+    // Format confirmation message
+    QStringList formatted;
+    foreach(const SendCoinsRecipient &rcp, recipients)
+    {
+        // generate bold amount string
+        QString amount = "<b>" + WayaWolfCoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), rcp.amount);
+        amount.append("</b> ").append(strFunds);
+
+        // generate monospace address string
+        QString address = "<span style='font-family: monospace;'>" + rcp.address;
+        address.append("</span>");
+
+        QString recipientElement;
+        recipientElement = tr("%1 to %2").arg(amount, address);
+
+        formatted.append(recipientElement);
+    }
+
+    fNewRecipientAllowed = false;
+
+    // request unlock only if was locked or unlocked for mixing:
+    // this way we let users unlock by walletpassphrase or by menu
+    // and make many transactions while unlocking through this dialog
+    // will call relock
+    WalletModel::EncryptionStatus encStatus = model->getEncryptionStatus();
+    if(encStatus == model->Locked)
+    {
+        WalletModel::UnlockContext ctx(model->requestUnlock());
+        if(!ctx.isValid())
+        {
+            // Unlock wallet was cancelled
+            fNewRecipientAllowed = true;
+            return;
+        }
+        send(recipients, strFee, formatted);
+        return;
+    }
+    // already unlocked or not encrypted at all
+    send(recipients, strFee, formatted);
+}
+
+void SendCoinsDialog::send(QList<SendCoinsRecipient> recipients, QString strFee, QStringList formatted)
+{
+    // prepare transaction for getting txFee earlier
+    WalletModelTransaction currentTransaction(recipients);
+    WalletModel::SendCoinsReturn prepareStatus;
+    if (model->getOptionsModel()->getCoinControlFeatures()) // coin control enabled
+        prepareStatus = model->prepareTransaction(currentTransaction, CoinControlDialog::coinControl);
+    else
+        prepareStatus = model->prepareTransaction(currentTransaction);
+
+    // process prepareStatus and on error generate message shown to user
+    processSendCoinsReturn(prepareStatus,
+        WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), currentTransaction.getTransactionFee()));
+
+    if(prepareStatus.status != WalletModel::OK) {
+        fNewRecipientAllowed = true;
+        return;
+    }
+
+    CAmount txFee = currentTransaction.getTransactionFee();
+    QString questionString = tr("Are you sure you want to send?");
+    questionString.append("<br /><br />%1");
+
+    if(txFee > 0)
+    {
+        // append fee string if a fee is required
+        questionString.append("<hr /><span style='color:#aa0000;'>");
+        questionString.append(WayaWolfCoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), txFee));
+        questionString.append("</span> ");
+        questionString.append(tr("are added as transaction fee"));
+        questionString.append(" ");
+        questionString.append(strFee);
+
+        // append transaction size
+        questionString.append(" (" + QString::number((double)currentTransaction.getTransactionSize() / 1000) + " kB)");
+    }
+
+    // add total amount in all subdivision units
+    questionString.append("<hr />");
+    CAmount totalAmount = currentTransaction.getTotalTransactionAmount() + txFee;
+    QStringList alternativeUnits;
+    foreach(WayaWolfCoinUnits::Unit u, WayaWolfCoinUnits::availableUnits())
+    {
+        if(u != model->getOptionsModel()->getDisplayUnit())
+            alternativeUnits.append(WayaWolfCoinUnits::formatHtmlWithUnit(u, totalAmount));
+    }
+
+    // Show total amount + all alternative units
+    questionString.append(tr("Total Amount = <b>%1</b><br />= %2")
+        .arg(WayaWolfCoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), totalAmount))
+        .arg(alternativeUnits.join("<br />= ")));
+
+    // Limit number of displayed entries
+    int messageEntries = formatted.size();
+    int displayedEntries = 0;
+    for(int i = 0; i < formatted.size(); i++){
+        if(i >= MAX_SEND_POPUP_ENTRIES){
+            formatted.removeLast();
+            i--;
+        }
+        else{
+            displayedEntries = i+1;
+        }
+    }
+    questionString.append("<hr />");
+    questionString.append(tr("<b>(%1 of %2 entries displayed)</b>").arg(displayedEntries).arg(messageEntries));
+
+    // Display message box
+    QMessageBox::StandardButton retval = QMessageBox::question(this, tr("Confirm send coins"),
+        questionString.arg(formatted.join("<br />")),
+        QMessageBox::Yes | QMessageBox::Cancel,
+        QMessageBox::Cancel);
+
+    if(retval != QMessageBox::Yes)
+    {
+        fNewRecipientAllowed = true;
+        return;
+    }
+
+    // now send the prepared transaction
+    WalletModel::SendCoinsReturn sendStatus = model->sendCoins(currentTransaction, CoinControlDialog::coinControl);
+    // process sendStatus and on error generate message shown to user
+    processSendCoinsReturn(sendStatus);
+
+    if (sendStatus.status == WalletModel::OK)
+    {
+        accept();
+        CoinControlDialog::coinControl->UnSelectAll();
+        coinControlUpdateLabels();
+    }
+    fNewRecipientAllowed = true;
+}
+
+void SendCoinsDialog::clear()
+{
+    // Remove entries until only one left
+    while(ui->entries->count())
+    {
+        ui->entries->takeAt(0)->widget()->deleteLater();
+    }
+    addEntry();
+
+    updateTabsAndLabels();
+}
+
+void SendCoinsDialog::reject()
+{
+    clear();
+}
+
+void SendCoinsDialog::accept()
+{
+    clear();
+}
+
+SendCoinsEntry *SendCoinsDialog::addEntry()
+{
+    SendCoinsEntry *entry = new SendCoinsEntry(this);
+    entry->setModel(model);
+    ui->entries->addWidget(entry);
+    connect(entry, SIGNAL(removeEntry(SendCoinsEntry*)), this, SLOT(removeEntry(SendCoinsEntry*)));
+    connect(entry, SIGNAL(payAmountChanged()), this, SLOT(coinControlUpdateLabels()));
+
+    updateTabsAndLabels();
+
+    // Focus the field, so that entry can start immediately
+    entry->clear();
+    entry->setFocus();
+    ui->scrollAreaWidgetContents->resize(ui->scrollAreaWidgetContents->sizeHint());
+    qApp->processEvents();
+    QScrollBar* bar = ui->scrollArea->verticalScrollBar();
+    if(bar)
+        bar->setSliderPosition(bar->maximum());
+    return entry;
+}
+
+void SendCoinsDialog::updateTabsAndLabels()
+{
+    setupTabChain(0);
+    coinControlUpdateLabels();
+}
+
+void SendCoinsDialog::removeEntry(SendCoinsEntry* entry)
+{
+    entry->hide();
+
+    // If the last entry is about to be removed add an empty one
+    if (ui->entries->count() == 1)
+        addEntry();
+
+    entry->deleteLater();
+
+    updateTabsAndLabels();
+}
+
+QWidget *SendCoinsDialog::setupTabChain(QWidget *prev)
+{
+    for(int i = 0; i < ui->entries->count(); ++i)
+    {
+        SendCoinsEntry *entry = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(i)->widget());
+        if(entry)
+        {
+            prev = entry->setupTabChain(prev);
+        }
+    }
+    QWidget::setTabOrder(prev, ui->sendButton);
+    QWidget::setTabOrder(ui->sendButton, ui->clearButton);
+    QWidget::setTabOrder(ui->clearButton, ui->addButton);
+    return ui->addButton;
+}
+
+void SendCoinsDialog::setAddress(const QString &address)
+{
+    SendCoinsEntry *entry = 0;
+    // Replace the first entry if it is still unused
+    if(ui->entries->count() == 1)
+    {
+        SendCoinsEntry *first = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(0)->widget());
+        if(first->isClear())
+        {
+            entry = first;
+    
