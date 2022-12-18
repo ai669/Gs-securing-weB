@@ -451,4 +451,216 @@ void SendCoinsDialog::setAddress(const QString &address)
         if(first->isClear())
         {
             entry = first;
-    
+        }
+    }
+    if(!entry)
+    {
+        entry = addEntry();
+    }
+
+    entry->setAddress(address);
+}
+
+void SendCoinsDialog::pasteEntry(const SendCoinsRecipient &rv)
+{
+    if(!fNewRecipientAllowed)
+        return;
+
+    SendCoinsEntry *entry = 0;
+    // Replace the first entry if it is still unused
+    if(ui->entries->count() == 1)
+    {
+        SendCoinsEntry *first = qobject_cast<SendCoinsEntry*>(ui->entries->itemAt(0)->widget());
+        if(first->isClear())
+        {
+            entry = first;
+        }
+    }
+    if(!entry)
+    {
+        entry = addEntry();
+    }
+
+    entry->setValue(rv);
+    updateTabsAndLabels();
+}
+
+bool SendCoinsDialog::handleURI(const QString &uri)
+{
+    SendCoinsRecipient rv;
+    // URI has to be valid
+    if (GUIUtil::parseWayaWolfCoinURI(uri, &rv))
+    {
+        CWayaWolfCoinAddress address(rv.address.toStdString());
+        if (!address.IsValid())
+            return false;
+        pasteEntry(rv);
+        return true;
+    }
+
+    return false;
+}
+
+void SendCoinsDialog::setBalance(const CAmount& balance, const CAmount& stake, const CAmount& unconfirmedBalance, const CAmount& immatureBalance,
+	const CAmount& watchBalance, const CAmount& watchStake, const CAmount& watchUnconfirmedBalance, const CAmount& watchImmatureBalance)
+{
+    Q_UNUSED(stake);
+    Q_UNUSED(unconfirmedBalance);
+    Q_UNUSED(immatureBalance);
+    Q_UNUSED(watchBalance);
+    Q_UNUSED(watchStake);
+    Q_UNUSED(watchUnconfirmedBalance);
+    Q_UNUSED(watchImmatureBalance);
+
+    if(model && model->getOptionsModel())
+    {
+        uint64_t bal = balance;
+        ui->labelBalance->setText(WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), bal));
+    }
+}
+
+void SendCoinsDialog::updateDisplayUnit()
+{
+    TRY_LOCK(cs_main, lockMain);
+    if(!lockMain) return;
+    setBalance(model->getBalance(), model->getStake(), model->getUnconfirmedBalance(), model->getImmatureBalance(),
+        model->getWatchBalance(), model->getWatchStake(), model->getWatchUnconfirmedBalance(), model->getWatchImmatureBalance());
+    coinControlUpdateLabels();
+}
+
+void SendCoinsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn &sendCoinsReturn, const QString &msgArg)
+{
+    QPair<QString, CClientUIInterface::MessageBoxFlags> msgParams;
+    // Default to a warning message, override if error message is needed
+    msgParams.second = CClientUIInterface::MSG_WARNING;
+    // This comment is specific to SendCoinsDialog usage of WalletModel::SendCoinsReturn.
+    // WalletModel::TransactionCommitFailed is used only in WalletModel::sendCoins()
+    // all others are used only in WalletModel::prepareTransaction()
+    switch(sendCoinsReturn.status)
+    {
+    case WalletModel::InvalidAddress:
+        msgParams.first = tr("The recipient address is not valid, please recheck.");
+        break;
+    case WalletModel::InvalidAmount:
+        msgParams.first = tr("The amount to pay must be larger than 0.");
+        break;
+    case WalletModel::AmountExceedsBalance:
+        msgParams.first = tr("The amount exceeds your balance.");
+        break;
+    case WalletModel::AmountWithFeeExceedsBalance:
+        msgParams.first = tr("The total exceeds your balance when the %1 transaction fee is included.").arg(msgArg);
+        break;
+    case WalletModel::DuplicateAddress:
+        msgParams.first = tr("Duplicate address found, can only send to each address once per send operation.");
+        break;
+    case WalletModel::TransactionCreationFailed:
+        msgParams.first = tr("Error: Transaction creation failed!");
+        msgParams.second = CClientUIInterface::MSG_ERROR;
+        break;
+    case WalletModel::TransactionCommitFailed:
+        msgParams.first = tr("Error: The transaction was rejected. This might happen if some of the coins in your wallet were already spent, such as if you used a copy of wallet.dat and coins were spent in the copy but not marked as spent here.");
+        msgParams.second = CClientUIInterface::MSG_ERROR;
+        break;
+    case WalletModel::InsaneFee:
+        msgParams.first = tr("A fee %1 times higher than %2 per recipient is considered an insanely high fee.").arg(10000).arg(WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), MIN_RELAY_TX_FEE));
+        break;
+    case WalletModel::PrepareTransactionFailed:
+        return;
+    case WalletModel::OK:
+    default:
+        return;
+    }
+    emit message(tr("Send Coins"), msgParams.first, false, msgParams.second);
+}
+/*
+void SendCoinsDialog::minimizeFeeSection(bool fMinimize)
+{
+    ui->labelFeeMinimized->setVisible(fMinimize);
+    ui->buttonChooseFee  ->setVisible(fMinimize);
+    ui->buttonMinimizeFee->setVisible(!fMinimize);
+    ui->frameFeeSelection->setVisible(!fMinimize);
+    ui->horizontalLayoutSmartFee->setContentsMargins(0, (fMinimize ? 0 : 6), 0, 0);
+    fFeeMinimized = fMinimize;
+}
+
+void SendCoinsDialog::on_buttonChooseFee_clicked()
+{
+    minimizeFeeSection(false);
+}
+
+void SendCoinsDialog::on_buttonMinimizeFee_clicked()
+{
+    updateFeeMinimizedLabel();
+    minimizeFeeSection(true);
+}
+
+void SendCoinsDialog::setMinimumFee()
+{
+    ui->radioCustomPerKilobyte->setChecked(true);
+    ui->customFee->setValue(CWallet::minTxFee.GetFeePerK());
+}
+
+void SendCoinsDialog::updateFeeSectionControls()
+{
+    ui->sliderSmartFee          ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelSmartFee           ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelSmartFee2          ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelSmartFee3          ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelFeeEstimation      ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelSmartFeeNormal     ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->labelSmartFeeFast       ->setEnabled(ui->radioSmartFee->isChecked());
+    ui->checkBoxMinimumFee      ->setEnabled(ui->radioCustomFee->isChecked());
+    ui->labelMinFeeWarning      ->setEnabled(ui->radioCustomFee->isChecked());
+    ui->radioCustomPerKilobyte  ->setEnabled(ui->radioCustomFee->isChecked() && !ui->checkBoxMinimumFee->isChecked());
+    ui->radioCustomAtLeast      ->setEnabled(ui->radioCustomFee->isChecked() && !ui->checkBoxMinimumFee->isChecked());
+    ui->customFee               ->setEnabled(ui->radioCustomFee->isChecked() && !ui->checkBoxMinimumFee->isChecked());
+}
+
+void SendCoinsDialog::updateGlobalFeeVariables()
+{
+    if (ui->radioSmartFee->isChecked())
+    {
+        nTxConfirmTarget = (int)25 - (int)std::max(0, std::min(24, ui->sliderSmartFee->value()));
+        payTxFee = CFeeRate(0);
+    }
+    else
+    {
+        nTxConfirmTarget = 25;
+        payTxFee = CFeeRate(ui->customFee->value());
+        fPayAtLeastCustomFee = ui->radioCustomAtLeast->isChecked();
+    }
+
+    fSendFreeTransactions = ui->checkBoxFreeTx->isChecked();
+}
+
+void SendCoinsDialog::updateFeeMinimizedLabel()
+{
+    if(!model || !model->getOptionsModel())
+        return;
+
+    if (ui->radioSmartFee->isChecked())
+        ui->labelFeeMinimized->setText(ui->labelSmartFee->text());
+    else {
+        ui->labelFeeMinimized->setText(WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ui->customFee->value()) +
+            ((ui->radioCustomPerKilobyte->isChecked()) ? "/kB" : ""));
+    }
+}
+
+void SendCoinsDialog::updateMinFeeLabel()
+{
+    if (model && model->getOptionsModel())
+        ui->checkBoxMinimumFee->setText(tr("Pay only the minimum fee of %1").arg(
+            WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), CWallet::minTxFee.GetFeePerK()) + "/kB")
+        );
+}
+
+void SendCoinsDialog::updateSmartFeeLabel()
+{
+    if(!model || !model->getOptionsModel())
+        return;
+
+    int nBlocksToConfirm = (int)25 - (int)std::max(0, std::min(24, ui->sliderSmartFee->value()));
+    CFeeRate feeRate = mempool.estimateFee(nBlocksToConfirm);
+    if (feeRate <= CFeeRate(0)) // not enough data => minfee
+    {
+        ui->labelSmartFee->setText(WayaWolfCoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), CWallet:
