@@ -77,4 +77,70 @@ public:
         RecvFromOther,
         SendToSelf,
         RecvWithMNengine,
-        
+        MNengineCollateralPayment,
+        MNengineMakeCollaterals,
+        Darksent
+    };
+
+    /** Number of confirmation recommended for accepting a transaction */
+    static const int RecommendedNumConfirmations = 10;
+
+    TransactionRecord():
+            hash(), time(0), type(Other), address(""), debit(0), credit(0), idx(0)
+    {
+    }
+
+    TransactionRecord(uint256 hash, int64_t time):
+            hash(hash), time(time), type(Other), address(""), debit(0),
+            credit(0), idx(0)
+    {
+    }
+
+    TransactionRecord(uint256 hash, qint64 time,
+                Type type, const std::string &address,
+                CAmount debit, CAmount credit):
+            hash(hash), time(time), type(type), address(address), debit(debit), credit(credit),
+            idx(0)
+    {
+    }
+
+    /** Decompose CWallet transaction to model transaction records.
+     */
+    static bool showTransaction(const CWalletTx &wtx);
+    static QList<TransactionRecord> decomposeTransaction(const CWallet *wallet, const CWalletTx &wtx);
+
+    /** @name Immutable transaction attributes
+      @{*/
+    uint256 hash;
+    qint64 time;
+    Type type;
+    std::string address;
+    CAmount debit;
+    CAmount credit;
+    /**@}*/
+
+    /** Subtransaction index, for sort key */
+    int idx;
+
+    /** Status: can change with block chain update */
+    TransactionStatus status;
+
+    /** Whether the transaction was sent/received with a watch-only address */
+    bool involvesWatchAddress;
+
+    /** Return the unique identifier for this transaction (part) */
+    QString getTxID() const;
+
+    /** Format subtransaction id */
+    static QString formatSubTxId(const uint256 &hash, int vout);
+
+    /** Update status from core wallet tx.
+     */
+    void updateStatus(const CWalletTx &wtx);
+
+    /** Return whether a status update is needed.
+     */
+    bool statusUpdateNeeded();
+};
+
+#endif // TRANSACTIONRECORD_H
