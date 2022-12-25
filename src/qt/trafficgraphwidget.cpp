@@ -138,4 +138,33 @@ void TrafficGraphWidget::updateRates()
         if(f > tmax) tmax = f;
     }
     foreach(float f, vSamplesOut) {
-        if(f > tmax) tmax = f
+        if(f > tmax) tmax = f;
+    }
+    fMax = tmax;
+    update();
+}
+
+void TrafficGraphWidget::setGraphRangeMins(int mins)
+{
+    nMins = mins;
+    int msecsPerSample = nMins * 60 * 1000 / DESIRED_SAMPLES;
+    timer->stop();
+    timer->setInterval(msecsPerSample);
+
+    clear();
+}
+
+void TrafficGraphWidget::clear()
+{
+    timer->stop();
+
+    vSamplesOut.clear();
+    vSamplesIn.clear();
+    fMax = 0.0f;
+
+    if(clientModel) {
+        nLastBytesIn = clientModel->getTotalBytesRecv();
+        nLastBytesOut = clientModel->getTotalBytesSent();
+    }
+    timer->start();
+}
