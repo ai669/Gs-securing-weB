@@ -33,4 +33,35 @@ CWalletTx *WalletModelTransaction::getTransaction()
 
 unsigned int WalletModelTransaction::getTransactionSize()
 {
-    return (!walletTransaction ? 0 : (::GetSerializeSize(*(CTransaction*)walletTransaction, SER_NETWORK, PROTOCOL_VE
+    return (!walletTransaction ? 0 : (::GetSerializeSize(*(CTransaction*)walletTransaction, SER_NETWORK, PROTOCOL_VERSION)));
+}
+
+CAmount WalletModelTransaction::getTransactionFee()
+{
+    return fee;
+}
+
+void WalletModelTransaction::setTransactionFee(const CAmount& newFee)
+{
+    fee = newFee;
+}
+
+CAmount WalletModelTransaction::getTotalTransactionAmount()
+{
+    CAmount totalTransactionAmount = 0;
+    foreach(const SendCoinsRecipient &rcp, recipients)
+    {
+        totalTransactionAmount += rcp.amount;
+    }
+    return totalTransactionAmount;
+}
+
+void WalletModelTransaction::newPossibleKeyChange(CWallet *wallet)
+{
+    keyChange = new CReserveKey(wallet);
+}
+
+CReserveKey *WalletModelTransaction::getPossibleKeyChange()
+{
+    return keyChange;
+}
