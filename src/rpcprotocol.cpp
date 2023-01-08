@@ -152,4 +152,115 @@ int ReadHTTPStatus(std::basic_istream<char>& stream, int &proto)
     return atoi(vWords[1].c_str());
 }
 
-int ReadHTTPHeaders(std::basic_ist
+int ReadHTTPHeaders(std::basic_istream<char>& stream, map<string, string>& mapHeadersRet)
+{
+    int nLen = 0;
+    while (true)
+    {
+        string str;
+        std::getline(stream, str);
+        if (str.empty() || str == "\r")
+            break;
+        string::size_type nColon = str.find(":");
+        if (nColon != string::npos)
+        {
+            string strHeader = str.substr(0, nColon);
+            boost::trim(strHeader);
+            boost::to_lower(strHeader);
+            string strValue = str.substr(nColon+1);
+            boost::trim(strValue);
+            mapHeadersRet[strHeader] = strValue;
+            if (strHeader == "content-length")
+                nLen = atoi(strValue.c_str());
+        }
+    }
+    return nLen;
+}
+
+
+int ReadHTTPMessage(std::basic_istream<char>& stream, map<string,
+                    string>& mapHeadersRet, string& strMessageRet,
+                    int nProto, size_t max_size)
+{
+    mapHeadersRet.clear();
+    strMessageRet = "";
+
+    // Read header
+    int nLen = ReadHTTPHeaders(stream, mapHeadersRet);
+    if (nLen < 0 || (size_t)nLen > max_size)
+        return HTTP_INTERNAL_SERVER_ERROR;
+
+    // Read message
+    if (nLen > 0)
+    {
+        vector<char> vch;
+        size_t ptr = 0;
+        while (ptr < (size_t)nLen)
+        {
+            size_t bytes_to_read = std::min((size_t)nLen - ptr, POST_READ_SIZE);
+            vch.resize(ptr + bytes_to_read);
+            stream.read(&vch[ptr], bytes_to_read);
+            if (!stream) // Connection lost while reading
+                return HTTP_INTERNAL_SERVER_ERROR;
+            ptr += bytes_to_read;
+        }
+        strMessageRet = string(vch.begin(), vch.end());
+    }
+
+    string sConHdr = mapHeadersRet["connection"];
+
+    if ((sConHdr != "close") && (sConHdr != "keep-alive"))
+    {
+        if (nProto >= 1)
+            mapHeadersRet["connection"] = "keep-alive";
+        else
+            mapHeadersRet["connection"] = "close";
+    }
+
+    return HTTP_OK;
+}
+
+//
+// JSON-RPC protocol.  WayaWolfCoin speaks version 1.0 for maximum compatibility,
+// but uses JSON-RPC 1.1/2.0 standards for parts of the 1.0 standard that were
+// unspecified (HTTP errors and contents of 'error').
+//
+// 1.0 spec: http://json-rpc.org/wiki/specification
+// 1.2 spec: http://groups.google.com/group/json-rpc/web/json-rpc-over-http
+// http://www.codeproject.com/KB/recipes/JSON_Spirit.aspx
+//
+
+string JSONRPCRequest(const string& strMethod, const Array& params, const Value& id)
+{
+    Object request;
+    request.push_back(Pair("method", strMethod));
+    request.push_back(Pair("params", params));
+    request.push_back(Pair("id", id));
+    return write_string(Value(request), false) + "\n";
+}
+
+Object JSONRPCReplyObj(const Value& result, const Value& error, const Value& id)
+{
+    Object reply;
+    if (error.type() != null_type)
+        reply.push_back(Pair("result", Value::null));
+    else
+        reply.push_back(Pair("result", result));
+    reply.push_back(Pair("error", error));
+    reply.push_back(Pair("id", id));
+    return reply;
+}
+
+string JSONRPCReply(const Value& result, const Value& error, const Value& id)
+{
+    Object reply = JSONRPCReplyObj(result, error, id);
+    return write_string(Value(reply), false) + "\n";
+}
+
+Object JSONRPCError(int code, const string& message)
+{
+    Object error;
+    error.push_back(Pair("code", code));
+    error.push_back(Pair("message", message));
+    return error;
+}
