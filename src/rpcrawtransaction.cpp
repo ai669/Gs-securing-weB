@@ -559,4 +559,108 @@ Value sendrawtransaction(const Array& params, bool fHelp)
             "sendrawtransaction <hex string>\n"
             "Submits raw transaction (serialized, hex-encoded) to local node and network.");
 
-    RPCTypeCh
+    RPCTypeCheck(params, list_of(str_type));
+
+    // parse hex string from parameter
+    vector<unsigned char> txData(ParseHex(params[0].get_str()));
+    CDataStream ssData(txData, SER_NETWORK, PROTOCOL_VERSION);
+    CTransaction tx;
+
+    // deserialize binary data stream
+    try {
+        ssData >> tx;
+    }
+    catch (std::exception &e) {
+        throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX decode failed");
+    }
+    uint256 hashTx = tx.GetHash();
+
+    // See if the transaction is already in a block
+    // or in the memory pool:
+    CTransaction existingTx;
+    uint256 hashBlock = 0;
+    if (GetTransaction(hashTx, existingTx, hashBlock))
+    {
+        if (hashBlock != 0)
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("transaction already in block ")+hashBlock.GetHex());
+        // Not in block, but already in the memory pool; will drop
+        // through to re-relay it.
+    }
+    else
+    {
+        // push to local node
+        if (!AcceptToMemoryPool(mempool, tx, true, NULL, false, false, true))
+            throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "TX rejected");
+    }
+    RelayTransaction(tx, hashTx);
+
+    return hashTx.GetHex();
+}
+
+
+Value searchrawtransactions(const Array &params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 4)
+        throw runtime_error(
+            "searchrawtransactions <address> [verbose=1] [skip=0] [count=100]\n");
+
+    CWayaWolfCoinAddress address(params[0].get_str());
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+    CTxDestination dest = address.Get();
+
+    std::vector<uint256> vtxhash;
+    if (!FindTransactionsByDestination(dest, vtxhash))
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Cannot search for address");
+
+    int nSkip = 0;
+    int nCount = 100;
+    bool fVerbose = true;
+    if (params.size() > 1)
+        fVerbose = (params[1].get_int() != 0);
+    if (params.size() > 2)
+        nSkip = params[2].get_int();
+    if (params.size() > 3)
+        nCount = params[3].get_int();
+
+    if (nSkip < 0)
+        nSkip += vtxhash.size();
+    if (nSkip < 0)
+        nSkip = 0;
+    if (nCount < 0)
+        nCount = 0;
+
+    std::vector<uint256>::const_iterator it = vtxhash.begin();
+    while (it != vtxhash.end() && nSkip--) it++;
+
+    Array result;
+    while (it != vtxhash.end() && nCount--) {
+        CTransaction tx;
+        uint256 hashBlock;
+        if (!GetTransaction(*it, tx, hashBlock))
+        {
+           // throw JSONRPCError(RPC_DESERIALIZATION_ERROR, "Cannot read transaction from disk");
+           Object obj;
+	   obj.push_back(Pair("ERROR", "Cannot read transaction from disk"));
+	   result.push_back(obj);
+	}
+	else
+	{
+
+        CDataStream ssTx(SER_NETWORK, PROTOCOL_VERSION);
+        ssTx << tx;
+        string strHex = HexStr(ssTx.begin(), ssTx.end());
+        if (fVerbose) {
+            Object object;
+            TxToJSON(tx, hashBlock, object);
+            object.push_back(Pair("hex", strHex));
+            result.push_back(object);
+        } else {
+            result.push_back(strHex);
+        }
+
+        }
+        it++;
+    }
+    return result;
+}
