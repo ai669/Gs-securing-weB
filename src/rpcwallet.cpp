@@ -287,4 +287,191 @@ CWayaWolfCoinAddress GetAccountAddress(string strAccount, bool bForceNew=false)
     return CWayaWolfCoinAddress(account.vchPubKey.GetID());
 }
 
-Value g
+Value getaccountaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+            "getaccountaddress \"account\"\n"
+            "\nReturns the current WayaWolfCoin address for receiving payments to this account.\n"
+            "\nArguments:\n"
+            "1. \"account\"       (string, required) The account name for the address. It can also be set to the empty string \"\" to represent the default account. The account does not need to exist, it will be created and a new address created  if there is no account by the given name.\n"
+            "\nResult:\n"
+            "\"WayaWolfCoin\"   (string) The account WayaWolfCoin address\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getaccountaddress", "")
+            + HelpExampleCli("getaccountaddress", "\"\"")
+            + HelpExampleCli("getaccountaddress", "\"myaccount\"")
+            + HelpExampleRpc("getaccountaddress", "\"myaccount\"")
+        );
+
+    // Parse the account first so we don't generate a key if there's an error
+    string strAccount = AccountFromValue(params[0]);
+
+    Value ret;
+
+    ret = GetAccountAddress(strAccount).ToString();
+
+    return ret;
+}
+
+
+
+Value setaccount(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 2)
+        throw runtime_error(
+            "setaccount \"WayaWolfCoin\" \"account\"\n"
+            "\nSets the account associated with the given address.\n"
+            "\nArguments:\n"
+            "1. \"WayaWolfCoinaddress\"  (string, required) The WayaWolfCoin address to be associated with an account.\n"
+            "2. \"account\"         (string, required) The account to assign the address to.\n"
+            "\nExamples:\n"
+            + HelpExampleCli("setaccount", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" \"tabby\"")
+            + HelpExampleRpc("setaccount", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\", \"tabby\"")
+        );
+
+    CWayaWolfCoinAddress address(params[0].get_str());
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+
+
+    string strAccount;
+    if (params.size() > 1)
+        strAccount = AccountFromValue(params[1]);
+
+    // Only add the account if the address is yours.
+    if (IsMine(*pwalletMain, address.Get()))
+    {
+        // Detect when changing the account of an address that is the 'unused current key' of another account:
+        if (pwalletMain->mapAddressBook.count(address.Get()))
+        {
+            string strOldAccount = pwalletMain->mapAddressBook[address.Get()];
+            if (address == GetAccountAddress(strOldAccount))
+                GetAccountAddress(strOldAccount, true);
+        }
+        pwalletMain->SetAddressBookName(address.Get(), strAccount);
+    }
+    else
+        throw JSONRPCError(RPC_MISC_ERROR, "setaccount can only be used with own address");
+
+    return Value::null;
+}
+
+
+Value getaccount(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+            "getaccount \"WayaWolfCoin\"\n"
+            "\nReturns the account associated with the given address.\n"
+            "\nArguments:\n"
+            "1. \"WayaWolfCoin\"  (string, required) The WayaWolfCoin address for account lookup.\n"
+            "\nResult:\n"
+            "\"accountname\"        (string) the account address\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getaccount", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\"")
+            + HelpExampleRpc("getaccount", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\"")
+        );
+
+    CWayaWolfCoinAddress address(params[0].get_str());
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+
+    string strAccount;
+    map<CTxDestination, string>::iterator mi = pwalletMain->mapAddressBook.find(address.Get());
+    if (mi != pwalletMain->mapAddressBook.end() && !(*mi).second.empty())
+        strAccount = (*mi).second;
+    return strAccount;
+}
+
+
+Value getaddressesbyaccount(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 1)
+        throw runtime_error(
+            "getaddressesbyaccount \"account\"\n"
+            "\nReturns the list of addresses for the given account.\n"
+            "\nArguments:\n"
+            "1. \"account\"  (string, required) The account name.\n"
+            "\nResult:\n"
+            "[                     (json array of string)\n"
+            "  \"WayaWolfCoin\"  (string) a WayaWolfCoin address associated with the given account\n"
+            "  ,...\n"
+            "]\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getaddressesbyaccount", "\"tabby\"")
+            + HelpExampleRpc("getaddressesbyaccount", "\"tabby\"")
+        );
+
+    string strAccount = AccountFromValue(params[0]);
+
+    // Find all addresses that have the given account
+    Array ret;
+    BOOST_FOREACH(const PAIRTYPE(CWayaWolfCoinAddress, string)& item, pwalletMain->mapAddressBook)
+    {
+        const CWayaWolfCoinAddress& address = item.first;
+        const string& strName = item.second;
+        if (strName == strAccount)
+            ret.push_back(address.ToString());
+    }
+    return ret;
+}
+
+Value sendtoaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 2 || params.size() > 4)
+        throw runtime_error(
+            "sendtoaddress \"WayaWolfCoin\" amount ( \"comment\" \"comment-to\" )\n"
+            "\nSent an amount to a given address. The amount is a real and is rounded to the nearest 0.00000001\n"
+            + HelpRequiringPassphrase() +
+            "\nArguments:\n"
+           "1. \"WayaWolfCoin\"  (string, required) The WayaWolfCoin address to send to.\n"
+            "2. \"amount\"      (numeric, required) The amount in WW to send. eg 0.1\n"
+            "3. \"comment\"     (string, optional) A comment used to store what the transaction is for. \n"
+            "                             This is not part of the transaction, just kept in your wallet.\n"
+            "4. \"comment-to\"  (string, optional) A comment to store the name of the person or organization \n"
+            "                             to which you're sending the transaction. This is not part of the \n"
+            "                             transaction, just kept in your wallet.\n"
+            "\nResult:\n"
+            "\"transactionid\"  (string) The transaction id.\n"
+            "\nExamples:\n"
+            + HelpExampleCli("sendtoaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 0.1")
+            + HelpExampleCli("sendtoaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 0.1 \"donation\" \"seans outpost\"")
+            + HelpExampleRpc("sendtoaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\", 0.1, \"donation\", \"seans outpost\"")
+        );
+
+    EnsureWalletIsUnlocked();
+
+    if (params[0].get_str().length() > 75
+        && IsStealthAddress(params[0].get_str()))
+        return sendtostealthaddress(params, false);
+
+    CWayaWolfCoinAddress address(params[0].get_str());
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+
+    // Amount
+    CAmount nAmount = AmountFromValue(params[1]);
+
+    CWalletTx wtx;
+    std::string sNarr;
+
+    // Wallet comments
+    if (params.size() > 2 && params[2].type() != null_type && !params[2].get_str().empty())
+        wtx.mapValue["comment"] = params[2].get_str();
+    if (params.size() > 3 && params[3].type() != null_type && !params[3].get_str().empty())
+        wtx.mapValue["to"]      = params[3].get_str();
+    if (params.size() > 4 && params[4].type() != null_type && !params[4].get_str().empty())
+        sNarr = params[4].get_str();
+    if (sNarr.length() > 24)
+        throw std::runtime_error("Narration must be 24 characters or less.");
+
+    std::string strError = pwalletMain->SendMoneyToDestination(address.Get(), nAmount, sNarr, wtx);
+
+    if (strError != "")
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+
+    return wtx.GetHash().GetHex();
+}
+
+Valu
