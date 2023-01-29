@@ -474,4 +474,191 @@ Value sendtoaddress(const Array& params, bool fHelp)
     return wtx.GetHash().GetHex();
 }
 
-Valu
+Value listaddressgroupings(const Array& params, bool fHelp)
+{
+    if (fHelp)
+        throw runtime_error(
+            "listaddressgroupings\n"
+            "\nLists groups of addresses which have had their common ownership\n"
+            "made public by common use as inputs or as the resulting change\n"
+            "in past transactions\n"
+            "\nResult:\n"
+            "[\n"
+            "  [\n"
+            "    [\n"
+            "      \"WayaWolfCoin\",     (string) The WayaWolfCoin address\n"
+            "      amount,                 (numeric) The amount in WW\n"
+            "      \"account\"             (string, optional) The account\n"
+            "    ]\n"
+            "    ,...\n"
+            "  ]\n"
+            "  ,...\n"
+            "]\n"
+            "\nExamples:\n"
+            + HelpExampleCli("listaddressgroupings", "")
+            + HelpExampleRpc("listaddressgroupings", "")
+        );
+
+    Array jsonGroupings;
+    map<CTxDestination, int64_t> balances = pwalletMain->GetAddressBalances();
+    BOOST_FOREACH(set<CTxDestination> grouping, pwalletMain->GetAddressGroupings())
+    {
+        Array jsonGrouping;
+        BOOST_FOREACH(CTxDestination address, grouping)
+        {
+            Array addressInfo;
+            addressInfo.push_back(CWayaWolfCoinAddress(address).ToString());
+            addressInfo.push_back(ValueFromAmount(balances[address]));
+            {
+                LOCK(pwalletMain->cs_wallet);
+                if (pwalletMain->mapAddressBook.find(CWayaWolfCoinAddress(address).Get()) != pwalletMain->mapAddressBook.end())
+                    addressInfo.push_back(pwalletMain->mapAddressBook.find(CWayaWolfCoinAddress(address).Get())->second);
+            }
+            jsonGrouping.push_back(addressInfo);
+        }
+        jsonGroupings.push_back(jsonGrouping);
+    }
+    return jsonGroupings;
+}
+
+Value signmessage(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() != 2)
+        throw runtime_error(
+            "signmessage \"WayaWolfCoin\" \"message\"\n"
+            "\nSign a message with the private key of an address"
+            + HelpRequiringPassphrase() + "\n"
+            "\nArguments:\n"
+            "1. \"WayaWolfCoin\"  (string, required) The WayaWolfCoin address to use for the private key.\n"
+            "2. \"message\"         (string, required) The message to create a signature of.\n"
+            "\nResult:\n"
+            "\"signature\"          (string) The signature of the message encoded in base 64\n"
+            "\nExamples:\n"
+            "\nUnlock the wallet for 30 seconds\n"
+            + HelpExampleCli("walletpassphrase", "\"mypassphrase\" 30") +
+            "\nCreate the signature\n"
+            + HelpExampleCli("signmessage", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" \"my message\"") +
+            "\nVerify the signature\n"
+            + HelpExampleCli("verifymessage", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" \"signature\" \"my message\"") +
+            "\nAs json rpc\n"
+            + HelpExampleRpc("signmessage", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\", \"my message\"")
+        );
+
+    EnsureWalletIsUnlocked();
+
+    string strAddress = params[0].get_str();
+    string strMessage = params[1].get_str();
+
+    CWayaWolfCoinAddress addr(strAddress);
+    if (!addr.IsValid())
+        throw JSONRPCError(RPC_TYPE_ERROR, "Invalid address");
+
+    CKeyID keyID;
+    if (!addr.GetKeyID(keyID))
+        throw JSONRPCError(RPC_TYPE_ERROR, "Address does not refer to key");
+
+    CKey key;
+    if (!pwalletMain->GetKey(keyID, key))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Private key not available");
+
+    CHashWriter ss(SER_GETHASH, 0);
+    ss << strMessageMagic;
+    ss << strMessage;
+
+    vector<unsigned char> vchSig;
+    if (!key.SignCompact(ss.GetHash(), vchSig))
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Sign failed");
+
+    return EncodeBase64(&vchSig[0], vchSig.size());
+}
+
+Value getreceivedbyaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 2)
+        throw runtime_error(
+            "getreceivedbyaddress \"WayaWolfCoin\" ( minconf )\n"
+            "\nReturns the total amount received by the given WayaWolfCoin in transactions with at least minconf confirmations.\n"
+            "\nArguments:\n"
+            "1. \"WayaWolfCoin\"  (string, required) The WayaWolfCoin address for transactions.\n"
+            "2. minconf             (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
+            "\nResult:\n"
+            "amount   (numeric) The total amount in WW received at this address.\n"
+            "\nExamples:\n"
+            "\nThe amount from transactions with at least 1 confirmation\n"
+            + HelpExampleCli("getreceivedbyaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\"") +
+            "\nThe amount including unconfirmed transactions, zero confirmations\n"
+            + HelpExampleCli("getreceivedbyaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 0") +
+            "\nThe amount with at least 10 confirmation, very safe\n"
+            + HelpExampleCli("getreceivedbyaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 10") +
+            "\nAs a json rpc call\n"
+            + HelpExampleRpc("getreceivedbyaddress", "\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\", 10")
+       );
+
+    // WayaWolfCoin address
+    CWayaWolfCoinAddress address = CWayaWolfCoinAddress(params[0].get_str());
+    CScript scriptPubKey;
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+    scriptPubKey.SetDestination(address.Get());
+    if (!IsMine(*pwalletMain,scriptPubKey))
+        return (double)0.0;
+
+    // Minimum confirmations
+    int nMinDepth = 1;
+    if (params.size() > 1)
+        nMinDepth = params[1].get_int();
+
+    // Tally
+    CAmount nAmount = 0;
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
+    {
+        const CWalletTx& wtx = (*it).second;
+        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !IsFinalTx(wtx))
+            continue;
+
+        BOOST_FOREACH(const CTxOut& txout, wtx.vout)
+            if (txout.scriptPubKey == scriptPubKey)
+                if (wtx.GetDepthInMainChain() >= nMinDepth)
+                    nAmount += txout.nValue;
+    }
+
+    return  ValueFromAmount(nAmount);
+}
+
+
+void GetAccountAddresses(string strAccount, set<CTxDestination>& setAddress)
+{
+    BOOST_FOREACH(const PAIRTYPE(CTxDestination, string)& item, pwalletMain->mapAddressBook)
+    {
+        const CTxDestination& address = item.first;
+        const string& strName = item.second;
+        if (strName == strAccount)
+            setAddress.insert(address);
+    }
+}
+
+Value getreceivedbyaccount(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 2)
+        throw runtime_error(
+            "getreceivedbyaccount \"account\" ( minconf )\n"
+            "\nReturns the total amount received by addresses with <account> in transactions with at least [minconf] confirmations.\n"
+            "\nArguments:\n"
+            "1. \"account\"      (string, required) The selected account, may be the default account using \"\".\n"
+            "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
+            "\nResult:\n"
+            "amount              (numeric) The total amount in WW received for this account.\n"
+            "\nExamples:\n"
+            "\nAmount received by the default account with at least 1 confirmation\n"
+            + HelpExampleCli("getreceivedbyaccount", "\"\"") +
+            "\nAmount received at the tabby account including unconfirmed amounts with zero confirmations\n"
+            + HelpExampleCli("getreceivedbyaccount", "\"tabby\" 0") +
+            "\nThe amount with at least 10 confirmation, very safe\n"
+            + HelpExampleCli("getreceivedbyaccount", "\"tabby\" 10") +
+            "\nAs a json rpc call\n"
+            + HelpExampleRpc("getreceivedbyaccount", "\"tabby\", 10")
+        );
+
+    accountingDeprecationCheck();
+
+ 
