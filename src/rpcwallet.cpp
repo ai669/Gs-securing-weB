@@ -661,4 +661,192 @@ Value getreceivedbyaccount(const Array& params, bool fHelp)
 
     accountingDeprecationCheck();
 
- 
+    // Minimum confirmations
+    int nMinDepth = 1;
+    if (params.size() > 1)
+        nMinDepth = params[1].get_int();
+
+    // Get the set of pub keys assigned to account
+    string strAccount = AccountFromValue(params[0]);
+    set<CTxDestination> setAddress;
+    GetAccountAddresses(strAccount, setAddress);
+
+    // Tally
+    CAmount nAmount = 0;
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
+    {
+        const CWalletTx& wtx = (*it).second;
+        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !IsFinalTx(wtx))
+            continue;
+
+        BOOST_FOREACH(const CTxOut& txout, wtx.vout)
+        {
+            CTxDestination address;
+            if (ExtractDestination(txout.scriptPubKey, address) && IsMine(*pwalletMain, address) && setAddress.count(address))
+                if (wtx.GetDepthInMainChain() >= nMinDepth)
+                    nAmount += txout.nValue;
+        }
+    }
+
+    return (double)nAmount / (double)COIN;
+}
+
+
+int64_t GetAccountBalance(CWalletDB& walletdb, const string& strAccount, int nMinDepth, const isminefilter& filter)
+{
+    int64_t nBalance = 0;
+
+    // Tally wallet transactions
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
+    {
+        const CWalletTx& wtx = (*it).second;
+        if (!IsFinalTx(wtx) || wtx.GetBlocksToMaturity() > 0 || wtx.GetDepthInMainChain() < 0)
+            continue;
+
+        int64_t nReceived, nSent, nFee;
+        wtx.GetAccountAmounts(strAccount, nReceived, nSent, nFee, filter);
+
+        if (nReceived != 0 && wtx.GetDepthInMainChain() >= nMinDepth)
+            nBalance += nReceived;
+        nBalance -= nSent + nFee;
+    }
+
+    // Tally internal accounting entries
+    nBalance += walletdb.GetAccountCreditDebit(strAccount);
+
+    return nBalance;
+}
+
+int64_t GetAccountBalance(const string& strAccount, int nMinDepth, const isminefilter& filter)
+{
+    CWalletDB walletdb(pwalletMain->strWalletFile);
+    return GetAccountBalance(walletdb, strAccount, nMinDepth, filter);
+}
+
+
+Value getbalance(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 3) {
+        throw runtime_error(
+            "getbalance ( \"account\" minconf includeWatchonly )\n"
+            "\nIf account is not specified, returns the server's total available balance.\n"
+            "If account is specified, returns the balance in the account.\n"
+            "Note that the account \"\" is not the same as leaving the parameter out.\n"
+            "The server total may be different to the balance in the default \"\" account.\n"
+            "\nArguments:\n"
+            "1. \"account\"      (string, optional) The selected account, or \"*\" for entire wallet. It may be the default account using \"\".\n"
+            "2. minconf          (numeric, optional, default=1) Only include transactions confirmed at least this many times.\n"
+            "3. includeWatchonly (bool, optional, default=false) Also include balance in watchonly addresses (see 'importaddress')\n"
+            "\nResult:\n"
+            "amount              (numeric) The total amount in WW received for this account.\n"
+            "\nExamples:\n"
+            "\nThe total amount in the server across all accounts\n"
+            + HelpExampleCli("getbalance", "") +
+            "\nThe total amount in the server across all accounts, with at least 5 confirmations\n"
+            + HelpExampleCli("getbalance", "\"*\" 6") +
+            "\nThe total amount in the default account with at least 1 confirmation\n"
+            + HelpExampleCli("getbalance", "\"\"") +
+            "\nThe total amount in the account named tabby with at least 10 confirmations\n"
+            + HelpExampleCli("getbalance", "\"tabby\" 10") +
+            "\nAs a json rpc call\n"
+            + HelpExampleRpc("getbalance", "\"tabby\", 10")
+        );
+    }
+    if (params.size() == 0)
+        return  ValueFromAmount(pwalletMain->GetBalance());
+
+    int nMinDepth = 1;
+    if (params.size() > 1)
+        nMinDepth = params[1].get_int();
+    isminefilter filter = ISMINE_SPENDABLE;
+    if(params.size() > 2)
+        if(params[2].get_bool())
+            filter = filter | ISMINE_WATCH_ONLY;
+
+    if (params[0].get_str() == "*") {
+        // Calculate total balance a different way from GetBalance()
+        // (GetBalance() sums up all unspent TxOuts)
+        // getbalance and getbalance '*' 0 should return the same number.
+        CAmount nBalance = 0;
+        for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
+        {
+            const CWalletTx& wtx = (*it).second;
+            if (!IsFinalTx(wtx) || wtx.GetBlocksToMaturity() > 0 || wtx.GetDepthInMainChain() < 0)
+                continue;
+
+            CAmount allFee;
+            string strSentAccount;
+            list<pair<CTxDestination, int64_t> > listReceived;
+            list<pair<CTxDestination, int64_t> > listSent;
+            wtx.GetAmounts(listReceived, listSent, allFee, strSentAccount, filter);
+            if (wtx.GetDepthInMainChain() >= nMinDepth)
+            {
+                BOOST_FOREACH(const PAIRTYPE(CTxDestination,int64_t)& r, listReceived)
+                    nBalance += r.second;
+            }
+            BOOST_FOREACH(const PAIRTYPE(CTxDestination,int64_t)& r, listSent)
+                nBalance -= r.second;
+            nBalance -= allFee;
+        }
+        return  ValueFromAmount(nBalance);
+    }
+
+    accountingDeprecationCheck();
+
+    string strAccount = AccountFromValue(params[0]);
+
+    CAmount nBalance = GetAccountBalance(strAccount, nMinDepth, filter);
+
+    return ValueFromAmount(nBalance);
+}
+
+
+Value movecmd(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 3 || params.size() > 5)
+        throw runtime_error(
+            "move \"fromaccount\" \"toaccount\" amount ( minconf \"comment\" )\n"
+            "\nMove a specified amount from one account in your wallet to another.\n"
+            "\nArguments:\n"
+            "1. \"fromaccount\"   (string, required) The name of the account to move funds from. May be the default account using \"\".\n"
+            "2. \"toaccount\"     (string, required) The name of the account to move funds to. May be the default account using \"\".\n"
+            "3. minconf           (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
+            "4. \"comment\"       (string, optional) An optional comment, stored in the wallet only.\n"
+            "\nResult:\n"
+            "true|false           (boolean) true if successfull.\n"
+            "\nExamples:\n"
+            "\nMove 0.01 WW from the default account to the account named tabby\n"
+            + HelpExampleCli("move", "\"\" \"tabby\" 0.01") +
+            "\nMove 0.01 WW timotei to akiko with a comment and funds have 10 confirmations\n"
+            + HelpExampleCli("move", "\"timotei\" \"akiko\" 0.01 10 \"happy birthday!\"") +
+            "\nAs a json WW call\n"
+            + HelpExampleRpc("move", "\"timotei\", \"akiko\", 0.01, 10, \"happy birthday!\"")
+        );
+
+    accountingDeprecationCheck();
+
+    string strFrom = AccountFromValue(params[0]);
+    string strTo = AccountFromValue(params[1]);
+    CAmount nAmount = AmountFromValue(params[2]);
+
+    if (params.size() > 3)
+        // unused parameter, used to be nMinDepth, keep type-checking it though
+        (void)params[3].get_int();
+    string strComment;
+    if (params.size() > 4)
+        strComment = params[4].get_str();
+
+    CWalletDB walletdb(pwalletMain->strWalletFile);
+    if (!walletdb.TxnBegin())
+        throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
+
+    int64_t nNow = GetAdjustedTime();
+
+    // Debit
+    CAccountingEntry debit;
+    debit.nOrderPos = pwalletMain->IncOrderPosNext(&walletdb);
+    debit.strAccount = strFrom;
+    debit.nCreditDebit = -nAmount;
+    debit.nTime = nNow;
+    debit.strOtherAccount = strTo;
+    deb
