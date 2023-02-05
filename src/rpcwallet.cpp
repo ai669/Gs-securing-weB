@@ -849,4 +849,171 @@ Value movecmd(const Array& params, bool fHelp)
     debit.nCreditDebit = -nAmount;
     debit.nTime = nNow;
     debit.strOtherAccount = strTo;
-    deb
+    debit.strComment = strComment;
+    pwalletMain->AddAccountingEntry(debit, walletdb);
+
+    // Credit
+    CAccountingEntry credit;
+    credit.nOrderPos = pwalletMain->IncOrderPosNext(&walletdb);
+    credit.strAccount = strTo;
+    credit.nCreditDebit = nAmount;
+    credit.nTime = nNow;
+    credit.strOtherAccount = strFrom;
+    credit.strComment = strComment;
+    pwalletMain->AddAccountingEntry(credit, walletdb);
+
+    if (!walletdb.TxnCommit())
+        throw JSONRPCError(RPC_DATABASE_ERROR, "database error");
+
+    return true;
+}
+
+
+Value sendfrom(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 3 || params.size() > 7)
+        throw runtime_error(
+            "sendfrom \"fromaccount\" \"toWayaWolfCoinaddress\" amount ( minconf \"comment\" \"comment-to\" )\n"
+            "\nSent an amount from an account to a WayaWolfCoin address.\n"
+            "The amount is a real and is rounded to the nearest 0.00000001."
+            + HelpRequiringPassphrase() + "\n"
+            "\nArguments:\n"
+            "1. \"fromaccount\"       (string, required) The name of the account to send funds from. May be the default account using \"\".\n"
+            "2. \"toWayaWolfCoinaddress\"  (string, required) The WayaWolfCoin address to send funds to.\n"
+            "3. amount                (numeric, required) The amount in IC. (transaction fee is added on top).\n"
+            "4. minconf               (numeric, optional, default=1) Only use funds with at least this many confirmations.\n"
+            "5. \"comment\"           (string, optional) A comment used to store what the transaction is for. \n"
+            "                                     This is not part of the transaction, just kept in your wallet.\n"
+            "6. \"comment-to\"        (string, optional) An optional comment to store the name of the person or organization \n"
+            "                                     to which you're sending the transaction. This is not part of the transaction, \n"
+            "                                     it is just kept in your wallet.\n"
+            "\nResult:\n"
+            "\"transactionid\"        (string) The transaction id.\n"
+            "\nExamples:\n"
+            "\nSend 0.01 WW from the default account to the address, must have at least 1 confirmation\n"
+            + HelpExampleCli("sendfrom", "\"\" \"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 0.01") +
+            "\nSend 0.01 from the tabby account to the given address, funds must have at least 10 confirmations\n"
+            + HelpExampleCli("sendfrom", "\"tabby\" \"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\" 0.01 10 \"donation\" \"seans outpost\"") +
+            "\nAs a json rpc call\n"
+            + HelpExampleRpc("sendfrom", "\"tabby\", \"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\", 0.01, 10, \"donation\", \"seans outpost\"")
+        );
+
+    EnsureWalletIsUnlocked();
+
+    string strAccount = AccountFromValue(params[0]);
+    CWayaWolfCoinAddress address(params[1].get_str());
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid WayaWolfCoin address");
+    CAmount nAmount = AmountFromValue(params[2]);
+
+    int nMinDepth = 1;
+    if (params.size() > 3)
+        nMinDepth = params[3].get_int();
+
+    CWalletTx wtx;
+    wtx.strFromAccount = strAccount;
+
+    if (params.size() > 4 && params[4].type() != null_type && !params[4].get_str().empty())
+        wtx.mapValue["comment"] = params[4].get_str();
+    if (params.size() > 5 && params[5].type() != null_type && !params[5].get_str().empty())
+        wtx.mapValue["to"]      = params[5].get_str();
+
+    std::string sNarr;
+    if (params.size() > 6 && params[6].type() != null_type && !params[6].get_str().empty())
+        sNarr = params[6].get_str();
+
+    if (sNarr.length() > 24)
+        throw runtime_error("Narration must be 24 characters or less.");
+
+    // Check funds
+    int64_t nBalance = GetAccountBalance(strAccount, nMinDepth, ISMINE_SPENDABLE);
+    if (nAmount > nBalance)
+        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Account has insufficient funds");
+
+    // Send
+    string strError = pwalletMain->SendMoneyToDestination(address.Get(), nAmount, sNarr, wtx);
+    if (strError != "")
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+
+    return wtx.GetHash().GetHex();
+}
+
+
+Value sendmany(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 2 || params.size() > 4)
+        throw runtime_error(
+            "sendmany \"fromaccount\" {\"address\":amount,...} ( minconf \"comment\" )\n"
+            "\nSend multiple times. Amounts are double-precision floating point numbers."
+            + HelpRequiringPassphrase() + "\n"
+            "\nArguments:\n"
+            "1. \"fromaccount\"         (string, required) The account to send the funds from, can be \"\" for the default account\n"
+            "2. \"amounts\"             (string, required) A json object with addresses and amounts\n"
+            "    {\n"
+            "      \"address\":amount   (numeric) The WayaWolfCoin address is the key, the numeric amount in WW is the value\n"
+            "      ,...\n"
+            "    }\n"
+            "3. minconf                 (numeric, optional, default=1) Only use the balance confirmed at least this many times.\n"
+            "4. \"comment\"             (string, optional) A comment\n"
+            "\nResult:\n"
+            "\"transactionid\"          (string) The transaction id for the send. Only 1 transaction is created regardless of \n"
+            "                                    the number of addresses.\n"
+            "\nExamples:\n"
+            "\nSend two amounts to two different addresses:\n"
+            + HelpExampleCli("sendmany", "\"tabby\" \"{\\\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\\\":0.01,\\\"ThiLpx7oYd5YuuhsJAUD5ZsEX2YHgU98Us\\\":0.02}\"") +
+            "\nSend two amounts to two different addresses setting the confirmation and comment:\n"
+            + HelpExampleCli("sendmany", "\"tabby\" \"{\\\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\\\":0.01,\\\"ThiLpx7oYd5YuuhsJAUD5ZsEX2YHgU98Us\\\":0.02}\" 10 \"testing\"") +
+            "\nAs a json rpc call\n"
+            + HelpExampleRpc("sendmany", "\"tabby\", \"{\\\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\\\":0.01,\\\"ThiLpx7oYd5YuuhsJAUD5ZsEX2YHgU98Us\\\":0.02}\", 10, \"testing\"")
+        );
+
+    string strAccount = AccountFromValue(params[0]);
+    Object sendTo = params[1].get_obj();
+    int nMinDepth = 1;
+    if (params.size() > 2)
+        nMinDepth = params[2].get_int();
+
+    CWalletTx wtx;
+    wtx.strFromAccount = strAccount;
+    if (params.size() > 3 && params[3].type() != null_type && !params[3].get_str().empty())
+        wtx.mapValue["comment"] = params[3].get_str();
+
+    set<CWayaWolfCoinAddress> setAddress;
+    vector<pair<CScript, int64_t> > vecSend;
+
+    int64_t totalAmount = 0;
+    BOOST_FOREACH(const Pair& s, sendTo)
+    {
+        CWayaWolfCoinAddress address(s.name_);
+        if (!address.IsValid())
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, string("Invalid WayaWolfCoin address: ")+s.name_);
+
+        if (setAddress.count(address))
+            throw JSONRPCError(RPC_INVALID_PARAMETER, string("Invalid parameter, duplicated address: ")+s.name_);
+        setAddress.insert(address);
+
+        CScript scriptPubKey;
+        scriptPubKey.SetDestination(address.Get());
+        CAmount nAmount = AmountFromValue(s.value_);
+
+        totalAmount += nAmount;
+
+        vecSend.push_back(make_pair(scriptPubKey, nAmount));
+    }
+
+    EnsureWalletIsUnlocked();
+
+    // Check funds
+    int64_t nBalance = GetAccountBalance(strAccount, nMinDepth, ISMINE_SPENDABLE);
+    if (totalAmount > nBalance)
+        throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Account has insufficient funds");
+
+    // Send
+    CReserveKey keyChange(pwalletMain);
+    int64_t nFeeRequired = 0;
+    int nChangePos;
+    std::string strFailReason;
+    bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePos, strFailReason);
+    if (!fCreated)
+    {
+        if (totalAmount + nFee
