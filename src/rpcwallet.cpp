@@ -1016,4 +1016,228 @@ Value sendmany(const Array& params, bool fHelp)
     bool fCreated = pwalletMain->CreateTransaction(vecSend, wtx, keyChange, nFeeRequired, nChangePos, strFailReason);
     if (!fCreated)
     {
-        if (totalAmount + nFee
+        if (totalAmount + nFeeRequired > pwalletMain->GetBalance())
+            throw JSONRPCError(RPC_WALLET_INSUFFICIENT_FUNDS, "Insufficient funds");
+        throw JSONRPCError(RPC_WALLET_ERROR, "Transaction creation failed");
+    }
+    if (!pwalletMain->CommitTransaction(wtx, keyChange))
+        throw JSONRPCError(RPC_WALLET_ERROR, "Transaction commit failed");
+
+    return wtx.GetHash().GetHex();
+}
+
+// Defined in rpcmisc.cpp
+extern CScript _createmultisig_redeemScript(const Array& params);
+
+Value addmultisigaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 2 || params.size() > 3)
+    {
+        string msg = "addmultisigaddress nrequired [\"key\",...] ( \"account\" )\n"
+            "\nAdd a nrequired-to-sign multisignature address to the wallet.\n"
+            "Each key is a WayaWolfCoin address or hex-encoded public key.\n"
+            "If 'account' is specified, assign address to that account.\n"
+
+            "\nArguments:\n"
+            "1. nrequired        (numeric, required) The number of required signatures out of the n keys or addresses.\n"
+            "2. \"keysobject\"   (string, required) A json array of WayaWolfCoin addresses or hex-encoded public keys\n"
+            "     [\n"
+            "       \"address\"  (string) WayaWolfCoin address or hex-encoded public key\n"
+            "       ...,\n"
+            "     ]\n"
+            "3. \"account\"      (string, optional) An account to assign the addresses to.\n"
+
+            "\nResult:\n"
+            "\"WayaWolfCoin\"  (string) A WayaWolfCoin address associated with the keys.\n"
+
+            "\nExamples:\n"
+            "\nAdd a multisig address from 2 addresses\n"
+            + HelpExampleCli("addmultisigaddress", "2 \"[\\\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\\\",\\\"ThiLpx7oYd5YuuhsJAUD5ZsEX2YHgU98Us\\\"]\"") +
+            "\nAs json rpc call\n"
+            + HelpExampleRpc("addmultisigaddress", "2, \"[\\\"ie6sxvFwLpMsp5tRHpAS6q3cZVewmqYzTg\\\",\\\"ThiLpx7oYd5YuuhsJAUD5ZsEX2YHgU98Us\\\"]\"")
+        ;
+        throw runtime_error(msg);
+    }
+
+    int nRequired = params[0].get_int();
+    const Array& keys = params[1].get_array();
+    string strAccount;
+    if (params.size() > 2)
+        strAccount = AccountFromValue(params[2]);
+
+    // Gather public keys
+    if (nRequired < 1)
+        throw runtime_error("a multisignature address must require at least one key to redeem");
+    if ((int)keys.size() < nRequired)
+        throw runtime_error(
+            strprintf("not enough keys supplied "
+                      "(got %u keys, but need at least %d to redeem)", keys.size(), nRequired));
+    std::vector<CPubKey> pubkeys;
+    pubkeys.resize(keys.size());
+    for (unsigned int i = 0; i < keys.size(); i++)
+    {
+        const std::string& ks = keys[i].get_str();
+
+        // Case 1: WayaWolfCoin address and we have full public key:
+        CWayaWolfCoinAddress address(ks);
+        if (pwalletMain && address.IsValid())
+        {
+            CKeyID keyID;
+            if (!address.GetKeyID(keyID))
+                throw runtime_error(
+                    strprintf("%s does not refer to a key",ks));
+            CPubKey vchPubKey;
+            if (!pwalletMain->GetPubKey(keyID, vchPubKey))
+                throw runtime_error(
+                    strprintf("no full public key for address %s",ks));
+            if (!vchPubKey.IsFullyValid())
+                throw runtime_error(" Invalid public key: "+ks);
+            pubkeys[i] = vchPubKey;
+        }
+
+        // Case 2: hex public key
+        else if (IsHex(ks))
+        {
+            CPubKey vchPubKey(ParseHex(ks));
+            if (!vchPubKey.IsFullyValid())
+                throw runtime_error(" Invalid public key: "+ks);
+            pubkeys[i] = vchPubKey;
+        }
+        else
+        {
+            throw runtime_error(" Invalid public key: "+ks);
+        }
+    }
+
+    // Construct using pay-to-script-hash:
+    CScript inner;
+    inner.SetMultisig(nRequired, pubkeys);
+    CScriptID innerID = inner.GetID();
+    if (!pwalletMain->AddCScript(inner))
+        throw runtime_error("AddCScript() failed");
+
+    pwalletMain->SetAddressBookName(innerID, strAccount);
+    return CWayaWolfCoinAddress(innerID).ToString();
+}
+
+Value addredeemscript(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 2)
+    {
+        string msg = "addredeemscript <redeemScript> [account]\n"
+            "Add a P2SH address with a specified redeemScript to the wallet.\n"
+            "If [account] is specified, assign address to [account].";
+        throw runtime_error(msg);
+    }
+
+    string strAccount;
+    if (params.size() > 1)
+        strAccount = AccountFromValue(params[1]);
+
+    // Construct using pay-to-script-hash:
+    vector<unsigned char> innerData = ParseHexV(params[0], "redeemScript");
+    CScript inner(innerData.begin(), innerData.end());
+    CScriptID innerID = inner.GetID();
+    if (!pwalletMain->AddCScript(inner))
+        throw runtime_error("AddCScript() failed");
+
+    pwalletMain->SetAddressBookName(innerID, strAccount);
+    return CWayaWolfCoinAddress(innerID).ToString();
+}
+
+struct tallyitem
+{
+    CAmount nAmount;
+    int nConf;
+    int nBCConf;
+    vector<uint256> txids;
+    bool fIsWatchonly;
+    tallyitem()
+    {
+        nAmount = 0;
+        nConf = std::numeric_limits<int>::max();
+        nBCConf = std::numeric_limits<int>::max();
+        fIsWatchonly = false;
+    }
+};
+
+Value ListReceived(const Array& params, bool fByAccounts)
+{
+    // Minimum confirmations
+    int nMinDepth = 1;
+    if (params.size() > 0)
+        nMinDepth = params[0].get_int();
+
+    // Whether to include empty accounts
+    bool fIncludeEmpty = false;
+    if (params.size() > 1)
+        fIncludeEmpty = params[1].get_bool();
+
+    isminefilter filter = ISMINE_SPENDABLE;
+    if(params.size() > 2)
+        if(params[2].get_bool())
+            filter = filter | ISMINE_WATCH_ONLY;
+
+    // Tally
+    map<CWayaWolfCoinAddress, tallyitem> mapTally;
+    for (map<uint256, CWalletTx>::iterator it = pwalletMain->mapWallet.begin(); it != pwalletMain->mapWallet.end(); ++it)
+    {
+        const CWalletTx& wtx = (*it).second;
+
+        if (wtx.IsCoinBase() || wtx.IsCoinStake() || !IsFinalTx(wtx))
+            continue;
+
+        int nDepth = wtx.GetDepthInMainChain();
+        int nBCDepth = wtx.GetDepthInMainChain(false);
+        if (nDepth < nMinDepth)
+            continue;
+
+        BOOST_FOREACH(const CTxOut& txout, wtx.vout)
+        {
+            CTxDestination address;
+            if (!ExtractDestination(txout.scriptPubKey, address))
+                continue;
+
+            isminefilter mine = IsMine(*pwalletMain, address);
+            if(!(mine & filter))
+                continue;
+
+            tallyitem& item = mapTally[address];
+            item.nAmount += txout.nValue;
+            item.nConf = min(item.nConf, nDepth);
+            item.nBCConf = min(item.nBCConf, nBCDepth);
+            item.txids.push_back(wtx.GetHash());
+            if (mine & ISMINE_WATCH_ONLY)
+                item.fIsWatchonly = true;
+        }
+    }
+
+    // Reply
+    Array ret;
+    map<string, tallyitem> mapAccountTally;
+    BOOST_FOREACH(const PAIRTYPE(CWayaWolfCoinAddress, string)& item, pwalletMain->mapAddressBook)
+    {
+        const CWayaWolfCoinAddress& address = item.first;
+        const string& strAccount = item.second;
+        map<CWayaWolfCoinAddress, tallyitem>::iterator it = mapTally.find(address);
+        if (it == mapTally.end() && !fIncludeEmpty)
+            continue;
+
+        CAmount nAmount = 0;
+        int nConf = std::numeric_limits<int>::max();
+        int nBCConf = std::numeric_limits<int>::max();
+        bool fIsWatchonly = false;
+        if (it != mapTally.end())
+        {
+            nAmount = (*it).second.nAmount;
+            nConf = (*it).second.nConf;
+            nBCConf = (*it).second.nBCConf;
+            fIsWatchonly = (*it).second.fIsWatchonly;
+        }
+
+        if (fByAccounts)
+        {
+            tallyitem& item = mapAccountTally[strAccount];
+            item.nAmount += nAmount;
+            item.nConf = min(item.nConf, nConf);
+    
