@@ -1240,4 +1240,177 @@ Value ListReceived(const Array& params, bool fByAccounts)
             tallyitem& item = mapAccountTally[strAccount];
             item.nAmount += nAmount;
             item.nConf = min(item.nConf, nConf);
-    
+            item.nBCConf = min(item.nBCConf, nBCConf);
+            item.fIsWatchonly = fIsWatchonly;
+        }
+        else
+        {
+            Object obj;
+            if(fIsWatchonly)
+                obj.push_back(Pair("involvesWatchonly", true));
+            obj.push_back(Pair("address",       address.ToString()));
+            obj.push_back(Pair("account",       strAccount));
+            obj.push_back(Pair("amount",        ValueFromAmount(nAmount)));
+            obj.push_back(Pair("confirmations", (nConf == std::numeric_limits<int>::max() ? 0 : nConf)));
+            obj.push_back(Pair("bcconfirmations", (nBCConf == std::numeric_limits<int>::max() ? 0 : nBCConf)));
+            Array transactions;
+            if (it != mapTally.end())
+            {
+                BOOST_FOREACH(const uint256& item, (*it).second.txids)
+                {
+                    transactions.push_back(item.GetHex());
+                }
+            }
+            obj.push_back(Pair("txids", transactions));
+            ret.push_back(obj);
+        }
+    }
+
+    if (fByAccounts)
+    {
+        for (map<string, tallyitem>::iterator it = mapAccountTally.begin(); it != mapAccountTally.end(); ++it)
+        {
+            CAmount nAmount = (*it).second.nAmount;
+            int nConf = (*it).second.nConf;
+            int nBCConf = (*it).second.nBCConf;
+            Object obj;
+            if((*it).second.fIsWatchonly)
+                obj.push_back(Pair("involvesWatchonly", true));
+            obj.push_back(Pair("account",       (*it).first));
+            obj.push_back(Pair("amount",        ValueFromAmount(nAmount)));
+            obj.push_back(Pair("confirmations", (nConf == std::numeric_limits<int>::max() ? 0 : nConf)));
+            obj.push_back(Pair("bcconfirmations", (nBCConf == std::numeric_limits<int>::max() ? 0 : nBCConf)));
+            ret.push_back(obj);
+        }
+    }
+
+    return ret;
+}
+
+Value listreceivedbyaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 3)
+        throw runtime_error(
+            "listreceivedbyaddress ( minconf includeempty includeWatchonly)\n"
+            "\nList balances by receiving address.\n"
+            "\nArguments:\n"
+            "1. minconf       (numeric, optional, default=1) The minimum number of confirmations before payments are included.\n"
+            "2. includeempty  (numeric, optional, default=false) Whether to include addresses that haven't received any payments.\n"
+            "3. includeWatchonly (bool, optional, default=false) Whether to include watchonly addresses (see 'importaddress').\n"
+
+            "\nResult:\n"
+            "[\n"
+            "  {\n"
+            "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
+            "    \"address\" : \"receivingaddress\",  (string) The receiving address\n"
+            "    \"account\" : \"accountname\",       (string) The account of the receiving address. The default account is \"\".\n"
+            "    \"amount\" : x.xxx,                  (numeric) The total amount in WW received by the address\n"
+            "    \"confirmations\" : n                (numeric) The number of confirmations of the most recent transaction included\n"
+            "    \"bcconfirmations\" : n              (numeric) The number of Blockchain confirmations of the most recent transaction included\n"
+            "  }\n"
+            "  ,...\n"
+            "]\n"
+
+            "\nExamples:\n"
+            + HelpExampleCli("listreceivedbyaddress", "")
+            + HelpExampleCli("listreceivedbyaddress", "10 true")
+            + HelpExampleRpc("listreceivedbyaddress", "10, true, true")
+        );
+
+    return ListReceived(params, false);
+}
+
+Value listreceivedbyaccount(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 3)
+        throw runtime_error(
+            "listreceivedbyaccount ( minconf includeempty includeWatchonly)\n"
+            "\nList balances by account.\n"
+            "\nArguments:\n"
+            "1. minconf      (numeric, optional, default=1) The minimum number of confirmations before payments are included.\n"
+            "2. includeempty (boolean, optional, default=false) Whether to include accounts that haven't received any payments.\n"
+            "3. includeWatchonly (bool, optional, default=false) Whether to include watchonly addresses (see 'importaddress').\n"
+
+            "\nResult:\n"
+            "[\n"
+            "  {\n"
+            "    \"involvesWatchonly\" : \"true\",    (bool) Only returned if imported addresses were involved in transaction\n"
+            "    \"account\" : \"accountname\",  (string) The account name of the receiving account\n"
+            "    \"amount\" : x.xxx,             (numeric) The total amount received by addresses with this account\n"
+            "    \"confirmations\" : n           (numeric) The number of confirmations of the most recent transaction included\n"
+            "    \"bcconfirmations\" : n         (numeric) The number of Blockchain confirmations of the most recent transaction included\n"
+            "  }\n"
+            "  ,...\n"
+            "]\n"
+
+            "\nExamples:\n"
+            + HelpExampleCli("listreceivedbyaccount", "")
+            + HelpExampleCli("listreceivedbyaccount", "10 true")
+            + HelpExampleRpc("listreceivedbyaccount", "10, true, true")
+        );
+
+    accountingDeprecationCheck();
+
+    return ListReceived(params, true);
+}
+
+static void MaybePushAddress(Object & entry, const CTxDestination &dest)
+{
+    CWayaWolfCoinAddress addr;
+    if (addr.Set(dest))
+        entry.push_back(Pair("address", addr.ToString()));
+}
+
+void ListTransactions(const CWalletTx& wtx, const string& strAccount, int nMinDepth, bool fLong, Array& ret, const isminefilter& filter)
+{
+    CAmount nFee;
+    string strSentAccount;
+    list<pair<CTxDestination, int64_t> > listReceived;
+    list<pair<CTxDestination, int64_t> > listSent;
+
+    wtx.GetAmounts(listReceived, listSent, nFee, strSentAccount, filter);
+
+    bool fAllAccounts = (strAccount == string("*"));
+    bool involvesWatchonly = wtx.IsFromMe(ISMINE_WATCH_ONLY);
+
+    // Sent
+    if ((!wtx.IsCoinStake()) && (!listSent.empty() || nFee != 0) && (fAllAccounts || strAccount == strSentAccount))
+    {
+        BOOST_FOREACH(const PAIRTYPE(CTxDestination, int64_t)& s, listSent)
+        {
+            Object entry;
+            if(involvesWatchonly || (::IsMine(*pwalletMain, s.first) & ISMINE_WATCH_ONLY))
+                entry.push_back(Pair("involvesWatchonly", true));
+            entry.push_back(Pair("account", strSentAccount));
+            MaybePushAddress(entry, s.first);
+            entry.push_back(Pair("category", "send"));
+            entry.push_back(Pair("amount", ValueFromAmount(-s.second)));
+            entry.push_back(Pair("fee", ValueFromAmount(-nFee)));
+            if (fLong) // TODO: reference this again
+                WalletTxToJSON(wtx, entry);
+            ret.push_back(entry);
+        }
+    }
+
+    // Received
+    if (listReceived.size() > 0 && wtx.GetDepthInMainChain() >= nMinDepth)
+    {
+        bool stop = false;
+        BOOST_FOREACH(const PAIRTYPE(CTxDestination, int64_t)& r, listReceived)
+        {
+            string account;
+            if (pwalletMain->mapAddressBook.count(r.first))
+                account = pwalletMain->mapAddressBook[r.first];
+            if (fAllAccounts || (account == strAccount))
+            {
+                Object entry;
+                if(involvesWatchonly || (::IsMine(*pwalletMain, r.first) & ISMINE_WATCH_ONLY))
+                    entry.push_back(Pair("involvesWatchonly", true));
+                entry.push_back(Pair("account", account));
+                MaybePushAddress(entry, r.first);
+                if (wtx.IsCoinBase() || wtx.IsCoinStake())
+                {
+                    if (wtx.GetDepthInMainChain() < 1)
+                        entry.push_back(Pair("category", "orphan"));
+                    else if (wtx.GetBlocksToMaturity() > 0)
+                        entry.push_back(Pair("category", "immat
