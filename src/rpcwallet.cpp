@@ -2099,4 +2099,259 @@ Value encryptwallet(const Array& params, bool fHelp)
 
     // BDB seems to have a bad habit of writing old data into
     // slack space in .dat files; that is bad if the old data is
-    // unencrypted private k
+    // unencrypted private keys. So:
+    StartShutdown();
+    return "wallet encrypted; WayaWolfCoin server stopping, restart to run with encrypted wallet. The keypool has been flushed, you need to make a new backup.";
+}
+
+
+// ppcoin: reserve balance from being staked for network protection
+Value reservebalance(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 2)
+        throw runtime_error(
+            "reservebalance [<reserve> [amount]]\n"
+            "<reserve> is true or false to turn balance reserve on or off.\n"
+            "<amount> is a real and rounded to cent.\n"
+            "Set reserve amount not participating in network protection.\n"
+            "If no parameters provided current setting is printed.\n");
+
+    if (params.size() > 0)
+    {
+        bool fReserve = params[0].get_bool();
+        if (fReserve)
+        {
+            if (params.size() == 1)
+                throw runtime_error("must provide amount to reserve balance.\n");
+            CAmount nAmount = AmountFromValue(params[1]);
+            nAmount = (nAmount / CENT) * CENT;  // round to cent
+            if (nAmount < 0)
+                throw runtime_error("amount cannot be negative.\n");
+            nReserveBalance = nAmount;
+        }
+        else
+        {
+            if (params.size() > 1)
+                throw runtime_error("cannot specify amount to turn off reserve.\n");
+            nReserveBalance = 0;
+        }
+    }
+
+    Object result;
+    result.push_back(Pair("reserve", (nReserveBalance > 0)));
+    result.push_back(Pair("amount", ValueFromAmount(nReserveBalance)));
+    return result;
+}
+
+
+// ppcoin: check wallet integrity
+Value checkwallet(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 0)
+        throw runtime_error(
+            "checkwallet\n"
+            "Check wallet for integrity.\n");
+
+    int nMismatchSpent;
+    int64_t nBalanceInQuestion;
+    pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion, true);
+    Object result;
+    if (nMismatchSpent == 0)
+        result.push_back(Pair("wallet check passed", true));
+    else
+    {
+        result.push_back(Pair("mismatched spent coins", nMismatchSpent));
+        result.push_back(Pair("amount in question", ValueFromAmount(nBalanceInQuestion)));
+    }
+    return result;
+}
+
+
+// ppcoin: repair wallet
+Value repairwallet(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 0)
+        throw runtime_error(
+            "repairwallet\n"
+            "Repair wallet if checkwallet reports any problem.\n");
+
+    int nMismatchSpent;
+    int64_t nBalanceInQuestion;
+    pwalletMain->FixSpentCoins(nMismatchSpent, nBalanceInQuestion);
+    Object result;
+    if (nMismatchSpent == 0)
+        result.push_back(Pair("wallet check passed", true));
+    else
+    {
+        result.push_back(Pair("mismatched spent coins", nMismatchSpent));
+        result.push_back(Pair("amount affected by repair", ValueFromAmount(nBalanceInQuestion)));
+    }
+    return result;
+}
+
+// NovaCoin: resend unconfirmed wallet transactions
+Value resendtx(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "resendtx\n"
+            "Re-send unconfirmed transactions.\n"
+        );
+
+    ResendWalletTransactions(true);
+
+    return Value::null;
+}
+
+// ppcoin: make a public-private key pair
+Value makekeypair(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "makekeypair [prefix]\n"
+            "Make a public/private key pair.\n"
+            "[prefix] is optional preferred prefix for the public key.\n");
+
+    string strPrefix = "";
+    if (params.size() > 0)
+        strPrefix = params[0].get_str();
+
+    CKey key;
+    key.MakeNewKey(false);
+
+    CPrivKey vchPrivKey = key.GetPrivKey();
+    Object result;
+    result.push_back(Pair("PrivateKey", HexStr<CPrivKey::iterator>(vchPrivKey.begin(), vchPrivKey.end())));
+    result.push_back(Pair("PublicKey", HexStr(key.GetPubKey())));
+    return result;
+}
+
+Value settxfee(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 1 || params.size() > 1)
+        throw runtime_error(
+            "settxfee amount\n"
+            "\nSet the transaction fee per kB.\n"
+            "\nArguments:\n"
+            "1. amount         (numeric, required) The transaction fee in WW/kB rounded to the nearest 0.00000001\n"
+            "\nResult\n"
+            "true|false        (boolean) Returns true if successful\n"
+            "\nExamples:\n"
+            + HelpExampleCli("settxfee", "0.00001")
+            + HelpExampleRpc("settxfee", "0.00001")
+        );
+
+    nTransactionFee = AmountFromValue(params[0]);
+    nTransactionFee = (nTransactionFee / CENT) * CENT;  // round to cent
+
+    return true;
+}
+
+
+Value getnewstealthaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "getnewstealthaddress [label]\n"
+            "Returns a new WayaWolfCoin stealth address for receiving payments anonymously.  ");
+
+    if (pwalletMain->IsLocked())
+        throw runtime_error("Failed: Wallet must be unlocked.");
+
+    std::string sLabel;
+    if (params.size() > 0)
+        sLabel = params[0].get_str();
+
+    CStealthAddress sxAddr;
+    std::string sError;
+    if (!pwalletMain->NewStealthAddress(sError, sLabel, sxAddr))
+        throw runtime_error(std::string("Could get new stealth address: ") + sError);
+
+    if (!pwalletMain->AddStealthAddress(sxAddr))
+        throw runtime_error("Could not save to wallet.");
+
+    return sxAddr.Encoded();
+}
+
+Value liststealthaddresses(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() > 1)
+        throw runtime_error(
+            "liststealthaddresses [show_secrets=0]\n"
+            "List owned stealth addresses.");
+
+    bool fShowSecrets = false;
+
+    if (params.size() > 0)
+    {
+        std::string str = params[0].get_str();
+
+        if (str == "0" || str == "n" || str == "no" || str == "-" || str == "false")
+            fShowSecrets = false;
+        else
+            fShowSecrets = true;
+    };
+
+    if (fShowSecrets)
+    {
+        if (pwalletMain->IsLocked())
+            throw runtime_error("Failed: Wallet must be unlocked.");
+    };
+
+    Object result;
+
+    //std::set<CStealthAddress>::iterator it;
+    //for (it = pwalletMain->stealthAddresses.begin(); it != pwalletMain->stealthAddresses.end(); ++it)
+    BOOST_FOREACH(CStealthAddress sit, pwalletMain->stealthAddresses)
+    {
+    CStealthAddress* it = &(sit);
+        if (it->scan_secret.size() < 1)
+            continue; // stealth address is not owned
+
+        if (fShowSecrets)
+        {
+            Object objA;
+            objA.push_back(Pair("Label        ", it->label));
+            objA.push_back(Pair("Address      ", it->Encoded()));
+            objA.push_back(Pair("Scan Secret  ", HexStr(it->scan_secret.begin(), it->scan_secret.end())));
+            objA.push_back(Pair("Spend Secret ", HexStr(it->spend_secret.begin(), it->spend_secret.end())));
+            result.push_back(Pair("Stealth Address", objA));
+        } else
+        {
+            result.push_back(Pair("Stealth Address", it->Encoded() + " - " + it->label));
+        };
+    };
+
+    return result;
+}
+
+Value importstealthaddress(const Array& params, bool fHelp)
+{
+    if (fHelp || params.size() < 2)
+        throw runtime_error(
+            "importstealthaddress <scan_secret> <spend_secret> [label]\n"
+            "Import an owned stealth addresses.");
+
+    std::string sScanSecret  = params[0].get_str();
+    std::string sSpendSecret = params[1].get_str();
+    std::string sLabel;
+
+
+    if (params.size() > 2)
+    {
+        sLabel = params[2].get_str();
+    };
+
+    std::vector<uint8_t> vchScanSecret;
+    std::vector<uint8_t> vchSpendSecret;
+
+    if (IsHex(sScanSecret))
+    {
+        vchScanSecret = ParseHex(sScanSecret);
+    } else
+    {
+        if (!DecodeBase58(sScanSecret, vchScanSecret))
+            throw runtime_error("Could not decode scan secret as hex or base58.");
+    };
+
+ 
