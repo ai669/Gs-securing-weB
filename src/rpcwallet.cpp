@@ -2620,4 +2620,15 @@ Value cclistcoins(const Array& params, bool fHelp)
                 coutput.push_back(Pair("Value", dAmount));
                 coutput.push_back(Pair("Confirmations", int(out.nDepth)));
                 double dAge = double(GetTime() - pindex->nTime);
-                coutput.push_back(Pair("Age (days)", (dAge/(60*60
+                coutput.push_back(Pair("Age (days)", (dAge/(60*60*24))));
+                uint64_t nWeight = 0;
+                pwalletMain->GetStakeWeightFromValue(out.tx->GetTxTime(), out.tx->vout[out.i].nValue, nWeight);
+                if(dAge < nStakeMinAge)
+                        nWeight = 0;
+                coutput.push_back(Pair("Weight", int(nWeight)));
+                double nReward = (double)GetProofOfStakeReward(pindexBest->pprev, 0, 0);
+                coutput.push_back(Pair("Potential Stake", nReward));
+                result.push_back(coutput);
+        }
+        return result;
+}
