@@ -169,4 +169,290 @@ if test x"$use_ecmult_static_precomputation" != x"no"; then
 
   if test x"$working_native_cc" = x"no"; then
     set_precomp=no
-    if test 
+    if test x"$use_ecmult_static_precomputation" = x"yes";  then
+      AC_MSG_ERROR([${CC_FOR_BUILD} does not produce working binaries. Please set CC_FOR_BUILD])
+    else
+      AC_MSG_RESULT([${CC_FOR_BUILD} does not produce working binaries. Please set CC_FOR_BUILD])
+    fi
+  else
+    AC_MSG_RESULT([ok])
+    set_precomp=yes
+  fi
+else
+  set_precomp=no
+fi
+
+if test x"$req_asm" = x"auto"; then
+  SECP_64BIT_ASM_CHECK
+  if test x"$has_64bit_asm" = x"yes"; then
+    set_asm=x86_64
+  fi
+  if test x"$set_asm" = x; then
+    set_asm=no
+  fi
+else
+  set_asm=$req_asm
+  case $set_asm in
+  x86_64)
+    SECP_64BIT_ASM_CHECK
+    if test x"$has_64bit_asm" != x"yes"; then
+      AC_MSG_ERROR([x86_64 assembly optimization requested but not available])
+    fi
+    ;;
+  arm)
+    ;;
+  no)
+    ;;
+  *)
+    AC_MSG_ERROR([invalid assembly optimization selection])
+    ;;
+  esac
+fi
+
+if test x"$req_field" = x"auto"; then
+  if test x"set_asm" = x"x86_64"; then
+    set_field=64bit
+  fi
+  if test x"$set_field" = x; then
+    SECP_INT128_CHECK
+    if test x"$has_int128" = x"yes"; then
+      set_field=64bit
+    fi
+  fi
+  if test x"$set_field" = x; then
+    set_field=32bit
+  fi
+else
+  set_field=$req_field
+  case $set_field in
+  64bit)
+    if test x"$set_asm" != x"x86_64"; then
+      SECP_INT128_CHECK
+      if test x"$has_int128" != x"yes"; then
+        AC_MSG_ERROR([64bit field explicitly requested but neither __int128 support or x86_64 assembly available])
+      fi
+    fi
+    ;;
+  32bit)
+    ;;
+  *)
+    AC_MSG_ERROR([invalid field implementation selection])
+    ;;
+  esac
+fi
+
+if test x"$req_scalar" = x"auto"; then
+  SECP_INT128_CHECK
+  if test x"$has_int128" = x"yes"; then
+    set_scalar=64bit
+  fi
+  if test x"$set_scalar" = x; then
+    set_scalar=32bit
+  fi
+else
+  set_scalar=$req_scalar
+  case $set_scalar in
+  64bit)
+    SECP_INT128_CHECK
+    if test x"$has_int128" != x"yes"; then
+      AC_MSG_ERROR([64bit scalar explicitly requested but __int128 support not available])
+    fi
+    ;;
+  32bit)
+    ;;
+  *)
+    AC_MSG_ERROR([invalid scalar implementation selected])
+    ;;
+  esac
+fi
+
+if test x"$req_bignum" = x"auto"; then
+  SECP_GMP_CHECK
+  if test x"$has_gmp" = x"yes"; then
+    set_bignum=gmp
+  fi
+
+  if test x"$set_bignum" = x; then
+    set_bignum=no
+  fi
+else
+  set_bignum=$req_bignum
+  case $set_bignum in
+  gmp)
+    SECP_GMP_CHECK
+    if test x"$has_gmp" != x"yes"; then
+      AC_MSG_ERROR([gmp bignum explicitly requested but libgmp not available])
+    fi
+    ;;
+  no)
+    ;;
+  *)
+    AC_MSG_ERROR([invalid bignum implementation selection])
+    ;;
+  esac
+fi
+
+# select assembly optimization
+use_external_asm=no
+
+case $set_asm in
+x86_64)
+  AC_DEFINE(USE_ASM_X86_64, 1, [Define this symbol to enable x86_64 assembly optimizations])
+  ;;
+arm)
+  use_external_asm=yes
+  ;;
+no)
+  ;;
+*)
+  AC_MSG_ERROR([invalid assembly optimizations])
+  ;;
+esac
+
+# select field implementation
+case $set_field in
+64bit)
+  AC_DEFINE(USE_FIELD_5X52, 1, [Define this symbol to use the FIELD_5X52 implementation])
+  ;;
+32bit)
+  AC_DEFINE(USE_FIELD_10X26, 1, [Define this symbol to use the FIELD_10X26 implementation])
+  ;;
+*)
+  AC_MSG_ERROR([invalid field implementation])
+  ;;
+esac
+
+# select bignum implementation
+case $set_bignum in
+gmp)
+  AC_DEFINE(HAVE_LIBGMP, 1, [Define this symbol if libgmp is installed])
+  AC_DEFINE(USE_NUM_GMP, 1, [Define this symbol to use the gmp implementation for num])
+  AC_DEFINE(USE_FIELD_INV_NUM, 1, [Define this symbol to use the num-based field inverse implementation])
+  AC_DEFINE(USE_SCALAR_INV_NUM, 1, [Define this symbol to use the num-based scalar inverse implementation])
+  ;;
+no)
+  AC_DEFINE(USE_NUM_NONE, 1, [Define this symbol to use no num implementation])
+  AC_DEFINE(USE_FIELD_INV_BUILTIN, 1, [Define this symbol to use the native field inverse implementation])
+  AC_DEFINE(USE_SCALAR_INV_BUILTIN, 1, [Define this symbol to use the native scalar inverse implementation])
+  ;;
+*)
+  AC_MSG_ERROR([invalid bignum implementation])
+  ;;
+esac
+
+#select scalar implementation
+case $set_scalar in
+64bit)
+  AC_DEFINE(USE_SCALAR_4X64, 1, [Define this symbol to use the 4x64 scalar implementation])
+  ;;
+32bit)
+  AC_DEFINE(USE_SCALAR_8X32, 1, [Define this symbol to use the 8x32 scalar implementation])
+  ;;
+*)
+  AC_MSG_ERROR([invalid scalar implementation])
+  ;;
+esac
+
+if test x"$use_tests" = x"yes"; then
+  SECP_OPENSSL_CHECK
+  if test x"$has_openssl_ec" = x"yes"; then
+    if test x"$enable_openssl_tests" != x"no"; then
+      AC_DEFINE(ENABLE_OPENSSL_TESTS, 1, [Define this symbol if OpenSSL EC functions are available])
+      SECP_TEST_INCLUDES="$SSL_CFLAGS $CRYPTO_CFLAGS"
+      SECP_TEST_LIBS="$CRYPTO_LIBS"
+
+      case $host in
+      *mingw*)
+        SECP_TEST_LIBS="$SECP_TEST_LIBS -lgdi32"
+        ;;
+      esac
+    fi
+  else
+    if test x"$enable_openssl_tests" = x"yes"; then
+      AC_MSG_ERROR([OpenSSL tests requested but OpenSSL with EC support is not available])
+    fi
+  fi
+else
+  if test x"$enable_openssl_tests" = x"yes"; then
+    AC_MSG_ERROR([OpenSSL tests requested but tests are not enabled])
+  fi
+fi
+
+if test x"$use_jni" != x"no"; then
+  AX_JNI_INCLUDE_DIR
+  have_jni_dependencies=yes
+  if test x"$enable_module_schnorr" = x"no"; then
+    have_jni_dependencies=no
+  fi
+  if test x"$enable_module_ecdh" = x"no"; then
+    have_jni_dependencies=no
+  fi
+  if test "x$JNI_INCLUDE_DIRS" = "x"; then
+    have_jni_dependencies=no
+  fi
+  if test "x$have_jni_dependencies" = "xno"; then
+    if test x"$use_jni" = x"yes"; then
+      AC_MSG_ERROR([jni support explicitly requested but headers/dependencies were not found. Enable ECDH and Schnorr and try again.])
+    fi
+    AC_MSG_WARN([jni headers/dependencies not found. jni support disabled])
+    use_jni=no
+  else
+    use_jni=yes
+    for JNI_INCLUDE_DIR in $JNI_INCLUDE_DIRS; do
+      JNI_INCLUDES="$JNI_INCLUDES -I$JNI_INCLUDE_DIR"
+    done
+  fi
+fi
+
+if test x"$set_bignum" = x"gmp"; then
+  SECP_LIBS="$SECP_LIBS $GMP_LIBS"
+  SECP_INCLUDES="$SECP_INCLUDES $GMP_CPPFLAGS"
+fi
+
+if test x"$use_endomorphism" = x"yes"; then
+  AC_DEFINE(USE_ENDOMORPHISM, 1, [Define this symbol to use endomorphism optimization])
+fi
+
+if test x"$set_precomp" = x"yes"; then
+  AC_DEFINE(USE_ECMULT_STATIC_PRECOMPUTATION, 1, [Define this symbol to use a statically generated ecmult table])
+fi
+
+if test x"$enable_module_ecdh" = x"yes"; then
+  AC_DEFINE(ENABLE_MODULE_ECDH, 1, [Define this symbol to enable the ECDH module])
+fi
+
+if test x"$enable_module_schnorr" = x"yes"; then
+  AC_DEFINE(ENABLE_MODULE_SCHNORR, 1, [Define this symbol to enable the Schnorr signature module])
+fi
+
+if test x"$enable_module_recovery" = x"yes"; then
+  AC_DEFINE(ENABLE_MODULE_RECOVERY, 1, [Define this symbol to enable the ECDSA pubkey recovery module])
+fi
+
+AC_C_BIGENDIAN()
+
+if test x"$use_external_asm" = x"yes"; then
+  AC_DEFINE(USE_EXTERNAL_ASM, 1, [Define this symbol if an external (non-inline) assembly implementation is used])
+fi
+
+AC_MSG_NOTICE([Using static precomputation: $set_precomp])
+AC_MSG_NOTICE([Using assembly optimizations: $set_asm])
+AC_MSG_NOTICE([Using field implementation: $set_field])
+AC_MSG_NOTICE([Using bignum implementation: $set_bignum])
+AC_MSG_NOTICE([Using scalar implementation: $set_scalar])
+AC_MSG_NOTICE([Using endomorphism optimizations: $use_endomorphism])
+AC_MSG_NOTICE([Building ECDH module: $enable_module_ecdh])
+AC_MSG_NOTICE([Building Schnorr signatures module: $enable_module_schnorr])
+AC_MSG_NOTICE([Building ECDSA pubkey recovery module: $enable_module_recovery])
+AC_MSG_NOTICE([Using jni: $use_jni])
+
+if test x"$enable_experimental" = x"yes"; then
+  AC_MSG_NOTICE([******])
+  AC_MSG_NOTICE([WARNING: experimental build])
+  AC_MSG_NOTICE([Experimental features do not have stable APIs or properties, and may not be safe for production use.])
+  AC_MSG_NOTICE([Building ECDH module: $enable_module_ecdh])
+  AC_MSG_NOTICE([Building Schnorr signatures module: $enable_module_schnorr])
+  AC_MSG_NOTICE([******])
+else
+  if test x"$enable_module_schnorr" = x"yes"; then
+    AC_MSG_ERROR([
