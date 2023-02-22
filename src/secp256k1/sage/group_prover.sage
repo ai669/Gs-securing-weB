@@ -202,4 +202,121 @@ def get_nonzero_set(R, assume):
       nonzero.add(f)
     rnz = zero.reduce(nz)
     for (f,n) in rnz.factor():
-      nonzer
+      nonzero.add(f)
+  return nonzero
+
+
+def prove_nonzero(R, exprs, assume):
+  """Check whether an expression is provably nonzero, given assumptions"""
+  zero = R.ideal(map(numerator, assume.zero))
+  nonzero = get_nonzero_set(R, assume)
+  expl = set()
+  ok = True
+  for expr in exprs:
+    if numerator(expr) in zero:
+      return (False, [exprs[expr]])
+  allexprs = reduce(lambda a,b: numerator(a)*numerator(b), exprs, 1)
+  for (f, n) in allexprs.factor():
+    if f not in nonzero:
+      ok = False
+  if ok:
+    return (True, None)
+  ok = True
+  for (f, n) in zero.reduce(numerator(allexprs)).factor():
+    if f not in nonzero:
+      ok = False
+  if ok:
+    return (True, None)
+  ok = True
+  for expr in exprs:
+    for (f,n) in numerator(expr).factor():
+      if f not in nonzero:
+        ok = False
+  if ok:
+    return (True, None)
+  ok = True
+  for expr in exprs:
+    for (f,n) in zero.reduce(numerator(expr)).factor():
+      if f not in nonzero:
+        expl.add(exprs[expr])
+  if expl:
+    return (False, list(expl))
+  else:
+    return (True, None)
+
+
+def prove_zero(R, exprs, assume):
+  """Check whether all of the passed expressions are provably zero, given assumptions"""
+  r, e = prove_nonzero(R, dict(map(lambda x: (fastfrac(R, x.bot, 1), exprs[x]), exprs)), assume)
+  if not r:
+    return (False, map(lambda x: "Possibly zero denominator: %s" % x, e))
+  zero = R.ideal(map(numerator, assume.zero))
+  nonzero = prod(x for x in assume.nonzero)
+  expl = []
+  for expr in exprs:
+    if not expr.iszero(zero):
+      expl.append(exprs[expr])
+  if not expl:
+    return (True, None)
+  return (False, expl)
+
+
+def describe_extra(R, assume, assumeExtra):
+  """Describe what assumptions are added, given existing assumptions"""
+  zerox = assume.zero.copy()
+  zerox.update(assumeExtra.zero)
+  zero = R.ideal(map(numerator, assume.zero))
+  zeroextra = R.ideal(map(numerator, zerox))
+  nonzero = get_nonzero_set(R, assume)
+  ret = set()
+  # Iterate over the extra zero expressions
+  for base in assumeExtra.zero:
+    if base not in zero:
+      add = []
+      for (f, n) in numerator(base).factor():
+        if f not in nonzero:
+          add += ["%s" % f]
+      if add:
+        ret.add((" * ".join(add)) + " = 0 [%s]" % assumeExtra.zero[base])
+  # Iterate over the extra nonzero expressions
+  for nz in assumeExtra.nonzero:
+    nzr = zeroextra.reduce(numerator(nz))
+    if nzr not in zeroextra:
+      for (f,n) in nzr.factor():
+        if zeroextra.reduce(f) not in nonzero:
+          ret.add("%s != 0" % zeroextra.reduce(f))
+  return ", ".join(x for x in ret)
+
+
+def check_symbolic(R, assumeLaw, assumeAssert, assumeBranch, require):
+  """Check a set of zero and nonzero requirements, given a set of zero and nonzero assumptions"""
+  assume = assumeLaw + assumeAssert + assumeBranch
+
+  if conflicts(R, assume):
+    # This formula does not apply
+    return None
+
+  describe = describe_extra(R, assumeLaw + assumeBranch, assumeAssert)
+
+  ok, msg = prove_zero(R, require.zero, assume)
+  if not ok:
+    return "FAIL, %s fails (assuming %s)" % (str(msg), describe)
+
+  res, expl = prove_nonzero(R, require.nonzero, assume)
+  if not res:
+    return "FAIL, %s fails (assuming %s)" % (str(expl), describe)
+
+  if describe != "":
+    return "OK (assuming %s)" % describe
+  else:
+    return "OK"
+
+
+def concrete_verify(c):
+  for k in c.zero:
+    if k != 0:
+      return (False, c.zero[k])
+  for k in c.nonzero:
+    if k == 0:
+      return (False, c.nonzero[k])
+  return (True, None)
