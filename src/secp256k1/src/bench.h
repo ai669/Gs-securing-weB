@@ -35,4 +35,32 @@ void run_benchmark(char *name, void (*benchmark)(void*), void (*setup)(void*), v
     double min = HUGE_VAL;
     double sum = 0.0;
     double max = 0.0;
-    for (i 
+    for (i = 0; i < count; i++) {
+        double begin, total;
+        if (setup != NULL) {
+            setup(data);
+        }
+        begin = gettimedouble();
+        benchmark(data);
+        total = gettimedouble() - begin;
+        if (teardown != NULL) {
+            teardown(data);
+        }
+        if (total < min) {
+            min = total;
+        }
+        if (total > max) {
+            max = total;
+        }
+        sum += total;
+    }
+    printf("%s: min ", name);
+    print_number(min * 1000000.0 / iter);
+    printf("us / avg ");
+    print_number((sum / count) * 1000000.0 / iter);
+    printf("us / max ");
+    print_number(max * 1000000.0 / iter);
+    printf("us\n");
+}
+
+#endif
