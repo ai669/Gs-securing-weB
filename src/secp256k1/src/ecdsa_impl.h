@@ -148,3 +148,157 @@ static int secp256k1_der_parse_integer(secp256k1_scalar *r, const unsigned char 
 static int secp256k1_ecdsa_sig_parse(secp256k1_scalar *rr, secp256k1_scalar *rs, const unsigned char *sig, size_t size) {
     const unsigned char *sigend = sig + size;
     int rlen;
+    if (sig == sigend || *(sig++) != 0x30) {
+        /* The encoding doesn't start with a constructed sequence (X.690-0207 8.9.1). */
+        return 0;
+    }
+    rlen = secp256k1_der_read_len(&sig, sigend);
+    if (rlen < 0 || sig + rlen > sigend) {
+        /* Tuple exceeds bounds */
+        return 0;
+    }
+    if (sig + rlen != sigend) {
+        /* Garbage after tuple. */
+        return 0;
+    }
+
+    if (!secp256k1_der_parse_integer(rr, &sig, sigend)) {
+        return 0;
+    }
+    if (!secp256k1_der_parse_integer(rs, &sig, sigend)) {
+        return 0;
+    }
+
+    if (sig != sigend) {
+        /* Trailing garbage inside tuple. */
+        return 0;
+    }
+
+    return 1;
+}
+
+static int secp256k1_ecdsa_sig_serialize(unsigned char *sig, size_t *size, const secp256k1_scalar* ar, const secp256k1_scalar* as) {
+    unsigned char r[33] = {0}, s[33] = {0};
+    unsigned char *rp = r, *sp = s;
+    size_t lenR = 33, lenS = 33;
+    secp256k1_scalar_get_b32(&r[1], ar);
+    secp256k1_scalar_get_b32(&s[1], as);
+    while (lenR > 1 && rp[0] == 0 && rp[1] < 0x80) { lenR--; rp++; }
+    while (lenS > 1 && sp[0] == 0 && sp[1] < 0x80) { lenS--; sp++; }
+    if (*size < 6+lenS+lenR) {
+        *size = 6 + lenS + lenR;
+        return 0;
+    }
+    *size = 6 + lenS + lenR;
+    sig[0] = 0x30;
+    sig[1] = 4 + lenS + lenR;
+    sig[2] = 0x02;
+    sig[3] = lenR;
+    memcpy(sig+4, rp, lenR);
+    sig[4+lenR] = 0x02;
+    sig[5+lenR] = lenS;
+    memcpy(sig+lenR+6, sp, lenS);
+    return 1;
+}
+
+static int secp256k1_ecdsa_sig_verify(const secp256k1_ecmult_context *ctx, const secp256k1_scalar *sigr, const secp256k1_scalar *sigs, const secp256k1_ge *pubkey, const secp256k1_scalar *message) {
+    unsigned char c[32];
+    secp256k1_scalar sn, u1, u2;
+    secp256k1_fe xr;
+    secp256k1_gej pubkeyj;
+    secp256k1_gej pr;
+
+    if (secp256k1_scalar_is_zero(sigr) || secp256k1_scalar_is_zero(sigs)) {
+        return 0;
+    }
+
+    secp256k1_scalar_inverse_var(&sn, sigs);
+    secp256k1_scalar_mul(&u1, &sn, message);
+    secp256k1_scalar_mul(&u2, &sn, sigr);
+    secp256k1_gej_set_ge(&pubkeyj, pubkey);
+    secp256k1_ecmult(ctx, &pr, &pubkeyj, &u2, &u1);
+    if (secp256k1_gej_is_infinity(&pr)) {
+        return 0;
+    }
+    secp256k1_scalar_get_b32(c, sigr);
+    secp256k1_fe_set_b32(&xr, c);
+
+    /** We now have the recomputed R point in pr, and its claimed x coordinate (modulo n)
+     *  in xr. Naively, we would extract the x coordinate from pr (requiring a inversion modulo p),
+     *  compute the remainder modulo n, and compare it to xr. However:
+     *
+     *        xr == X(pr) mod n
+     *    <=> exists h. (xr + h * n < p && xr + h * n == X(pr))
+     *    [Since 2 * n > p, h can only be 0 or 1]
+     *    <=> (xr == X(pr)) || (xr + n < p && xr + n == X(pr))
+     *    [In Jacobian coordinates, X(pr) is pr.x / pr.z^2 mod p]
+     *    <=> (xr == pr.x / pr.z^2 mod p) || (xr + n < p && xr + n == pr.x / pr.z^2 mod p)
+     *    [Multiplying both sides of the equations by pr.z^2 mod p]
+     *    <=> (xr * pr.z^2 mod p == pr.x) || (xr + n < p && (xr + n) * pr.z^2 mod p == pr.x)
+     *
+     *  Thus, we can avoid the inversion, but we have to check both cases separately.
+     *  secp256k1_gej_eq_x implements the (xr * pr.z^2 mod p == pr.x) test.
+     */
+    if (secp256k1_gej_eq_x_var(&xr, &pr)) {
+        /* xr * pr.z^2 mod p == pr.x, so the signature is valid. */
+        return 1;
+    }
+    if (secp256k1_fe_cmp_var(&xr, &secp256k1_ecdsa_const_p_minus_order) >= 0) {
+        /* xr + n >= p, so we can skip testing the second case. */
+        return 0;
+    }
+    secp256k1_fe_add(&xr, &secp256k1_ecdsa_const_order_as_fe);
+    if (secp256k1_gej_eq_x_var(&xr, &pr)) {
+        /* (xr + n) * pr.z^2 mod p == pr.x, so the signature is valid. */
+        return 1;
+    }
+    return 0;
+}
+
+static int secp256k1_ecdsa_sig_sign(const secp256k1_ecmult_gen_context *ctx, secp256k1_scalar *sigr, secp256k1_scalar *sigs, const secp256k1_scalar *seckey, const secp256k1_scalar *message, const secp256k1_scalar *nonce, int *recid) {
+    unsigned char b[32];
+    secp256k1_gej rp;
+    secp256k1_ge r;
+    secp256k1_scalar n;
+    int overflow = 0;
+
+    secp256k1_ecmult_gen(ctx, &rp, nonce);
+    secp256k1_ge_set_gej(&r, &rp);
+    secp256k1_fe_normalize(&r.x);
+    secp256k1_fe_normalize(&r.y);
+    secp256k1_fe_get_b32(b, &r.x);
+    secp256k1_scalar_set_b32(sigr, b, &overflow);
+    if (secp256k1_scalar_is_zero(sigr)) {
+        /* P.x = order is on the curve, so technically sig->r could end up zero, which would be an invalid signature.
+         * This branch is cryptographically unreachable as hitting it requires finding the discrete log of P.x = N.
+         */
+        secp256k1_gej_clear(&rp);
+        secp256k1_ge_clear(&r);
+        return 0;
+    }
+    if (recid) {
+        /* The overflow condition is cryptographically unreachable as hitting it requires finding the discrete log
+         * of some P where P.x >= order, and only 1 in about 2^127 points meet this criteria.
+         */
+        *recid = (overflow ? 2 : 0) | (secp256k1_fe_is_odd(&r.y) ? 1 : 0);
+    }
+    secp256k1_scalar_mul(&n, sigr, seckey);
+    secp256k1_scalar_add(&n, &n, message);
+    secp256k1_scalar_inverse(sigs, nonce);
+    secp256k1_scalar_mul(sigs, sigs, &n);
+    secp256k1_scalar_clear(&n);
+    secp256k1_gej_clear(&rp);
+    secp256k1_ge_clear(&r);
+    if (secp256k1_scalar_is_zero(sigs)) {
+        return 0;
+    }
+    if (secp256k1_scalar_is_high(sigs)) {
+        secp256k1_scalar_negate(sigs, sigs);
+        if (recid) {
+            *recid ^= 1;
+        }
+    }
+    return 1;
+}
+
+#endif
