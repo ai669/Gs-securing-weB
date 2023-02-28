@@ -224,4 +224,92 @@ static void secp256k1_fe_inv(secp256k1_fe *r, const secp256k1_fe *a) {
 }
 
 static void secp256k1_fe_inv_var(secp256k1_fe *r, const secp256k1_fe *a) {
-#if define
+#if defined(USE_FIELD_INV_BUILTIN)
+    secp256k1_fe_inv(r, a);
+#elif defined(USE_FIELD_INV_NUM)
+    secp256k1_num n, m;
+    static const secp256k1_fe negone = SECP256K1_FE_CONST(
+        0xFFFFFFFFUL, 0xFFFFFFFFUL, 0xFFFFFFFFUL, 0xFFFFFFFFUL,
+        0xFFFFFFFFUL, 0xFFFFFFFFUL, 0xFFFFFFFEUL, 0xFFFFFC2EUL
+    );
+    /* secp256k1 field prime, value p defined in "Standards for Efficient Cryptography" (SEC2) 2.7.1. */
+    static const unsigned char prime[32] = {
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFE,0xFF,0xFF,0xFC,0x2F
+    };
+    unsigned char b[32];
+    int res;
+    secp256k1_fe c = *a;
+    secp256k1_fe_normalize_var(&c);
+    secp256k1_fe_get_b32(b, &c);
+    secp256k1_num_set_bin(&n, b, 32);
+    secp256k1_num_set_bin(&m, prime, 32);
+    secp256k1_num_mod_inverse(&n, &n, &m);
+    secp256k1_num_get_bin(b, 32, &n);
+    res = secp256k1_fe_set_b32(r, b);
+    (void)res;
+    VERIFY_CHECK(res);
+    /* Verify the result is the (unique) valid inverse using non-GMP code. */
+    secp256k1_fe_mul(&c, &c, r);
+    secp256k1_fe_add(&c, &negone);
+    CHECK(secp256k1_fe_normalizes_to_zero_var(&c));
+#else
+#error "Please select field inverse implementation"
+#endif
+}
+
+static void secp256k1_fe_inv_all_var(secp256k1_fe *r, const secp256k1_fe *a, size_t len) {
+    secp256k1_fe u;
+    size_t i;
+    if (len < 1) {
+        return;
+    }
+
+    VERIFY_CHECK((r + len <= a) || (a + len <= r));
+
+    r[0] = a[0];
+
+    i = 0;
+    while (++i < len) {
+        secp256k1_fe_mul(&r[i], &r[i - 1], &a[i]);
+    }
+
+    secp256k1_fe_inv_var(&u, &r[--i]);
+
+    while (i > 0) {
+        size_t j = i--;
+        secp256k1_fe_mul(&r[j], &r[i], &u);
+        secp256k1_fe_mul(&u, &u, &a[j]);
+    }
+
+    r[0] = u;
+}
+
+static int secp256k1_fe_is_quad_var(const secp256k1_fe *a) {
+#ifndef USE_NUM_NONE
+    unsigned char b[32];
+    secp256k1_num n;
+    secp256k1_num m;
+    /* secp256k1 field prime, value p defined in "Standards for Efficient Cryptography" (SEC2) 2.7.1. */
+    static const unsigned char prime[32] = {
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,
+        0xFF,0xFF,0xFF,0xFE,0xFF,0xFF,0xFC,0x2F
+    };
+
+    secp256k1_fe c = *a;
+    secp256k1_fe_normalize_var(&c);
+    secp256k1_fe_get_b32(b, &c);
+    secp256k1_num_set_bin(&n, b, 32);
+    secp256k1_num_set_bin(&m, prime, 32);
+    return secp256k1_num_jacobi(&n, &m) >= 0;
+#else
+    secp256k1_fe r;
+    return secp256k1_fe_sqrt(&r, a);
+#endif
+}
+
+#endif
