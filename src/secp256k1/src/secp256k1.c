@@ -543,4 +543,19 @@ int secp256k1_ec_pubkey_combine(const secp256k1_context* ctx, secp256k1_pubkey *
     if (secp256k1_gej_is_infinity(&Qj)) {
         return 0;
     }
-    secp256k1_ge_set_gej
+    secp256k1_ge_set_gej(&Q, &Qj);
+    secp256k1_pubkey_save(pubnonce, &Q);
+    return 1;
+}
+
+#ifdef ENABLE_MODULE_ECDH
+# include "modules/ecdh/main_impl.h"
+#endif
+
+#ifdef ENABLE_MODULE_SCHNORR
+# include "modules/schnorr/main_impl.h"
+#endif
+
+#ifdef ENABLE_MODULE_RECOVERY
+# include "modules/recovery/main_impl.h"
+#endif
