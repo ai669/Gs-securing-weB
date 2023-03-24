@@ -332,4 +332,275 @@ public:
         CAmount nDebit = 0;
         BOOST_FOREACH(const CTxIn& txin, tx.vin)
         {
-            
+            nDebit += GetDebit(txin, filter);
+            if (!MoneyRange(nDebit))
+                throw std::runtime_error("CWallet::GetDebit() : value out of range");
+        }
+        return nDebit;
+    }
+    CAmount GetCredit(const CTransaction& tx, const isminefilter& filter) const
+    {
+        CAmount nCredit = 0;
+        BOOST_FOREACH(const CTxOut& txout, tx.vout)
+        {
+            nCredit += GetCredit(txout, filter);
+            if (!MoneyRange(nCredit))
+                throw std::runtime_error("CWallet::GetCredit() : value out of range");
+        }
+        return nCredit;
+    }
+    CAmount GetChange(const CTransaction& tx) const
+    {
+        CAmount nChange = 0;
+        BOOST_FOREACH(const CTxOut& txout, tx.vout)
+        {
+            nChange += GetChange(txout);
+            if (!MoneyRange(nChange))
+                throw std::runtime_error("CWallet::GetChange() : value out of range");
+        }
+        return nChange;
+    }
+    void SetBestChain(const CBlockLocator& loc);
+
+    DBErrors LoadWallet(bool& fFirstRunRet);
+
+    bool SetAddressBookName(const CTxDestination& address, const std::string& strName);
+
+    bool DelAddressBookName(const CTxDestination& address);
+
+    bool UpdatedTransaction(const uint256 &hashTx);
+
+    void Inventory(const uint256 &hash)
+    {
+        {
+            LOCK(cs_wallet);
+            std::map<uint256, int>::iterator mi = mapRequestCount.find(hash);
+            if (mi != mapRequestCount.end())
+                (*mi).second++;
+        }
+    }
+
+    unsigned int GetKeyPoolSize()
+    {
+        AssertLockHeld(cs_wallet); // setKeyPool
+        return setKeyPool.size();
+    }
+
+    bool SetDefaultKey(const CPubKey &vchPubKey);
+
+    // signify that a particular wallet feature is now used. this may change nWalletVersion and nWalletMaxVersion if those are lower
+    bool SetMinVersion(enum WalletFeature, CWalletDB* pwalletdbIn = NULL, bool fExplicit = false);
+
+    // change which version we're allowed to upgrade to (note that this does not immediately imply upgrading to that format)
+    bool SetMaxVersion(int nVersion);
+
+    // get the current wallet format (the oldest client version guaranteed to understand this wallet)
+    int GetVersion() { LOCK(cs_wallet); return nWalletVersion; }
+
+    // Get wallet transactions that conflict with given transaction (spend same outputs)
+    std::set<uint256> GetConflicts(const uint256& txid) const;
+
+    void FixSpentCoins(int& nMismatchSpent, int64_t& nBalanceInQuestion, bool fCheckOnly = false);
+    void DisableTransaction(const CTransaction &tx);
+
+    /** Address book entry changed.
+     * @note called with lock cs_wallet held.
+     */
+    boost::signals2::signal<void (CWallet *wallet, const CTxDestination
+        &address, const std::string &label, bool isMine,
+        ChangeType status)> NotifyAddressBookChanged;
+
+    /** Wallet transaction added, removed or updated.
+     * @note called with lock cs_wallet held.
+     */
+    boost::signals2::signal<void (CWallet *wallet, const uint256 &hashTx, ChangeType status)> NotifyTransactionChanged;
+
+    /** Show progress e.g. for rescan */
+    boost::signals2::signal<void (const std::string &title, int nProgress)> ShowProgress;
+
+    /** Watch-only address added */
+    boost::signals2::signal<void (bool fHaveWatchOnly)> NotifyWatchonlyChanged;
+};
+
+/** A key allocated from the key pool. */
+class CReserveKey
+{
+protected:
+    CWallet* pwallet;
+    int64_t nIndex;
+    CPubKey vchPubKey;
+public:
+    CReserveKey(CWallet* pwalletIn)
+    {
+        nIndex = -1;
+        pwallet = pwalletIn;
+    }
+
+    ~CReserveKey()
+    {
+        ReturnKey();
+    }
+
+    void ReturnKey();
+    bool GetReservedKey(CPubKey &pubkey);
+    void KeepKey();
+};
+
+
+typedef std::map<std::string, std::string> mapValue_t;
+
+
+static void ReadOrderPos(int64_t& nOrderPos, mapValue_t& mapValue)
+{
+    if (!mapValue.count("n"))
+    {
+        nOrderPos = -1; // TODO: calculate elsewhere
+        return;
+    }
+    nOrderPos = atoi64(mapValue["n"].c_str());
+}
+
+
+static void WriteOrderPos(const int64_t& nOrderPos, mapValue_t& mapValue)
+{
+    if (nOrderPos == -1)
+        return;
+    mapValue["n"] = i64tostr(nOrderPos);
+}
+
+
+/** A transaction with a bunch of additional info that only the owner cares about.
+ * It includes any unrecorded transactions needed to link it back to the block chain.
+ */
+class CWalletTx : public CMerkleTx
+{
+private:
+    const CWallet* pwallet;
+
+public:
+    std::vector<CMerkleTx> vtxPrev;
+    mapValue_t mapValue;
+    std::vector<std::pair<std::string, std::string> > vOrderForm;
+    unsigned int fTimeReceivedIsTxTime;
+    unsigned int nTimeReceived;  // time received by this node
+    unsigned int nTimeSmart;
+    char fFromMe;
+    std::string strFromAccount;
+    std::vector<char> vfSpent; // which outputs are already spent
+    int64_t nOrderPos;  // position in ordered transaction list
+
+    // memory only
+    mutable bool fDebitCached;
+    mutable bool fCreditCached;
+    mutable bool fImmatureCreditCached;
+    mutable bool fAvailableCreditCached;
+    mutable bool fWatchDebitCached;
+    mutable bool fWatchCreditCached;
+    mutable bool fImmatureWatchCreditCached;
+    mutable bool fAvailableWatchCreditCached;
+    mutable bool fChangeCached;
+
+    mutable int64_t nDebitCached;
+    mutable int64_t nCreditCached;
+    mutable int64_t nImmatureCreditCached;
+    mutable int64_t nAvailableCreditCached;
+    mutable CAmount nWatchDebitCached;
+    mutable CAmount nWatchCreditCached;
+    mutable CAmount nImmatureWatchCreditCached;
+    mutable CAmount nAvailableWatchCreditCached;
+    mutable int64_t nChangeCached;
+
+    CWalletTx()
+    {
+        Init(NULL);
+    }
+
+    CWalletTx(const CWallet* pwalletIn)
+    {
+        Init(pwalletIn);
+    }
+
+    CWalletTx(const CWallet* pwalletIn, const CMerkleTx& txIn) : CMerkleTx(txIn)
+    {
+        Init(pwalletIn);
+    }
+
+    CWalletTx(const CWallet* pwalletIn, const CTransaction& txIn) : CMerkleTx(txIn)
+    {
+        Init(pwalletIn);
+    }
+
+    void Init(const CWallet* pwalletIn)
+    {
+        pwallet = pwalletIn;
+        vtxPrev.clear();
+        mapValue.clear();
+        vOrderForm.clear();
+        fTimeReceivedIsTxTime = false;
+        nTimeReceived = 0;
+        nTimeSmart = 0;
+        fFromMe = false;
+        strFromAccount.clear();
+        vfSpent.clear();
+        fDebitCached = false;
+        fCreditCached = false;
+        fImmatureCreditCached = false;
+        fAvailableCreditCached = false;
+        fWatchDebitCached = false;
+        fWatchCreditCached = false;
+        fImmatureWatchCreditCached = false;
+        fAvailableWatchCreditCached = false;
+        fChangeCached = false;
+        nDebitCached = 0;
+        nCreditCached = 0;
+        nAvailableCreditCached = 0;
+        nWatchDebitCached = 0;
+        nWatchCreditCached = 0;
+        nAvailableWatchCreditCached = 0;
+        nImmatureWatchCreditCached = 0;
+        nChangeCached = 0;
+        nOrderPos = -1;
+    }
+
+    IMPLEMENT_SERIALIZE
+    (
+        CWalletTx* pthis = const_cast<CWalletTx*>(this);
+        if (fRead)
+            pthis->Init(NULL);
+        char fSpent = false;
+
+        if (!fRead)
+        {
+            pthis->mapValue["fromaccount"] = pthis->strFromAccount;
+
+            std::string str;
+            BOOST_FOREACH(char f, vfSpent)
+            {
+                str += (f ? '1' : '0');
+                if (f)
+                    fSpent = true;
+            }
+            pthis->mapValue["spent"] = str;
+
+            WriteOrderPos(pthis->nOrderPos, pthis->mapValue);
+
+            if (nTimeSmart)
+                pthis->mapValue["timesmart"] = strprintf("%u", nTimeSmart);
+        }
+
+        nSerSize += SerReadWrite(s, *(CMerkleTx*)this, nType, nVersion,ser_action);
+        READWRITE(vtxPrev);
+        READWRITE(mapValue);
+        READWRITE(vOrderForm);
+        READWRITE(fTimeReceivedIsTxTime);
+        READWRITE(nTimeReceived);
+        READWRITE(fFromMe);
+        READWRITE(fSpent);
+
+        if (fRead)
+        {
+            pthis->strFromAccount = pthis->mapValue["fromaccount"];
+
+            if (mapValue.count("spent"))
+                BOOST_FOREACH(char c, pthis->mapValue["spent"])
+                   
