@@ -403,4 +403,74 @@ FORCE_INLINE XXH_errorcode XXH32_update_endian (void* state_in, const void* inpu
 
 XXH_errorcode XXH32_update (void* state_in, const void* input, int len)
 {
-    XXH_en
+    XXH_endianess endian_detected = (XXH_endianess)XXH_CPU_LITTLE_ENDIAN;
+    
+    if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
+        return XXH32_update_endian(state_in, input, len, XXH_littleEndian);
+    else
+        return XXH32_update_endian(state_in, input, len, XXH_bigEndian);
+}
+
+
+
+FORCE_INLINE U32 XXH32_intermediateDigest_endian (void* state_in, XXH_endianess endian)
+{
+    struct XXH_state32_t * state = (struct XXH_state32_t *) state_in;
+    const BYTE * p = (const BYTE*)state->memory;
+    BYTE* bEnd = (BYTE*)state->memory + state->memsize;
+    U32 h32;
+
+    if (state->total_len >= 16)
+    {
+        h32 = XXH_rotl32(state->v1, 1) + XXH_rotl32(state->v2, 7) + XXH_rotl32(state->v3, 12) + XXH_rotl32(state->v4, 18);
+    }
+    else
+    {
+        h32  = state->seed + PRIME32_5;
+    }
+
+    h32 += (U32) state->total_len;
+
+    while (p<=bEnd-4)
+    {
+        h32 += XXH_readLE32((const U32*)p, endian) * PRIME32_3;
+        h32  = XXH_rotl32(h32, 17) * PRIME32_4;
+        p+=4;
+    }
+
+    while (p<bEnd)
+    {
+        h32 += (*p) * PRIME32_5;
+        h32 = XXH_rotl32(h32, 11) * PRIME32_1;
+        p++;
+    }
+
+    h32 ^= h32 >> 15;
+    h32 *= PRIME32_2;
+    h32 ^= h32 >> 13;
+    h32 *= PRIME32_3;
+    h32 ^= h32 >> 16;
+
+    return h32;
+}
+
+
+U32 XXH32_intermediateDigest (void* state_in)
+{
+    XXH_endianess endian_detected = (XXH_endianess)XXH_CPU_LITTLE_ENDIAN;
+    
+    if ((endian_detected==XXH_littleEndian) || XXH_FORCE_NATIVE_FORMAT)
+        return XXH32_intermediateDigest_endian(state_in, XXH_littleEndian);
+    else
+        return XXH32_intermediateDigest_endian(state_in, XXH_bigEndian);
+}
+
+
+U32 XXH32_digest (void* state_in)
+{
+    U32 h32 = XXH32_intermediateDigest(state_in);
+
+    XXH_free(state_in);
+
+    return h32;
+}
